@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="français">
+<head>
+<title>AjouterModifierProfil</title>
+<meta charset="utf-8"/>
+<link href="./style.css" rel="stylesheet"/>
+</head>
+<body>
+<hr noshade="" width="100%"/>
+<ul>
+<li class="linom">
+<label for="name">Nom :</label>
+<input id="name" name="user_name" type="text"/>
+</li>
+<li class="liprenom">
+<label for="Prenom">Prenom :</label>
+<input id="Prenom" name="user_Lastname" type="text"/>
+<img class="imageP" id="imageProfil" src="./assets/imageProfil/default.png"/>
+</li>
+<li class="liage">
+<label for="Age">Age :</label>
+<select class="jour" id="Age" name="menuAgeJ" required="" size="1">
+<option value="">Jour </option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select>
+<select class="mois" name="menuAgeM" required="" size="1">
+<option value="">Mois </option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select>
+<select class="annee" name="menuAgeA" required="" size="1">
+<option value="">Année </option>
+<option value="2002">2002</option>
+<option value="2003">2003</option>
+<option value="2004">2004</option>
+</select>
+</li>
+</ul>
+<hr noshade="" width="100%"/>
+<section id="optionPatient">
+<div class="optionName">
+<p>Options du patient</p>
+</div>
+<div class="photoClass">
+<input id="photo" name="Photos" type="checkbox" value="PhotosValue"/>
+<label for="photo">Photos</label>
+</div>
+<div class="videoClass">
+<input id="video" name="Videos" type="checkbox" value="VideosValue"/>
+<label for="video">Vidéos</label>
+</div>
+<div class="audioClass">
+<input id="audio" name="Audios" type="checkbox" value="AudiosValue"/>
+<label for="audio">Audio</label>
+</div>
+<div class="indiceClass">
+<input id="indice" name="Indices" type="checkbox" value="IndicesValue"/>
+<label for="indice">Indices</label>
+</div>
+</section>
+<section id="optionQuestion">
+<div class="optionName">
+<p>Options de question</p>
+</div>
+<div class="lectureAutoClass">
+<input id="lectureAuto" type="checkbox" value="lectureAutoValue"/>
+<label for="lectureAuto">Lecture automatique de la question</label>
+</div>
+<div class="nbReponseClass">
+<label for="nbReponses">Nombre maximum de réponses possibles :</label>
+<select id="nbReponses" name="nbReponse" required="" size="1">
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+</select>
+</div>
+<div class="disparitionClass">
+<input id="Disparition" type="checkbox" value="DisparitionValue"/>
+<label for="Disparition">Effacer les mauvaises réponses</label>
+</div>
+<div class="reposeClass">
+<input id="reposeQuestion" type="checkbox" value="reposeValue"/>
+<label for="reposeQuestion">Reposer la question plus tard dans le quiz</label>
+</div>
+</section>
+<section id="optionIndice">
+<div class="optionName">
+<p>Option d'indice :</p>
+</div>
+<div class="photoClass">
+<input id="photoIndice" name="Photos" type="checkbox" value="PhotosValue"/>
+<label for="photoIndice">Photos</label>
+</div>
+<div class="videoClass">
+<input id="videoIndice" name="Videos" type="checkbox" value="VideosValue"/>
+<label for="videoIndice">Vidéos</label>
+</div>
+</section>
+<div class="tailleText">
+<label for="tailleText">Taille texte :</label>
+<select id="tailleText" name="tailleText" required="" size="1">
+<option value="1">PETIT</option>
+<option value="2">MOYEN</option>
+<option value="3">GRAND</option>
+</select>
+</div>
+<script src="scripts/websockets.js"></script></body>
+</html>

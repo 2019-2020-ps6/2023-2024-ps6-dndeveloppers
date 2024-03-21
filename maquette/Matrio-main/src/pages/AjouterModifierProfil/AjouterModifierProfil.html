@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="français">
+
+<head>
+    <title>AjouterModifierProfil</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+    <hr noshade width="100%">
+    <ul>
+        <li class="linom">
+          <label for="name">Nom :</label>
+          <input type="text" id="name" name="user_name" />
+        </li>
+        <li class="liprenom">
+            <label for="Prenom">Prenom :</label>
+            <input type="text" id="Prenom" name="user_Lastname" />
+            <img id="imageProfil" class="imageP" src="./assets/imageProfil/default.png" >
+        </li>
+        <li class="liage">
+            <label for="Age">Age :</label>
+            <select name="menuAgeJ" class="jour" id="Age" size="1" required>
+                <option value="">Jour </option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <select name="menuAgeM" class="mois" size="1" required>
+                <option value="">Mois </option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <select name="menuAgeA" class="annee" size="1" required>
+                <option value="">Année </option>
+                <option value="2002">2002</option>
+                <option value="2003">2003</option>
+                <option value="2004">2004</option>
+            </select>
+        </li>
+    </ul>
+    <hr noshade width="100%">
+    <section id="optionPatient">
+        <div class="optionName">
+            <p>Options du patient</p>
+        </div>
+        <div class="photoClass">
+            <input
+              type="checkbox"
+              id="photo"
+              name="Photos"
+              value="PhotosValue" />
+            <label for="photo">Photos</label>
+        </div>
+        <div class="videoClass">
+            <input
+              type="checkbox"
+              id="video"
+              name="Videos"
+              value="VideosValue" />
+            <label for="video">Vidéos</label>
+        </div>
+        <div class="audioClass">
+            <input
+              type="checkbox"
+              id="audio"
+              name="Audios"
+              value="AudiosValue" />
+            <label for="audio">Audio</label>
+        </div>
+        <div class="indiceClass">
+            <input
+              type="checkbox"
+              id="indice"
+              name="Indices"
+              value="IndicesValue" />
+            <label for="indice">Indices</label>
+        </div>
+    </section>
+    <section id="optionQuestion">
+        <div class="optionName">
+            <p>Options de question</p>
+        </div>
+        <div class="lectureAutoClass">
+            <input type="checkbox" id="lectureAuto" value="lectureAutoValue"/>
+            <label for="lectureAuto">Lecture automatique de la question</label>
+        </div>
+        <div class="nbReponseClass">
+            <label for="nbReponses">Nombre maximum de réponses possibles :</label>
+            <select name="nbReponse" id="nbReponses" size="1" required>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        </div>
+        <div class="disparitionClass">
+            <input type="checkbox" id="Disparition" value="DisparitionValue"/>
+            <label for="Disparition">Effacer les mauvaises réponses</label>
+        </div>
+        <div class="reposeClass">
+            <input type="checkbox" id="reposeQuestion" value="reposeValue"/>
+            <label for="reposeQuestion">Reposer la question plus tard dans le quiz</label>
+        </div>
+    </section>
+    <section id="optionIndice">
+        <div class="optionName">
+            <p>Option d'indice :</p>
+        </div>
+        <div class="photoClass">
+            <input
+                    type="checkbox"
+                    id="photoIndice"
+                    name="Photos"
+                    value="PhotosValue" />
+            <label for="photoIndice">Photos</label>
+        </div>
+        <div class="videoClass">
+            <input
+                    type="checkbox"
+                    id="videoIndice"
+                    name="Videos"
+                    value="VideosValue" />
+            <label for="videoIndice">Vidéos</label>
+        </div>
+    </section>
+    <div class="tailleText">
+        <label for="tailleText">Taille texte :</label>
+            <select name="tailleText" id="tailleText" size="1" required>
+                <option value="1">PETIT</option>
+                <option value="2">MOYEN</option>
+                <option value="3">GRAND</option>
+            </select>
+    </div>
+</body>
+
+</html>

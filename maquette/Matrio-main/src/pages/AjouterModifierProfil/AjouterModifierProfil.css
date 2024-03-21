@@ -1,0 +1,36 @@
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.linom{
+    margin-top: 1%;
+}
+
+.liprenom{
+    margin-top: 1%;
+}
+
+.liage{
+    margin-top: 1%;
+}
+
+.imageP{
+    position: absolute;
+    left:85%;
+    top:3%;
+}
+
+.audioClass, .videoClass, .photoClass, .indiceClass, .lectureAutoClass, .nbReponseClass, .disparitionClass, .reposeClass{
+    margin-left: 10%;
+    margin-top: 1%;
+}
+
+.optionName, .tailleText{
+    margin-left: 2%;
+}
+.tailleText{
+    margin-top: 4%;
+}

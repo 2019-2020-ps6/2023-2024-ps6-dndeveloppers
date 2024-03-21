@@ -1,0 +1,19 @@
+.plusieursThemes {
+    height: 300px;
+    margin-top: 70px;
+    margin-left: 250px;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+}
+
+#theme1 {
+    grid-column: 1;
+}
+
+#theme2 {
+    grid-column: 2;
+}
+
+#theme3 {
+    grid-column: 3;
+}

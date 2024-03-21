@@ -1,0 +1,29 @@
+
+a {
+  text-decoration: none;
+}
+
+.JouerQuiz1 {
+  margin-top: 5%;
+  margin-left: 30%;
+}
+
+.ModifierQuiz1 {
+  margin-top: 4%;
+  margin-left: 30%;
+}
+
+.ConfigProfil1 {
+  margin-top: 4%;
+  margin-left: 30%;
+}
+
+.Stats1 {
+  margin-top: 4%;
+  margin-left: 30%;
+}
+
+#boutons {
+  display: flex;
+  flex-direction: column;
+}

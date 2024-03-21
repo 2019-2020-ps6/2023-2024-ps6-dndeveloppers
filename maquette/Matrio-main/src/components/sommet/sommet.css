@@ -1,0 +1,14 @@
+.nomSite {
+    float: left;
+    display: flex;
+    align-items: self-start;
+}
+
+.profil {
+    margin-top: auto;
+    float: right;
+}
+
+.sommet {
+    display: flow-root;
+}

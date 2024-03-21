@@ -1,0 +1,17 @@
+.boutons {
+    display: flex;
+    flex-direction: column;
+}
+
+.ModifierQuiz1{
+    margin-left: 30%;
+}
+
+.AjouterProfil1{
+    margin-top: 10%;
+    margin-left: 30%;
+}
+
+a {
+    text-decoration: none;
+}

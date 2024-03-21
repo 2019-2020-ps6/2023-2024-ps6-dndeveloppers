@@ -1,0 +1,29 @@
+.themeQuiz{
+    border: solid 2px black;   
+    width: 20vw;
+    height: 30vh;
+    position: relative;
+}
+
+.themeQuizButton{
+    width: 100%;
+    height: 100%;
+}
+
+.TextThemeQuiz{
+    border-bottom: solid;
+    position: relative;
+    text-align: center;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    height: 15%;
+    
+}
+
+.imageThemeQuiz{
+    width: 100%;
+    height: 84%;
+}

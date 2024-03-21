@@ -1,0 +1,26 @@
+.QuestionPart {
+    height: 10%;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+}
+
+.audio {
+    grid-column: 1;
+    margin-left: 80%;
+    justify-content: center;
+}
+
+.question {
+    grid-column: 2;
+    margin-top: auto;
+    margin-bottom: auto;
+    justify-content: center;
+
+}
+
+.indice {
+    grid-column: 3;
+    margin-right: 100%;
+    display: flex;
+    justify-content: center;
+}

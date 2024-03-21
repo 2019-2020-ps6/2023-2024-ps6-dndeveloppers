@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="français">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Stats</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+</head>
+
+<body>
+    <header>
+        <matrio path="components/sommet/sommet"></matrio>
+    </header>
+    <section id="corps">
+        <div class="box" id="globales">
+            <h3>Stats globales :</h3>
+            <ul>
+                <li class="statistques"><u>Nombre de patients :</u> <b>275</b></li>
+                <li class="statistques"><u>Nombre de quiz différents :</u> <b>70</b></li>
+                <li class="statistques"><u>Nombres de quiz réalisés au total :</u> <b>2317</b></li>
+                <li class="statistques"><u>Nombres moyen de quiz réalisés par personne :</u> <b>8.43</b></li>
+            </ul>
+        </div>
+        <div class="box" id="patient">
+            <h3>Statistiques patient :</h3>
+            <select name="choixPatient" class="choixPatient">
+                <option value="">Choix du patient</option>
+                <option value="Patient1">Patient 1</option>
+                <option value="Patient2">Patient 2</option>
+            </select>
+            <ul class="stats">
+                <li class="statistques"><u>Options du patient :</u> <b>Photo</b>, <b>Audio</b>, <b>Indices</b></li>
+                <li class="statistques"><u>Nombres de quiz réalisés :</u> <b>6</b></li>
+                <li class="statistques"><u>Score moyen :</u> <b>13/20</b></li>
+                <li class="statistques"><u>5 derniers quiz joués : </u>
+                    <ul class="recapQuiz">
+                        <li>Thème : <b>Géographie</b></li>
+                        <li>Score : <b>7</b></li>
+                        <li>Nombre de tentatives : <b>1</b></li>
+                        <li>Indices utilisés : <b>6</b></li>
+                        <li>Progression :</li>
+                        <img class="grapheGenerique" src="./assets/imageGraph/graphGenerique.png">
+                    </ul>
+                    <ul class="recapQuiz">
+                        <li>Thème : <b>Cuisine</b></li>
+                        <li>Score : <b>16</b></li>
+                        <li>Nombre de tentatives : <b>2</b></li>
+                        <li>Indices utilisés : <b>3</b></li>
+                        <li>Progression :</li>
+                        <img class="grapheGenerique" src="./assets/imageGraph/graphGenerique.png">
+                    </ul>
+                    <ul class="recapQuiz">
+                        <li>Thème : <b>Histoire</b></li>
+                        <li>Score : <b>12</b></li>
+                        <li>Nombre de tentatives : <b>4</b></li>
+                        <li>Indices utilisés : <b>6</b></li>
+                        <li>Progression :</li>
+                        <img class="grapheGenerique" src="./assets/imageGraph/graphGenerique.png">
+                    </ul>
+                    <ul class="recapQuiz">
+                        <li>Thème : <b>Voiture</b></li>
+                        <li>Score : <b>13</b></li>
+                        <li>Nombre de tentatives : <b>3</b></li>
+                        <li>Indices utilisés : <b>4</b></li>
+                        <li>Progression :</li>
+                        <img class="grapheGenerique" src="./assets/imageGraph/graphGenerique.png">
+                    </ul>
+                    <ul class="recapQuiz">
+                        <li>Thème : <b>Drapeaux</b></li>
+                        <li>Score : <b>14</b></li>
+                        <li>Nombre de tentatives : <b>2</b></li>
+                        <li>Indices utilisés : <b>7</b></li>
+                        <li>Progression :</li>
+                        <img class="grapheGenerique" src="./assets/imageGraph/graphGenerique.png">
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="box" id="quiz">
+            <h3>Statistiques par quiz :</h3>
+            <select name="choixQuiz" class="choixPatient">
+                <option value="">Choix du Quiz</option>
+                <option value="Quiz1">Quiz 1</option>
+                <option value="Quiz2">Quiz 2</option>
+            </select>
+            <ul class="stats">
+                <li class="statistques"><u>Nombre de fois joué :</u> <b>46</b></li>
+                <li class="statistques"><u>Score moyen :</u> <b>12</b></li>
+                <li class="statistques"><u>Nombre moyen d’indices utilisés :</u> <b>5</b></li>
+                <li class="statistques"><u>Pourcentage de réussite pour chaque question :</u>
+                    <ol>
+                        <li><u>*énoncé* :</u> <b>80%</b></li>
+                        <li><u>*énoncé* :</u> <b>63%</b></li>
+                        <li><u>*énoncé* :</u> <b>48%</b></li>
+                        <li><u>*énoncé* :</u> <b>71%</b></li>
+                        <li><u>*énoncé* :</u> <b>86%</b></li>
+                        <li><u>*énoncé* :</u> <b>87%</b></li>
+                        <li><u>*énoncé* :</u> <b>73%</b></li>
+                        <li><u>*énoncé* :</u> <b>95%</b></li>
+                        <li><u>*énoncé* :</u> <b>45%</b></li>
+                        <li><u>*énoncé* :</u> <b>82%</b></li>
+                    </ol>
+                </li>
+                <li class="statistques"><u>Nombre de questions :</u>
+                    <ul>
+                        <li>Textuelles : <b>13</b></li>
+                        <li>Auditives : <b>4</b></li>
+                        <li>Visuelles : <b>3</b></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </section>
+</body>
+
+</html>
