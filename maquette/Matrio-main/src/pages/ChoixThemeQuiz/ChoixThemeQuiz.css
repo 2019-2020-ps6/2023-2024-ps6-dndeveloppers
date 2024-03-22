@@ -1,0 +1,10 @@
+.titrePage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    font-weight: bold;
+    color: green;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
