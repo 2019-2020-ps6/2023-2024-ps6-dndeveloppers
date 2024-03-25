@@ -34,3 +34,22 @@ body {
 .tailleText{
     margin-top: 4%;
 }
+
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('./assets/fond.jpg');
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.linom, .liprenom, .LAge{
+    font-family: Verdana, sans-serif; 
+    font-size: 17px;
+    color: rgb(218, 209, 209);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    font-weight: bold;
+}

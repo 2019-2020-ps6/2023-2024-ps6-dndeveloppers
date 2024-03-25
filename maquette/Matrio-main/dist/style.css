@@ -1,147 +1,174 @@
-/* Content from src/components/profil/profil.css */
-.total {
-    width: 300px;
-    border : 2px solid black; 
-
-}
-
-.profil {
-    align-items: center;
-    width: 300px;
-    height: 100px;
-
-    color: black;
-    background-color: lightgray;
-
-    display: grid;
-    grid-template-rows: 30% 5% 30% 5% 30%;
-    grid-template-columns: 30% 70%;
-
-}
-
-#imageProfil {
-    max-height: 100px;
-    width: auto;
-    grid-area: 1/1/6/3; 
-}
-
-#nom {
-    grid-row: 1;
-    grid-column: 2;
-}
-#prenom {
-    grid-row: 3;
-    grid-column: 2;
-}
-#role {
-    grid-row: 5;
-    grid-column: 2;
-}
-/* Content from src/components/indice/indice.css */
-button {
-    border: white;
-}
-
-
-
-#imageIndice {
-    width: 150px;
-    margin-top: auto;
-    margin-bottom: auto;
-}
-/* Content from src/components/bigButton/bigButton.css */
-.bigButton {
-
-    display: flex;
-    align-items: center;
-    height: 3rem;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.bigButton-texte {
-    height: 5rem;
-    width: auto;
-    min-width: 500px;
-    color: white;
-    display: flex;
-    border-radius: 0.5rem;
-    background-color: rgb(71, 176, 80);
-    justify-content: center;
-    align-items: center;   
-    font-size: 2em;
-}
-
-.bigButton-texte:hover {
-    background-color: rgb(113, 145, 159);
-}
-/* Content from src/components/audio/audio.css */
-button {
-    border: white;
-}
-
-
-
-#imageAudio {
-    width: 120px;
-}
-/* Content from src/components/BoutonMenuDeroulant/BoutonMenuDeroulant.css */
-select, option {
-	background-color: #ffffff;
-	border: black 2px solid;
-	margin-left: 15px;
-}
-
 /* Content from src/components/themeQuiz/themeQuiz.css */
-.themeQuiz{
-    border: solid 2px black;   
-    width: 20vw;
-    height: 30vh;
+.custom-button1 {
     position: relative;
+    border: none;
+    border-radius: 5px;
+    padding: 60px 80px;
+    cursor: pointer;
+    outline: none;
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
-.themeQuizButton{
+.custom-button1:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    background-image: url('./assets/drapeaux.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(0);
+    transition: filter 0.3s ease; 
 }
 
-.TextThemeQuiz{
-    border-bottom: solid;
+.custom-button1:hover:before {
+    filter: blur(3px);
+}
+
+.custom-button1 span {
     position: relative;
+    z-index: 1;
+    text-shadow: -1px -1px 0 #000,  
+                  1px -1px 0 #000,
+                 -1px  1px 0 #000,
+                  1px  1px 0 #000;
+}
+
+.custom-button2 {
+    position: relative;
+    border: none;
+    border-radius: 5px;
+    padding: 60px 80px;
+    cursor: pointer;
+    outline: none;
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: bold;
     text-align: center;
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: lightgray;
-    height: 15%;
-    
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
-.imageThemeQuiz{
+.custom-button2:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 84%;
-}
-/* Content from src/components/plusieursThemes/plusieursThemes.css */
-.plusieursThemes {
-    height: 300px;
-    margin-top: 70px;
-    margin-left: 250px;
-    display: grid;
-    grid-template-columns: 30% 30% 30%;
+    height: 100%;
+    background-image: url('./assets/carte.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(0);
+    transition: filter 0.3s ease; 
 }
 
-#theme1 {
-    grid-column: 1;
+.custom-button2:hover:before {
+    filter: blur(3px);
 }
 
-#theme2 {
-    grid-column: 2;
+.custom-button2 span {
+    position: relative;
+    z-index: 1;
+    text-shadow: -1px -1px 0 #000,  
+                  1px -1px 0 #000,
+                 -1px  1px 0 #000,
+                  1px  1px 0 #000;
 }
 
-#theme3 {
-    grid-column: 3;
+.custom-button3 {
+    position: relative;
+    border: none;
+    border-radius: 5px;
+    padding: 60px 80px;
+    cursor: pointer;
+    outline: none;
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
+
+.custom-button3:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./assets/ballon.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(0);
+    transition: filter 0.3s ease; 
+}
+
+.custom-button3:hover:before {
+    filter: blur(3px);
+}
+
+.custom-button3 span {
+    position: relative;
+    z-index: 1;
+    text-shadow: -1px -1px 0 #000,  
+                  1px -1px 0 #000,
+                 -1px  1px 0 #000,
+                  1px  1px 0 #000;
+}
+
+.boutonTheme{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    align-items: flex-start;
+    margin-top: 10%;
+}
+  
+/* Content from src/pages\index.css */
+
+a {
+  text-decoration: none;
+}
+
+.JouerQuiz1 {
+  margin-top: 5%;
+  margin-left: 30%;
+}
+
+.ModifierQuiz1 {
+  margin-top: 4%;
+  margin-left: 30%;
+}
+
+.ConfigProfil1 {
+  margin-top: 4%;
+  margin-left: 30%;
+}
+
+.Stats1 {
+  margin-top: 4%;
+  margin-left: 30%;
+}
+
+#boutons {
+  display: flex;
+  flex-direction: column;
+}
+
+
 /* Content from src/pages\Stats\Stats.css */
 #corps {
     margin-top: auto;
@@ -202,25 +229,246 @@ h3 {
     grid-row: 1;
     grid-column: 2;
 }
-/* Content from src/components/question/question.css */
-.question {
+
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('./assets/fond.jpg');
+    background-size: 100% auto;
+    background-position: center;
+}
+/* Content from src/pages\Resultats\Resultats.css */
+h2 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    border : 2px solid black; 
     display: flex;
-    align-items: baseline;
     justify-content: center;
-    width: 100%;
-    height: 100%;  
+    font-size: 50px;
+    border-radius: 0.5rem;
 }
 
-.question-texte {
+#texte {
+    text-align: center;
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    min-width: 40%;
+    max-width: 80%;
+    border : 2px solid black; 
+    border-radius: 0.5rem;
+    font-size: 30px;
+    padding: 30px;
+    margin-bottom: 10%;
+}
+
+.choixQuiz1 {
+    display: flex;
+    justify-content: center;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('./assets/fond.jpg');
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+/* Content from src/components/bigButton/bigButton.css */
+.bigButton {
+
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bigButton-texte {
+    height: 5rem;
+    width: auto;
+    min-width: 500px;
+    color: white;
+    display: flex;
+    border-radius: 0.5rem;
+    background-color: #9587e9;
+    justify-content: center;
+    align-items: center;   
+    font-size: 2em;
+    border: solid #5142aa 3px;
+}
+
+.bigButton-texte:hover {
+    background-color: #a69fd1;
+}
+/* Content from src/components/nomSite/nomSite.css */
+.nomSite {
+    margin-left: 1%;
+    margin-top: -1%;
+    width: 300px;
+}
+
+.nomSite-texte {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 200px; 
     font-size: 30px;
-    width: 60%;
-    height: auto;  
-    color: white;
+    height: auto;
+    color: black;
     border-radius: 3rem;
-    background-color: lightsalmon;
+    background-color: lightgray;
+    border : 2px solid black;
+}
+/* Content from src/components/BoutonMenuDeroulant/BoutonMenuDeroulant.css */
+select, option {
+	background-color: #ffffff;
+	border: black 2px solid;
+	margin-left: 15px;
+}
+
+/* Content from src/components/indice/indice.css */
+button {
+    border: white;
+}
+
+
+
+#imageIndice {
+    width: 150px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+/* Content from src/pages\ChoixThemeQuiz\ChoixThemeQuiz.css */
+.titrePage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    font-family: Verdana, sans-serif; 
+    color: #555b33;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    font-weight: bold;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('./assets/fond.jpg');
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Content from src/pages\Quiz\Quiz.css */
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('./assets/fond.jpg');
+    background-size: 100% auto;
+    background-position: center;
+}
+/* Content from src/pages\AjouterModifierProfil\AjouterModifierProfil.css */
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.linom{
+    margin-top: 1%;
+}
+
+.liprenom{
+    margin-top: 1%;
+}
+
+.liage{
+    margin-top: 1%;
+}
+
+.imageP{
+    position: absolute;
+    left:85%;
+    top:3%;
+}
+
+.audioClass, .videoClass, .photoClass, .indiceClass, .lectureAutoClass, .nbReponseClass, .disparitionClass, .reposeClass{
+    margin-left: 10%;
+    margin-top: 1%;
+}
+
+.optionName, .tailleText{
+    margin-left: 2%;
+}
+.tailleText{
+    margin-top: 4%;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('./assets/fond.jpg');
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.linom, .liprenom, .LAge{
+    font-family: Verdana, sans-serif; 
+    font-size: 17px;
+    color: rgb(218, 209, 209);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    font-weight: bold;
+}
+
+/* Content from src/components/audio/audio.css */
+button {
+    border: white;
+}
+
+
+
+#imageAudio {
+    width: 120px;
+}
+/* Content from src/components/questionAide/questionAide.css */
+.QuestionPart {
+    height: 10%;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+}
+
+.audio {
+    grid-column: 1;
+    margin-left: 80%;
+    justify-content: center;
+}
+
+.question {
+    grid-column: 2;
+    margin-top: auto;
+    margin-bottom: auto;
+    justify-content: center;
+
+}
+
+.indice {
+    grid-column: 3;
+    margin-right: 100%;
+    display: flex;
+    justify-content: center;
 }
 /* Content from src/components/allReponses/allReponses.css */
 .allResponses {
@@ -250,6 +498,26 @@ h3 {
     margin-top: 5%;
     grid-column: 2;
     grid-row: 2;
+}
+/* Content from src/components/question/question.css */
+.question {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    width: 100%;
+    height: 100%;  
+}
+
+.question-texte {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    width: 60%;
+    height: auto;  
+    color: white;
+    border-radius: 3rem;
+    background-color: lightsalmon;
 }
 /* Content from src/pages\Index\Index.css */
 body {
@@ -288,159 +556,62 @@ a {
     flex-direction: column;
 }
 
-/* Content from src/pages\index.css */
-
-a {
-  text-decoration: none;
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('./assets/fond.jpg');
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.JouerQuiz1 {
-  margin-top: 5%;
-  margin-left: 30%;
+a p{
+    font-family: Verdana, sans-serif; 
+    color: #555b33;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    font-weight: bold;
 }
-
-.ModifierQuiz1 {
-  margin-top: 4%;
-  margin-left: 30%;
-}
-
-.ConfigProfil1 {
-  margin-top: 4%;
-  margin-left: 30%;
-}
-
-.Stats1 {
-  margin-top: 4%;
-  margin-left: 30%;
-}
-
-#boutons {
-  display: flex;
-  flex-direction: column;
-}
-/* Content from src/components/nomSite/nomSite.css */
-.nomSite {
-    margin-left: 1%;
-    margin-top: -1%;
+/* Content from src/components/profil/profil.css */
+.total {
     width: 300px;
-}
-
-.nomSite-texte {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 200px; 
-    font-size: 30px;
-    height: auto;
-    color: black;
-    border-radius: 3rem;
-    background-color: lightgray;
-    border : 2px solid black;
-}
-/* Content from src/pages\Resultats\Resultats.css */
-h2 {
-    margin-left: auto;
-    margin-right: auto;
-    width: 500px;
     border : 2px solid black; 
-    display: flex;
-    justify-content: center;
-    font-size: 50px;
-    border-radius: 0.5rem;
-}
 
-#texte {
-    text-align: center;
-    margin-top: 3%;
-    margin-left: auto;
-    margin-right: auto;
-    width: auto;
-    min-width: 40%;
-    max-width: 80%;
-    border : 2px solid black; 
-    border-radius: 0.5rem;
-    font-size: 30px;
-    padding: 30px;
-    margin-bottom: 10%;
-}
-
-.choixQuiz1 {
-    display: flex;
-    justify-content: center;
-}
-/* Content from src/components/sommet/sommet.css */
-.nomSite {
-    float: left;
-    display: flex;
-    align-items: self-start;
 }
 
 .profil {
-    margin-top: auto;
-    float: right;
+    align-items: center;
+    width: 300px;
+    height: 100px;
+
+    color: black;
+    background-color: lightgray;
+
+    display: grid;
+    grid-template-rows: 30% 5% 30% 5% 30%;
+    grid-template-columns: 30% 70%;
+    
+
 }
 
-.sommet {
-    display: flow-root;
-}
-/* Content from src/pages\Quiz\Quiz.css */
-
-/* Content from src/pages\AjouterModifierProfil\AjouterModifierProfil.css */
-body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+#imageProfil {
+    max-height: 100px;
+    width: auto;
+    grid-area: 1/1/6/3; 
 }
 
-.linom{
-    margin-top: 1%;
+#nom {
+    grid-row: 1;
+    grid-column: 2;
 }
-
-.liprenom{
-    margin-top: 1%;
+#prenom {
+    grid-row: 3;
+    grid-column: 2;
 }
-
-.liage{
-    margin-top: 1%;
-}
-
-.imageP{
-    position: absolute;
-    left:85%;
-    top:3%;
-}
-
-.audioClass, .videoClass, .photoClass, .indiceClass, .lectureAutoClass, .nbReponseClass, .disparitionClass, .reposeClass{
-    margin-left: 10%;
-    margin-top: 1%;
-}
-
-.optionName, .tailleText{
-    margin-left: 2%;
-}
-.tailleText{
-    margin-top: 4%;
-}
-/* Content from src/pages\ChoixQuiz\ChoixQuiz.css */
-
-/* Content from src/pages\ConfigureProfil\ConfigureProfil.css */
-.boutons {
-    display: flex;
-    flex-direction: column;
-}
-
-.ModifierQuiz1{
-    margin-left: 30%;
-}
-
-.AjouterProfil1{
-    margin-top: 10%;
-    margin-left: 30%;
-}
-
-a {
-    text-decoration: none;
+#role {
+    grid-row: 5;
+    grid-column: 2;
 }
 /* Content from src/components/reponse/reponse.css */
 .reponse {
@@ -466,30 +637,46 @@ a {
 .reponse-texte:hover {
     background-color: rgb(113, 159, 117);
 }
-/* Content from src/components/questionAide/questionAide.css */
-.QuestionPart {
-    height: 10%;
-    display: grid;
-    grid-template-columns: 25% 50% 25%;
-}
-
-.audio {
-    grid-column: 1;
-    margin-left: 80%;
-    justify-content: center;
-}
-
-.question {
-    grid-column: 2;
-    margin-top: auto;
-    margin-bottom: auto;
-    justify-content: center;
-
-}
-
-.indice {
-    grid-column: 3;
-    margin-right: 100%;
+/* Content from src/components/sommet/sommet.css */
+.nomSite {
+    float: left;
     display: flex;
-    justify-content: center;
+    align-items: self-start;
+}
+
+.profil {
+    margin-top: auto;
+    float: right;
+}
+
+.sommet {
+    display: flow-root;
+}
+/* Content from src/pages\ConfigureProfil\ConfigureProfil.css */
+.boutons {
+    display: flex;
+    flex-direction: column;
+}
+
+.ModifierQuiz1{
+    margin-left: 30%;
+}
+
+.AjouterProfil1{
+    margin-top: 10%;
+    margin-left: 27%;
+}
+
+a {
+    text-decoration: none;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('./assets/fond.jpg');
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat;
 }

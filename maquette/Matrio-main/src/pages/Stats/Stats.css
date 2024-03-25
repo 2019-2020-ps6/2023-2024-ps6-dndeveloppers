@@ -57,3 +57,12 @@ h3 {
     grid-row: 1;
     grid-column: 2;
 }
+
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('./assets/fond.jpg');
+    background-size: 100% auto;
+    background-position: center;
+}

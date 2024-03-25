@@ -28,3 +28,13 @@ h2 {
     display: flex;
     justify-content: center;
 }
+
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('./assets/fond.jpg');
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
