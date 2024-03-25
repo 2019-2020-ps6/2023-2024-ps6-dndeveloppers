@@ -10,18 +10,20 @@
 
 .nomSite {
     grid-column: 1;
-    width: 300px;
+    width: auto;
+    height: 100px;
 }
 
 .nomSite-texte {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
-    width: 200px; 
-    font-size: 30px;
+    margin-left: 20%;
+    margin-top: 20px;
+    width: auto; 
+    font-size: 40px;
     height: auto;
+    
     color: black;
     background-color: lightgray;
 }
