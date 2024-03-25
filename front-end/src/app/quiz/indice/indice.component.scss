@@ -1,7 +1,14 @@
 button {
-    border: white;
+    width:12%;
+    height:50px;
+    text-align: center;
+    font-size: 30px;
+    background-color: lightgrey;
+    border: solid black 1px;
+    border-radius: 3rem;
+    cursor:pointer;
 }
 
-#imageIndice {
-    width: 120px;
+button:hover {
+    background-color: darkgrey;
 }
