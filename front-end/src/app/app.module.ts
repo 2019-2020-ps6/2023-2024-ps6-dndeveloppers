@@ -7,6 +7,7 @@ import { ProfilComponent } from './profil/profil.component';
 import { IndiceComponent } from './quiz/indice/indice.component';
 import { QuestionComponent } from './quiz/question/question.component';
 import { ReponseComponent } from './quiz/reponse/reponse.component';
+import { ListReponsesComponent } from './quiz/list-reponses/list-reponses.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ReponseComponent } from './quiz/reponse/reponse.component';
     ProfilComponent,
     IndiceComponent,
     QuestionComponent,
-    ReponseComponent
+    ReponseComponent,
+    ListReponsesComponent,
   ],
   imports: [
     BrowserModule,
