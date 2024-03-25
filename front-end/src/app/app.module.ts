@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { ProfilComponent } from './profil/profil.component';
 import { IndiceComponent } from './quiz/indice/indice.component';
 import { QuestionComponent } from './quiz/question/question.component';
+import { ReponseComponent } from './quiz/reponse/reponse.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfilComponent,
     IndiceComponent,
-    QuestionComponent
+    QuestionComponent,
+    ReponseComponent
   ],
   imports: [
     BrowserModule,
