@@ -26,8 +26,7 @@ export class QuizService {
 
   public url: string = "";
 
-  constructor() {
-    this.getQuizzes()  }
+  constructor() {}
 
   addQuiz(quiz: Quiz) {
     // You need here to update the list of quiz and then update our observable (Subject) with the new list
@@ -46,10 +45,12 @@ export class QuizService {
     }
   }
 
-  getQuizzes(){
-    this.http.get<Quiz[]>(this.url).subscribe((listQuizzes) => {
-      this.quizzes = listQuizzes;
-      console.log("quiz reçus ...");
-    })
+  getQuizzes(quiz: Quiz){
+    for(let i=0;i<this.quizzes.length;i++){
+      if(this.quizzes[i].name==quiz.name){
+        console.log("Quiz sélectionné : ",this.quizzes[i].name);
+        return;
+      }
+    }
   }
 }
