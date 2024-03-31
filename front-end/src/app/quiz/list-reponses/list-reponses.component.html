@@ -1,6 +1,6 @@
-<div class="listreponse">
-    <button class="reponse-texte" id="first" name="button">Reponse1</button>
-    <button class="reponse-texte" id="second" name="button">Reponse2</button>
-    <button class="reponse-texte" id="third" name="button">Reponse3</button>
-    <button class="reponse-texte" id="fourth" name="button">Reponse4</button>
+<div class="listreponse" *ngIf="listReponses">
+    <button class="reponse-texte" id="first" name="button">{{listReponses[0]}}</button>
+    <button class="reponse-texte" id="second" name="button">{{listReponses[1]}}</button>
+    <button class="reponse-texte" id="third" name="button">{{listReponses[2]}}</button>
+    <button class="reponse-texte" id="fourth" name="button">{{listReponses[3]}}</button>
 </div>

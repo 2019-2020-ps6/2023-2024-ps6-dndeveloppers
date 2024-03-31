@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Question } from '../../../models/question.models';
 import { QUESTION_ACTOR0 } from "src/mocks/quiz-list.mock";
 import { QuizService } from '../../../services/quiz.service';
@@ -10,6 +10,9 @@ import { QuizService } from '../../../services/quiz.service';
 })
 
 export class QuestionComponent implements OnInit {
+
+    @Input()
+    question: Question | undefined;
 
     public actualQuestion: Question = QUESTION_ACTOR0;
 
