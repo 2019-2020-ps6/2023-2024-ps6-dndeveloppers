@@ -14,10 +14,14 @@
     width: 25%;
     height: 100px;  
     color: white;
-    border-radius: 3rem;
-    background-color: rgb(39, 186, 71);
+    
+    border-radius: 0.5rem;
+    border: black 2px solid;
+    background-color: #6958cf;
+
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .reponse-texte:hover {
-    background-color: rgb(113, 159, 117);
+    background-color: #7e75b2;
 }

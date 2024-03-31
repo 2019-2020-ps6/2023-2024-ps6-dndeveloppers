@@ -1,79 +1,39 @@
-/* Content from src/components/profil/profil.css */
-.total {
-    width: 300px;
-    border : 2px solid black; 
-
+/* Content from src/pages\AjouterModifierProfil\AjouterModifierProfil.css */
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-.profil {
-    align-items: center;
-    width: 300px;
-    height: 100px;
-
-    color: black;
-    background-color: lightgray;
-
-    display: grid;
-    grid-template-rows: 30% 5% 30% 5% 30%;
-    grid-template-columns: 30% 70%;
-
+.linom{
+    margin-top: 1%;
 }
 
-#imageProfil {
-    max-height: 100px;
-    width: auto;
-    grid-area: 1/1/6/3; 
+.liprenom{
+    margin-top: 1%;
 }
 
-#nom {
-    grid-row: 1;
-    grid-column: 2;
-}
-#prenom {
-    grid-row: 3;
-    grid-column: 2;
-}
-#role {
-    grid-row: 5;
-    grid-column: 2;
-}
-/* Content from src/components/indice/indice.css */
-button {
-    border: white;
+.liage{
+    margin-top: 1%;
 }
 
-
-
-#imageIndice {
-    width: 150px;
-    margin-top: auto;
-    margin-bottom: auto;
-}
-/* Content from src/components/bigButton/bigButton.css */
-.bigButton {
-
-    display: flex;
-    align-items: center;
-    height: 3rem;
-    margin-left: auto;
-    margin-right: auto;
+.imageP{
+    position: absolute;
+    left:85%;
+    top:3%;
 }
 
-.bigButton-texte {
-    height: 5rem;
-    width: auto;
-    min-width: 500px;
-    color: white;
-    display: flex;
-    border-radius: 0.5rem;
-    background-color: rgb(71, 176, 80);
-    justify-content: center;
-    align-items: center;   
-    font-size: 2em;
+.audioClass, .videoClass, .photoClass, .indiceClass, .lectureAutoClass, .nbReponseClass, .disparitionClass, .reposeClass{
+    margin-left: 10%;
+    margin-top: 1%;
 }
 
-.bigButton-texte:hover {
-    background-color: rgb(113, 145, 159);
+.optionName, .tailleText{
+    margin-left: 2%;
+}
+.tailleText{
+    margin-top: 4%;
 }
 /* Content from src/components/audio/audio.css */
 button {
@@ -85,62 +45,93 @@ button {
 #imageAudio {
     width: 120px;
 }
-/* Content from src/components/BoutonMenuDeroulant/BoutonMenuDeroulant.css */
-select, option {
-	background-color: #ffffff;
-	border: black 2px solid;
-	margin-left: 15px;
-}
-
-/* Content from src/components/themeQuiz/themeQuiz.css */
-.themeQuiz{
-    border: solid 2px black;   
-    width: 20vw;
-    height: 30vh;
-    position: relative;
-}
-
-.themeQuizButton{
+/* Content from src/components/reponse/reponse.css */
+.reponse {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 100%;  
 }
 
-.TextThemeQuiz{
-    border-bottom: solid;
-    position: relative;
-    text-align: center;
+.reponse-texte {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 30px;
+    width: 25%;
+    height: 100px;  
+    color: white;
+    
+    border-radius: 0.5rem;
+    border: black 2px solid;
+    background-color: #6958cf;
+
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.reponse-texte:hover {
+    background-color: #7e75b2;
+}
+/* Content from src/pages\Resultats\Resultats.css */
+h2 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    border : 2px solid black; 
     display: flex;
     justify-content: center;
-    align-items: center;
-    background-color: lightgray;
-    height: 15%;
-    
+    font-size: 50px;
+    border-radius: 0.5rem;
 }
 
-.imageThemeQuiz{
-    width: 100%;
-    height: 84%;
+#texte {
+    text-align: center;
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    min-width: 40%;
+    max-width: 80%;
+    border : 2px solid black; 
+    border-radius: 0.5rem;
+    font-size: 30px;
+    padding: 30px;
+    margin-bottom: 10%;
 }
-/* Content from src/components/plusieursThemes/plusieursThemes.css */
-.plusieursThemes {
-    height: 300px;
-    margin-top: 70px;
-    margin-left: 250px;
+
+.choixQuiz1 {
+    display: flex;
+    justify-content: center;
+}
+/* Content from src/components/allReponses/allReponses.css */
+.allResponses {
+    margin-top: 5%;
     display: grid;
-    grid-template-columns: 30% 30% 30%;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
 }
 
-#theme1 {
+.reponse1 {
     grid-column: 1;
+    grid-row: 1;
 }
 
-#theme2 {
+.reponse2 {
     grid-column: 2;
+    grid-row: 1;
 }
 
-#theme3 {
-    grid-column: 3;
+.reponse3 {
+    margin-top: 5%;
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.reponse4 {
+    margin-top: 5%;
+    grid-column: 2;
+    grid-row: 2;
 }
 /* Content from src/pages\Stats\Stats.css */
 #corps {
@@ -202,54 +193,174 @@ h3 {
     grid-row: 1;
     grid-column: 2;
 }
-/* Content from src/components/question/question.css */
-.question {
+/* Content from src/pages\ConfigureProfil\ConfigureProfil.css */
+.boutons {
     display: flex;
-    align-items: baseline;
-    justify-content: center;
-    width: 100%;
-    height: 100%;  
+    flex-direction: column;
 }
 
-.question-texte {
+.ModifierQuiz1{
+    margin-left: 30%;
+}
+
+.AjouterProfil1{
+    margin-top: 10%;
+    margin-left: 30%;
+}
+
+a {
+    text-decoration: none;
+}
+/* Content from src/pages\Quiz\Quiz.css */
+
+/* Content from src/components/profil/profil.css */
+.total {
+    width: 300px;
+    border : 2px solid black; 
+
+}
+
+.profil {
+    align-items: center;
+    width: 300px;
+    height: 100px;
+
+    color: black;
+    background-color: lightgray;
+
+    display: grid;
+    grid-template-rows: 30% 5% 30% 5% 30%;
+    grid-template-columns: 30% 70%;
+
+}
+
+#imageProfil {
+    max-height: 100px;
+    width: auto;
+    grid-area: 1/1/6/3; 
+}
+
+#nom {
+    grid-row: 1;
+    grid-column: 2;
+}
+#prenom {
+    grid-row: 3;
+    grid-column: 2;
+}
+#role {
+    grid-row: 5;
+    grid-column: 2;
+}
+/* Content from src/components/BoutonMenuDeroulant/BoutonMenuDeroulant.css */
+select, option {
+	background-color: #ffffff;
+	border: black 2px solid;
+	margin-left: 15px;
+}
+
+/* Content from src/components/nomSite/nomSite.css */
+.nomSite {
+    margin-left: 1%;
+    margin-top: -1%;
+    width: 300px;
+}
+
+.nomSite-texte {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 200px; 
     font-size: 30px;
-    width: 60%;
-    height: auto;  
-    color: white;
+    height: auto;
+    color: black;
     border-radius: 3rem;
-    background-color: lightsalmon;
+    background-color: lightgray;
+    border : 2px solid black;
 }
-/* Content from src/components/allReponses/allReponses.css */
-.allResponses {
-    margin-top: 5%;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
+/* Content from src/components/themeQuiz/themeQuiz.css */
+.custom-button1 {
+    background-image: url('./assets/drapeaux.jpg'); /* Remplacez par le chemin de votre image */
+    background-size: cover;
+    background-position: center;
+    border: black solid 2px;
+    border-radius: 5px;
+    padding: 60px 80px;
+    cursor: pointer;
+    outline: none;
+    color: #40E0D0;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    font-family: Verdana, Geneva, sans-serif;
+  }
+
+  .custom-button2 {
+    background-image: url('./assets/carte.jpg'); /* Remplacez par le chemin de votre image */
+    background-size: cover;
+    background-position: center;
+    border: black solid 2px;
+    padding: 60px 80px;
+    cursor: pointer;
+    outline: none;
+    color: #40E0D0;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    font-family: Verdana, Geneva, sans-serif;
+  }
+
+  .custom-button3 {
+    background-image: url('./assets/ballon.jpg'); /* Remplacez par le chemin de votre image */
+    background-size: cover;
+    background-position: center;
+    border: black solid 2px;
+    border-radius: 5px;
+    padding: 60px 80px;
+    cursor: pointer;
+    outline: none;
+    color: #40E0D0;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    font-family: Verdana, Geneva, sans-serif;
+  }
+
+
+.themeQuizButton:hover {
+    background-color: rgb(1, 132, 97);
 }
 
-.reponse1 {
-    grid-column: 1;
-    grid-row: 1;
+.boutonTheme{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    align-items: flex-start;
+    margin-top: 10%;
 }
-
-.reponse2 {
-    grid-column: 2;
-    grid-row: 1;
-}
-
-.reponse3 {
-    margin-top: 5%;
-    grid-column: 1;
-    grid-row: 2;
-}
-
-.reponse4 {
-    margin-top: 5%;
-    grid-column: 2;
-    grid-row: 2;
+  
+.body{
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('./assets/fond.jpg');
+  background-size: cover;
 }
 /* Content from src/pages\Index\Index.css */
 body {
@@ -257,6 +368,8 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    background-image: url('./assets/fond3.jpg');
+    background-repeat: no-repeat;   
 }
 
 a {
@@ -288,6 +401,154 @@ a {
     flex-direction: column;
 }
 
+/* Content from src/components/sommet/sommet.css */
+.nomSite {
+    float: left;
+    display: flex;
+    align-items: self-start;
+}
+
+.profil {
+    margin-top: auto;
+    float: right;
+}
+
+.sommet {
+    display: flow-root;
+}
+/* Content from src/pages\ChoixThemeQuiz\ChoixThemeQuiz.css */
+.titrePage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5em;
+    color: white;
+    font-family: "OpenDyslexic", sans-serif;
+    font-weight: bold;
+    text-shadow: 
+        -2px -2px 0 #000000,  
+        2px -2px 0 #000000,
+        -2px 2px 0 #000000,
+        2px 2px 0 #000000;
+    color: #40E0D0;
+}
+/* Content from src/components/plusieursThemes/plusieursThemes.css */
+.plusieursThemes {
+    height: 300px;
+    margin-top: 70px;
+    margin-left: 250px;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+}
+
+#theme1 {
+    grid-column: 1;
+}
+
+#theme2 {
+    grid-column: 2;
+}
+
+#theme3 {
+    grid-column: 3;
+}
+/* Content from src/components/questionAide/questionAide.css */
+.QuestionPart {
+    height: 10%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 20% 50% 25%;
+}
+
+.audio {
+    grid-column: 1;
+    margin-left: 80%;
+    justify-content: center;
+}
+
+.question {
+    grid-column: 2;
+    margin-top: auto;
+    margin-bottom: auto;
+    justify-content: center;
+
+}
+
+.indice {
+    grid-column: 3;
+    margin-right: 100%;
+    display: flex;
+    justify-content: center;
+}
+/* Content from src/components/indice/indice.css */
+button {
+    border: white;
+}
+
+
+
+#imageIndice {
+    width: 150px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+/* Content from src/components/bigButton/bigButton.css */
+.bigButton {
+
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bigButton-texte {
+    height: 5rem; /* Hauteur du texte */
+    width: auto; /* Largeur automatique */
+    min-width: 500px; /* Largeur minimale du conteneur du bouton */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    border-radius: 0.5rem;
+    background-color: #6958cf;
+       
+    border: black 2px solid;
+
+    text-align: center;
+    font-size: 2em;
+    color: white;
+    font-family: "OpenDyslexic", sans-serif;
+    text-shadow: -1px -1px 0 #000,  
+    1px -1px 0 #000,
+   -1px 1px 0 #000,
+    1px 1px 0 #000;
+
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+.bigButton-texte:hover {
+    background-color: #7e75b2;
+}
+/* Content from src/components/question/question.css */
+.question {
+    align-items: baseline;
+    justify-content: center;
+}
+
+.question-texte {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    width: 60%;
+    height: auto;  
+    color: white;
+    border-radius: 3rem;
+    background-color: lightsalmon;
+}
 /* Content from src/pages\index.css */
 
 a {
@@ -317,179 +578,4 @@ a {
 #boutons {
   display: flex;
   flex-direction: column;
-}
-/* Content from src/components/nomSite/nomSite.css */
-.nomSite {
-    margin-left: 1%;
-    margin-top: -1%;
-    width: 300px;
-}
-
-.nomSite-texte {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 200px; 
-    font-size: 30px;
-    height: auto;
-    color: black;
-    border-radius: 3rem;
-    background-color: lightgray;
-    border : 2px solid black;
-}
-/* Content from src/pages\Resultats\Resultats.css */
-h2 {
-    margin-left: auto;
-    margin-right: auto;
-    width: 500px;
-    border : 2px solid black; 
-    display: flex;
-    justify-content: center;
-    font-size: 50px;
-    border-radius: 0.5rem;
-}
-
-#texte {
-    text-align: center;
-    margin-top: 3%;
-    margin-left: auto;
-    margin-right: auto;
-    width: auto;
-    min-width: 40%;
-    max-width: 80%;
-    border : 2px solid black; 
-    border-radius: 0.5rem;
-    font-size: 30px;
-    padding: 30px;
-    margin-bottom: 10%;
-}
-
-.choixQuiz1 {
-    display: flex;
-    justify-content: center;
-}
-/* Content from src/components/sommet/sommet.css */
-.nomSite {
-    float: left;
-    display: flex;
-    align-items: self-start;
-}
-
-.profil {
-    margin-top: auto;
-    float: right;
-}
-
-.sommet {
-    display: flow-root;
-}
-/* Content from src/pages\Quiz\Quiz.css */
-
-/* Content from src/pages\AjouterModifierProfil\AjouterModifierProfil.css */
-body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.linom{
-    margin-top: 1%;
-}
-
-.liprenom{
-    margin-top: 1%;
-}
-
-.liage{
-    margin-top: 1%;
-}
-
-.imageP{
-    position: absolute;
-    left:85%;
-    top:3%;
-}
-
-.audioClass, .videoClass, .photoClass, .indiceClass, .lectureAutoClass, .nbReponseClass, .disparitionClass, .reposeClass{
-    margin-left: 10%;
-    margin-top: 1%;
-}
-
-.optionName, .tailleText{
-    margin-left: 2%;
-}
-.tailleText{
-    margin-top: 4%;
-}
-/* Content from src/pages\ChoixQuiz\ChoixQuiz.css */
-
-/* Content from src/pages\ConfigureProfil\ConfigureProfil.css */
-.boutons {
-    display: flex;
-    flex-direction: column;
-}
-
-.ModifierQuiz1{
-    margin-left: 30%;
-}
-
-.AjouterProfil1{
-    margin-top: 10%;
-    margin-left: 30%;
-}
-
-a {
-    text-decoration: none;
-}
-/* Content from src/components/reponse/reponse.css */
-.reponse {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    width: 100%;
-    height: 100%;  
-}
-
-.reponse-texte {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    width: 25%;
-    height: 100px;  
-    color: white;
-    border-radius: 3rem;
-    background-color: rgb(39, 186, 71);
-}
-
-.reponse-texte:hover {
-    background-color: rgb(113, 159, 117);
-}
-/* Content from src/components/questionAide/questionAide.css */
-.QuestionPart {
-    height: 10%;
-    display: grid;
-    grid-template-columns: 25% 50% 25%;
-}
-
-.audio {
-    grid-column: 1;
-    margin-left: 80%;
-    justify-content: center;
-}
-
-.question {
-    grid-column: 2;
-    margin-top: auto;
-    margin-bottom: auto;
-    justify-content: center;
-
-}
-
-.indice {
-    grid-column: 3;
-    margin-right: 100%;
-    display: flex;
-    justify-content: center;
 }

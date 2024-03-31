@@ -1,7 +1,8 @@
 .QuestionPart {
     height: 10%;
     display: grid;
-    grid-template-columns: 25% 50% 25%;
+    justify-content: center;
+    grid-template-columns: 20% 50% 25%;
 }
 
 .audio {
