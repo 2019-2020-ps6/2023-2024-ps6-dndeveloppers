@@ -55,6 +55,7 @@ export class QuizService {
   }
 
   displayQuestion(quiz: Quiz, numQuestion: number) {
+    console.log(quiz.questions[numQuestion]);
     if (numQuestion == quiz.questions.length-1) {
       console.log("Last question");
     } else {

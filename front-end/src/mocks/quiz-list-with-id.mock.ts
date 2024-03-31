@@ -16,6 +16,19 @@
                         "isCorrect": true
                     }
                 ]
+            },
+            {
+                "label": "Qui incarne le personnage principal de Pirates des Caraïbes ?",
+                "answers": [
+                    {
+                        "value": "Julia Roberts",
+                        "isCorrect": false
+                    },
+                    {
+                        "value": "Johnny Deep",
+                        "isCorrect": true
+                    }
+                ]
             }
         ]
     },
