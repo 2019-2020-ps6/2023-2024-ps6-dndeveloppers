@@ -11,6 +11,14 @@ export const QUESTION_ACTOR0: Question = {
         {
             value: 'La grande illusion',
             isCorrect: true,
+        },
+        {
+            value: 'Harry Potter',
+            isCorrect: false,
+        },
+        {
+            value: 'Star Wars',
+            isCorrect: false,
         }
     ]
 };

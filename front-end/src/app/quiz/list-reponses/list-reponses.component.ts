@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { QUESTION_ACTOR0 } from "src/mocks/quiz-list.mock";
 import { Answer } from "src/models/question.models";
+import { QuizService } from "src/services/quiz.service";
 
 @Component({
     selector: 'app-list-reponses',
@@ -9,10 +11,16 @@ import { Answer } from "src/models/question.models";
 
 export class ListReponsesComponent implements OnInit {
 
-    @Input()
-    listReponses: Answer[] | undefined;
+    public actualResponses: Answer[] = QUESTION_ACTOR0.answers;
 
-    constructor(){}
+    constructor(public quizService: QuizService){
+        this.quizService.actualResponses$.subscribe((actualResponses) => {
+            this.actualResponses = actualResponses;
+        })
+    }
+
+    @Input()
+    listReponses: Answer[] = this.actualResponses;
 
     ngOnInit(): void {}
 }

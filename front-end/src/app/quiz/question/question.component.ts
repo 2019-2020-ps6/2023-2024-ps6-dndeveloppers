@@ -11,9 +11,6 @@ import { QuizService } from '../../../services/quiz.service';
 
 export class QuestionComponent implements OnInit {
 
-    @Input()
-    question: Question | undefined;
-
     public actualQuestion: Question = QUESTION_ACTOR0;
 
     constructor(public quizService: QuizService){
@@ -21,6 +18,9 @@ export class QuestionComponent implements OnInit {
             this.actualQuestion = actualQuestion;
         })
     }
+
+    @Input()
+    question: Question = this.actualQuestion;
 
     ngOnInit(): void {}
 }
