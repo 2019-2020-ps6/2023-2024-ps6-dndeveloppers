@@ -49,6 +49,17 @@ export class QuizService {
     console.log("selected: " + quiz.name + ", " + quiz.theme);
     if (quiz.questions === undefined) {
       console.log("This quiz does not have any question!");
+    } else {
+      this.displayQuestion(quiz, 0);
+    }
+  }
+
+  displayQuestion(quiz: Quiz, numQuestion: number) {
+    if (numQuestion == quiz.questions.length-1) {
+      console.log("Last question");
+    } else {
+      console.log("question: " + numQuestion);
+      this.displayQuestion(quiz,numQuestion+1);
     }
   }
 
