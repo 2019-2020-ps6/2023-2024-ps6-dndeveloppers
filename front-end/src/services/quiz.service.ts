@@ -45,6 +45,13 @@ export class QuizService {
     }
   }
 
+  selectQuiz(quiz: Quiz) {
+    console.log("selected: " + quiz.name + ", " + quiz.theme);
+    if (quiz.questions === undefined) {
+      console.log("This quiz does not have any question!");
+    }
+  }
+
   getQuizzes(quiz: Quiz){
     for(let i=0;i<this.quizzes.length;i++){
       if(this.quizzes[i].name==quiz.name){

@@ -20,8 +20,9 @@ export class ListQuizComponent implements OnInit {
   ngOnInit() {
   }
 
-  quizSelected(selected: boolean) {
-    console.log('event received from child:', selected);
+  quizSelected(quiz: Quiz) {
+    console.log(quiz);
+    this.quizService.selectQuiz(quiz);
   }
 
   deleteQuiz(quiz: Quiz) {
