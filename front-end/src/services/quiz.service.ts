@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Quiz } from '../models/quiz.model';
-import { QUIZ_LIST } from '../mocks/quiz-list.mock';
+import { QUESTION_ACTOR0, QUIZ_LIST } from '../mocks/quiz-list.mock';
+import { Question } from 'src/models/question.models';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +18,14 @@ export class QuizService {
     * The list is retrieved from the mock.
     */
   private quizzes: Quiz[] = QUIZ_LIST;
+  private actualQuestion: Question = QUESTION_ACTOR0;
 
   /**
    * Observable which contains the list of the quiz.
    * Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
    */
   public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(QUIZ_LIST);
+  public actualQuestion$: BehaviorSubject<Question> = new BehaviorSubject(QUESTION_ACTOR0);
 
   public url: string = "";
 
@@ -56,6 +59,8 @@ export class QuizService {
 
   displayQuestion(quiz: Quiz, numQuestion: number) {
     console.log(quiz.questions[numQuestion]);
+    this.actualQuestion = quiz.questions[numQuestion];
+    this.actualQuestion$.next(this.actualQuestion);
     if (numQuestion == quiz.questions.length-1) {
       console.log("Last question");
     } else {
