@@ -72,6 +72,11 @@ export class QuizService {
 
   responseSelected(responseNumber: number) {
     console.log("Response selected (service POV) : ",responseNumber);
+    if (this.actualResponses[responseNumber].isCorrect) {
+      console.log("Right answer congrats!");
+    } else {
+      console.log("Wrong answer!");
+    }
   }
 
   getQuizzes(quiz: Quiz){
