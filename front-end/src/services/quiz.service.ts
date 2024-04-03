@@ -21,7 +21,7 @@ export class QuizService {
   private actualQuestion: Question = QUESTION_ACTOR0;
   private actualResponses: Answer[] = QUESTION_ACTOR0.answers;
 
-  private displayQuiz: Boolean = false;
+  private displayQuiz: boolean = false;
 
   /**
    * Observable which contains the list of the quiz.
@@ -58,6 +58,8 @@ export class QuizService {
     if (quiz.questions === undefined) {
       console.log("This quiz does not have any question!");
     } else {
+      this.displayQuiz = true;
+      this.displayQuiz$.next(this.displayQuiz);
       this.displayQuestion(quiz, 0);
     }
   }

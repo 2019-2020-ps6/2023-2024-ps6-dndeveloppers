@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
+import { QuizService } from "src/services/quiz.service";
 
 @Component({
     selector: 'app-quiz',
@@ -7,7 +8,17 @@ import { Component, OnInit } from "@angular/core";
 })
 
 export class QuizComponent implements OnInit {
-    constructor(){}
+
+    public displayQuiz: boolean = false;
+
+    constructor(public quizService: QuizService){
+        this.quizService.displayQuiz$.subscribe((displayQuiz) => {
+            this.displayQuiz = displayQuiz;
+        })
+    }
+
+    @Input()
+    displaySelf: boolean = this.displayQuiz;
 
     ngOnInit(): void {}
 }
