@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
+import { QuizService } from "src/services/quiz.service";
 
 @Component({
     selector: 'app-indice',
@@ -7,7 +8,17 @@ import { Component, OnInit } from "@angular/core";
 })
 
 export class IndiceComponent implements OnInit {
-    constructor(){}
+
+    public displayIndice: Boolean = false;
+
+    constructor(public quizService: QuizService){
+        this.quizService.displayQuiz$.subscribe((displayQuiz) => {
+            this.displayIndice = displayQuiz;
+        })
+    }
+
+    @Input()
+    displaySelf: Boolean = this.displayIndice;
 
     ngOnInit(): void {}
 }

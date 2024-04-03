@@ -21,6 +21,8 @@ export class QuizService {
   private actualQuestion: Question = QUESTION_ACTOR0;
   private actualResponses: Answer[] = QUESTION_ACTOR0.answers;
 
+  private displayQuiz: Boolean = false;
+
   /**
    * Observable which contains the list of the quiz.
    * Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
@@ -28,6 +30,7 @@ export class QuizService {
   public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(QUIZ_LIST);
   public actualQuestion$: BehaviorSubject<Question> = new BehaviorSubject(QUESTION_ACTOR0);
   public actualResponses$: BehaviorSubject<Answer[]> = new BehaviorSubject(QUESTION_ACTOR0.answers);
+  public displayQuiz$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   public url: string = "";
 

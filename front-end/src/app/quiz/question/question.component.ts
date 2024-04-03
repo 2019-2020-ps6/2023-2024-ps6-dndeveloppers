@@ -12,15 +12,21 @@ import { QuizService } from '../../../services/quiz.service';
 export class QuestionComponent implements OnInit {
 
     public actualQuestion: Question = QUESTION_ACTOR0;
+    public displayQuestion: Boolean = false;
 
     constructor(public quizService: QuizService){
         this.quizService.actualQuestion$.subscribe((actualQuestion) => {
             this.actualQuestion = actualQuestion;
         })
+
+        this.quizService.displayQuiz$.subscribe((displayQuiz) => {
+            this.displayQuestion = displayQuiz;
+        })
     }
 
     @Input()
     question: Question = this.actualQuestion;
+    displaySelf: Boolean = this.displayQuestion;
 
     ngOnInit(): void {}
 }
