@@ -68,7 +68,10 @@ export class QuizService {
     console.log(quiz.questions[numQuestion]);
     this.actualQuestion = quiz.questions[numQuestion];
     this.actualQuestion$.next(this.actualQuestion);
-    
+  }
+
+  responseSelected(responseNumber: number) {
+    console.log("Response selected (service POV) : ",responseNumber);
   }
 
   getQuizzes(quiz: Quiz){

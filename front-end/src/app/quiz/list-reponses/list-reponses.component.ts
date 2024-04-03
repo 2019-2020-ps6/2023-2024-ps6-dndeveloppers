@@ -30,4 +30,9 @@ export class ListReponsesComponent implements OnInit {
     displaySelf: Boolean = this.displayListReponses;
 
     ngOnInit(): void {}
+
+    responseSelected(responseNumber: number) {
+        console.log("Response selected : ",responseNumber);
+        this.quizService.responseSelected(responseNumber);
+    }
 }
