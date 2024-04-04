@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Quiz } from '../../../models/quiz.model';
 
 @Component({
-  selector: 'app-choix-quiz',
+  selector: 'choixQuiz',
   templateUrl: './choixQuiz.component.html',
   styleUrls: ['./choixQuiz.component.scss']
 })

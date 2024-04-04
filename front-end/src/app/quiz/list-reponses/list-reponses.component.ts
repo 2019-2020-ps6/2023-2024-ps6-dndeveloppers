@@ -13,17 +13,12 @@ import { QuizService } from "src/services/quiz.service";
 
 export class ListReponsesComponent implements OnInit {
 
-    public displayListReponses: Boolean = false;
     public actualResponses: Answer[] = QUESTION_ACTOR0.answers;
     public choosenQuiz: Quiz = QUIZ_LIST[0];
 
     constructor(public quizService: QuizService){
         this.quizService.actualResponses$.subscribe((actualResponses) => {
             this.actualResponses = actualResponses;
-        })
-
-        this.quizService.displayQuiz$.subscribe((displayQuiz) => {
-            this.displayListReponses = displayQuiz;
         })
 
         this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
@@ -33,7 +28,6 @@ export class ListReponsesComponent implements OnInit {
 
     @Input()
     listReponses: Answer[] = this.actualResponses;
-    displaySelf: Boolean = this.displayListReponses;
 
     ngOnInit(): void {}
 

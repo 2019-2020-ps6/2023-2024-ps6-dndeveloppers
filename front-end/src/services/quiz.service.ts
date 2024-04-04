@@ -23,8 +23,6 @@ export class QuizService {
   private actualResponses: Answer[] = QUESTION_ACTOR0.answers;
   private actualQuestionNumber: number = 0;
 
-  private displayQuiz: boolean = false;
-
   /**
    * Observable which contains the list of the quiz.
    * Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
@@ -33,7 +31,6 @@ export class QuizService {
   public choosenQuiz$: BehaviorSubject<Quiz> = new BehaviorSubject(QUIZ_LIST[0]);
   public actualQuestion$: BehaviorSubject<Question> = new BehaviorSubject(QUESTION_ACTOR0);
   public actualResponses$: BehaviorSubject<Answer[]> = new BehaviorSubject(QUESTION_ACTOR0.answers);
-  public displayQuiz$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   public url: string = "";
 
@@ -61,8 +58,6 @@ export class QuizService {
     if (quiz.questions === undefined) {
       console.log("This quiz does not have any question!");
     } else {
-      this.displayQuiz = true;
-      this.displayQuiz$.next(this.displayQuiz);
       this.displayQuestion(quiz, 0);
     }
   }

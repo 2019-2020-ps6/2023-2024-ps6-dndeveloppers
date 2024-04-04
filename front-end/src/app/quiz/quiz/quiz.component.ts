@@ -9,16 +9,10 @@ import { QuizService } from "src/services/quiz.service";
 
 export class QuizComponent implements OnInit {
 
-    public displayQuiz: boolean = false;
-
-    constructor(public quizService: QuizService){
-        this.quizService.displayQuiz$.subscribe((displayQuiz) => {
-            this.displayQuiz = displayQuiz;
-        })
+    constructor(){
     }
 
     @Input()
-    displaySelf: boolean = this.displayQuiz;
 
     ngOnInit(): void {}
 }

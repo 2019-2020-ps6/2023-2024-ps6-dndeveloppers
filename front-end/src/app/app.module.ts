@@ -13,6 +13,7 @@ import { QuizComponent } from './quiz/quiz/quiz.component';
 import { CreateQuizComponent } from './createQuiz/createQuiz.component';
 import { ListQuizComponent } from './listQuiz/listQuiz.component';
 import { ChoixQuizComponent } from './quiz/choixQuiz/choixQuiz.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ChoixQuizComponent } from './quiz/choixQuiz/choixQuiz.component';
     QuizComponent,
     CreateQuizComponent,
     ListQuizComponent,
-    ChoixQuizComponent
+    ChoixQuizComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

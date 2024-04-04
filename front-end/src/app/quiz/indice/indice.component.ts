@@ -9,16 +9,11 @@ import { QuizService } from "src/services/quiz.service";
 
 export class IndiceComponent implements OnInit {
 
-    public displayIndice: Boolean = false;
 
-    constructor(public quizService: QuizService){
-        this.quizService.displayQuiz$.subscribe((displayQuiz) => {
-            this.displayIndice = displayQuiz;
-        })
+    constructor(){
     }
 
     @Input()
-    displaySelf: Boolean = this.displayIndice;
 
     ngOnInit(): void {}
 }
