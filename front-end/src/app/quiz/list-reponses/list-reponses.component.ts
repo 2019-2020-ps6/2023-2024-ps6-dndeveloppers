@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { QUESTION_ACTOR0 } from "src/mocks/quiz-list.mock";
+import { QUESTION_ACTOR0, QUIZ_LIST } from "src/mocks/quiz-list.mock";
 import { Answer } from "src/models/question.models";
+import { Quiz } from "src/models/quiz.model";
 import { QuizService } from "src/services/quiz.service";
 
 @Component({
@@ -14,6 +15,7 @@ export class ListReponsesComponent implements OnInit {
 
     public displayListReponses: Boolean = false;
     public actualResponses: Answer[] = QUESTION_ACTOR0.answers;
+    public choosenQuiz: Quiz = QUIZ_LIST[0];
 
     constructor(public quizService: QuizService){
         this.quizService.actualResponses$.subscribe((actualResponses) => {
@@ -22,6 +24,10 @@ export class ListReponsesComponent implements OnInit {
 
         this.quizService.displayQuiz$.subscribe((displayQuiz) => {
             this.displayListReponses = displayQuiz;
+        })
+
+        this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
+            this.choosenQuiz = choosenQuiz;
         })
     }
 
@@ -33,6 +39,6 @@ export class ListReponsesComponent implements OnInit {
 
     responseSelected(responseNumber: number) {
         console.log("Response selected : ",responseNumber);
-        this.quizService.responseSelected(responseNumber);
+        this.quizService.responseSelected(this.choosenQuiz, responseNumber);
     }
 }

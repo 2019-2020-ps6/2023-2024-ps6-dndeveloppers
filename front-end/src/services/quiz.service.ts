@@ -18,8 +18,10 @@ export class QuizService {
     * The list is retrieved from the mock.
     */
   private quizzes: Quiz[] = QUIZ_LIST;
+  private choosenQuiz: Quiz | undefined;
   private actualQuestion: Question = QUESTION_ACTOR0;
   private actualResponses: Answer[] = QUESTION_ACTOR0.answers;
+  private actualQuestionNumber: number = 0;
 
   private displayQuiz: boolean = false;
 
@@ -28,6 +30,7 @@ export class QuizService {
    * Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
    */
   public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(QUIZ_LIST);
+  public choosenQuiz$: BehaviorSubject<Quiz> = new BehaviorSubject(QUIZ_LIST[0]);
   public actualQuestion$: BehaviorSubject<Question> = new BehaviorSubject(QUESTION_ACTOR0);
   public actualResponses$: BehaviorSubject<Answer[]> = new BehaviorSubject(QUESTION_ACTOR0.answers);
   public displayQuiz$: BehaviorSubject<boolean> = new BehaviorSubject(false);
@@ -70,12 +73,18 @@ export class QuizService {
     this.actualQuestion$.next(this.actualQuestion);
   }
 
-  responseSelected(responseNumber: number) {
+  responseSelected(quiz: Quiz, responseNumber: number) {
     console.log("Response selected (service POV) : ",responseNumber);
     if (this.actualResponses[responseNumber].isCorrect) {
       console.log("Right answer congrats!");
     } else {
       console.log("Wrong answer!");
+    }
+    this.actualQuestionNumber++;
+    if (this.actualQuestionNumber <= quiz.questions.length) {
+      this.displayQuestion(quiz,this.actualQuestionNumber);
+    } else {
+      console.log("End of quiz");
     }
   }
 
