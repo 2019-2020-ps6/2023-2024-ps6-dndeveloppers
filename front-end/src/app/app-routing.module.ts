@@ -28,7 +28,7 @@ const routes: Routes = [
   {path: 'home/listQuiz', component: ListQuizComponent},
   {path: 'home/choixQuiz', component: ChoixQuizComponent},
 
-  //{path: '**', redirectTo: 'home', pathMatch: 'full'}
+  {path: '**', redirectTo: 'home', pathMatch: 'full'}
 ];
 
 
