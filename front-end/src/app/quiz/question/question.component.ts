@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Question } from '../../../models/question.models';
-import { QUESTION_ACTOR0 } from "src/mocks/quiz-list.mock";
+import { QUIZ_LIST, QUESTION_ACTOR0 } from "src/mocks/quiz-list.mock";
 import { QuizService } from '../../../services/quiz.service';
+import { Quiz } from "src/models/quiz.model";
 
 @Component({
     selector: 'app-question',
@@ -10,18 +11,12 @@ import { QuizService } from '../../../services/quiz.service';
 })
 
 export class QuestionComponent implements OnInit {
-
-    public actualQuestion: Question = QUESTION_ACTOR0;
+    @Input()
+    question: string = "";
 
     constructor(public quizService: QuizService){
-        this.quizService.actualQuestion$.subscribe((actualQuestion) => {
-            this.actualQuestion = actualQuestion;
-        })
-
     }
-
-    @Input()
-    question: Question = this.actualQuestion;
-
-    ngOnInit(): void {}
+    
+    ngOnInit(): void {
+    }
 }

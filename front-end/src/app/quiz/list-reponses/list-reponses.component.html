@@ -1,6 +1,6 @@
-<div class="listreponse" *ngIf="listReponses">
-    <button class="reponse-texte" id="first" name="button" (click)="responseSelected(0)">{{listReponses[0].value}}</button>
-    <button class="reponse-texte" id="second" name="button" (click)="responseSelected(1)">{{listReponses[1].value}}</button>
-    <button class="reponse-texte" id="third" name="button" (click)="responseSelected(2)">{{listReponses[2].value}}</button>
-    <button class="reponse-texte" id="fourth" name="button" (click)="responseSelected(3)">{{listReponses[3].value}}</button>
+<div class="listreponse" *ngIf="actualResponses">
+    <button class="reponse-texte" id="first" name="button" (click)="responseSelected(0)">{{actualResponses[0].value}}</button>
+    <button class="reponse-texte" id="second" name="button" (click)="responseSelected(1)">{{actualResponses[1].value}}</button>
+    <button class="reponse-texte" id="third" name="button" (click)="responseSelected(2)">{{actualResponses[2].value}}</button>
+    <button class="reponse-texte" id="fourth" name="button" (click)="responseSelected(3)">{{actualResponses[3].value}}</button>
 </div>
