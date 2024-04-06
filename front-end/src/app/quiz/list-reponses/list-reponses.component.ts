@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { QUESTION_ACTOR0, QUIZ_LIST } from "src/mocks/quiz-list.mock";
-import { Answer } from "src/models/question.models";
+import { QUIZ_LIST } from "src/mocks/quiz-list.mock";
+import { Answer, Question } from "src/models/question.models";
 import { Quiz } from "src/models/quiz.model";
 import { QuizService } from "src/services/quiz.service";
+
 
 @Component({
     selector: 'app-list-reponses',
@@ -12,24 +13,23 @@ import { QuizService } from "src/services/quiz.service";
 })
 
 export class ListReponsesComponent implements OnInit {
-
-    public actualResponses: Answer[] = QUESTION_ACTOR0.answers;
-    public choosenQuiz: Quiz = QUIZ_LIST[0];
+    public actualResponses: Answer[] = [];
+    public answerGood: Answer[] = [];
+    
 
     constructor(public quizService: QuizService){
-        this.quizService.actualResponses$.subscribe((actualResponses) => {
-            this.actualResponses = actualResponses;
-        })
-
-        this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
-            this.choosenQuiz = choosenQuiz;
-        })
     }
 
     @Input()
-    listReponses: Answer[] = this.actualResponses;
+    quiz: Quiz = QUIZ_LIST[0];
 
-    ngOnInit(): void {}
+
+    ngOnInit(): void {
+        this.actualResponses = this.quiz.questions[0].answers;
+        console.log("init",this.actualResponses);
+    }
+
+    public choosenQuiz: Quiz = this.quiz;
 
     responseSelected(responseNumber: number) {
         console.log("Response selected : ",responseNumber);

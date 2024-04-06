@@ -87,7 +87,6 @@ export class QuizService {
     for(let i=0;i<this.quizzes.length;i++){
       if(this.quizzes[i].name==quiz.name){
         console.log("Quiz sélectionné : ",this.quizzes[i].name);
-        return;
       }
     }
   }
