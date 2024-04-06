@@ -1,7 +1,7 @@
 <app-profil></app-profil>
 <div>
     <app-indice class="indice"></app-indice>
-    <app-question [question]="choosenQuiz.questions[numQuestion].label" class="question"></app-question>
+    <app-question [question]="choosenQuiz.questions[actualQuestionNumber].label" class="question"></app-question>
     <app-list-reponses  [quiz]="choosenQuiz" class="listreponse"></app-list-reponses>
 </div>
 

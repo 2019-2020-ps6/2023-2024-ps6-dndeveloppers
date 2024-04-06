@@ -11,15 +11,19 @@ import { QUESTION_ACTOR0, QUIZ_LIST } from "src/mocks/quiz-list.mock";
 })
 
 export class QuizComponent implements OnInit {
+
     public choosenQuiz: Quiz;
     public numQuiz:number;
-    public numQuestion:number;
+    public actualQuestionNumber: number = 0;
 
-    constructor(private router: Router){
+    constructor(private router: Router, public quizService: QuizService){
         let urlQuiz:string[] = this.router.url.split('/');
         this.numQuiz = parseInt(urlQuiz[urlQuiz.length-1]);
         this.choosenQuiz = QUIZ_LIST[this.numQuiz];
-        this.numQuestion = 0; // on commence à la question 0
+
+        this.quizService.actualQuestionNumber$.subscribe((actualQuestionNumber) => {
+            this.actualQuestionNumber = actualQuestionNumber;
+        })
     }
 
     @Input()

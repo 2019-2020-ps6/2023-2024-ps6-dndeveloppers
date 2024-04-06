@@ -13,11 +13,14 @@ import { QuizService } from "src/services/quiz.service";
 })
 
 export class ListReponsesComponent implements OnInit {
+
     public actualResponses: Answer[] = [];
-    public answerGood: Answer[] = [];
-    
+    public actualQuestionNumber: number = 0;
 
     constructor(public quizService: QuizService){
+        this.quizService.actualQuestionNumber$.subscribe((actualQuestionNumber) => {
+            this.actualQuestionNumber = actualQuestionNumber;
+        })
     }
 
     @Input()
@@ -34,5 +37,11 @@ export class ListReponsesComponent implements OnInit {
     responseSelected(responseNumber: number) {
         console.log("Response selected : ",responseNumber);
         this.quizService.responseSelected(this.choosenQuiz, responseNumber);
+        
+        this.loadQuestion(0);
+    }
+
+    loadQuestion(nbQuestion: number) {
+        this.actualResponses = this.quiz.questions[this.actualQuestionNumber].answers;
     }
 }

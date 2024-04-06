@@ -18,7 +18,7 @@ export class QuizService {
     * The list is retrieved from the mock.
     */
   private quizzes: Quiz[] = QUIZ_LIST;
-  private choosenQuiz: Quiz | undefined;
+  private choosenQuiz: Quiz = this.quizzes[0];
   private actualQuestion: Question = QUESTION_ACTOR0;
   private actualResponses: Answer[] = QUESTION_ACTOR0.answers;
   private actualQuestionNumber: number = 0;
@@ -31,6 +31,7 @@ export class QuizService {
   public choosenQuiz$: BehaviorSubject<Quiz> = new BehaviorSubject(QUIZ_LIST[0]);
   public actualQuestion$: BehaviorSubject<Question> = new BehaviorSubject(QUESTION_ACTOR0);
   public actualResponses$: BehaviorSubject<Answer[]> = new BehaviorSubject(QUESTION_ACTOR0.answers);
+  public actualQuestionNumber$: BehaviorSubject<number> = new BehaviorSubject(0);
 
   public url: string = "";
 
@@ -75,11 +76,14 @@ export class QuizService {
     } else {
       console.log("Wrong answer!");
     }
-    this.actualQuestionNumber++;
-    if (this.actualQuestionNumber <= quiz.questions.length) {
-      this.displayQuestion(quiz,this.actualQuestionNumber);
+
+    if (this.actualQuestionNumber == quiz.questions.length-1) {
+      console.log("C'était la dernière question");
     } else {
-      console.log("End of quiz");
+      this.actualQuestion = this.choosenQuiz.questions[this.actualQuestionNumber];
+      this.actualQuestion$.next(this.actualQuestion);
+      this.actualQuestionNumber++;
+      this.actualQuestionNumber$.next(this.actualQuestionNumber);
     }
   }
 

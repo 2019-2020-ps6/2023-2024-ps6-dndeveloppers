@@ -14,6 +14,14 @@
                     {
                         "value": "La grande illusion",
                         "isCorrect": true
+                    },
+                    {
+                        "value": "Harry Potter",
+                        "isCorrect": false
+                    },
+                    {
+                        "value": "Star Wars",
+                        "isCorrect": false
                     }
                 ]
             },
@@ -27,6 +35,14 @@
                     {
                         "value": "Johnny Deep",
                         "isCorrect": true
+                    },
+                    {
+                        "value": "Florence Foresti",
+                        "isCorrect": false
+                    },
+                    {
+                        "value": "Omar Sy",
+                        "isCorrect": false
                     }
                 ]
             }
