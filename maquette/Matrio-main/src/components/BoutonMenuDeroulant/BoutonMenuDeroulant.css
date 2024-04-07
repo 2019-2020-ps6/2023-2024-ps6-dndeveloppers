@@ -3,3 +3,7 @@ select, option {
 	border: black 2px solid;
 	margin-left: 15px;
 }
+.TextMenuDeroulant{
+	font-weight: bold;
+	color: rgb(196, 196, 196);
+}

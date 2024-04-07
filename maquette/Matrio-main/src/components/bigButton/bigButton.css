@@ -8,18 +8,17 @@
 }
 
 .bigButton-texte {
-    height: 5rem; /* Hauteur du texte */
-    width: auto; /* Largeur automatique */
-    min-width: 500px; /* Largeur minimale du conteneur du bouton */
+    height: 5rem;
+    width: auto;
+    min-width: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-
     border-radius: 0.5rem;
     background-color: #6958cf;
        
-    border: black 2px solid;
+    border: outset #322386 4px;
 
     text-align: center;
     font-size: 2em;
@@ -33,7 +32,7 @@
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-
 .bigButton-texte:hover {
-    background-color: #7e75b2;
+    background-color: #a69fd1;
+    border: inset #322386 4px;
 }

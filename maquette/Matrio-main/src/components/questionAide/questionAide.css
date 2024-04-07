@@ -1,27 +1,21 @@
 .QuestionPart {
-    height: 10%;
-    display: grid;
-    justify-content: center;
-    grid-template-columns: 20% 50% 25%;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
 }
 
-.audio {
-    grid-column: 1;
-    margin-left: 80%;
-    justify-content: center;
+.audio { 
+    padding-left: 5%; 
+    margin-right: 10%; 
 }
 
-.question {
-    grid-column: 2;
-    margin-top: auto;
-    margin-bottom: auto;
-    justify-content: center;
-
+.question, .QuestionPart {
+    flex-grow: 1;
+    text-align: center;
 }
 
 .indice {
-    grid-column: 3;
-    margin-right: 100%;
-    display: flex;
-    justify-content: center;
+    padding-right: 5%;
+    margin-left: 10%;
 }
+

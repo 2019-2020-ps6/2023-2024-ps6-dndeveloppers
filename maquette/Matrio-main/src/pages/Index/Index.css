@@ -4,34 +4,28 @@ body {
     margin: 0;
     padding: 0;
     background-image: url('./assets/fond3.jpg');
-    background-repeat: no-repeat;   
+    background-repeat: no-repeat;  
 }
 
-a {
-    text-decoration: none;
+.boutons{
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+    gap: 10px;
+    margin-right: 5%;
+    
 }
 
-.JouerQuiz1 {
-    margin-top: 5%;
-    margin-left: 30%;
+.TexteModifierQuiz{
+    font-weight: bold;
+    color: rgb(196, 196, 196);
 }
 
-.ModifierQuiz1 {
-    margin-top: 4%;
-    margin-left: 30%;
+.TextConfigProfil{
+    font-weight: bold;
+    color: rgb(196, 196, 196);
 }
 
-.ConfigProfil1 {
-    margin-top: 4%;
-    margin-left: 30%;
-}
-
-.Stats1 {
-    margin-top: 4%;
-    margin-left: 30%;
-}
-
-.boutons {
-    display: flex;
-    flex-direction: column;
+.TextStat{
+    font-weight: bold;
+    color: rgb(196, 196, 196);
 }

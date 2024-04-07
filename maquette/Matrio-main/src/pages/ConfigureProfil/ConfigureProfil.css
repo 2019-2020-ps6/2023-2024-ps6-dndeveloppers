@@ -1,17 +1,19 @@
-.boutons {
-    display: flex;
-    flex-direction: column;
+.boutonsConfig {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    gap: 80px;
 }
 
-.ModifierQuiz1{
-    margin-left: 30%;
+.AjouterProfil{
+    margin-left: 29%;
 }
 
-.AjouterProfil1{
-    margin-top: 10%;
-    margin-left: 30%;
+.TexteChoixProfil{
+    color: rgb(196, 196, 196);
+    font-weight: bold;
 }
 
-a {
-    text-decoration: none;
+.TexteAjouterProfil{
+    color: rgb(196, 196, 196);
+    font-weight: bold;
 }
