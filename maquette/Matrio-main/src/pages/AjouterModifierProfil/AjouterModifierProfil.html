@@ -8,43 +8,44 @@
 </head>
 
 <body>
-    <hr noshade width="100%">
-    <ul>
-        <li class="linom">
-          <label for="name">Nom :</label>
-          <input type="text" id="name" name="user_name" />
-        </li>
-        <li class="liprenom">
-            <label for="Prenom">Prenom :</label>
-            <input type="text" id="Prenom" name="user_Lastname" />
-            <img id="imageProfil" class="imageP" src="./assets/imageProfil/default.png" >
-        </li>
-        <li class="liage">
-            <label for="Age">Age :</label>
-            <select name="menuAgeJ" class="jour" id="Age" size="1" required>
-                <option value="">Jour </option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-            <select name="menuAgeM" class="mois" size="1" required>
-                <option value="">Mois </option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-            <select name="menuAgeA" class="annee" size="1" required>
-                <option value="">Année </option>
-                <option value="2002">2002</option>
-                <option value="2003">2003</option>
-                <option value="2004">2004</option>
-            </select>
-        </li>
-    </ul>
-    <hr noshade width="100%">
-    <section id="optionPatient">
+    <section class="box">    
+        <ul>
+            <li class="linom">
+            <label for="name">Nom :</label>
+            <input type="text" id="name" name="user_name" />
+            </li>
+            <li class="liprenom">
+                <label for="Prenom">Prenom :</label>
+                <input type="text" id="Prenom" name="user_Lastname" />
+                <img id="imageProfil" class="imageP" src="./assets/imageProfil/default.png" >
+            </li>
+            <li class="liage">
+                <label for="Age">Age :</label>
+                <select name="menuAgeJ" class="jour" id="Age" size="1" required>
+                    <option value="">Jour </option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <select name="menuAgeM" class="mois" size="1" required>
+                    <option value="">Mois </option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <select name="menuAgeA" class="annee" size="1" required>
+                    <option value="">Année </option>
+                    <option value="2002">2002</option>
+                    <option value="2003">2003</option>
+                    <option value="2004">2004</option>
+                </select>
+            </li>
+        </ul>
+    </section>
+    
+    <section id="optionPatient" class="box">
         <div class="optionName">
-            <p>Options du patient</p>
+            <p class="titreSection">Options du patient</p>
         </div>
         <div class="photoClass">
             <input
@@ -79,9 +80,9 @@
             <label for="indice">Indices</label>
         </div>
     </section>
-    <section id="optionQuestion">
+    <section id="optionQuestion" class="box">
         <div class="optionName">
-            <p>Options de question</p>
+            <p class="titreSection">Options de question</p>
         </div>
         <div class="lectureAutoClass">
             <input type="checkbox" id="lectureAuto" value="lectureAutoValue"/>
@@ -104,9 +105,9 @@
             <label for="reposeQuestion">Reposer la question plus tard dans le quiz</label>
         </div>
     </section>
-    <section id="optionIndice">
+    <section id="optionIndice" class="box">
         <div class="optionName">
-            <p>Option d'indice :</p>
+            <p class="titreSection">Option d'indice :</p>
         </div>
         <div class="photoClass">
             <input

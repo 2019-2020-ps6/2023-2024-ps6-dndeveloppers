@@ -7,14 +7,20 @@ body {
 
 .linom{
     margin-top: 1%;
+    font-weight: bold;
+
 }
 
 .liprenom{
     margin-top: 1%;
+    font-weight: bold;
+
 }
 
 .liage{
     margin-top: 1%;
+    font-weight: bold;
+
 }
 
 .imageP{
@@ -32,5 +38,14 @@ body {
     margin-left: 2%;
 }
 .tailleText{
-    margin-top: 4%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.tailleText{
+    font-weight: bold;
+}
+
+.titreSection{
+    font-weight: bold;
 }

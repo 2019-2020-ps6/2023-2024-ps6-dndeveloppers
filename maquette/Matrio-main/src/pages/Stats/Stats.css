@@ -10,7 +10,11 @@
     height: fit-content;
     margin-left: 10px;
     margin-top: 5px;
+    border-radius: 10px 10px 10px 10px;
+    background-color: rgb(171, 164, 164);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
 
 #patient {
     display: grid;
@@ -42,10 +46,12 @@ h3 {
 
 .recapQuiz{
     margin-top: 1px;
-    border: solid 1px black;
+    border: solid 3px black;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr;
+    background-color: lightgray;
+    border-radius: 10px 10px 10px 10px;
 }
 
 .recapQuiz > li{
@@ -56,4 +62,6 @@ h3 {
 .recapQuiz > .grapheGenerique{
     grid-row: 1;
     grid-column: 2;
+    margin-top: 10px;
+    margin-right: 10px;
 }
