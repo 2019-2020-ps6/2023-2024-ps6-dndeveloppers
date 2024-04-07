@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from "@angular/core";
 
 @Component({
-    selector: 'app-indice',
-    templateUrl: './indice.component.html',
-    styleUrls: ['./indice.component.scss']
+    selector: 'app-comeBack',
+    templateUrl: './comeBack.component.html',
+    styleUrls: ['./comeBack.component.scss']
 })
 
-export class IndiceComponent implements OnInit {
+export class ComeBackComponent implements OnInit {
 
 
     constructor(){

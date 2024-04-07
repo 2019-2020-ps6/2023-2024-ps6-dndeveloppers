@@ -14,6 +14,7 @@ import { CreateQuizComponent } from './createQuiz/createQuiz.component';
 import { ListQuizComponent } from './listQuiz/listQuiz.component';
 import { ChoixQuizComponent } from './quiz/choixQuiz/choixQuiz.component';
 import { HomeComponent } from './home/home.component';
+import { ComeBackComponent } from './quiz/comeBack/comeBack.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HomeComponent } from './home/home.component';
     CreateQuizComponent,
     ListQuizComponent,
     ChoixQuizComponent,
-    HomeComponent
+    HomeComponent,
+    ComeBackComponent
   ],
   imports: [
     BrowserModule,
