@@ -11,17 +11,24 @@
     align-items: center;
     justify-content: center;
     font-size: 30px;
-    width: 25%;
+    width: 45%;
     height: 100px;  
-    color: white;
+    font-weight: bold;
+    color: rgb(196, 196, 196);
+    cursor: pointer;
     
     border-radius: 0.5rem;
-    border: black 2px solid;
+    border: outset #322386 4px;
     background-color: #6958cf;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    font-family: Verdana, Geneva, sans-serif;
 
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .reponse-texte:hover {
     background-color: #7e75b2;
+    background-color: #a69fd1;
+    border: inset #322386 4px;
 }

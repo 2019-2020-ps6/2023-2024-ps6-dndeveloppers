@@ -5,11 +5,11 @@
     font-size: 5em;
     color: white;
     font-family: "OpenDyslexic", sans-serif;
-    font-weight: bold;
     text-shadow: 
         -2px -2px 0 #000000,  
         2px -2px 0 #000000,
         -2px 2px 0 #000000,
         2px 2px 0 #000000;
-    color: #40E0D0;
+    font-weight: bold;
+    color: rgb(196, 196, 196);
 }
