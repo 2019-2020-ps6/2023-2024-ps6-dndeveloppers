@@ -11,7 +11,7 @@ import { QuizService } from "src/services/quiz.service";
 
 export class ReponseComponent implements OnInit {
 
-    public actualResponses: Answer[] = QUESTION_ACTOR0.answers;
+    public actualResponses: Answer[] = [];
 
     constructor(public quizService: QuizService){
         this.quizService.actualResponses$.subscribe((actualResponses) => {

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Quiz } from '../../../models/quiz.model';
+import { Router } from '@angular/router';
+import { QuizService } from "src/services/quiz.service";
 
 @Component({
   selector: 'choixQuiz',
@@ -10,23 +12,28 @@ export class ChoixQuizComponent implements OnInit {
   @Input()
   quiz: Quiz | undefined;
 
-  @Output()
-  quizSelected: EventEmitter<boolean> = new EventEmitter<boolean>();
+  //@Output()
+  //quizSelected: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  @Output()
-  deleteQuiz: EventEmitter<Quiz> = new EventEmitter<Quiz>();
+  //@Output()
+  //deleteQuiz: EventEmitter<Quiz> = new EventEmitter<Quiz>();
 
-  constructor() {
+  constructor(private router: Router,public quizService: QuizService) {
   }
 
   ngOnInit() {
   }
 
-  selectQuiz() {
-    this.quizSelected.emit(true);
+  selectQuiz(quiz: Quiz): void {
+    console.log("ccc ",quiz);
+    //this.quizSelected.emit(true);
+    this.quizService.selectQuiz(quiz);
+    console.log(this.router.url);
+    console.log(quiz.name);
+    this.router.navigate(['home/listQuiz/app-quiz/' + quiz.name]); 
   }
 
-  delete() {
-    this.deleteQuiz.emit(this.quiz);
+  delete(quiz: Quiz) {
+    this.quizService.deleteQuiz(quiz);
   }
 }

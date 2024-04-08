@@ -55,11 +55,20 @@ export class QuizService {
   }
 
   selectQuiz(quiz: Quiz) {
-    console.log("selected: " + quiz.name + ", " + quiz.theme);
-    if (quiz.questions === undefined) {
+    let quizEnCours:Quiz = this.quizzes[0];
+    for(let i=0;i<this.quizzes.length;i++){
+      if(this.quizzes[i]==quiz){
+        quizEnCours = this.quizzes[i];
+        this.choosenQuiz = this.quizzes[i];
+        this.choosenQuiz$.next(this.choosenQuiz);
+        console.log("quiz choisit : ",this.choosenQuiz);
+      }
+    }
+    if (quizEnCours.questions === undefined) {
       console.log("This quiz does not have any question!");
     } else {
-      this.displayQuestion(quiz, 0);
+      console.log("ok");
+      this.displayQuestion(quizEnCours, 0);
     }
   }
 
