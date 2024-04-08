@@ -45,13 +45,14 @@ export class QuizService {
   }
 
   deleteQuiz(quiz: Quiz) {
+    let newQuizzes: Quiz[] = [];
     for(let i=0;i<this.quizzes.length;i++){
-      if(this.quizzes[i].name==quiz.name){
-        delete this.quizzes[i];
-        this.quizzes$.next(this.quizzes);
-        return;
+      if(this.quizzes[i].name!=quiz.name){
+        newQuizzes.push(this.quizzes[i]);        
       }
     }
+    this.quizzes = newQuizzes;
+    this.quizzes$.next(this.quizzes);
   }
 
   selectQuiz(quiz: Quiz) {
