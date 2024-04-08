@@ -16,10 +16,15 @@ export class ListReponsesComponent implements OnInit {
 
     public actualResponses: Answer[] = [];
     public actualQuestionNumber: number = 0;
+    public endOfQuiz: boolean = false;
 
     constructor(public quizService: QuizService){
         this.quizService.actualQuestionNumber$.subscribe((actualQuestionNumber) => {
             this.actualQuestionNumber = actualQuestionNumber;
+        })
+
+        this.quizService.endOfQuiz$.subscribe((endOfQuiz) => {
+            this.endOfQuiz = endOfQuiz;
         })
     }
 
