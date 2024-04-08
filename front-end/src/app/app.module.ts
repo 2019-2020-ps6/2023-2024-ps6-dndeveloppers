@@ -16,6 +16,11 @@ import { ChoixQuizComponent } from './quiz/choixQuiz/choixQuiz.component';
 import { HomeComponent } from './home/home.component';
 import { ComeBackComponent } from './quiz/comeBack/comeBack.component';
 
+import { StatsComponent } from './stats/stats.component';
+import { StatsGlobalesComponent } from './stats/statsGlobales/statsGlobales.component';
+import { StatsPatientComponent } from './stats/statsPatient/statsPatient.component';
+import { StatsQuizComponent } from './stats/statsQuiz/statsQuiz.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +34,11 @@ import { ComeBackComponent } from './quiz/comeBack/comeBack.component';
     ListQuizComponent,
     ChoixQuizComponent,
     HomeComponent,
-    ComeBackComponent
+    ComeBackComponent,
+    StatsComponent,
+    StatsGlobalesComponent,
+    StatsPatientComponent,
+    StatsQuizComponent
   ],
   imports: [
     BrowserModule,
