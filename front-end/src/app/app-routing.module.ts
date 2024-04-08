@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: 'app-comeBack', component: ComeBackComponent},
 
   //{path: 'home/listQuiz/app-quiz', component: QuizComponent},
-  {path: 'home/listQuiz/app-quiz/:id_quiz', component: QuizComponent},
+  {path: 'home/listQuiz/app-quiz/:name_quiz', component: QuizComponent},
   {path: 'app-create-quiz', component: CreateQuizComponent},
   {path: 'home/listQuiz', component: ListQuizComponent},
   {path: 'home/choixQuiz', component: ChoixQuizComponent},

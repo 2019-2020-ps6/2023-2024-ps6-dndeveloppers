@@ -21,7 +21,7 @@ export class ListQuizComponent implements OnInit {
   }
 
   quizSelected(quiz: Quiz) {
-    console.log(quiz);
+    console.log("listQuiz",quiz);
     this.quizService.selectQuiz(quiz);
   }
 

@@ -45,7 +45,7 @@ export const QUESTION_ACTOR1: Question = {
     ]
 }
 
-export const QUESTION_SPORT: Question = {
+export const QUESTION_SPORT0: Question = {
     label: 'Quel pays a gagné la coupe du monde de foot 2022',
     answers: [
         {
@@ -55,19 +55,49 @@ export const QUESTION_SPORT: Question = {
        {
            value: 'Argentine',
            isCorrect: true,
+       },
+       {
+           value: 'Brésil',
+           isCorrect: false,
+       },
+       {
+           value: 'Allemagne',
+           isCorrect: false,
+       }
+   ]
+};
+
+export const QUESTION_SPORT1: Question = {
+    label: 'Quel pays a gagné la coupe du monde de foot 2022 .....',
+    answers: [
+        {
+           value: 'France',
+           isCorrect: false,
+       },
+       {
+           value: 'Argentine',
+           isCorrect: true,
+       },
+       {
+           value: 'Brésil',
+           isCorrect: false,
+       },
+       {
+           value: 'Allemagne',
+           isCorrect: false,
        }
    ]
 };
 
 export const QUIZ_LIST: Quiz[] = [
     {
-        name: 'Les Acteurs', // What's happening if I change this value..?
+        name: 'Acteurs', // What's happening if I change this value..?
         theme: 'Actor',
         questions: [QUESTION_ACTOR0,QUESTION_ACTOR1],
     },
     {
-        name: 'Les Sports',
+        name: 'Sports',
         theme: 'Sport',
-        questions: [QUESTION_SPORT],
+        questions: [QUESTION_SPORT0,QUESTION_SPORT1],
     }
 ];
