@@ -11,6 +11,7 @@ import { CreateQuizComponent } from './createQuiz/createQuiz.component';
 import { ListQuizComponent } from './listQuiz/listQuiz.component';
 import { ChoixQuizComponent } from './quiz/choixQuiz/choixQuiz.component';
 import { HomeComponent } from './home/home.component';
+import { ComeBackComponent } from './quiz/comeBack/comeBack.component'
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'app-question', component: QuestionComponent},
   {path: 'app-reponse', component: ReponseComponent},
   {path: 'app-list-reponses', component: ListReponsesComponent},
+  {path: 'app-comeBack', component: ComeBackComponent},
 
   //{path: 'home/listQuiz/app-quiz', component: QuizComponent},
   {path: 'home/listQuiz/app-quiz/:id_quiz', component: QuizComponent},
@@ -28,7 +30,7 @@ const routes: Routes = [
   {path: 'home/listQuiz', component: ListQuizComponent},
   {path: 'home/choixQuiz', component: ChoixQuizComponent},
 
-  //{path: '**', redirectTo: 'home', pathMatch: 'full'}
+  {path: '**', redirectTo: 'home', pathMatch: 'full'}
 ];
 
 

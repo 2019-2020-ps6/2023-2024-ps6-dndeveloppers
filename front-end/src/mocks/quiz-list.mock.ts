@@ -27,12 +27,20 @@ export const QUESTION_ACTOR1: Question = {
     label: "Qui incarne le personnage principal de Pirates des Caraïbes ?",
     answers: [
         {
-            "value": "Julia Roberts",
-            "isCorrect": false
+            value: 'Julia Roberts',
+            isCorrect: false,
         },
         {
-            "value": "Johnny Deep",
-            "isCorrect": true
+            value: 'Johnny Deep',
+            isCorrect: true,
+        },
+        {
+            value: 'Florence Foresti',
+            isCorrect: false,
+        },
+        {
+            value: 'Omar Sy',
+            isCorrect: false,
         }
     ]
 }

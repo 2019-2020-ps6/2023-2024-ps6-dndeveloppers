@@ -1,0 +1,13 @@
+button {
+    display: inline-block;
+    text-align: center;
+    font-size: 30px;
+    background-color: lightgrey;
+    border: solid black 1px;
+    border-radius: 3rem;
+    cursor:pointer;
+}
+
+button:hover {
+    background-color: darkgrey;
+}
