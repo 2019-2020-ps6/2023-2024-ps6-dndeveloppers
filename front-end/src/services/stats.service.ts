@@ -6,6 +6,9 @@ import { BehaviorSubject } from 'rxjs';
   })
   export class StatsService {
 
+    /*
+     * Pour les statistiques globales
+     */
 
     private patientNumber: number = 0;
     private quizNumber: number = 0;
@@ -24,4 +27,20 @@ import { BehaviorSubject } from 'rxjs';
         }
         return num/quizDonePerPerson.length;
     }
+
+    /*
+     * Pour les statistiques par quiz
+     */
+
+    private playedTime: number = 0;
+    private meanScore: number = 0;
+    private meanHintUsed: number = 0;
+    private achievedPercentPerQuestion: number[] = [];
+    private questionNumberPerType: number[] = [0,0,0];
+
+    public playedTime$: BehaviorSubject<number> = new BehaviorSubject(this.playedTime);
+    public meanScore$: BehaviorSubject<number> = new BehaviorSubject(this.meanScore);
+    public meanHintUsed$: BehaviorSubject<number> = new BehaviorSubject(this.meanHintUsed);
+    public achievedPercentPerQuestion$: BehaviorSubject<number[]> = new BehaviorSubject(this.achievedPercentPerQuestion);
+    public questionNumberPerType$: BehaviorSubject<number[]> = new BehaviorSubject(this.questionNumberPerType);
   }

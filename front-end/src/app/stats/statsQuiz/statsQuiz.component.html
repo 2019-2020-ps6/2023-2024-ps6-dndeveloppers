@@ -7,27 +7,18 @@
     </select>
 
     <ul>
-        <li>Nombre de fois joué : </li>
-        <li>Score moyen : </li>
-        <li>Nombre moyen d'indices utilisés : </li>
+        <li>Nombre de fois joué : {{playedTime}}</li>
+        <li>Score moyen : {{meanScore}}</li>
+        <li>Nombre moyen d'indices utilisés : {{meanHintUsed}}</li>
         <li>Pourcentage de réussite pour chaque question : </li>
-        <ol>
-            <li>*enoncé* : </li>
-            <li>*enoncé* : </li>
-            <li>*enoncé* : </li>
-            <li>*enoncé* : </li>
-            <li>*enoncé* : </li>
-            <li>*enoncé* : </li>
-            <li>*enoncé* : </li>
-            <li>*enoncé* : </li>
-            <li>*enoncé* : </li>
-            <li>*enoncé* : </li>
+        <ol *ngFor="let number in achievedPercentPerQuestion">
+            <li>*enoncé* : number</li>
         </ol>
         <li>Nombre de questions : </li>
         <ul>
-            <li>Textuelles : </li>
-            <li>Auditives : </li>
-            <li>Visuelles : </li>
+            <li>Textuelles : {{questionNumberPerType[0]}}</li>
+            <li>Auditives : {{questionNumberPerType[1]}}</li>
+            <li>Visuelles : {{questionNumberPerType[2]}}</li>
         </ul>
     </ul>
 </div>
