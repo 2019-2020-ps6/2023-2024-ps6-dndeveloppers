@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Quiz } from 'src/models/quiz.model';
 
 @Injectable({
     providedIn: 'root'
@@ -27,6 +28,20 @@ import { BehaviorSubject } from 'rxjs';
         }
         return num/quizDonePerPerson.length;
     }
+
+    /*
+     * Pour les statistiques par patient
+     */
+
+    private options: string[] = [];
+    private playedQuiz: number = 0;
+    private patientMeanScore: number = 0;
+    private fiveLastQuizzes: Quiz[] = [];
+
+    public options$: BehaviorSubject<string[]> = new BehaviorSubject(this.options);
+    public playedQuiz$: BehaviorSubject<number> = new BehaviorSubject(this.playedQuiz);
+    public patientMeanScore$: BehaviorSubject<number> = new BehaviorSubject(this.patientMeanScore);
+    public fiveLastQuizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.fiveLastQuizzes);
 
     /*
      * Pour les statistiques par theme
