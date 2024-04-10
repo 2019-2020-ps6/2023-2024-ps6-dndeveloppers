@@ -1,5 +1,6 @@
 import { Quiz } from '../models/quiz.model';
 import { Question } from '../models/question.models';
+import { STATS_ACTORS, STATS_SPORTS } from './statsMocks/stats-quiz.mock';
 
 export const QUESTION_ACTOR0: Question = {
      label: 'Jean Gabin a joué dans...',
@@ -94,10 +95,12 @@ export const QUIZ_LIST: Quiz[] = [
         name: 'Acteurs', // What's happening if I change this value..?
         theme: 'Actor',
         questions: [QUESTION_ACTOR0,QUESTION_ACTOR1],
+        selfStats: STATS_ACTORS,
     },
     {
         name: 'Sports',
         theme: 'Sport',
         questions: [QUESTION_SPORT0,QUESTION_SPORT1],
+        selfStats: STATS_SPORTS,
     }
 ];

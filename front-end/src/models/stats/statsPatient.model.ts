@@ -1,9 +1,10 @@
+import { options } from "../options.model";
 import { Quiz } from "../quiz.model";
 
 export interface statsPatient {
-    options: boolean[],
+    options: options[],
     nbQuizDone: number,
     meanScore: number,
-    QuizDone: Quiz[],
+    quizDone: Quiz[],
     nbAttemptForEachQuizDone: number[]
 }
