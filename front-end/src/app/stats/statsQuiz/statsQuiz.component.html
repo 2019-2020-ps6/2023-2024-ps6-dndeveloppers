@@ -1,24 +1,24 @@
 <div class="statsQuiz">
     <p>Statistiques par quiz : </p>
-    <select class="choixQuiz" name="choixQuiz">
+    <select [(ngModel)]="selectedQuiz" class="choixQuiz" name="choixQuiz">
         <option value="">Choix du Quiz</option>
-        <option value="Quiz1">Quiz 1</option>
-        <option value="Quiz2">Quiz 2</option>
+        <option *ngFor="let quiz of listeQuiz" [value]="quiz">{{quiz.name}}</option>
     </select>
 
     <ul>
-        <li>Nombre de fois joué : {{playedTime}}</li>
-        <li>Score moyen : {{meanScore}}</li>
-        <li>Nombre moyen d'indices utilisés : {{meanHintUsed}}</li>
+        <li>Nombre de fois joué : </li>
+        <li>Score moyen : </li>
+        <li>Nombre moyen d'indices utilisés : </li>
         <li>Pourcentage de réussite pour chaque question : </li>
+        <!--
         <ol *ngFor="let num in achievedPercentPerQuestion">
             <li>*enoncé* : num</li>
-        </ol>
+        </ol>-->
         <li>Nombre de questions : </li>
         <ul>
-            <li>Textuelles : {{questionNumberPerType[0]}}</li>
-            <li>Auditives : {{questionNumberPerType[1]}}</li>
-            <li>Visuelles : {{questionNumberPerType[2]}}</li>
+            <li>Textuelles : {{selectedQuiz.nbQuestionsPerType[0]}}</li>
+            <li>Auditives : {{selectedQuiz.nbQuestionsPerType[1]}}</li>
+            <li>Visuelles : {{selectedQuiz.nbQuestionsPerType[2]}}</li>
         </ul>
     </ul>
 </div>
