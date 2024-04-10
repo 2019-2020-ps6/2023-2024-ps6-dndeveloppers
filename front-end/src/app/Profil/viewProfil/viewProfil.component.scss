@@ -1,0 +1,26 @@
+#imageProfil {
+    width: 100px;
+}
+
+.shortView {
+    border: solid black 1px;
+    width: 250px;
+    text-align: center;
+}
+
+.popup {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border: solid black 1px;
+    background-color: white;
+    font-size: 30px;
+    text-align: center;
+    margin: 20px;
+    padding: 10px;
+}
+
+.options {
+    font-size: 20px;
+}

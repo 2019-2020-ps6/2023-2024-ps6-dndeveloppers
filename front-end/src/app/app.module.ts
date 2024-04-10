@@ -34,7 +34,8 @@ import { ViewProfilComponent } from './Profil/viewProfil/viewProfil.component';
     ChoixQuizComponent,
     HomeComponent,
     ComeBackComponent,
-
+    
+    // Profil
     EditProfilComponent,
     ListProfilComponent,
     ViewProfilComponent
