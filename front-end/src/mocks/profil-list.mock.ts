@@ -27,9 +27,9 @@ export const PROFIL2: Profil = {
     prenom: 'Joseph',
     role: 'patient',
 
-    dateNaissance: [15,3,1956],
+    //dateNaissance: [15,3,1956],
 
-    optionPhoto: true,
+    optionPhoto: false,
     optionIndice: true,
 
     optionTailleTexte: 'Gros',

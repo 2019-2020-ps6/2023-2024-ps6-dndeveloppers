@@ -1,4 +1,4 @@
-<div>
+<div class="shortView">
     <h2>
         <span> Nom : {{profil.nom}}   </span><br/>
         <span> Prénom: {{profil.prenom}} </span><br/>
@@ -6,11 +6,34 @@
         <button (click)="showProfil(profil)">Afficher</button>
         <button (click)="selectProfil(profil)">Sélectionner</button>
         <button (click)="deleteProfil(profil)">Supprimer</button>
-        <div class="popup" *ngIf="typeView==='full'">
-            <span> Nom : {{profil.nom}}   </span><br/>
-            <span> Prénom: {{profil.prenom}} </span><br/>
-            <img id="imageProfil" src="./assets/imageProfil/default.png" ><br/>
-            <button (click)="stopShowProfil(profil)">Fermer</button>
-        </div>
+        
     </h2>
+</div>
+
+<div class="popup" *ngIf="typeView==='full'">
+    <span> Nom : {{profil.nom}}   </span><br/>
+    <span> Prénom: {{profil.prenom}} </span><br/>
+    <img id="imageProfil" src="./assets/imageProfil/default.png" ><br/>
+    Date de Naissance : <br/>
+    <span *ngIf="profil.dateNaissance!==undefined; else elseDate"> {{profil.dateNaissance[0]}} / {{profil.dateNaissance[1]}} / {{profil.dateNaissance[2]}}</span>
+    <ng-template #elseDate>Non renseignée</ng-template>
+    
+    <br/><br/>Option(s) : <br/>
+    <div class="options">
+        <span *ngIf="profil.optionPhoto===true">Question avec photo<br/></span>
+        <span *ngIf="profil.optionIndice===true">Utilisation d'indices<br/></span>
+        <span *ngIf="profil.optionSupprimerMauvaisesReponses===true">Suppression des mauvaises réponses<br/></span>
+        <span *ngIf="profil.optionReposerQuestionApres===true">Reposer plus tard les questions ratées<br/></span>
+    </div>
+    
+    <br/><br/>Restriction(s) : <br/>
+    <div class="options">
+        <span *ngIf="profil.optionPhoto!==true">Pas de question avec photo<br/></span>
+        <span *ngIf="profil.optionIndice!==true">Pas d'utilisation d'indices<br/></span>
+        <span *ngIf="profil.optionSupprimerMauvaisesReponses!==true">Pas de suppression des mauvaises réponses<br/></span>
+        <span *ngIf="profil.optionReposerQuestionApres!==true">Ne pas reposer plus tard les questions ratées<br/></span>
+    </div>
+    
+    <br/><br/>Taille du texte : {{profil.optionTailleTexte}}<br/>
+    <button (click)="stopShowProfil(profil)">Fermer</button>
 </div>

@@ -2,20 +2,25 @@
     width: 100px;
 }
 
-div {
+.shortView {
     border: solid black 1px;
     width: 250px;
     text-align: center;
 }
 
-#popup {
-    //position: fixed;
+.popup {
+    position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-
-    box-shadow: 0 0 5px 0 red;
-    width: 500px;
-    height: 500px;
+    border: solid black 1px;
     background-color: white;
+    font-size: 30px;
+    text-align: center;
+    margin: 20px;
+    padding: 10px;
+}
+
+.options {
+    font-size: 20px;
 }
