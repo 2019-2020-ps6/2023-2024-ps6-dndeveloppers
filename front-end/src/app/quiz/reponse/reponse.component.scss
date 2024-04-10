@@ -1,23 +1,7 @@
-.reponse {
+.reponse{
     display: flex;
     align-items: baseline;
     justify-content: center;
     width: 100%;
     height: 100%;  
-}
-
-.reponse-texte {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    width: 50%;
-    height: 100px;  
-    color: white;
-    border-radius: 3rem;
-    background-color: rgb(39, 186, 71);
-}
-
-.reponse-texte:hover {
-    background-color: rgb(113, 159, 117);
 }
