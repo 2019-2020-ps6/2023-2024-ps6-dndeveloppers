@@ -1,11 +1,14 @@
-<app-header></app-header>
-<div>
-    <app-indice class="indice"></app-indice>
-    <app-question [question]="choosenQuiz.questions[actualQuestionNumber].label" class="question"></app-question>
-    <app-list-reponses  [quiz]="choosenQuiz" class="listreponse"></app-list-reponses>
-    <br>
-    <br>
-    <br>
-    <app-comeBack class="returnButton"></app-comeBack>
-</div>
+
+<section class="main-section">
+    <app-profil class="profil"></app-profil>
+    <div class="content">
+        <div class="side-by-side">
+            <app-indice class="indice"></app-indice>
+            <app-question [question]="choosenQuiz.questions[actualQuestionNumber].label" class="question"></app-question>
+        </div> 
+        <app-list-reponses  [quiz]="choosenQuiz" class="listreponse"></app-list-reponses>
+        <app-comeBack class="returnButton"></app-comeBack>
+    </div>
+</section>
+
 

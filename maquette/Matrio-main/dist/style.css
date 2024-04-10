@@ -1,108 +1,86 @@
-/* Content from src/components/bigButton/bigButton.css */
-.bigButton {
-
-    display: flex;
-    align-items: center;
-    height: 3rem;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.bigButton-texte {
-    height: 5rem;
-    width: auto;
-    min-width: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    border-radius: 0.5rem;
-    background-color: #6958cf;
-       
-    border: outset #322386 4px;
-
-    text-align: center;
-    font-size: 2em;
-    color: white;
-    font-family: "OpenDyslexic", sans-serif;
-    text-shadow: -1px -1px 0 #000,  
-    1px -1px 0 #000,
-   -1px 1px 0 #000,
-    1px 1px 0 #000;
-
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.bigButton-texte:hover {
-    background-color: #a69fd1;
-    border: inset #322386 4px;
-}
-/* Content from src/pages\AjouterModifierProfil\AjouterModifierProfil.css */
+/* Content from src/pages\Index\Index.css */
 body {
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
+    background-color: lightyellow;    
 }
 
-.linom{
-    margin-top: 1%;
+.background{
+    background-image: url('./assets/fond3.jpg');
+    background-repeat: no-repeat;  
+}
+
+.boutons{
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+    gap: 10px;
+    margin-right: 9%;
+    
+}
+
+.TexteModifierQuiz{
     font-weight: bold;
-
+    color: rgb(196, 196, 196);
 }
 
-.liprenom{
-    margin-top: 1%;
+.TextConfigProfil{
     font-weight: bold;
-
+    color: rgb(196, 196, 196);
 }
 
-.liage{
-    margin-top: 1%;
+.TextStat{
     font-weight: bold;
-
+    color: rgb(196, 196, 196);
 }
 
-.imageP{
-    position: absolute;
-    left:85%;
-    top:3%;
+/* Content from src/components/allReponses/allReponses.css */
+.allResponses {
+    margin-top: 5%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
 }
 
-.audioClass, .videoClass, .photoClass, .indiceClass, .lectureAutoClass, .nbReponseClass, .disparitionClass, .reposeClass{
-    margin-left: 10%;
-    margin-top: 1%;
+.reponse1 {
+    grid-column: 1;
+    grid-row: 1;
 }
 
-.optionName, .tailleText{
-    margin-left: 2%;
-}
-.tailleText{
-    margin-top: 1%;
-    margin-bottom: 1%;
+.reponse2 {
+    grid-column: 2;
+    grid-row: 1;
 }
 
-.tailleText{
-    font-weight: bold;
+.reponse3 {
+    margin-top: 5%;
+    grid-column: 1;
+    grid-row: 2;
 }
 
-.titreSection{
-    font-weight: bold;
+.reponse4 {
+    margin-top: 5%;
+    grid-column: 2;
+    grid-row: 2;
 }
-/* Content from src/components/sommet/sommet.css */
-.nomSite {
-    float: left;
+/* Content from src/components/question/question.css */
+.question {
+    align-items: center;
+}
+
+.question-texte {
     display: flex;
-    align-items: self-start;
-}
-
-.profil {
-    margin-top: auto;
-    float: right;
-}
-
-.sommet {
-    display: flow-root;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    height: auto;  
+    border-radius: 0.5rem;
+    background-color: #a0a023;
+    border: solid black 2px;
+    font-family: "OpenDyslexic", sans-serif;
+    font-weight: bold;
+    color: black;
 }
 /* Content from src/components/profil/profil.css */
 .total {
@@ -143,289 +121,6 @@ body {
     grid-row: 5;
     grid-column: 2;
 }
-/* Content from src/components/nomSite/nomSite.css */
-.nomSite {
-    margin-left: 1%;
-    margin-top: -1%;
-    width: 300px;
-}
-
-.nomSite-texte {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 200px; 
-    font-size: 30px;
-    height: auto;
-    color: black;
-    border-radius: 3rem;
-    background-color: lightgray;
-    border : 2px solid black;
-}
-/* Content from src/components/indice/indice.css */
-button {
-    border: white;
-}
-
-
-
-#imageIndice {
-    width: 150px;
-    margin-top: auto;
-    margin-bottom: auto;
-}
-/* Content from src/components/questionAide/questionAide.css */
-.QuestionPart {
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-}
-
-.audio { 
-    padding-left: 5%; 
-    margin-right: 10%; 
-}
-
-.question, .QuestionPart {
-    flex-grow: 1;
-    text-align: center;
-}
-
-.indice {
-    padding-right: 5%;
-    margin-left: 10%;
-}
-
-
-/* Content from src/pages\Index\Index.css */
-body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: lightyellow;    
-}
-
-.background{
-    background-image: url('./assets/fond3.jpg');
-    background-repeat: no-repeat;  
-}
-
-.boutons{
-    display: grid;
-    grid-template-rows: repeat(4, auto);
-    gap: 10px;
-    margin-right: 9%;
-    
-}
-
-.TexteModifierQuiz{
-    font-weight: bold;
-    color: rgb(196, 196, 196);
-}
-
-.TextConfigProfil{
-    font-weight: bold;
-    color: rgb(196, 196, 196);
-}
-
-.TextStat{
-    font-weight: bold;
-    color: rgb(196, 196, 196);
-}
-
-/* Content from src/pages\Stats\Stats.css */
-#corps {
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: 5%;
-}
-
-.box {
-    border: solid 2px black;
-    width: 90%;
-    height: fit-content;
-    margin-left: 10px;
-    margin-top: 5px;
-    border-radius: 10px 10px 10px 10px;
-    background-color: rgb(171, 164, 164);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-
-#patient {
-    display: grid;
-    grid-template: 20px 40px 1fr/20% 1fr 10% 5%;
-}
-
-#quiz {
-    display: grid;
-    grid-template: 20px 40px 1fr/20% 1fr 10% 5%;
-    margin-bottom: 5px;
-}
-
-h3 {
-    grid-area: 1/1/3/2;
-    margin-left: 5px;
-}
-
-.choixPatient {
-    grid-area: 2/3/3/4;
-}
-
-.stats {
-    grid-area: 3/1/4/4;
-}
-
-.statistques{
-    font-size: larger;
-}
-
-.recapQuiz{
-    margin-top: 1px;
-    border: solid 3px black;
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr;
-    background-color: lightgray;
-    border-radius: 10px 10px 10px 10px;
-}
-
-.recapQuiz > li{
-    
-    grid-column: 1;
-}
-
-.recapQuiz > .grapheGenerique{
-    grid-row: 1;
-    grid-column: 2;
-    margin-top: 10px;
-    margin-right: 10px;
-}
-/* Content from src/pages\ConfigureProfil\ConfigureProfil.css */
-.boutonsConfig {
-    display: grid;
-    grid-template-rows: repeat(2, auto);
-    gap: 80px;
-}
-
-.AjouterProfil{
-    margin-left: 29%;
-}
-
-.TexteChoixProfil{
-    color: rgb(196, 196, 196);
-    font-weight: bold;
-}
-
-.TexteAjouterProfil{
-    color: rgb(196, 196, 196);
-    font-weight: bold;
-}
-/* Content from src/components/question/question.css */
-.question {
-    align-items: center;
-}
-
-.question-texte {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    height: auto;  
-    border-radius: 0.5rem;
-    background-color: #a0a023;
-    border: solid black 2px;
-    font-family: "OpenDyslexic", sans-serif;
-    font-weight: bold;
-    color: black;
-}
-/* Content from src/components/reponse/reponse.css */
-.reponse {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    width: 100%;
-    height: 100%;  
-}
-
-.reponse-texte {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    width: 45%;
-    height: 100px;  
-    font-weight: bold;
-    color: rgb(196, 196, 196);
-    cursor: pointer;
-    
-    border-radius: 0.5rem;
-    border: outset #322386 4px;
-    background-color: #6958cf;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
-    font-family: Verdana, Geneva, sans-serif;
-
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.reponse-texte:hover {
-    background-color: #7e75b2;
-    background-color: #a69fd1;
-    border: inset #322386 4px;
-}
-/* Content from src/components/audio/audio.css */
-button {
-    border: white;
-}
-
-
-
-#imageAudio {
-    width: 120px;
-}
-/* Content from src/pages\index.css */
-
-a {
-  text-decoration: none;
-}
-
-.JouerQuiz1 {
-  margin-top: 5%;
-  margin-left: 30%;
-}
-
-.ModifierQuiz1 {
-  margin-top: 4%;
-  margin-left: 30%;
-}
-
-.ConfigProfil1 {
-  margin-top: 4%;
-  margin-left: 30%;
-}
-
-.Stats1 {
-  margin-top: 4%;
-  margin-left: 30%;
-}
-
-#boutons {
-  display: flex;
-  flex-direction: column;
-}
-/* Content from src/components/BoutonMenuDeroulant/BoutonMenuDeroulant.css */
-select, option {
-	background-color: #ffffff;
-	border: black 2px solid;
-	margin-left: 15px;
-}
-.TextMenuDeroulant{
-	font-weight: bold;
-	color: rgb(196, 196, 196);
-}
-
 /* Content from src/components/themeQuiz/themeQuiz.css */
 .custom-button1 {
     background-image: url('./assets/drapeaux.jpg'); /* Remplacez par le chemin de votre image */
@@ -510,6 +205,363 @@ select, option {
   background-image: url('./assets/fond.jpg');
   background-size: cover;
 }
+/* Content from src/pages\ChoixThemeQuiz\ChoixThemeQuiz.css */
+.titrePage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5em;
+    color: white;
+    font-family: "OpenDyslexic", sans-serif;
+    text-shadow: 
+        -2px -2px 0 #000000,  
+        2px -2px 0 #000000,
+        -2px 2px 0 #000000,
+        2px 2px 0 #000000;
+    font-weight: bold;
+    color: rgb(196, 196, 196);
+}
+
+.background{
+    background-image: url('./assets/fond3.jpg');
+    background-repeat: no-repeat;  
+}
+/* Content from src/components/indice/indice.css */
+button {
+    border: white;
+}
+
+
+
+#imageIndice {
+    width: 150px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+/* Content from src/components/nomSite/nomSite.css */
+.nomSite {
+    margin-left: 1%;
+    margin-top: -1%;
+    width: 500px;
+}
+
+.nomSite-texte {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px; 
+    font-size: 30px;
+    height: auto;
+    color: black;
+    border-radius: 3rem;
+    background-color: lightgray;
+    border : 2px solid black;
+}
+/* Content from src/components/audio/audio.css */
+button {
+    border: white;
+}
+
+
+
+#imageAudio {
+    width: 120px;
+}
+/* Content from src/pages\Stats\Stats.css */
+#corps {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 5%;
+}
+
+.box {
+    border: solid 2px black;
+    width: 90%;
+    height: fit-content;
+    margin-left: 10px;
+    margin-top: 5px;
+    border-radius: 10px 10px 10px 10px;
+    background-color: rgb(171, 164, 164);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+
+#patient {
+    display: grid;
+    grid-template: 20px 40px 1fr/20% 1fr 10% 5%;
+}
+
+#quiz {
+    display: grid;
+    grid-template: 20px 40px 1fr/20% 1fr 10% 5%;
+    margin-bottom: 5px;
+}
+
+h3 {
+    grid-area: 1/1/3/2;
+    margin-left: 5px;
+}
+
+.choixPatient {
+    grid-area: 2/3/3/4;
+}
+
+.stats {
+    grid-area: 3/1/4/4;
+}
+
+.statistques{
+    font-size: larger;
+}
+
+.recapQuiz{
+    margin-top: 1px;
+    border: solid 3px black;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    background-color: lightgray;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.recapQuiz > li{
+    
+    grid-column: 1;
+}
+
+.recapQuiz > .grapheGenerique{
+    grid-row: 1;
+    grid-column: 2;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+/* Content from src/pages\AjouterModifierProfil\AjouterModifierProfil.css */
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.linom{
+    margin-top: 1%;
+    font-weight: bold;
+
+}
+
+.liprenom{
+    margin-top: 1%;
+    font-weight: bold;
+
+}
+
+.liage{
+    margin-top: 1%;
+    font-weight: bold;
+
+}
+
+.imageP{
+    position: absolute;
+    left:85%;
+    top:3%;
+}
+
+.audioClass, .videoClass, .photoClass, .indiceClass, .lectureAutoClass, .nbReponseClass, .disparitionClass, .reposeClass{
+    margin-left: 10%;
+    margin-top: 1%;
+}
+
+.optionName, .tailleText{
+    margin-left: 2%;
+}
+.tailleText{
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.tailleText{
+    font-weight: bold;
+}
+
+.titreSection{
+    font-weight: bold;
+}
+/* Content from src/components/questionAide/questionAide.css */
+.QuestionPart {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.audio { 
+    padding-left: 5%; 
+    margin-right: 10%; 
+}
+
+.question, .QuestionPart {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.indice {
+    padding-right: 5%;
+    margin-left: 10%;
+}
+
+
+/* Content from src/pages\index.css */
+
+a {
+  text-decoration: none;
+}
+
+.JouerQuiz1 {
+  margin-top: 5%;
+  margin-left: 30%;
+}
+
+.ModifierQuiz1 {
+  margin-top: 4%;
+  margin-left: 30%;
+}
+
+.ConfigProfil1 {
+  margin-top: 4%;
+  margin-left: 30%;
+}
+
+.Stats1 {
+  margin-top: 4%;
+  margin-left: 30%;
+}
+
+#boutons {
+  display: flex;
+  flex-direction: column;
+}
+/* Content from src/components/BoutonMenuDeroulant/BoutonMenuDeroulant.css */
+select, option {
+	background-color: #ffffff;
+	border: black 2px solid;
+	margin-left: 15px;
+}
+.TextMenuDeroulant{
+	font-weight: bold;
+	color: rgb(196, 196, 196);
+}
+
+/* Content from src/pages\ConfigureProfil\ConfigureProfil.css */
+.boutonsConfig {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    gap: 80px;
+}
+
+.AjouterProfil{
+    margin-left: 29%;
+}
+
+.TexteChoixProfil{
+    color: rgb(196, 196, 196);
+    font-weight: bold;
+}
+
+.TexteAjouterProfil{
+    color: rgb(196, 196, 196);
+    font-weight: bold;
+}
+/* Content from src/components/bigButton/bigButton.css */
+.bigButton {
+
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bigButton-texte {
+    height: 5rem;
+    width: auto;
+    min-width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    background-color: #6958cf;
+       
+    border: outset #322386 4px;
+
+    text-align: center;
+    font-size: 2em;
+    color: white;
+    font-family: "OpenDyslexic", sans-serif;
+    text-shadow: -1px -1px 0 #000,  
+    1px -1px 0 #000,
+   -1px 1px 0 #000,
+    1px 1px 0 #000;
+
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.bigButton-texte:hover {
+    background-color: #a69fd1;
+    border: inset #322386 4px;
+}
+/* Content from src/pages\Quiz\Quiz.css */
+
+/* Content from src/components/sommet/sommet.css */
+.nomSite {
+    float: left;
+    display: flex;
+    align-items: self-start;
+}
+
+.profil {
+    margin-top: auto;
+    float: right;
+}
+
+.sommet {
+    display: flow-root;
+}
+/* Content from src/components/reponse/reponse.css */
+.reponse {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    width: 100%;
+    height: 100%;  
+}
+
+.reponse-texte {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    width: 45%;
+    height: 100px;  
+    font-weight: bold;
+    color: rgb(196, 196, 196);
+    cursor: pointer;
+    
+    border-radius: 0.5rem;
+    border: outset #322386 4px;
+    background-color: #6958cf;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    font-family: Verdana, Geneva, sans-serif;
+
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.reponse-texte:hover {
+    background-color: #7e75b2;
+    background-color: #a69fd1;
+    border: inset #322386 4px;
+}
 /* Content from src/pages\Resultats\Resultats.css */
 h2 {
     margin-left: auto;
@@ -550,56 +602,4 @@ h2 {
 #TextBouton{
     font-weight: bold;
     color: rgb(196, 196, 196);
-}
-/* Content from src/pages\ChoixThemeQuiz\ChoixThemeQuiz.css */
-.titrePage{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 5em;
-    color: white;
-    font-family: "OpenDyslexic", sans-serif;
-    text-shadow: 
-        -2px -2px 0 #000000,  
-        2px -2px 0 #000000,
-        -2px 2px 0 #000000,
-        2px 2px 0 #000000;
-    font-weight: bold;
-    color: rgb(196, 196, 196);
-}
-
-.background{
-    background-image: url('./assets/fond3.jpg');
-    background-repeat: no-repeat;  
-}
-/* Content from src/pages\Quiz\Quiz.css */
-
-/* Content from src/components/allReponses/allReponses.css */
-.allResponses {
-    margin-top: 5%;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
-}
-
-.reponse1 {
-    grid-column: 1;
-    grid-row: 1;
-}
-
-.reponse2 {
-    grid-column: 2;
-    grid-row: 1;
-}
-
-.reponse3 {
-    margin-top: 5%;
-    grid-column: 1;
-    grid-row: 2;
-}
-
-.reponse4 {
-    margin-top: 5%;
-    grid-column: 2;
-    grid-row: 2;
 }
