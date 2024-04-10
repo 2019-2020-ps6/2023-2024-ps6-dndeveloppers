@@ -50,7 +50,25 @@
 }
 
 .reponse-texte:hover {
+
     background-color: #7e75b2;
     background-color: #a69fd1;
     border: inset #322386 4px;
+    background-color: rgb(113, 159, 117);
+}
+
+#third {
+    margin-top: 10%;
+}
+
+#endPopup {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+
+    box-shadow: 0 0 5px 0 red;
+    width: 500px;
+    height: 500px;
+    background-color: white;
 }

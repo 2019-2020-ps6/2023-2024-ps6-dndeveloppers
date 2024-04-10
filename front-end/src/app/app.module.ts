@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProfilComponent } from './profil/profil.component';
+
 import { IndiceComponent } from './quiz/indice/indice.component';
 import { QuestionComponent } from './quiz/question/question.component';
 import { ReponseComponent } from './quiz/reponse/reponse.component';
@@ -15,11 +15,15 @@ import { ListQuizComponent } from './listQuiz/listQuiz.component';
 import { ChoixQuizComponent } from './quiz/choixQuiz/choixQuiz.component';
 import { HomeComponent } from './home/home.component';
 import { ComeBackComponent } from './quiz/comeBack/comeBack.component';
+import { HeaderComponent } from './header/header.component';
+import { EditProfilComponent } from './Profil/editProfil/editProfil.component';
+import { ListProfilComponent } from './Profil/listProfil/listProfil.component';
+import { ViewProfilComponent } from './Profil/viewProfil/viewProfil.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfilComponent,
+    HeaderComponent,
     IndiceComponent,
     QuestionComponent,
     ReponseComponent,
@@ -29,7 +33,12 @@ import { ComeBackComponent } from './quiz/comeBack/comeBack.component';
     ListQuizComponent,
     ChoixQuizComponent,
     HomeComponent,
-    ComeBackComponent
+    ComeBackComponent,
+    
+    // Profil
+    EditProfilComponent,
+    ListProfilComponent,
+    ViewProfilComponent
   ],
   imports: [
     BrowserModule,

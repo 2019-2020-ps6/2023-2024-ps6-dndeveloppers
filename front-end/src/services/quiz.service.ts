@@ -22,6 +22,7 @@ export class QuizService {
   private actualQuestion: Question = QUESTION_ACTOR0;
   private actualResponses: Answer[] = QUESTION_ACTOR0.answers;
   private actualQuestionNumber: number = 0;
+  private endOfQuiz: boolean = false;
 
   /**
    * Observable which contains the list of the quiz.
@@ -32,6 +33,7 @@ export class QuizService {
   public actualQuestion$: BehaviorSubject<Question> = new BehaviorSubject(QUESTION_ACTOR0);
   public actualResponses$: BehaviorSubject<Answer[]> = new BehaviorSubject(QUESTION_ACTOR0.answers);
   public actualQuestionNumber$: BehaviorSubject<number> = new BehaviorSubject(0);
+  public endOfQuiz$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   public url: string = "";
 
@@ -45,21 +47,36 @@ export class QuizService {
   }
 
   deleteQuiz(quiz: Quiz) {
+    let newQuizzes: Quiz[] = [];
     for(let i=0;i<this.quizzes.length;i++){
-      if(this.quizzes[i].name==quiz.name){
-        delete this.quizzes[i];
-        this.quizzes$.next(this.quizzes);
-        return;
+      if(this.quizzes[i].name!=quiz.name){
+        newQuizzes.push(this.quizzes[i]);        
       }
     }
+    this.quizzes = newQuizzes;
+    this.quizzes$.next(this.quizzes);
   }
 
   selectQuiz(quiz: Quiz) {
-    console.log("selected: " + quiz.name + ", " + quiz.theme);
-    if (quiz.questions === undefined) {
+    let quizEnCours: Quiz = this.quizzes[0];
+    for(let i=0;i<this.quizzes.length;i++){
+      if(this.quizzes[i]==quiz){
+        quizEnCours = this.quizzes[i];
+        this.choosenQuiz = this.quizzes[i];
+        this.choosenQuiz$.next(this.choosenQuiz);
+        console.log("quiz choisit : ",this.choosenQuiz);
+      }
+    }
+    if (quizEnCours.questions === undefined) {
       console.log("This quiz does not have any question!");
     } else {
-      this.displayQuestion(quiz, 0);
+      console.log("ok");
+      this.endOfQuiz = false;
+      this.endOfQuiz$.next(this.endOfQuiz);
+      
+      this.actualQuestionNumber = 0;
+      this.actualQuestionNumber$.next(this.actualQuestionNumber);
+      this.displayQuestion(quizEnCours, this.actualQuestionNumber);
     }
   }
 
@@ -79,6 +96,8 @@ export class QuizService {
 
     if (this.actualQuestionNumber == quiz.questions.length-1) {
       console.log("C'était la dernière question");
+      this.endOfQuiz = true;
+      this.endOfQuiz$.next(this.endOfQuiz);
     } else {
       this.actualQuestion = this.choosenQuiz.questions[this.actualQuestionNumber];
       this.actualQuestion$.next(this.actualQuestion);
