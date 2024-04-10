@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { Quiz } from "src/models/quiz.model";
-import { StatsService } from "src/services/stats.service";
+import { LISTE_PATIENT } from "src/mocks/patient-list.mock";
+import { Profil } from "src/models/profil.model";
 
 @Component({
     selector: 'app-stats-patient',
@@ -10,28 +10,18 @@ import { StatsService } from "src/services/stats.service";
 
 export class StatsPatientComponent implements OnInit {
 
-    public options: string[] = [];
-    public playedQuiz: number = 0;
-    public patientMeanScore: number = 0;
-    public fiveLastQuizzes: Quiz[] = [];
+    public listePatient: Profil[] = LISTE_PATIENT;
+    public selectedPatient: Profil  = this.listePatient[0];
 
-    constructor(public statsService: StatsService){
-        this.statsService.options$.subscribe((options) => {
-            this.options = options;
-        })
-
-        this.statsService.playedQuiz$.subscribe((playedQuiz) => {
-            this.playedQuiz = playedQuiz;
-        })
-
-        this.statsService.patientMeanScore$.subscribe((patientMeanScore) => {
-            this.patientMeanScore = patientMeanScore;
-        })
-
-        this.statsService.fiveLastQuizzes$.subscribe((fiveLastQuizzes) => {
-            this.fiveLastQuizzes = fiveLastQuizzes;
-        })
+    constructor(){
+        console.log(this.listePatient[0]);
+        console.log(this.selectedPatient);
     }
 
     ngOnInit(): void {}
+
+    onPatientSelected(pat: Profil) {
+        console.log(this.selectedPatient);
+        console.log(this.selectedPatient.prenom);
+    }
 }

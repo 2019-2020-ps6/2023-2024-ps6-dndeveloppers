@@ -1,17 +1,17 @@
 <div class="statsPatient">
-    <select class="choixPatient" name="choixPatient">
-        <option value="">Choix du patient</option>
-        <option value="Patient1">Patient 1</option>
-        <option value="Patient2">Patient 2</option>
+    <select [(ngModel)]="selectedPatient" (change)="onPatientSelected(selectedPatient)" class="choixPatient" name="choixPatient">
+        <option value="">Please choose a patient</option>
+        <option *ngFor="let pat of listePatient" [value]="pat" >{{pat.prenom}}</option>
     </select>
 
     <ul>
-        <li>Options du patient : {{options}}</li>
-        <li>Nombre de quiz réalisés : {{playedQuiz}}</li>
-        <li>Score moyen : {{patientMeanScore}}</li>
+        <li>Nom du patient : {{selectedPatient.prenom}}</li>
+        <li>Options du patient : 0</li>
+        <li>Nombre de quiz réalisés : <!--{{patient.selfStats.nbQuizDone}}--></li>
+        <li>Score moyen : <!--{{patient.selfStats.meanScore}}--></li>
         <li>5 derniers quiz joués : </li>
     </ul>
     <div class="statsQuiz"> <!--*ngFor(quizDuPatient)-->
-        <p>{{fiveLastQuizzes}}</p>
+        <p>fiveLastQuizzes</p>
     </div>
 </div>

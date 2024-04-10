@@ -1,10 +1,9 @@
-import { patient } from "../patient.model";
+import { Profil } from "../profil.model";
 
 export interface statsQuiz {
     playedTime: number,
     meanScore: number,
-    nbQuestions: number,
-    playedBy: patient[],
+    playedBy: Profil[],
     meanScoreByPatient: number[],
     nbHintUsedByPatient: number[],
     successPercentageByQuestion: number[]
