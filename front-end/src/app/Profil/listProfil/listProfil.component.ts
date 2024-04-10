@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { QuizService } from "src/services/quiz.service";
+import { Profil } from "src/models/profil.model";
+import { ProfilService } from "src/services/profil.service";
 
 @Component({
     selector: 'listProfil',
@@ -8,7 +9,13 @@ import { QuizService } from "src/services/quiz.service";
 })
 
 export class ListProfilComponent implements OnInit {
-    constructor(public quizService: QuizService){}
+    profilList: Profil[] = [];
+
+    constructor(public profilService: ProfilService){
+        this.profilService.profilList$.subscribe((profilList) => {
+            this.profilList = profilList;
+          });
+    }
 
     ngOnInit(): void {}
 }

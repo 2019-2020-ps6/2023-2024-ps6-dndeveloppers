@@ -1,0 +1,16 @@
+<div>
+    <h2>
+        <span> Nom : {{profil.nom}}   </span><br/>
+        <span> Prénom: {{profil.prenom}} </span><br/>
+        <img id="imageProfil" src="./assets/imageProfil/default.png" ><br/>
+        <button (click)="showProfil(profil)">Afficher</button>
+        <button (click)="selectProfil(profil)">Sélectionner</button>
+        <button (click)="deleteProfil(profil)">Supprimer</button>
+        <div class="popup" *ngIf="typeView==='full'">
+            <span> Nom : {{profil.nom}}   </span><br/>
+            <span> Prénom: {{profil.prenom}} </span><br/>
+            <img id="imageProfil" src="./assets/imageProfil/default.png" ><br/>
+            <button (click)="stopShowProfil(profil)">Fermer</button>
+        </div>
+    </h2>
+</div>

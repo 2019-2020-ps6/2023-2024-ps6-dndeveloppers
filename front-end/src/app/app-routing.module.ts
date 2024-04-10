@@ -15,6 +15,7 @@ import { HeaderComponent } from './header/header.component';
 import { ListProfilComponent } from './Profil/listProfil/listProfil.component';
 import { EditProfilComponent } from './Profil/editProfil/editProfil.component';
 import { ViewProfilComponent } from './Profil/viewProfil/viewProfil.component';
+import { CreateProfilComponent } from './Profil/createProfil/createProfil.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -30,8 +31,10 @@ const routes: Routes = [
   {path: 'home/listProfil', component: ListProfilComponent}, 
   {path: 'home/listProfil/editProfil/:name_profil', component: EditProfilComponent},
   {path: 'home/listProfil/editProfil', component: EditProfilComponent},
-  {path: 'app-viewProfil', component: ViewProfilComponent}, 
+  {path: 'app-viewProfil', component: ViewProfilComponent}, // pour afficher les profils dans la liste des profils
+  {path: 'home/listProfil/createProfil', component: CreateProfilComponent}, 
 
+  // Quiz
   {path: 'home/listQuiz/app-quiz/:name_quiz', component: QuizComponent}, // Quiz x 
   {path: 'home/app-create-quiz', component: CreateQuizComponent},
   {path: 'home/listQuiz', component: ListQuizComponent}, 
