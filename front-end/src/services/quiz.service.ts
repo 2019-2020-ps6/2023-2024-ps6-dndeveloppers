@@ -23,6 +23,7 @@ export class QuizService {
   private actualQuestion: Question = QUESTION_ACTOR0;
   private actualResponses: Answer[] = QUESTION_ACTOR0.answers;
   private actualQuestionNumber: number = 0;
+  private actualScore: number = 0;
   private endOfQuiz: boolean = false;
 
   /**
@@ -93,6 +94,7 @@ export class QuizService {
     console.log("Response selected (service POV) : ",responseNumber);
     if (this.actualResponses[responseNumber].isCorrect) {
       console.log("Bonne réponse félicitation!");
+      this.actualScore++;
     } else {
       console.log("Mauvaise Réponse!");
     }
@@ -100,6 +102,7 @@ export class QuizService {
     if (this.actualQuestionNumber == quiz.questions.length-1) {
       console.log("C'était la dernière question");
       this.statsService.addQuizDone();
+      this.statsService.meanScoreNewData(this.actualScore);
       this.endOfQuiz = true;
       this.endOfQuiz$.next(this.endOfQuiz);
     } else {

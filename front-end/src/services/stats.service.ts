@@ -125,6 +125,21 @@ export class StatsService {
       return res;
     }
 
+    meanScoreNewData(score: number) {
+      console.log(this.actualQuiz.selfStats.resTab);
+      console.log(this.actualQuiz.selfStats.resTab.length);
+      this.actualQuiz.selfStats.resTab.push(score);
+      console.log(this.actualQuiz.selfStats.resTab);
+
+      let num = 0;
+      for (let i=0; i<this.actualQuiz.selfStats.resTab.length; i++) {
+        num += this.actualQuiz.selfStats.resTab[i];
+      }
+      console.log(num);
+      console.log(this.actualQuiz.selfStats.resTab.length);
+      this.actualQuiz.selfStats.meanScore = num/this.actualQuiz.selfStats.resTab.length;
+    }
+
     refreshQuizSubscribers() {
       this.actualQuiz$.next(this.actualQuiz);
       this.actualQuizId$.next(this.actualQuizId);
