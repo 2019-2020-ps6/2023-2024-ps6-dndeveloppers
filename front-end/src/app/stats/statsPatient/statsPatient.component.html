@@ -1,15 +1,18 @@
 <div class="statsPatient">
     <p class="titreStat">Statistiques du patient</p>
     <select [(ngModel)]="selectedPatient" (change)="onPatientSelected(selectedPatient)" class="choixPatient" name="choixPatient">
+    <select (input)="selectedPatient($event)" class="choixQuiz" name="choixQuiz">
         <option value="">Please choose a patient</option>
-        <option *ngFor="let pat of listePatient" [value]="pat" >{{pat.prenom}}</option>
+        <option *ngFor="let patient of listePatient" [value]="patient.nom" >{{patient.prenom}}</option>
     </select>
 
     <ul>
-        <li>Nom du patient : {{selectedPatient.prenom}}</li>
-        <li>Options du patient : 0</li>
-        <li>Nombre de quiz réalisés : <!--{{patient.selfStats.nbQuizDone}}--></li>
-        <li>Score moyen : <!--{{patient.selfStats.meanScore}}--></li>
+        <li>Nom du patient : {{actualPatient.prenom}}</li> <!--Static actualisable-->
+        <li *ngIf="actualPatient.optionPhoto && !actualPatient.optionIndice">Option du patient : Photo</li> <!--Static actualisable-->
+        <li *ngIf="!actualPatient.optionPhoto && actualPatient.optionIndice">Option du patient : Indice</li> <!--Static actualisable-->
+        <li *ngIf="actualPatient.optionPhoto && actualPatient.optionIndice">Options du patient : Photo, Indice</li> <!--Static actualisable-->
+        <li>Nombre de quiz réalisés : {{actualPatient.selfStats.nbQuizDone}}</li> <!--Actualisable-->
+        <li>Score moyen : {{actualPatient.selfStats.meanScore}}</li> <!--Actualisable-->
         <li>5 derniers quiz joués : </li>
     </ul>
     <div class="statsQuiz"> <!--*ngFor(quizDuPatient)-->

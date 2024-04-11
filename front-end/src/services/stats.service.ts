@@ -125,6 +125,26 @@ export class StatsService {
       return res;
     }
 
+    meanScoreNewData(score: number) {
+      this.actualQuiz.selfStats.resTab.push(score);
+
+      let num = 0;
+      for (let i=0; i<this.actualQuiz.selfStats.resTab.length; i++) {
+        num += this.actualQuiz.selfStats.resTab[i];
+      }
+      this.actualQuiz.selfStats.meanScore = num/this.actualQuiz.selfStats.resTab.length;
+    }
+
+    usedHintNewData(usedHint: number) {
+      this.actualQuiz.selfStats.nbHintUsed.push(usedHint);
+
+      let num = 0;
+      for (let i=0; i<this.actualQuiz.selfStats.nbHintUsed.length; i++) {
+        num += this.actualQuiz.selfStats.nbHintUsed[i];
+      }
+      this.actualQuiz.selfStats.meanHintUsed = num/this.actualQuiz.selfStats.nbHintUsed.length;
+    }
+
     refreshQuizSubscribers() {
       this.actualQuiz$.next(this.actualQuiz);
       this.actualQuizId$.next(this.actualQuizId);
