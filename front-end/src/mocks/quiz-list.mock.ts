@@ -21,7 +21,9 @@ export const QUESTION_ACTOR0: Question = {
             value: 'Star Wars',
             isCorrect: false,
         }
-    ]
+    ],
+    questionTexte: true,
+    questionImage: false
 };
 
 export const QUESTION_ACTOR1: Question = {
@@ -43,7 +45,9 @@ export const QUESTION_ACTOR1: Question = {
             value: 'Omar Sy',
             isCorrect: false,
         }
-    ]
+    ],
+    questionTexte: true,
+    questionImage: true,
 }
 
 export const QUESTION_SPORT0: Question = {
@@ -65,7 +69,9 @@ export const QUESTION_SPORT0: Question = {
            value: 'Allemagne',
            isCorrect: false,
        }
-   ]
+   ],
+   questionTexte: true,
+   questionImage: false
 };
 
 export const QUESTION_SPORT1: Question = {
@@ -87,7 +93,9 @@ export const QUESTION_SPORT1: Question = {
            value: 'Allemagne',
            isCorrect: false,
        }
-   ]
+   ],
+   questionTexte: true,
+   questionImage: false
 };
 
 export const QUIZ_LIST: Quiz[] = [
@@ -96,13 +104,15 @@ export const QUIZ_LIST: Quiz[] = [
         theme: 'Actor',
         questions: [QUESTION_ACTOR0,QUESTION_ACTOR1],
         nbQuestionsPerType: [2,0],
-        selfStats: STATS_ACTORS,
+        id: 0,
+        selfStats: STATS_ACTORS
     },
     {
         name: 'Sports',
         theme: 'Sport',
         questions: [QUESTION_SPORT0,QUESTION_SPORT1],
         nbQuestionsPerType: [2,0],
-        selfStats: STATS_SPORTS,
+        id: 1,
+        selfStats: STATS_SPORTS
     }
 ];

@@ -6,5 +6,6 @@ export interface Quiz {
     theme: string,
     questions: Question[],
     nbQuestionsPerType: number[],
+    id: number,
     selfStats: statsQuiz
 }
