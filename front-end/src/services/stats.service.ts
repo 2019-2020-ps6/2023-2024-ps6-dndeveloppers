@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { LISTE_PATIENT } from 'src/mocks/patient-list.mock';
+import { ListProfilComponent } from 'src/app/Profil/listProfil/listProfil.component';
+import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Profil } from 'src/models/profil.model';
 import { Quiz } from 'src/models/quiz.model';
@@ -14,15 +15,23 @@ export class StatsService {
      * Pour les statistiques globales
      */
 
-    private nbPatient: number = LISTE_PATIENT.length;
+    private nbPatient: number = this.numberPatient();
     private nbQuiz: number = QUIZ_LIST.length;
     private quizDone: number = this.nbQuizDone();
-    private quizDonePerPerson: number[] = this.nbQuizDonePerPerson();
 
     public nbPatient$: BehaviorSubject<number> = new BehaviorSubject(this.nbPatient);
     public nbQuiz$: BehaviorSubject<number> = new BehaviorSubject(this.nbQuiz);
     public quizDone$: BehaviorSubject<number> = new BehaviorSubject(this.quizDone);
-    public quizDonePerPerson$: BehaviorSubject<number[]> = new BehaviorSubject(this.quizDonePerPerson);
+
+    numberPatient() {
+      let res = 0;
+      for (let i=0; i<LISTE_PROFILS.length; i++) {
+        if (LISTE_PROFILS[i].role == "patient") {
+          res++;
+        }
+      }
+      return res;
+    }
 
     addQuizDone() {
       this.quizDone++;
@@ -31,19 +40,11 @@ export class StatsService {
 
     nbQuizDone() {
       let res = 0;
-      for (let i=0; i<LISTE_PATIENT.length; i++) {
-        if(LISTE_PATIENT[i].selfStats != undefined){
-          res += LISTE_PATIENT[i].selfStats.nbQuizDone;
+      for (let i=0; i<LISTE_PROFILS.length; i++) {
+        if(LISTE_PROFILS[i].selfStats != undefined){
+          res += LISTE_PROFILS[i].selfStats.nbQuizDone;
         }
         
-      }
-      return res;
-    }
-
-    nbQuizDonePerPerson() {
-      let res = [];
-      for (let i=0; i<LISTE_PATIENT.length; i++) {
-        res.push(LISTE_PATIENT[i].selfStats.nbQuizDone);
       }
       return res;
     }

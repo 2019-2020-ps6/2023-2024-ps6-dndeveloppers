@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ADMIN } from "src/mocks/patient.mock";
+import { ADMIN } from "src/mocks/profil.mock";
 import { Profil } from "src/models/profil.model";
 import { ProfilService } from "src/services/profil.service";
 

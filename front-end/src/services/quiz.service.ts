@@ -5,7 +5,7 @@ import { QUESTION_ACTOR0, QUIZ_LIST } from '../mocks/quiz-list.mock';
 import { Answer, Question } from 'src/models/question.models';
 import { StatsService } from './stats.service';
 import { Profil } from 'src/models/profil.model';
-import { LISTE_PATIENT } from 'src/mocks/patient-list.mock';
+import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class QuizService {
     * The list is retrieved from the mock.
     */
 
-  private actualProfil: Profil = LISTE_PATIENT[0];
+  private actualProfil: Profil = LISTE_PROFILS[0];
   private quizzes: Quiz[] = QUIZ_LIST;
   private choosenQuiz: Quiz = this.quizzes[0];
   private actualQuestion: Question = QUESTION_ACTOR0;

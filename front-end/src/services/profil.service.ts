@@ -2,15 +2,15 @@ import { BehaviorSubject } from 'rxjs';
 import { Profil } from '../models/profil.model';
 import { Injectable } from '@angular/core';
 import { QuizService } from './quiz.service';
-import { LISTE_PATIENT } from 'src/mocks/patient-list.mock';
+import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
 
 @Injectable({
     providedIn: 'root'
   })
 
 export class ProfilService {
-    private profilList: Profil[] = LISTE_PATIENT;
-    private actualProfil: Profil = LISTE_PATIENT[0];
+    private profilList: Profil[] = LISTE_PROFILS;
+    private actualProfil: Profil = LISTE_PROFILS[0];
 
     public profilList$: BehaviorSubject<Profil[]> = new BehaviorSubject(this.profilList);
     public actualProfil$: BehaviorSubject<Profil> = new BehaviorSubject(this.actualProfil);
