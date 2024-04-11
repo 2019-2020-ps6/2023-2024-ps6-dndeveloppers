@@ -31,7 +31,10 @@ export class StatsService {
     nbQuizDone() {
       let res = 0;
       for (let i=0; i<LISTE_PATIENT.length; i++) {
-        res += LISTE_PATIENT[i].selfStats.nbQuizDone;
+        if(LISTE_PATIENT[i].selfStats != undefined){
+          res += LISTE_PATIENT[i].selfStats.nbQuizDone;
+        }
+        
       }
       return res;
     }

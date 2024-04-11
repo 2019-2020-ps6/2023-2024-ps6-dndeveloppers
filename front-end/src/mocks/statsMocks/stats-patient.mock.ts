@@ -14,3 +14,10 @@ export const STATS_PATIENT_JOSEPH: statsPatient = {
     meanScore: 1,
     nbAttemptForEachQuizDone: [1]
 }
+
+export const STATS_PATIENT_NULL: statsPatient = {
+    options: [true],
+    nbQuizDone: 0,
+    meanScore: 0,
+    nbAttemptForEachQuizDone: [0]
+}
