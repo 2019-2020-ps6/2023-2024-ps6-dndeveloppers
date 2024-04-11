@@ -1,9 +1,11 @@
 import { Profil } from "src/models/profil.model";
+import { STATS_PATIENT_NULL } from "./statsMocks/stats-patient.mock";
 
 export const PROFIL0: Profil = {
     nom: '',
     prenom: '',
     role: 'admin',
+    selfStats: STATS_PATIENT_NULL
 };
 
 export const PROFIL1: Profil = {
@@ -19,7 +21,9 @@ export const PROFIL1: Profil = {
     optionTailleTexte: 'Moyen',
 
     optionReposerQuestionApres: false,
-    optionSupprimerMauvaisesReponses: true
+    optionSupprimerMauvaisesReponses: true,
+
+    selfStats: STATS_PATIENT_NULL
 };
 
 export const PROFIL2: Profil = {
@@ -35,7 +39,9 @@ export const PROFIL2: Profil = {
     optionTailleTexte: 'Gros',
 
     optionReposerQuestionApres: false,
-    optionSupprimerMauvaisesReponses: true
+    optionSupprimerMauvaisesReponses: true,
+
+    selfStats: STATS_PATIENT_NULL
 };
 
 export const PROFIL_LIST: Profil[] = [
