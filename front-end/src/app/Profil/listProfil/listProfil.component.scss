@@ -1,13 +1,26 @@
 .profil-list {
     display: flex;
 }
-.couleurDeFond{
-    background-color: lightyellow;
-    height: 650px;
-    margin: -8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
+
+.returnButton{
+    display: flex;
     padding-top: 10px;
+    justify-content: center;
 }
 
+
+.boutonProfil {
+    display: flex;
+    padding-top: 10px;
+    justify-content: center;  
+    text-align: center;
+    font-size: 30px;
+    background-color: lightgrey;
+    border: solid black 2px;
+    border-radius: 1rem;
+    cursor:pointer;
+}
+
+.boutonProfil:hover {
+    background-color: darkgrey;
+}

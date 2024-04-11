@@ -12,7 +12,6 @@ export class StatsGlobalesComponent implements OnInit {
     public nbPatient: number = 0;
     public nbQuiz: number = 0;
     public quizDone: number = 0;
-    public quizDonePerPerson: number[] = [];
 
     constructor(public statsService: StatsService){
         this.statsService.nbPatient$.subscribe((nbPatient) => {
@@ -25,10 +24,6 @@ export class StatsGlobalesComponent implements OnInit {
 
         this.statsService.quizDone$.subscribe((quizDone) => {
             this.quizDone = quizDone;
-        })
-
-        this.statsService.quizDonePerPerson$.subscribe((quizDonePerPerson) => {
-            this.quizDonePerPerson = quizDonePerPerson;
         })
     }
 
