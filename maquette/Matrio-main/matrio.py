@@ -218,13 +218,13 @@ if __name__ == "__main__":
                 "python",
                 "-m",
                 "http.server",
-                "4200",
+                "4201",
                 "-d",
                 folder_dist,
             ],
             stdout=subprocess.DEVNULL,  # Redirect stdout to DEVNULL
         )
-        print(f"Serving HTTP on localhost port 4200 (http://localhost:4200/) ...")
+        print(f"Serving HTTP on localhost port 4201 (http://localhost:4201/) ...")
 
         # Run the event loop
         loop.run_forever()

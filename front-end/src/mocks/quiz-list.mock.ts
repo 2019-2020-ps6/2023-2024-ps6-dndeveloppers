@@ -62,6 +62,15 @@ export const QUESTION_SPORT0: Question = {
            isCorrect: true,
        },
        {
+
+        value: 'Chine',
+        isCorrect: false,
+        },
+        {
+            value: 'Espagne',
+            isCorrect: false,
+        },
+        {
            value: 'Brésil',
            isCorrect: false,
        },

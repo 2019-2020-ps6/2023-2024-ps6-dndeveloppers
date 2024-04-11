@@ -1,0 +1,48 @@
+.main-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    width: auto;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.profil {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+
+.listreponse{
+    width: 100%; 
+    margin-top: -30px;   
+}
+
+
+.question{
+    position: center;
+    margin-right: 18%;
+}
+
+.indice{
+    margin-right: 10%;
+}
+
+.side-by-side {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.returnButton {
+    margin-top: 50px;
+    width: auto;
+}
+
