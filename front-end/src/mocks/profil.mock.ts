@@ -6,27 +6,39 @@ export const PATIENT_MAURICE: Profil = {
     prenom: "Maurice",
     role: "patient",
 
+    dateNaissance: [21,1,1950],
+    
     optionPhoto: true,
     optionIndice: true,
-    optionTailleTexte: "Moyen",
+
+    optionTailleTexte: 'Moyen',
+
+    optionReposerQuestionApres: false,
+    optionSupprimerMauvaisesReponses: true,
     selfStats: STATS_PATIENT_MAURICE
 }
 
 export const PATIENT_JOSEPH: Profil = {
-    nom: "Ramstein",
+    nom: "Otho",
     prenom: "Joseph",
     role: "patient",
     
-    optionPhoto: true,
-    optionTailleTexte: "Grand",
+    dateNaissance: [15,3,1956],
+
+    optionPhoto: false,
+    optionIndice: true,
+
+    optionTailleTexte: 'Gros',
+
+    optionReposerQuestionApres: false,
+    optionSupprimerMauvaisesReponses: true,
     selfStats: STATS_PATIENT_JOSEPH
 }
 
-export const PATIENT_NULL: Profil = {
+export const ADMIN: Profil = {
     nom: "",
     prenom: "",
-    role: "",
+    role: "admin",
 
-    optionPhoto: false,
     selfStats: STATS_PATIENT_NULL
 }

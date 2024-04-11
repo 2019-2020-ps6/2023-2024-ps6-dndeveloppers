@@ -1,5 +1,5 @@
 import { statsQuiz } from "src/models/stats/statsQuiz.model";
-import { PATIENT_JOSEPH, PATIENT_MAURICE } from "../patient.mock";
+import { PATIENT_JOSEPH, PATIENT_MAURICE } from "../profil.mock";
 
 export const STATS_ACTORS: statsQuiz = {
     playedTime: 1,

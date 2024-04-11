@@ -4,6 +4,8 @@ import { Quiz } from '../models/quiz.model';
 import { QUESTION_ACTOR0, QUIZ_LIST } from '../mocks/quiz-list.mock';
 import { Answer, Question } from 'src/models/question.models';
 import { StatsService } from './stats.service';
+import { Profil } from 'src/models/profil.model';
+import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +20,8 @@ export class QuizService {
     * The list of quiz.
     * The list is retrieved from the mock.
     */
+
+  private actualProfil: Profil = LISTE_PROFILS[0];
   private quizzes: Quiz[] = QUIZ_LIST;
   private choosenQuiz: Quiz = this.quizzes[0];
   private actualQuestion: Question = QUESTION_ACTOR0;
@@ -41,6 +45,10 @@ export class QuizService {
   public url: string = "";
 
   constructor(public statsService: StatsService) {}
+
+  selectProfil(profil: Profil) {
+    this.actualProfil = profil;
+  }
 
   addQuiz(quiz: Quiz) {
     // You need here to update the list of quiz and then update our observable (Subject) with the new list
@@ -111,6 +119,7 @@ export class QuizService {
       this.statsService.addQuizDone();
       this.statsService.meanScoreNewData(this.actualScore);
       this.statsService.usedHintNewData(this.usedHint);
+      this.statsService.patientNewData(this.actualProfil, this.actualScore);
       this.endOfQuiz = true;
       this.endOfQuiz$.next(this.endOfQuiz);
     } else {
