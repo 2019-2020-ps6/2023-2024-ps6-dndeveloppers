@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Quiz } from '../models/quiz.model';
 import { QUESTION_ACTOR0, QUIZ_LIST } from '../mocks/quiz-list.mock';
 import { Answer, Question } from 'src/models/question.models';
+import { StatsService } from './stats.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class QuizService {
   /**
    * Services Documentation:
    * https://angular.io/docs/ts/latest/tutorial/toh-pt4.html
-   */
+   */  
 
    /**
     * The list of quiz.
@@ -37,7 +38,7 @@ export class QuizService {
 
   public url: string = "";
 
-  constructor() {}
+  constructor(public statsService: StatsService) {}
 
   addQuiz(quiz: Quiz) {
     // You need here to update the list of quiz and then update our observable (Subject) with the new list
@@ -58,6 +59,8 @@ export class QuizService {
   }
 
   selectQuiz(quiz: Quiz) {
+    this.statsService.selectQuiz(quiz);
+
     let quizEnCours: Quiz = this.quizzes[0];
     for(let i=0;i<this.quizzes.length;i++){
       if(this.quizzes[i]==quiz){
@@ -96,6 +99,7 @@ export class QuizService {
 
     if (this.actualQuestionNumber == quiz.questions.length-1) {
       console.log("C'était la dernière question");
+      this.statsService.addQuizDone();
       this.endOfQuiz = true;
       this.endOfQuiz$.next(this.endOfQuiz);
     } else {

@@ -1,7 +1,9 @@
+import { statsPatient } from "./stats/statsPatient.model";
+
 export interface Profil {
     nom: string;
     prenom: string;
-    role: string; // "patient" ou "personnel"
+    role: string; // "patient" ou "personnel" ou "admin"
 
     photo?: string; // le lien de la photo de profil sinon par défault
 
@@ -14,4 +16,6 @@ export interface Profil {
     optionReposerQuestionApres?: boolean;
 
     optionTailleTexte?: string; // Petit, Moyen ou Grand
+
+    selfStats: statsPatient
 }
