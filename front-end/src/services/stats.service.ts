@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { LISTE_PATIENT } from 'src/mocks/patient-list.mock';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Quiz } from 'src/models/quiz.model';
 
@@ -12,22 +13,30 @@ export class StatsService {
      * Pour les statistiques globales
      */
 
-    private patientNumber: number = 0;
-    private quizNumber: number = 0;
-    private quizDone: number = 0;
-    private quizDonePerPerson: number[] = [];
+    private nbPatient: number = LISTE_PATIENT.length;
+    private nbQuiz: number = QUIZ_LIST.length;
+    private quizDone: number = this.nbQuizDone();
+    private quizDonePerPerson: number[] = this.nbQuizDonePerPerson();
 
-    public patientNumber$: BehaviorSubject<number> = new BehaviorSubject(this.patientNumber);
-    public quizNumber$: BehaviorSubject<number> = new BehaviorSubject(this.quizNumber);
+    public nbPatient$: BehaviorSubject<number> = new BehaviorSubject(this.nbPatient);
+    public nbQuiz$: BehaviorSubject<number> = new BehaviorSubject(this.nbQuiz);
     public quizDone$: BehaviorSubject<number> = new BehaviorSubject(this.quizDone);
-    public meanQuizPerPerson$: BehaviorSubject<number> = new BehaviorSubject(this.meanQuizDonePerPerson(this.quizDonePerPerson));
+    public quizDonePerPerson$: BehaviorSubject<number[]> = new BehaviorSubject(this.quizDonePerPerson);
 
-    meanQuizDonePerPerson(quizDonePerPerson: number[]) {
-        let num = 0;
-        for (let i=0; i<quizDonePerPerson.length; i++) {
-            num += quizDonePerPerson[i];
-        }
-        return num/quizDonePerPerson.length;
+    nbQuizDone() {
+      let res = 0;
+      for (let i=0; i<LISTE_PATIENT.length; i++) {
+        res += LISTE_PATIENT[i].selfStats.nbQuizDone;
+      }
+      return res;
+    }
+
+    nbQuizDonePerPerson() {
+      let res = [];
+      for (let i=0; i<LISTE_PATIENT.length; i++) {
+        res.push(LISTE_PATIENT[i].selfStats.nbQuizDone);
+      }
+      return res;
     }
 
     /*

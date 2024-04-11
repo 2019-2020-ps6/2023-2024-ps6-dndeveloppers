@@ -9,26 +9,26 @@ import { StatsService } from "src/services/stats.service";
 
 export class StatsGlobalesComponent implements OnInit {
 
-    public patientNumber = 0;
-    public quizNumber = 0;
-    public quizDone = 0;
-    public meanQuizDonePerPerson = 0;
+    public nbPatient: number = 0;
+    public nbQuiz: number = 0;
+    public quizDone: number = 0;
+    public quizDonePerPerson: number[] = [];
 
     constructor(public statsService: StatsService){
-        this.statsService.patientNumber$.subscribe((patientNumber) => {
-            this.patientNumber = patientNumber;
+        this.statsService.nbPatient$.subscribe((nbPatient) => {
+            this.nbPatient = nbPatient;
         })
 
-        this.statsService.quizNumber$.subscribe((quizNumber) => {
-            this.quizNumber = quizNumber;
+        this.statsService.nbQuiz$.subscribe((nbQuiz) => {
+            this.nbQuiz = nbQuiz;
         })
 
         this.statsService.quizDone$.subscribe((quizDone) => {
             this.quizDone = quizDone;
         })
 
-        this.statsService.meanQuizPerPerson$.subscribe((meanQuizDonePerPerson) => {
-            this.meanQuizDonePerPerson = meanQuizDonePerPerson;
+        this.statsService.quizDonePerPerson$.subscribe((quizDonePerPerson) => {
+            this.quizDonePerPerson = quizDonePerPerson;
         })
     }
 
