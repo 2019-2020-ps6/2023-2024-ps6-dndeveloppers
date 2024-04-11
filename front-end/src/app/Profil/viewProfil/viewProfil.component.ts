@@ -10,6 +10,7 @@ import { ProfilService } from "src/services/profil.service";
 })
 
 export class ViewProfilComponent implements OnInit {
+    @Input()
     typeView: String = "list"; // full = afficher entièrement le profil | list = afficher comme dans la listProfil (nom/prénom/photo)
 
     @Input()
