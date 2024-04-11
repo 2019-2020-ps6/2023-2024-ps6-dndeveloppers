@@ -57,7 +57,7 @@ import { StatsQuizComponent } from './stats/statsQuiz/statsQuiz.component';
     ReactiveFormsModule,
 
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
 
     AppRoutingModule,
     FormsModule
