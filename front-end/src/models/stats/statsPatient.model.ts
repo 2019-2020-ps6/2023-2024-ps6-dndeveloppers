@@ -4,6 +4,5 @@ export interface statsPatient {
     options: boolean[],
     nbQuizDone: number,
     meanScore: number,
-    quizDone: Quiz[],
     nbAttemptForEachQuizDone: number[]
 }

@@ -94,7 +94,7 @@ export class StatsService {
 
     selectQuiz(quiz: Quiz) {
       this.actualQuiz = quiz;
-      this.actualQuiz.selfStats.playedTime++
+      this.actualQuiz.selfStats.playedTime++;
       this.actualQuizId = quiz.id;
       this.actualScore = 0;
       this.maxScore = quiz.questions.length;
@@ -107,13 +107,13 @@ export class StatsService {
     nbTypeQuestion(quiz: Quiz, type: string) {
       let res = 0;
       if (type == "Texte") {
-        for (let i=0; i<10; i++) {
+        for (let i=0; i<quiz.questions.length; i++) {
           if (quiz.questions[i].questionTexte) {
             res++;
           }
         }
       } else if (type == "Image") {
-        for (let i=0; i<10; i++) {
+        for (let i=0; i<quiz.questions.length; i++) {
           if (quiz.questions[i].questionImage) {
             res++;
           }

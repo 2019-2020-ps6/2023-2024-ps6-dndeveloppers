@@ -25,7 +25,13 @@ export class StatsQuizComponent implements OnInit {
     @Input()
     currentQuiz: Quiz = this.actualQuiz;
 
-    selectedQuiz(quiz: Quiz) {
-        this.statsService.selectedQuiz(quiz);
+    selectedQuiz(event: any) {
+        let nomQuiz: string = event.target.value;
+        for (let i=0; i<QUIZ_LIST.length; i++) {
+            if (QUIZ_LIST[i].name == nomQuiz) {
+                this.actualQuiz = QUIZ_LIST[i];
+                break;
+            }
+        }
     }
 }

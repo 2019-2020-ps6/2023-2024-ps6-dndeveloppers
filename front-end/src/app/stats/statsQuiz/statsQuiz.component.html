@@ -1,20 +1,19 @@
 <div class="statsQuiz">
     <p>Statistiques par quiz : </p>
-    <!--TODO-->
-    <!--L'appel de fonction fait perdre les différents éléments du quiz (id, nom, ...)-->
-    <select (change)="selectedQuiz($event)" class="choixQuiz" name="choixQuiz">
+    <select (input)="selectedQuiz($event)" class="choixQuiz" name="choixQuiz">
         <option value="">Choix du Quiz</option>
-        <option *ngFor="let quiz of listeQuiz" [value]="quiz">{{quiz.name}}</option>
+        <option *ngFor="let quiz of listeQuiz" [value]="quiz.name">{{quiz.name}}</option>
     </select>
 
     <ul>
         <li>Nombre de fois joué : {{actualQuiz.selfStats.playedTime}}</li> <!--Actualisé-->
-        <li>Score moyen : {{actualQuiz.selfStats.meanScore}}</li>
-        <li>Nombre moyen d'indices utilisés : {{actualQuiz.selfStats.nbHintUsed}}</li>
+        <li>Score moyen : {{actualQuiz.selfStats.meanScore}}</li> <!--Actualisé-->
+        <li>Nombre moyen d'indices utilisés : {{actualQuiz.selfStats.nbHintUsed}}</li> <!--Actualisé-->
         <li>Pourcentage de réussite pour chaque question : </li>
-        <ol *ngFor="let num in actualQuiz.selfStats.successPercentageByQuestion">
+        <!--TODO-->
+        <!--<ol *ngFor="let num in actualQuiz.selfStats.successPercentageByQuestion">
             <li>{{actualQuiz.questions[num].label}} : {{actualQuiz.selfStats.successPercentageByQuestion[num]}}</li>
-        </ol>
+        </ol>-->
         <li>Nombre de questions : {{actualQuiz.questions.length}}</li> <!--Actualisé-->
         <ul>
             <li>Textuelles : {{actualQuiz.nbQuestionsPerType[0]}}</li> <!--Actualisé-->
