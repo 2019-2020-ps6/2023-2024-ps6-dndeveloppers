@@ -7,6 +7,7 @@ export const PATIENT_MAURICE: Profil = {
     role: "patient",
 
     optionPhoto: true,
+    optionIndice: true,
     optionTailleTexte: "Moyen",
     selfStats: STATS_PATIENT_MAURICE
 }
