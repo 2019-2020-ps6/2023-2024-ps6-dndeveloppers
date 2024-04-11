@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { LISTE_PATIENT } from 'src/mocks/patient-list.mock';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
+import { Profil } from 'src/models/profil.model';
 import { Quiz } from 'src/models/quiz.model';
 
 @Injectable({
@@ -143,6 +144,17 @@ export class StatsService {
         num += this.actualQuiz.selfStats.nbHintUsed[i];
       }
       this.actualQuiz.selfStats.meanHintUsed = num/this.actualQuiz.selfStats.nbHintUsed.length;
+    }
+
+    patientNewData(profil: Profil, score: number) {
+      profil.selfStats.nbQuizDone++;
+      profil.selfStats.quizRes.push(score);
+
+      let num = 0;
+      for (let i=0; i<profil.selfStats.quizRes.length; i++) {
+        num += profil.selfStats.quizRes[i];
+      }
+      profil.selfStats.meanScore = num/profil.selfStats.quizRes.length;
     }
 
     refreshQuizSubscribers() {

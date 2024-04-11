@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { PROFIL0 } from "src/mocks/profil-list.mock";
+import { ADMIN } from "src/mocks/patient.mock";
 import { Profil } from "src/models/profil.model";
 import { ProfilService } from "src/services/profil.service";
 
@@ -13,7 +13,7 @@ export class ViewProfilComponent implements OnInit {
     typeView: String = "list"; // full = afficher entièrement le profil | list = afficher comme dans la listProfil (nom/prénom/photo)
 
     @Input()
-    profil: Profil = PROFIL0;
+    profil: Profil = ADMIN;
 
     constructor(public profilService: ProfilService){}
 

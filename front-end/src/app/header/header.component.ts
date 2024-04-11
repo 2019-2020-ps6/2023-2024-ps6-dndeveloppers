@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { PROFIL0 } from "src/mocks/profil-list.mock";
+import { ADMIN } from "src/mocks/patient.mock";
 import { Profil } from "src/models/profil.model";
 import { ProfilService } from "src/services/profil.service";
 
@@ -10,7 +10,7 @@ import { ProfilService } from "src/services/profil.service";
 })
 
 export class HeaderComponent implements OnInit {
-    profil: Profil = PROFIL0;;
+    profil: Profil = ADMIN;;
 
     constructor(public profilService: ProfilService){
         this.profilService.actualProfil$.subscribe((profil) => {

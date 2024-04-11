@@ -1,18 +1,21 @@
 import { BehaviorSubject } from 'rxjs';
 import { Profil } from '../models/profil.model';
 import { Injectable } from '@angular/core';
-import { PROFIL_LIST } from '../mocks/profil-list.mock';
+import { QuizService } from './quiz.service';
+import { LISTE_PATIENT } from 'src/mocks/patient-list.mock';
 
 @Injectable({
     providedIn: 'root'
   })
 
 export class ProfilService {
-    private profilList: Profil[] = PROFIL_LIST;
-    private actualProfil: Profil = PROFIL_LIST[0];
+    private profilList: Profil[] = LISTE_PATIENT;
+    private actualProfil: Profil = LISTE_PATIENT[0];
 
-    public profilList$: BehaviorSubject<Profil[]> = new BehaviorSubject(PROFIL_LIST);
-    public actualProfil$: BehaviorSubject<Profil> = new BehaviorSubject(PROFIL_LIST[0]);
+    public profilList$: BehaviorSubject<Profil[]> = new BehaviorSubject(this.profilList);
+    public actualProfil$: BehaviorSubject<Profil> = new BehaviorSubject(this.actualProfil);
+
+    constructor(public quizService: QuizService) {}
 
     addProfil(profil: Profil) {
         this.profilList.push(profil);
@@ -33,6 +36,8 @@ export class ProfilService {
     }
 
     selectProfil(profil: Profil){
+        this.quizService.selectProfil(profil);
+
         for(let i=0;i<this.profilList.length;i++){
             if(this.profilList[i]==profil){
               this.actualProfil = this.profilList[i];
