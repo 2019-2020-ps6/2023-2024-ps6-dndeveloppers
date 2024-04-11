@@ -23,6 +23,11 @@ export class StatsService {
     public quizDone$: BehaviorSubject<number> = new BehaviorSubject(this.quizDone);
     public quizDonePerPerson$: BehaviorSubject<number[]> = new BehaviorSubject(this.quizDonePerPerson);
 
+    addQuizDone() {
+      this.quizDone++;
+      this.quizDone$.next(this.quizDone);
+    }
+
     nbQuizDone() {
       let res = 0;
       for (let i=0; i<LISTE_PATIENT.length; i++) {
@@ -87,6 +92,18 @@ export class StatsService {
     public nbQuestionsTexte$: BehaviorSubject<number> = new BehaviorSubject(this.nbQuestionsTexte);
     public nbQuestionsImage$: BehaviorSubject<number> = new BehaviorSubject(this.nbQuestionsImage);
 
+    selectQuiz(quiz: Quiz) {
+      this.actualQuiz = quiz;
+      this.actualQuiz.selfStats.playedTime++
+      this.actualQuizId = quiz.id;
+      this.actualScore = 0;
+      this.maxScore = quiz.questions.length;
+      this.usedHint = 0;
+      this.nbQuestionsTexte = this.nbTypeQuestion(quiz, "Texte");
+      this.nbQuestionsImage = this.nbTypeQuestion(quiz, "Image");
+      this.refreshQuizSubscribers();
+    }
+
     nbTypeQuestion(quiz: Quiz, type: string) {
       let res = 0;
       if (type == "Texte") {
@@ -105,14 +122,13 @@ export class StatsService {
       return res;
     }
 
-    selectedQuiz(quiz: Quiz) {
-      this.actualQuiz = quiz;
-      this.actualQuizId = this.actualQuiz.id;
-      this.actualScore = 0;
-      this.maxScore = this.actualQuiz.questions.length;
-      this.usedHint = 0;
-      this.nbQuestionsTexte = this.nbTypeQuestion(this.actualQuiz, "Texte");
-      this.nbQuestionsImage = this.nbTypeQuestion(this.actualQuiz, "Image");
+    refreshQuizSubscribers() {
+      this.actualQuiz$.next(this.actualQuiz);
+      this.actualQuizId$.next(this.actualQuizId);
+      this.actualScore$.next(this.actualScore);
+      this.maxScore$.next(this.maxScore);
+      this.usedHint$.next(this.usedHint);
+      this.nbQuestionsTexte$.next(this.nbQuestionsTexte);
+      this.nbQuestionsImage$.next(this.nbQuestionsImage);
     }
-
 }
