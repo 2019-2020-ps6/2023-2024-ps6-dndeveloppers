@@ -11,7 +11,7 @@ import { Profil } from "src/models/profil.model";
 export class StatsPatientComponent implements OnInit {
 
     public listePatient: Profil[] = LISTE_PATIENT;
-    public selectedPatient: Profil  = this.listePatient[0];
+    public actualPatient: Profil  = this.listePatient[0];
 
     constructor(){
         console.log(this.listePatient[0]);
@@ -20,8 +20,13 @@ export class StatsPatientComponent implements OnInit {
 
     ngOnInit(): void {}
 
-    onPatientSelected(pat: Profil) {
-        console.log(this.selectedPatient);
-        console.log(this.selectedPatient.prenom);
+    selectedPatient(event: any) {
+        let nomPatient: string = event.target.value;
+        for (let i=0; i<LISTE_PATIENT.length; i++) {
+            if (LISTE_PATIENT[i].nom == nomPatient) {
+                this.actualPatient = LISTE_PATIENT[i];
+                break;
+            }
+        }
     }
 }

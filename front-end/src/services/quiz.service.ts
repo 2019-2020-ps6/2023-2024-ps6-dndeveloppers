@@ -23,6 +23,8 @@ export class QuizService {
   private actualQuestion: Question = QUESTION_ACTOR0;
   private actualResponses: Answer[] = QUESTION_ACTOR0.answers;
   private actualQuestionNumber: number = 0;
+  private actualScore: number = 0;
+  private usedHint: number = 0;
   private endOfQuiz: boolean = false;
 
   /**
@@ -74,6 +76,8 @@ export class QuizService {
       console.log("Ce quiz n'a pas de quesiton!");
     } else {
       console.log("ok");
+      this.actualScore = 0;
+      this.usedHint = 0;
       this.endOfQuiz = false;
       this.endOfQuiz$.next(this.endOfQuiz);
       
@@ -89,10 +93,15 @@ export class QuizService {
     this.actualQuestion$.next(this.actualQuestion);
   }
 
+  hintAsked() {
+    this.usedHint++;
+  }
+
   responseSelected(quiz: Quiz, responseNumber: number) {
     console.log("Response selected (service POV) : ",responseNumber);
     if (this.actualResponses[responseNumber].isCorrect) {
       console.log("Bonne réponse félicitation!");
+      this.actualScore++;
     } else {
       console.log("Mauvaise Réponse!");
     }
@@ -100,6 +109,8 @@ export class QuizService {
     if (this.actualQuestionNumber == quiz.questions.length-1) {
       console.log("C'était la dernière question");
       this.statsService.addQuizDone();
+      this.statsService.meanScoreNewData(this.actualScore);
+      this.statsService.usedHintNewData(this.usedHint);
       this.endOfQuiz = true;
       this.endOfQuiz$.next(this.endOfQuiz);
     } else {
