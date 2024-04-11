@@ -1,0 +1,23 @@
+<div class="statsQuiz">
+    <p>Statistiques par quiz : </p>
+    <select (input)="selectedQuiz($event)" class="choixQuiz" name="choixQuiz">
+        <option value="">Choix du Quiz</option>
+        <option *ngFor="let quiz of listeQuiz" [value]="quiz.name">{{quiz.name}}</option>
+    </select>
+
+    <ul>
+        <li>Nombre de fois joué : {{actualQuiz.selfStats.playedTime}}</li> <!--Actualisé-->
+        <li>Score moyen : {{actualQuiz.selfStats.meanScore}}</li> <!--Actualisé-->
+        <li>Nombre moyen d'indices utilisés : {{actualQuiz.selfStats.nbHintUsed}}</li> <!--Actualisé-->
+        <li>Pourcentage de réussite pour chaque question : </li>
+        <!--TODO-->
+        <!--<ol *ngFor="let num in actualQuiz.selfStats.successPercentageByQuestion">
+            <li>{{actualQuiz.questions[num].label}} : {{actualQuiz.selfStats.successPercentageByQuestion[num]}}</li>
+        </ol>-->
+        <li>Nombre de questions : {{actualQuiz.questions.length}}</li> <!--Actualisé-->
+        <ul>
+            <li>Textuelles : {{actualQuiz.nbQuestionsPerType[0]}}</li> <!--Actualisé-->
+            <li>Visuelles : {{actualQuiz.nbQuestionsPerType[1]}}</li> <!--Actualisé-->
+        </ul>
+    </ul>
+</div>

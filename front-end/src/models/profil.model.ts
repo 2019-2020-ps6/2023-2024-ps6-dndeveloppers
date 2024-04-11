@@ -1,3 +1,5 @@
+import { statsPatient } from "./stats/statsPatient.model";
+
 export interface Profil {
     nom: string;
     prenom: string;
@@ -14,4 +16,6 @@ export interface Profil {
     optionReposerQuestionApres?: boolean;
 
     optionTailleTexte?: string; // Petit, Moyen ou Grand
+
+    selfStats: statsPatient
 }

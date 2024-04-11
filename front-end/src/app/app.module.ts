@@ -22,6 +22,11 @@ import { ListProfilComponent } from './Profil/listProfil/listProfil.component';
 import { ViewProfilComponent } from './Profil/viewProfil/viewProfil.component';
 import { CreateProfilComponent } from './Profil/createProfil/createProfil.component';
 
+import { StatsComponent } from './stats/stats.component';
+import { StatsGlobalesComponent } from './stats/statsGlobales/statsGlobales.component';
+import { StatsPatientComponent } from './stats/statsPatient/statsPatient.component';
+import { StatsQuizComponent } from './stats/statsQuiz/statsQuiz.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +41,10 @@ import { CreateProfilComponent } from './Profil/createProfil/createProfil.compon
     ChoixQuizComponent,
     HomeComponent,
     ComeBackComponent,
+    StatsComponent,
+    StatsGlobalesComponent,
+    StatsPatientComponent,
+    StatsQuizComponent,
     
     // Profil
     EditProfilComponent,
@@ -46,6 +55,10 @@ import { CreateProfilComponent } from './Profil/createProfil/createProfil.compon
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+
+    FormsModule,
+    AppRoutingModule
+
     AppRoutingModule,
     FormsModule
   ],
