@@ -1,16 +1,16 @@
-<body>
-    <section class="box">    
-        <ul>
+<section class="couleurFondProfil">   
+    <section class="box" id="infoPerso">  
+        <ul class="flex-container"> 
             <li class="linom">
-            <label for="name">Nom :</label>
-            <input type="text" id="name" name="user_name" />
+                <label for="name">Nom :</label>
+                <input type="text" id="name" name="user_name" />
             </li>
             <li class="liprenom">
-                <label for="Prenom">Prenom :</label>
-                <input type="text" id="Prenom" name="user_Lastname" />
-                <img id="imageProfil" class="imageP" src="./assets/imageProfil/default.png" >
+                    <label for="Prenom">Prenom :</label>
+                    <input type="text" id="Prenom" name="user_Lastname" />
             </li>
-            <li class="liage">
+                    
+            <li class="liage">       
                 <label for="Age">Age :</label>
                 <select name="menuAgeJ" class="jour" id="Age" size="1" required>
                     <option value="">Jour </option>
@@ -31,6 +31,11 @@
                     <option value="2004">2004</option>
                 </select>
             </li>
+                
+            <ul class="partieDroiteProfil">
+                <img id="imageProfil" class="imageP" src="./assets/imageProfil/default.png" >
+            </ul>
+
         </ul>
     </section>
     
@@ -125,4 +130,4 @@
                 <option value="3">GRAND</option>
             </select>
     </div>
-</body>
+</section> 

@@ -1,4 +1,7 @@
-<app-header></app-header>
-<button [routerLink]="['listQuiz']">Jouer à un quiz</button><br/>
-<button [routerLink]="['app-create-quiz']">Gestion des Quiz</button><br/>
-<button [routerLink]="['listProfil']">Gestion des Profils</button><br/>
+<app-header class="header"></app-header>
+<section class="homePage">
+    <button class="boutonHome" [routerLink]="['listQuiz']" >JOUER A UN QUIZ</button><br/>
+    <button class="boutonHome" [routerLink]="['app-create-quiz']" >GESTION DES QUIZ</button><br/>
+    <button class="boutonHome" [routerLink]="['listProfil']" >GESTION DES PROFILS</button><br/>
+    <button class="boutonHome" [routerLink]="['statistiques']" >STATISTIQUES</button><br/>
+</section>

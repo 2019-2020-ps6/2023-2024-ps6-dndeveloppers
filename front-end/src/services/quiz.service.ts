@@ -64,11 +64,11 @@ export class QuizService {
         quizEnCours = this.quizzes[i];
         this.choosenQuiz = this.quizzes[i];
         this.choosenQuiz$.next(this.choosenQuiz);
-        console.log("quiz choisit : ",this.choosenQuiz);
+        console.log("Quiz choisit : ",this.choosenQuiz);
       }
     }
     if (quizEnCours.questions === undefined) {
-      console.log("This quiz does not have any question!");
+      console.log("Ce quiz n'a pas de quesiton!");
     } else {
       console.log("ok");
       this.endOfQuiz = false;
@@ -89,9 +89,9 @@ export class QuizService {
   responseSelected(quiz: Quiz, responseNumber: number) {
     console.log("Response selected (service POV) : ",responseNumber);
     if (this.actualResponses[responseNumber].isCorrect) {
-      console.log("Right answer congrats!");
+      console.log("Bonne réponse félicitation!");
     } else {
-      console.log("Wrong answer!");
+      console.log("Mauvaise Réponse!");
     }
 
     if (this.actualQuestionNumber == quiz.questions.length-1) {
