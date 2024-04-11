@@ -1,11 +1,4 @@
-.couleurFondProfil{
-    background-color: lightyellow;
-    margin-left: -8px;
-    margin-right: -8px;
-    margin-top: -8px;
-    margin-bottom: -12px;
-    padding: 10px;
-}
+
 .linom{
     margin-top: 1%;
     font-weight: bold;
@@ -76,4 +69,23 @@
 
 .jour, #name, #Prenom{
     margin-left: 10px;
+}
+
+.Sizefont{
+    margin-right: 8px;
+}
+
+.boite{
+    background-color: rgb(168, 168, 168);
+    border: 2px black solid;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+}
+
+.returnButton{
+    display: flex;
+    padding-top: 10px;
+    justify-content: center;
 }

@@ -1,5 +1,5 @@
 <div class="statsQuiz">
-    <p>Statistiques par quiz : </p>
+    <p class="titreStat">Statistiques par quiz : </p>
     <select (input)="selectedQuiz($event)" class="choixQuiz" name="choixQuiz">
         <option value="">Choix du Quiz</option>
         <option *ngFor="let quiz of listeQuiz" [value]="quiz.name">{{quiz.name}}</option>

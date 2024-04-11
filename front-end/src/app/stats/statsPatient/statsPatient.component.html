@@ -1,4 +1,5 @@
 <div class="statsPatient">
+    <p class="titreStat">Statistiques du patient</p>
     <select [(ngModel)]="selectedPatient" (change)="onPatientSelected(selectedPatient)" class="choixPatient" name="choixPatient">
         <option value="">Please choose a patient</option>
         <option *ngFor="let pat of listePatient" [value]="pat" >{{pat.prenom}}</option>
@@ -12,6 +13,6 @@
         <li>5 derniers quiz joués : </li>
     </ul>
     <div class="statsQuiz"> <!--*ngFor(quizDuPatient)-->
-        <p>fiveLastQuizzes</p>
+        <p>5 derniers quiz</p>
     </div>
 </div>
