@@ -14,6 +14,7 @@ export const STATS_PATIENT_JOSEPH: statsPatient = {
     meanScore: 1,
     quizRes: [1],
     nbAttemptForEachQuizDone: [0,1]
+
 }
 
 export const STATS_PATIENT_NULL: statsPatient = {

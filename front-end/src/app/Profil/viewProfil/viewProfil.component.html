@@ -1,4 +1,15 @@
-<div class="shortView">
+                <!-- Vue très simple pour choisir un joueur -->
+<div class="shortView" *ngIf="typeView==='play'" >
+    <h2>
+        <span> Nom : {{profil.nom}}   </span><br/>
+        <span> Prénom: {{profil.prenom}} </span><br/>
+        <img id="imageProfil" src="./assets/imageProfil/default.png" ><br/>
+        <button [routerLink]="['listQuiz']" (click)="selectProfil(profil)">Sélectionner</button>
+    </h2>
+</div>
+
+                    <!-- Vue simple listProfil -->
+<div class="shortView" *ngIf="typeView==='full' || typeView==='list'" >
     <h2>
         <span> Nom : {{profil.nom}}   </span><br/>
         <span> Prénom: {{profil.prenom}} </span><br/>
@@ -9,7 +20,7 @@
         
     </h2>
 </div>
-
+                    <!-- Vue complète si affiche profil -->
 <div class="popup" *ngIf="typeView==='full'">
     <span> Nom : {{profil.nom}}   </span><br/>
     <span> Prénom: {{profil.prenom}} </span><br/>
