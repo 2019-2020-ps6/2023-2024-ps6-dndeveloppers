@@ -1,7 +1,9 @@
+<app-header></app-header>
 <div class="quiz-list">
     <div class="quiz" *ngFor="let quiz of quizList">
         <!--Inputs & Output allow communication between parent & child components.-->
         <!--More information: https://angular.io/guide/component-interaction-->
-        <choixQuiz [quiz]="quiz"  (deleteQuiz)="deleteQuiz(quiz)"></choixQuiz>
+        <choixQuiz [quiz]="quiz" (quizSelected)="quizSelected(quiz)" (deleteQuiz)="deleteQuiz(quiz)"></choixQuiz>
     </div>
-  </div>
+</div>
+<button [routerLink]="['home']">Retour</button>

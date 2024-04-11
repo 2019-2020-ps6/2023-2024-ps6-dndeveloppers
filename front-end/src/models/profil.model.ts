@@ -16,5 +16,6 @@ export interface Profil {
     optionReposerQuestionApres?: boolean;
 
     optionTailleTexte?: string; // Petit, Moyen ou Grand
+
     selfStats: statsPatient
 }

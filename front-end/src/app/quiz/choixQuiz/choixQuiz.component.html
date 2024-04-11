@@ -1,14 +1,13 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
 <div class="card" *ngIf="quiz">
     <h2>
         <span class="material-symbols-outlined" *ngIf="this.quiz.theme==='Actor'">videocam</span> 
         <span class="material-symbols-outlined" *ngIf="this.quiz.theme==='Sport'">sports_baseball</span>    
         <span> Nom : {{quiz.name}}   </span><br/>
-        <span> Theme: {{quiz.theme}} </span><br/>
+        <span> Thème: {{quiz.theme}} </span><br/>
         <span> Nb questions : {{quiz.questions?.length}}</span><br/>
     </h2>
-    <button class="button-card" [routerLink]="['app-quiz',quiz.name]"  (click)="selectQuiz(this.quiz)">Select</button>
-    <button class="button-card" (click)="delete(this.quiz)">Delete</button>
-    <a [routerLink]="['app-quiz',1]">Test</a>
-    
+    <button class="button-card" [routerLink]="['app-quiz',quiz.name]"  (click)="selectQuiz(this.quiz)">Sélectionner</button>
+    <button class="button-card" (click)="delete(this.quiz)">Supprimer</button>
 </div>
