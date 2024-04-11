@@ -3,22 +3,26 @@
 }
 
 .shortView {
-    border: solid black 1px;
+    border: solid black 2px;
     width: 250px;
     text-align: center;
+    background-color: rgb(146, 145, 145);
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .popup {
-    position: fixed;
+    position:absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
-    border: solid black 1px;
-    background-color: white;
-    font-size: 30px;
+    transform: translate(-50%,-42%);
+    border: solid black 2px;
+    background-color: rgb(217, 215, 215);
+    font-size: 25px;
     text-align: center;
-    margin: 20px;
     padding: 10px;
+    border-radius: 10px;
 }
 
 .options {
