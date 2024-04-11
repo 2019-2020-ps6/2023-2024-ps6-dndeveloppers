@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,9 +16,11 @@ import { ChoixQuizComponent } from './quiz/choixQuiz/choixQuiz.component';
 import { HomeComponent } from './home/home.component';
 import { ComeBackComponent } from './quiz/comeBack/comeBack.component';
 import { HeaderComponent } from './header/header.component';
+
 import { EditProfilComponent } from './Profil/editProfil/editProfil.component';
 import { ListProfilComponent } from './Profil/listProfil/listProfil.component';
 import { ViewProfilComponent } from './Profil/viewProfil/viewProfil.component';
+import { CreateProfilComponent } from './Profil/createProfil/createProfil.component';
 
 @NgModule({
   declarations: [
@@ -38,12 +40,14 @@ import { ViewProfilComponent } from './Profil/viewProfil/viewProfil.component';
     // Profil
     EditProfilComponent,
     ListProfilComponent,
-    ViewProfilComponent
+    ViewProfilComponent,
+    CreateProfilComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
