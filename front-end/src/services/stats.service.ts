@@ -69,13 +69,9 @@ export class StatsService {
 
     private theme: string = "";
     private score: number = 0;
-    private attempt: number = 0;
-    //private usedHint: number = 0;
 
     public theme$: BehaviorSubject<string> = new BehaviorSubject(this.theme);
     public score$: BehaviorSubject<number> = new BehaviorSubject(this.score);
-    public attempt$: BehaviorSubject<number> = new BehaviorSubject(this.attempt);
-    //public usedHint$: BehaviorSubject<number> = new BehaviorSubject(this.usedHint);
 
     /*
      * Pour les statistiques par quiz

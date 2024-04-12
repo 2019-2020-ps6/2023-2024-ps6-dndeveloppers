@@ -67,8 +67,9 @@
     top: 50%;
     transform: translate(-50%,-50%);
 
-    box-shadow: 0 0 5px 0 red;
+    box-shadow: 0 0 500rem 0 rgb(0, 0, 0);
     width: 500px;
     height: 500px;
+    border-radius: 1rem;
     background-color: white;
 }
