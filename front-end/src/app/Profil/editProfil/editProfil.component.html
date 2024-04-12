@@ -1,136 +1,63 @@
-<section class="couleurFondProfil">   
-    <section class="box" id="infoPerso">  
-        <ul class="flex-container"> 
-            <li class="linom">
-                <label for="name">Nom :</label>
-                <input type="text" id="name" name="user_name" />
-            </li>
-            <li class="liprenom">
-                    <label for="Prenom">Prenom :</label>
-                    <input type="text" id="Prenom" name="user_Lastname" />
-            </li>
-                    
-            <li class="liage">       
-                <label for="Age">Age :</label>
-                <select name="menuAgeJ" class="jour" id="Age" size="1" required>
-                    <option value="">Jour </option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-                <select name="menuAgeM" class="mois" size="1" required>
-                    <option value="">Mois </option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-                <select name="menuAgeA" class="annee" size="1" required>
-                    <option value="">Année </option>
-                    <option value="2002">2002</option>
-                    <option value="2003">2003</option>
-                    <option value="2004">2004</option>
-                </select>
-            </li>
-                
-            <ul class="partieDroiteProfil">
-                <img id="imageProfil" class="imageP" src="./assets/imageProfil/default.png" >
-            </ul>
+<app-header></app-header><br/><br/>
+<p> Chaque ligne contenant un * est obligatoire.</p>
+<form class="profil-form" [formGroup]="profilForm">
+    <!--      Infos générales     -->
+    <h2> Informations générales </h2>
+    <section id="infomationGenerales">    
+            <label for="nom">Nom : *
+                <input class="input-custom" type="text" id="nom" [formControlName]="'nom'" required>
+            </label><br/>
+            
+            <label for="prenom">Prenom : *
+                <input class="input-custom" type="text" id="prenom" [formControlName]="'prenom'" required>    
+            </label><br/>
 
-        </ul>
+            <label for="role">Rôle : *
+                <select name="input-custom" id="role" [formControlName]="'role'" required>
+                    <option *ngFor="let currentRole of RoleList" [value]="currentRole">{{currentRole}}</option>
+                </select> 
+            </label><br/>
+
+            <p>Date de Naissance :</p>
+            <label for="jour"> Jour :  
+                <select name="input-custom" id="jour" [formControlName]="'jour'">
+                    <option *ngFor="let currentDay of DayList" [value]="currentDay">{{currentDay}}</option>
+                </select> 
+            </label>
+            <label for="mois"> Mois :
+                <select name="input-custom" id="mois" [formControlName]="'mois'">
+                    <option *ngFor="let currentMonth of MonthList" [value]="currentMonth">{{currentMonth}}</option>
+                </select> 
+            </label>
+            <label for="annee"> Année :
+                <input class="input-custom" type="number" id="annee" [formControlName]="'annee'">    
+            </label>
     </section>
     
-    <section id="optionPatient" class="box">
-        <div class="optionName">
-            <p class="titreSection">Options du patient</p>
-        </div>
-        <div class="photoClass">
-            <input
-              type="checkbox"
-              id="photo"
-              name="Photos"
-              value="PhotosValue" />
-            <label for="photo">Photos</label>
-        </div>
-        <div class="videoClass">
-            <input
-              type="checkbox"
-              id="video"
-              name="Videos"
-              value="VideosValue" />
-            <label for="video">Vidéos</label>
-        </div>
-        <div class="audioClass">
-            <input
-              type="checkbox"
-              id="audio"
-              name="Audios"
-              value="AudiosValue" />
-            <label for="audio">Audio</label>
-        </div>
-        <div class="indiceClass">
-            <input
-              type="checkbox"
-              id="indice"
-              name="Indices"
-              value="IndicesValue" />
-            <label for="indice">Indices</label>
-        </div>
+    <!--      Options     -->
+    <h2> Options </h2>
+    <section id="option">    
+        <label for="optionPhoto">Quiz contenant des photos :
+            <input class="input-custom" type="checkbox" id="optionPhoto" [formControlName]="'optionPhoto'">
+        </label><br/><br/>
+        <label for="optionIndice">Peut utiliser des indices :
+            <input class="input-custom" type="checkbox" id="optionIndice" [formControlName]="'optionIndice'">
+        </label><br/><br/>
+        
+        <label for="optionSupprimerMauvaisesReponses">Après une erreur, lance la question sans le choix sélectionné :
+            <input class="input-custom" type="checkbox" id="optionSupprimerMauvaisesReponses" [formControlName]="'optionSupprimerMauvaisesReponses'">
+        </label><br/><br/>
+        <label for="optionReposerQuestionApres">Repose les questions ratées plus tard :
+            <input class="input-custom" type="checkbox" id="optionReposerQuestionApres" [formControlName]="'optionReposerQuestionApres'">
+        </label><br/><br/>
+
+        <label for="optionTailleTexte"> Taille du texte :
+            <select name="input-custom" id="optionTailleTexte" [formControlName]="'optionTailleTexte'">
+                <option *ngFor="let currentFontSize of FontSizeList" [value]="currentFontSize">{{currentFontSize}}</option>
+            </select> 
+        </label>
     </section>
-    <section id="optionQuestion" class="box">
-        <div class="optionName">
-            <p class="titreSection">Options de question</p>
-        </div>
-        <div class="lectureAutoClass">
-            <input type="checkbox" id="lectureAuto" value="lectureAutoValue"/>
-            <label for="lectureAuto">Lecture automatique de la question</label>
-        </div>
-        <div class="nbReponseClass">
-            <label for="nbReponses">Nombre maximum de réponses possibles :</label>
-            <select name="nbReponse" id="nbReponses" size="1" required>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-        </div>
-        <div class="disparitionClass">
-            <input type="checkbox" id="Disparition" value="DisparitionValue"/>
-            <label for="Disparition">Effacer les mauvaises réponses</label>
-        </div>
-        <div class="reposeClass">
-            <input type="checkbox" id="reposeQuestion" value="reposeValue"/>
-            <label for="reposeQuestion">Reposer la question plus tard dans le quiz</label>
-        </div>
-    </section>
-    <section id="optionIndice" class="box">
-        <div class="optionName">
-            <p class="titreSection">Option d'indice :</p>
-        </div>
-        <div class="photoClass">
-            <input
-                    type="checkbox"
-                    id="photoIndice"
-                    name="Photos"
-                    value="PhotosValue" />
-            <label for="photoIndice">Photos</label>
-        </div>
-        <div class="videoClass">
-            <input
-                    type="checkbox"
-                    id="videoIndice"
-                    name="Videos"
-                    value="VideosValue" />
-            <label for="videoIndice">Vidéos</label>
-        </div>
-    </section>
-    <section class="boite">
-        <div class="tailleText">
-            <label class="Sizefont" for="tailleText">Taille texte :</label>
-                <select name="tailleText" id="tailleText" size="1" required>
-                    <option value="1">PETIT</option>
-                    <option value="2">MOYEN</option>
-                    <option value="3">GRAND</option>
-                </select>
-        </div>
-    </section>
-</section>
-<app-comeBack class="returnButton"></app-comeBack> 
+
+    <button type="submit" (click)="updateProfil()" [disabled]="!profilForm.valid">Modifier le profil </button>
+</form>
+<button type="submit" (click)="return()">Retour</button>

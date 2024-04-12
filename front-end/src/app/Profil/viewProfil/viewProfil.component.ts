@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { Router } from "@angular/router";
 import { ADMIN } from "src/mocks/profil.mock";
 import { Profil } from "src/models/profil.model";
 import { ProfilService } from "src/services/profil.service";
@@ -11,12 +12,12 @@ import { ProfilService } from "src/services/profil.service";
 
 export class ViewProfilComponent implements OnInit {
     @Input()
-    typeView: String = "list"; // full = afficher entièrement le profil | list = afficher comme dans la listProfil (nom/prénom/photo)
+    typeView: String = "list"; // full = afficher entièrement le profil | list = afficher comme dans la listProfil (nom/prénom/photo) | play = pour choisir un joueur dans home
 
     @Input()
     profil: Profil = ADMIN;
 
-    constructor(public profilService: ProfilService){}
+    constructor(public profilService: ProfilService, private router: Router){}
 
     ngOnInit(): void {}
 
@@ -30,7 +31,6 @@ export class ViewProfilComponent implements OnInit {
 
     showProfil(profil:Profil){
         this.typeView="full";
-        console.log("montre ",profil)
     }
 
     stopShowProfil(profil:Profil){
@@ -38,6 +38,7 @@ export class ViewProfilComponent implements OnInit {
     }
 
     editProfil(profil:Profil){
-        console.log("edit ",profil)
+        this.router.navigate(['home/listProfil/editProfil/' + profil.nom + "-" + profil.prenom]);
+        this.profilService.editingProfil(profil);
     }
 }
