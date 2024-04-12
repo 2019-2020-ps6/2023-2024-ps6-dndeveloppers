@@ -60,7 +60,9 @@ export class ProfilService {
     updateProfil(profilAncien: Profil, profilNouveau:Profil){
         for(let i=0;i<this.profilList.length;i++){
             if(this.profilList[i].nom == profilAncien.nom && this.profilList[i].prenom == profilAncien.prenom){
+                let anciennes = profilAncien.selfStats;
                 this.profilList[i] = profilNouveau;
+                this.profilList[i].selfStats = anciennes;
                 console.log("Profil : ",this.profilList[i], " mis à jour");
                 return;
             }
