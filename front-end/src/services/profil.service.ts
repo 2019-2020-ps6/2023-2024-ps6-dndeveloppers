@@ -11,9 +11,11 @@ import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
 export class ProfilService {
     private profilList: Profil[] = LISTE_PROFILS;
     private actualProfil: Profil = LISTE_PROFILS[0];
+    private actualEditingProfil: Profil = LISTE_PROFILS[0];
 
     public profilList$: BehaviorSubject<Profil[]> = new BehaviorSubject(this.profilList);
     public actualProfil$: BehaviorSubject<Profil> = new BehaviorSubject(this.actualProfil);
+    public actualEditingProfil$: BehaviorSubject<Profil> = new BehaviorSubject(this.actualEditingProfil);
 
     constructor(public quizService: QuizService) {}
 
@@ -47,5 +49,22 @@ export class ProfilService {
             }
         }
         console.log("Problème sélection profil");
+    }
+
+    editingProfil(profil: Profil){
+        this.actualEditingProfil = profil;
+        this.actualEditingProfil$.next(this.actualEditingProfil); 
+        console.log("Profil : ", profil, " en cours d'édition.");         
+    }
+
+    updateProfil(profilAncien: Profil, profilNouveau:Profil){
+        for(let i=0;i<this.profilList.length;i++){
+            if(this.profilList[i].nom == profilAncien.nom && this.profilList[i].prenom == profilAncien.prenom){
+                this.profilList[i] = profilNouveau;
+                console.log("Profil : ",this.profilList[i], " mis à jour");
+                return;
+            }
+        }
+
     }
 }

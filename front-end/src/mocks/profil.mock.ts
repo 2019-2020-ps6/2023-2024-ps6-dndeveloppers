@@ -28,7 +28,7 @@ export const PATIENT_JOSEPH: Profil = {
     optionPhoto: false,
     optionIndice: true,
 
-    optionTailleTexte: 'Gros',
+    optionTailleTexte: 'Grand',
 
     optionReposerQuestionApres: false,
     optionSupprimerMauvaisesReponses: true,
