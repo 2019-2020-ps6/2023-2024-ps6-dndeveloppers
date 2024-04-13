@@ -5,7 +5,7 @@ export interface Profil {
     prenom: string;
     role: string; // "patient" ou "personnel" ou "admin"
 
-    photo?: string; // le lien de la photo de profil sinon par défault
+    photo: string; // le lien de la photo de profil sinon par défault
 
     dateNaissance?: [number,number,number];
 
