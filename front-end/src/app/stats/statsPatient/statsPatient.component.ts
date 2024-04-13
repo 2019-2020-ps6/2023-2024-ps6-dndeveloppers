@@ -13,6 +13,8 @@ export class StatsPatientComponent implements OnInit {
 
     public listePatient: Profil[] = LISTE_PROFILS;
     public actualPatient: Profil  = this.listePatient[0];
+    public actualCategories: string[] = ['1', '2'];
+    public actualData: number[] = [50, 70];//this.actualPatient.selfStats.quizRes;
 
     public options: any = {
         Chart: {
@@ -26,7 +28,7 @@ export class StatsPatientComponent implements OnInit {
             enabled: false
         },
         xAxis: {
-            categories: ['1', '2', '3'],
+            categories: this.actualCategories,
             tickmarkPlacement: 'on',
             title: {
                 text: 'Quiz joué n°',
@@ -39,18 +41,13 @@ export class StatsPatientComponent implements OnInit {
         },
         series: [{
             name: 'QuizName',
-            data: [0, 1, 2]
+            data: this.actualData
         }]
     }
 
-    constructor(){
-        console.log(this.listePatient[0]);
-        console.log(this.selectedPatient);
-    }
+    constructor(){}
 
-    ngOnInit(): void {
-        Highcharts.chart('container', this.options);
-    }
+    ngOnInit(): void {}
 
     selectedPatient(event: any) {
         let nomPatient: string = event.target.value;
@@ -60,5 +57,24 @@ export class StatsPatientComponent implements OnInit {
                 break;
             }
         }
+        this.options.xAxis.categories = this.categoriesChart();
+        this.options.series[0].data = this.dataChart();
+        Highcharts.chart('container', this.options);
+    }
+
+    categoriesChart() {
+        let categories = [];
+        for (let i=0; i<this.actualPatient.selfStats.quizRes.length; i++) {
+            categories.push(i.toString());
+        }
+        return categories;
+    }
+
+    dataChart() {
+        let data = [];
+        for (let i=0; i<this.actualPatient.selfStats.quizRes.length; i++) {
+            data.push(this.actualPatient.selfStats.quizRes[i]);
+        }
+        return data
     }
 }

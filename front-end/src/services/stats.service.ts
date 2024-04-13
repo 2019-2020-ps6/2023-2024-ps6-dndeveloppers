@@ -65,7 +65,7 @@ export class StatsService {
 
     patientNewData(profil: Profil, score: number) {
       profil.selfStats.nbQuizDone++;
-      profil.selfStats.quizRes.push(score);
+      profil.selfStats.quizRes.push(score*100);
 
       let num = 0;
       for (let i=0; i<profil.selfStats.quizRes.length; i++) {
