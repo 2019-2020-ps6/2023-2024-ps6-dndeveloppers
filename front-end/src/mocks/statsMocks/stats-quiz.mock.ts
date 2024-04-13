@@ -1,6 +1,16 @@
 import { statsQuiz } from "src/models/stats/statsQuiz.model";
 import { PATIENT_JOSEPH, PATIENT_MAURICE } from "../profil.mock";
 
+export const STATS_INIT: statsQuiz = {
+    playedTime: 0,
+    meanScore: 0,
+    meanHintUsed: 0,
+    playedBy: [],
+    resTab: [],
+    nbHintUsed: [],
+    successPercentageByQuestion: []
+}
+
 export const STATS_ACTORS: statsQuiz = {
     playedTime: 1,
     meanScore: 2,

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { QuizService } from '../../../services/quiz.service';
 import { Quiz } from '../../../models/quiz.model';
+import { STATS_INIT } from 'src/mocks/statsMocks/stats-quiz.mock';
 
 @Component({
   selector: 'app-create-quiz',
@@ -31,6 +32,7 @@ export class CreateQuizComponent implements OnInit {
   addQuiz() {
     const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
     quizToCreate.questions = [];
+    quizToCreate.selfStats = STATS_INIT;
     console.log('Add quiz: ', quizToCreate);
     this.quizService.addQuiz(quizToCreate);
   }

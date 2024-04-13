@@ -1,5 +1,13 @@
 import { statsPatient } from "src/models/stats/statsPatient.model";
 
+export const STATS_PATIENT_INIT: statsPatient = {
+    options: [true],
+    nbQuizDone: 0,
+    meanScore: 0,
+    quizRes: [],
+    nbAttemptForEachQuizDone: []
+}
+
 export const STATS_PATIENT_MAURICE: statsPatient = {
     options: [true],
     nbQuizDone: 2,
