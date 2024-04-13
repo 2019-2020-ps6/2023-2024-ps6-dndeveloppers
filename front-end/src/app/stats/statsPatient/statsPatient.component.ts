@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { LISTE_PROFILS } from "src/mocks/profil-list.mock";
+import * as Highcharts from 'highcharts'
+import { LISTE_PATIENTS, LISTE_PROFILS } from "src/mocks/profil-list.mock";
+import { ADMIN } from "src/mocks/profil.mock";
 import { Profil } from "src/models/profil.model";
 
 @Component({
@@ -10,13 +12,41 @@ import { Profil } from "src/models/profil.model";
 
 export class StatsPatientComponent implements OnInit {
 
-    public listePatient: Profil[] = LISTE_PROFILS;
-    public actualPatient: Profil  = this.listePatient[0];
+    public listePatient: Profil[] = LISTE_PATIENTS;
+    public actualPatient: Profil  = ADMIN;
+    public actualCategories: string[] = [];
+    public actualData: number[] = [];
 
-    constructor(){
-        console.log(this.listePatient[0]);
-        console.log(this.selectedPatient);
+    public options: any = {
+        Chart: {
+            type: 'area',
+            height: 700
+        },
+        title: {
+            text: 'Evolution du score du patient au fil des quiz joués'
+        },
+        credits: {
+            enabled: false
+        },
+        xAxis: {
+            categories: this.actualCategories,
+            tickmarkPlacement: 'on',
+            title: {
+                text: 'Quiz joué n°',
+            }
+        },
+        yAxis: {
+            title: {
+                text: 'Taux(%)'
+            }
+        },
+        series: [{
+            name: 'Taux de réussite du patient pour le quiz',
+            data: this.actualData
+        }]
     }
+
+    constructor(){}
 
     ngOnInit(): void {}
 
@@ -28,5 +58,24 @@ export class StatsPatientComponent implements OnInit {
                 break;
             }
         }
+        this.options.xAxis.categories = this.categoriesChart();
+        this.options.series[0].data = this.dataChart();
+        Highcharts.chart('patientChart', this.options);
+    }
+
+    categoriesChart() {
+        let categories = [];
+        for (let i=0; i<this.actualPatient.selfStats.quizRes.length; i++) {
+            categories.push(i.toString());
+        }
+        return categories;
+    }
+
+    dataChart() {
+        let data = [];
+        for (let i=0; i<this.actualPatient.selfStats.quizRes.length; i++) {
+            data.push(this.actualPatient.selfStats.quizRes[i]);
+        }
+        return data
     }
 }

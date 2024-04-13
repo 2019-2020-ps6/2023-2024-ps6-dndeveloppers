@@ -1,4 +1,4 @@
-import { statsPatient } from "./stats/statsPatient.model";
+import { statsPatient } from "./stats/statsPatient/statsPatient.model";
 
 export interface Profil {
     nom: string;

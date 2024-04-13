@@ -1,4 +1,4 @@
-import { statsPatient } from "src/models/stats/statsPatient.model";
+import { statsPatient } from "src/models/stats/statsPatient/statsPatient.model";
 
 export const STATS_PATIENT_INIT: statsPatient = {
     options: [true],
@@ -11,16 +11,16 @@ export const STATS_PATIENT_INIT: statsPatient = {
 export const STATS_PATIENT_MAURICE: statsPatient = {
     options: [true],
     nbQuizDone: 2,
-    meanScore: 1.5,
-    quizRes: [2,1],
+    meanScore: 75,
+    quizRes: [100,50],
     nbAttemptForEachQuizDone: [1,1]
 }
 
 export const STATS_PATIENT_JOSEPH: statsPatient = {
     options: [true],
     nbQuizDone: 1,
-    meanScore: 1,
-    quizRes: [1],
+    meanScore: 50,
+    quizRes: [50],
     nbAttemptForEachQuizDone: [0,1]
 
 }

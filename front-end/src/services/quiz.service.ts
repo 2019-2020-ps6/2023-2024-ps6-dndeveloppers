@@ -104,17 +104,19 @@ export class QuizService {
     console.log("Response selected (service POV) : ",responseNumber);
     if (this.actualResponses[responseNumber].isCorrect) {
       console.log("Bonne réponse félicitation!");
+      this.statsService.successRateNewData(100, this.actualQuestionNumber);
       this.actualScore++;
     } else {
       console.log("Mauvaise Réponse!");
+      this.statsService.successRateNewData(0, this.actualQuestionNumber);
     }
 
     if (this.actualQuestionNumber == quiz.questions.length-1) {
       console.log("C'était la dernière question");
       this.statsService.addQuizDone();
-      this.statsService.meanScoreNewData(this.actualScore);
+      this.statsService.meanScoreNewData(this.actualScore/quiz.questions.length);
       this.statsService.usedHintNewData(this.usedHint);
-      this.statsService.patientNewData(this.actualProfil, this.actualScore);
+      this.statsService.patientNewData(this.actualProfil, this.actualScore/quiz.questions.length);
       this.endOfQuiz = true;
       this.endOfQuiz$.next(this.endOfQuiz);
     } else {
