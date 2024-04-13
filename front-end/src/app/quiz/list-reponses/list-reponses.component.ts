@@ -4,6 +4,9 @@ import { QUIZ_LIST } from "src/mocks/quiz-list.mock";
 import { Answer, Question } from "src/models/question.models";
 import { Quiz } from "src/models/quiz.model";
 import { QuizService } from "src/services/quiz.service";
+import { Profil } from "src/models/profil.model";
+import { LISTE_PROFILS } from "src/mocks/profil-list.mock";
+import { ProfilService } from "src/services/profil.service";
 
 
 @Component({
@@ -17,6 +20,9 @@ export class ListReponsesComponent implements OnInit {
     public actualResponses: Answer[] = [];
     public actualQuestionNumber: number = 0;
     public endOfQuiz: boolean = false;
+    public listePatient: Profil[] = LISTE_PROFILS;
+    public profil: Profil  = this.listePatient[0];
+    public possibleEndMessage: String[] = [];
 
     constructor(public quizService: QuizService){
         this.quizService.actualQuestionNumber$.subscribe((actualQuestionNumber) => {
