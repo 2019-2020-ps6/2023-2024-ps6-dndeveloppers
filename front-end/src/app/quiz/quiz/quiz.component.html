@@ -5,10 +5,36 @@
         <div class="side-by-side">
             <app-indice class="indice"></app-indice>
             <app-question [question]="choosenQuiz.questions[actualQuestionNumber].label" class="question"></app-question>
+            <button (click)="tutoriel()">Tutoriel</button>
         </div> 
         <app-list-reponses  [quiz]="choosenQuiz" class="listreponse"></app-list-reponses>
         <app-comeBack class="returnButton"></app-comeBack>
     </div>
 </section>
+
+<div class="popup" *ngIf="tutorielView===true">
+    <p class="gras">Tutoriel</p>
+    <p>Vous êtes actuellement en train de jouer à un quiz.</p>
+    <div class="Question">
+        <p class="Question-texte">
+            Le rectangle de couleur jaune correspond à la question.
+        </p>
+    </div>
+
+    <div class="reponse">
+        <button class="reponse-texte" name="button">
+            les rectangles violets corresponds à une réponse possible.
+        </button>
+    </div>
+    <p>Cliquer sur le bouton tutoriel ouvre la page actuel tout en conservant le quiz</p>
+    <button>Tutoriel</button>
+    <p>Cliquer sur le bouton indice vous donnera une aide pour répondre à la question posé.</p>
+    <div id="indiceTuto" class="indice">
+        <button>Indice</button>
+    </div>
+    <p>Une question peut avoir plusieurs indices. Une fois arrivé au bout des indices disponible, cliquer sur le bouton indice fera disparaitre une réponse fausse</p>
+
+    <button (click)="stopShowTutoriel()">Click gauche ici pour fermer le tutoriel</button>
+</div>
 
 
