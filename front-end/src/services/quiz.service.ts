@@ -11,16 +11,6 @@ import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
   providedIn: 'root'
 })
 export class QuizService {
-  /**
-   * Services Documentation:
-   * https://angular.io/docs/ts/latest/tutorial/toh-pt4.html
-   */  
-
-   /**
-    * The list of quiz.
-    * The list is retrieved from the mock.
-    */
-
   private actualProfil: Profil = LISTE_PROFILS[0];
   private quizzes: Quiz[] = QUIZ_LIST;
   private choosenQuiz: Quiz = this.quizzes[0];
@@ -30,6 +20,8 @@ export class QuizService {
   private actualScore: number = 0;
   private usedHint: number = 0;
   private endOfQuiz: boolean = false;
+
+  private themeList: String[] = []; // liste des thèmes de quiz
 
   /**
    * Observable which contains the list of the quiz.
@@ -42,6 +34,8 @@ export class QuizService {
   public actualQuestionNumber$: BehaviorSubject<number> = new BehaviorSubject(0);
   public endOfQuiz$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
+  public themeList$: BehaviorSubject<String[]> = new BehaviorSubject(this.themeList);
+
   public url: string = "";
 
   constructor(public statsService: StatsService) {}
@@ -51,8 +45,6 @@ export class QuizService {
   }
 
   addQuiz(quiz: Quiz) {
-    // You need here to update the list of quiz and then update our observable (Subject) with the new list
-    // More info: https://angular.io/tutorial/toh-pt6#the-searchterms-rxjs-subject
     this.quizzes.push(quiz);
     this.quizzes$.next(this.quizzes);
   }
@@ -136,5 +128,17 @@ export class QuizService {
         console.log("Quiz sélectionné : ",this.quizzes[i].name);
       }
     }
+  }
+
+  setUpTheme(){ // mettre à jour la liste des thèmes
+    let newThemeList: String[] = [];
+    for(let i=0;i<this.quizzes.length;i++){
+      if(newThemeList.lastIndexOf(this.quizzes[i].theme) == -1){
+          newThemeList.push(this.quizzes[i].theme);
+      }
+    }
+    this.themeList = newThemeList;
+    this.themeList$.next(this.themeList);
+    console.log(this.themeList);
   }
 }

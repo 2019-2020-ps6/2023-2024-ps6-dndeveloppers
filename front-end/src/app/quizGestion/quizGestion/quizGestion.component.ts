@@ -16,6 +16,8 @@ export class QuizGestionComponent implements OnInit {
         this.quizService.quizzes$.subscribe((quizList) => {
           this.quizList = quizList;
         });
+
+        this.quizService.setUpTheme();
     }
 
     ngOnInit(): void {}
