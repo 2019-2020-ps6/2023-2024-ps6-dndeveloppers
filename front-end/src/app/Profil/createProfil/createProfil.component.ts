@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from "@angular/router";
+import { STATS_PATIENT_INIT } from "src/mocks/statsMocks/stats-patient.mock";
 
 import { Profil } from "src/models/profil.model";
 import { ProfilService } from "src/services/profil.service";
@@ -52,7 +53,7 @@ export class CreateProfilComponent implements OnInit {
                 this.profilForm.getRawValue().annee
             ];
         }
-
+        profilToCreate.selfStats = STATS_PATIENT_INIT;
         console.log("add profil ", profilToCreate);
         this.profilService.addProfil(profilToCreate);
         this.router.navigate(['home/listProfil/']); 

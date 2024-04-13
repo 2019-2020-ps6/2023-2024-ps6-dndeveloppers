@@ -60,6 +60,7 @@ export class QuizService {
     }
     this.quizzes = newQuizzes;
     this.quizzes$.next(this.quizzes);
+    this.setUpTheme();
   }
 
   selectQuiz(quiz: Quiz) {
