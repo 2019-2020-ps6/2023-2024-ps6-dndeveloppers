@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ListProfilComponent } from 'src/app/Profil/listProfil/listProfil.component';
 import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
-import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
+import { QUIZ_LIST, QUIZ_NULL } from 'src/mocks/quiz-list.mock';
 import { Profil } from 'src/models/profil.model';
 import { Quiz } from 'src/models/quiz.model';
 
@@ -63,21 +63,22 @@ export class StatsService {
     public patientMeanScore$: BehaviorSubject<number> = new BehaviorSubject(this.patientMeanScore);
     public fiveLastQuizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.fiveLastQuizzes);
 
-    /*
-     * Pour les statistiques par theme
-     */
+    patientNewData(profil: Profil, score: number) {
+      profil.selfStats.nbQuizDone++;
+      profil.selfStats.quizRes.push(score*100);
 
-    private theme: string = "";
-    private score: number = 0;
-
-    public theme$: BehaviorSubject<string> = new BehaviorSubject(this.theme);
-    public score$: BehaviorSubject<number> = new BehaviorSubject(this.score);
+      let num = 0;
+      for (let i=0; i<profil.selfStats.quizRes.length; i++) {
+        num += profil.selfStats.quizRes[i];
+      }
+      profil.selfStats.meanScore = num/profil.selfStats.quizRes.length;
+    }
 
     /*
      * Pour les statistiques par quiz
      */
 
-    private actualQuiz: Quiz = QUIZ_LIST[0];
+    private actualQuiz: Quiz = QUIZ_NULL;
     private actualQuizId: number = 0;
     private actualScore: number = 0;
     private maxScore: number = QUIZ_LIST[0].questions.length;
@@ -143,15 +144,12 @@ export class StatsService {
       this.actualQuiz.selfStats.meanHintUsed = num/this.actualQuiz.selfStats.nbHintUsed.length;
     }
 
-    patientNewData(profil: Profil, score: number) {
-      profil.selfStats.nbQuizDone++;
-      profil.selfStats.quizRes.push(score);
-
-      let num = 0;
-      for (let i=0; i<profil.selfStats.quizRes.length; i++) {
-        num += profil.selfStats.quizRes[i];
-      }
-      profil.selfStats.meanScore = num/profil.selfStats.quizRes.length;
+    successRateNewData(responseVeracity: number, actualQuestionNumber: number) {
+      let rate = this.actualQuiz.selfStats.successPercentageByQuestion[actualQuestionNumber];
+      rate *= this.actualQuiz.selfStats.playedTime-1;
+      rate += responseVeracity;
+      rate /= this.actualQuiz.selfStats.playedTime;
+      this.actualQuiz.selfStats.successPercentageByQuestion[actualQuestionNumber] = rate;
     }
 
     refreshQuizSubscribers() {

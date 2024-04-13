@@ -139,24 +139,29 @@ export class QuizService {
     console.log("Response selected (service POV) : ",responseNumber);
     if (this.actualResponses[responseNumber].isCorrect) {
       console.log("Bonne réponse félicitation!");
+      this.statsService.successRateNewData(100, this.actualQuestionNumber);
       this.actualScore++;
       this.nbBonneReponses++;
       this.nbBonneReponses$.next(this.nbBonneReponses);
       this.enStreak++;
     } else {
       console.log("Mauvaise Réponse!");
+
       if(this.streakDeBonneReponse < this.enStreak){
         this.streakDeBonneReponse = this.enStreak;
         this.streakDeBonneReponse$.next(this.streakDeBonneReponse);
       }
       this.enStreak = 0;
+
+      this.statsService.successRateNewData(0, this.actualQuestionNumber);
     }
 
     if (this.actualQuestionNumber == quiz.questions.length-1) {
       console.log("C'était la dernière question");
       this.statsService.addQuizDone();
-      this.statsService.meanScoreNewData(this.actualScore);
+      this.statsService.meanScoreNewData(this.actualScore/quiz.questions.length);
       this.statsService.usedHintNewData(this.usedHint);
+
       this.statsService.patientNewData(this.actualProfil, this.actualScore);
 
       if(this.streakDeBonneReponse < this.enStreak){
@@ -178,6 +183,9 @@ export class QuizService {
         this.peuDindice = true;
         this.peuDindice$.next(this.peuDindice);
       }
+
+
+      this.statsService.patientNewData(this.actualProfil, this.actualScore/quiz.questions.length);
 
       this.endOfQuiz = true;
       this.endOfQuiz$.next(this.endOfQuiz);

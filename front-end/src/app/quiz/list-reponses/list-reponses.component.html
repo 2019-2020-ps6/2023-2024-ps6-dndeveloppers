@@ -5,7 +5,7 @@
     <button class="reponse-texte" id="fourth" name="button" (click)="responseSelected(3)">{{actualResponses[3].value}}</button>
     <div id="endPopup" *ngIf="endOfQuiz">
         <p class="felicitation">Félicitation, vous avez terminé le quiz !</p>
-        <p>Bravo! :</p>
+        <p>Bravo!</p>
         <p>Vous avez répondu à {{actualQuestionNumber+1}} questions lors de ce quiz</p>
         <p *ngIf="bonScore===true">Vouz avez eu {{nbBonneReponses}} bonne réponse.</p>
         <p *ngIf="bonneStreak===true">Vous avez répondu correctement {{streakDeBonneReponse}} fois de suite</p>

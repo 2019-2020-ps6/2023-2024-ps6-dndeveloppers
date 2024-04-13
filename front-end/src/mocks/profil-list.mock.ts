@@ -6,3 +6,8 @@ export const LISTE_PROFILS: Profil[] = [
     PATIENT_MAURICE,
     PATIENT_JOSEPH
 ]
+
+export const LISTE_PATIENTS: Profil[] = [
+    PATIENT_MAURICE,
+    PATIENT_JOSEPH
+]

@@ -1,6 +1,6 @@
 import { Quiz } from '../models/quiz.model';
 import { Answer, Question } from '../models/question.models';
-import { STATS_ACTORS, STATS_SPORTS } from './statsMocks/stats-quiz.mock';
+import { STATS_ACTORS, STATS_INIT, STATS_SPORTS } from './statsMocks/stats-quiz.mock';
 
 export const Answer_Model1: Answer = {
     value:'',
@@ -133,6 +133,15 @@ export const QUESTION_SPORT1: Question = {
    questionTexte: true,
    questionImage: false
 };
+
+export const QUIZ_NULL: Quiz = {
+    name: '',
+    theme: '',
+    questions: [],
+    nbQuestionsPerType: [],
+    id: -1,
+    selfStats: STATS_INIT
+}
 
 export const QUIZ_LIST: Quiz[] = [
     {

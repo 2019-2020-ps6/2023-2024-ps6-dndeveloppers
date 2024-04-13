@@ -19,6 +19,8 @@ export class CreateProfilComponent implements OnInit {
     public DayList: Number[] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
     public MonthList: String[] = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
     public FontSizeList: String[] = ['Petit', 'Moyen', 'Grand'];
+    
+    
 
     constructor(public formBuilder: FormBuilder, public profilService: ProfilService, private router: Router){
         //console.log("a");
@@ -30,6 +32,8 @@ export class CreateProfilComponent implements OnInit {
             jour: [],
             mois:[],
             annee:[],
+
+            photo: [],
 
             optionPhoto: [false],
             optionIndice: [false],
@@ -53,6 +57,16 @@ export class CreateProfilComponent implements OnInit {
                 this.profilForm.getRawValue().annee
             ];
         }
+        if(this.profilForm.value.photo != undefined){
+            let path : String = this.profilForm.value.photo;
+            var spliter = path.split('\\');
+            let bon_path : string = spliter[spliter.length-1];
+            console.log(bon_path);
+            profilToCreate.photo = "./assets/imageProfil/"+bon_path; 
+        }
+        else {
+            profilToCreate.photo = "./assets/imageProfil/default.png"
+        }
         profilToCreate.selfStats = STATS_PATIENT_INIT;
         console.log("add profil ", profilToCreate);
         this.profilService.addProfil(profilToCreate);
@@ -62,4 +76,6 @@ export class CreateProfilComponent implements OnInit {
     return(){
         this.router.navigate(['home/listProfil/']);
     }
+
+    
 }
