@@ -1,65 +1,130 @@
 .custom-button1 {
-    background-image: url('./assets/drapeaux.jpg'); /* Remplacez par le chemin de votre image */
-    background-size: cover;
-    background-position: center;
-    border: black solid 2px;
+    position: relative;
+    border: none;
     border-radius: 5px;
     padding: 60px 80px;
     cursor: pointer;
     outline: none;
-    color: #40E0D0;
+    color: #ffffff;
     font-size: 25px;
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
-    font-family: Verdana, Geneva, sans-serif;
-  }
+    overflow: hidden;
+}
 
-  .custom-button2 {
-    background-image: url('./assets/carte.jpg'); /* Remplacez par le chemin de votre image */
+.custom-button1:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./assets/drapeaux.jpg');
     background-size: cover;
     background-position: center;
-    border: black solid 2px;
-    padding: 60px 80px;
-    cursor: pointer;
-    outline: none;
-    color: #40E0D0;
-    font-size: 25px;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
-    font-family: Verdana, Geneva, sans-serif;
-  }
+    filter: blur(0);
+    transition: filter 0.3s ease; 
+}
 
-  .custom-button3 {
-    background-image: url('./assets/ballon.jpg'); /* Remplacez par le chemin de votre image */
-    background-size: cover;
-    background-position: center;
-    border: black solid 2px;
+.custom-button1:hover:before {
+    filter: blur(3px);
+}
+
+.custom-button1 span {
+    position: relative;
+    z-index: 1;
+    text-shadow: -1px -1px 0 #000,  
+                  1px -1px 0 #000,
+                 -1px  1px 0 #000,
+                  1px  1px 0 #000;
+}
+
+.custom-button2 {
+    position: relative;
+    border: none;
     border-radius: 5px;
     padding: 60px 80px;
     cursor: pointer;
     outline: none;
-    color: #40E0D0;
+    color: #ffffff;
     font-size: 25px;
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
-    font-family: Verdana, Geneva, sans-serif;
-  }
+    overflow: hidden;
+}
 
+.custom-button2:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./assets/carte.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(0);
+    transition: filter 0.3s ease; 
+}
 
-.themeQuizButton:hover {
-    background-color: rgb(1, 132, 97);
+.custom-button2:hover:before {
+    filter: blur(3px);
+}
+
+.custom-button2 span {
+    position: relative;
+    z-index: 1;
+    text-shadow: -1px -1px 0 #000,  
+                  1px -1px 0 #000,
+                 -1px  1px 0 #000,
+                  1px  1px 0 #000;
+}
+
+.custom-button3 {
+    position: relative;
+    border: none;
+    border-radius: 5px;
+    padding: 60px 80px;
+    cursor: pointer;
+    outline: none;
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.custom-button3:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./assets/ballon.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(0);
+    transition: filter 0.3s ease; 
+}
+
+.custom-button3:hover:before {
+    filter: blur(3px);
+}
+
+.custom-button3 span {
+    position: relative;
+    z-index: 1;
+    text-shadow: -1px -1px 0 #000,  
+                  1px -1px 0 #000,
+                 -1px  1px 0 #000,
+                  1px  1px 0 #000;
 }
 
 .boutonTheme{
@@ -70,14 +135,5 @@
     align-items: flex-start;
     margin-top: 10%;
 }
+
   
-.body{
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url('./assets/fond.jpg');
-  background-size: cover;
-}

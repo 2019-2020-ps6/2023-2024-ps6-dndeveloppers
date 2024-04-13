@@ -1,63 +1,67 @@
 <app-header></app-header><br/><br/>
-<p> Chaque ligne contenant un * est obligatoire.</p>
+<section class="Topbox">
+    <p> Chaque ligne contenant un * est obligatoire.</p>
+</section>
 <form class="profil-form" [formGroup]="profilForm">
     <!--      Infos générales     -->
-    <h2> Informations générales </h2>
-    <section id="infomationGenerales">    
-            <label for="nom">Nom : *
-                <input class="input-custom" type="text" id="nom" [formControlName]="'nom'" required>
-            </label><br/>
-            
-            <label for="prenom">Prenom : *
-                <input class="input-custom" type="text" id="prenom" [formControlName]="'prenom'" required>    
-            </label><br/>
+    <section class="box">
+        <h2> Informations générales </h2>
+        <section id="infomationGenerales">    
+                <label for="nom">Nom : *
+                    <input class="input-custom" type="text" id="nom" [formControlName]="'nom'" required>
+                </label><br/>
+                
+                <label for="prenom">Prenom : *
+                    <input class="input-custom" type="text" id="prenom" [formControlName]="'prenom'" required>    
+                </label><br/>
 
-            <label for="role">Rôle : *
-                <select name="input-custom" id="role" [formControlName]="'role'" required>
-                    <option *ngFor="let currentRole of RoleList" [value]="currentRole">{{currentRole}}</option>
-                </select> 
-            </label><br/>
+                <label for="role">Rôle : *
+                    <select name="input-custom" id="role" [formControlName]="'role'" required>
+                        <option *ngFor="let currentRole of RoleList" [value]="currentRole">{{currentRole}}</option>
+                    </select> 
+                </label><br/>
 
-            <p>Date de Naissance :</p>
-            <label for="jour"> Jour :  
-                <select name="input-custom" id="jour" [formControlName]="'jour'">
-                    <option *ngFor="let currentDay of DayList" [value]="currentDay">{{currentDay}}</option>
-                </select> 
-            </label>
-            <label for="mois"> Mois :
-                <select name="input-custom" id="mois" [formControlName]="'mois'">
-                    <option *ngFor="let currentMonth of MonthList" [value]="currentMonth">{{currentMonth}}</option>
-                </select> 
-            </label>
-            <label for="annee"> Année :
-                <input class="input-custom" type="number" id="annee" [formControlName]="'annee'">    
-            </label>
+                <p>Date de Naissance :</p>
+                <label for="jour"> Jour :  
+                    <select name="input-custom" id="jour" [formControlName]="'jour'">
+                        <option *ngFor="let currentDay of DayList" [value]="currentDay">{{currentDay}}</option>
+                    </select> 
+                </label>
+                <label for="mois"> Mois :
+                    <select name="input-custom" id="mois" [formControlName]="'mois'">
+                        <option *ngFor="let currentMonth of MonthList" [value]="currentMonth">{{currentMonth}}</option>
+                    </select> 
+                </label>
+                <label for="annee"> Année :
+                    <input class="input-custom" type="number" id="annee" [formControlName]="'annee'">    
+                </label>
+        </section>
     </section>
-    
     <!--      Options     -->
-    <h2> Options </h2>
-    <section id="option">    
-        <label for="optionPhoto">Quiz contenant des photos :
-            <input class="input-custom" type="checkbox" id="optionPhoto" [formControlName]="'optionPhoto'">
-        </label><br/><br/>
-        <label for="optionIndice">Peut utiliser des indices :
-            <input class="input-custom" type="checkbox" id="optionIndice" [formControlName]="'optionIndice'">
-        </label><br/><br/>
-        
-        <label for="optionSupprimerMauvaisesReponses">Après une erreur, lance la question sans le choix sélectionné :
-            <input class="input-custom" type="checkbox" id="optionSupprimerMauvaisesReponses" [formControlName]="'optionSupprimerMauvaisesReponses'">
-        </label><br/><br/>
-        <label for="optionReposerQuestionApres">Repose les questions ratées plus tard :
-            <input class="input-custom" type="checkbox" id="optionReposerQuestionApres" [formControlName]="'optionReposerQuestionApres'">
-        </label><br/><br/>
+    <section class="box">
+        <h2> Options </h2>
+        <section id="option">    
+            <label for="optionPhoto">Quiz contenant des photos :
+                <input class="input-custom" type="checkbox" id="optionPhoto" [formControlName]="'optionPhoto'">
+            </label><br/><br/>
+            <label for="optionIndice">Peut utiliser des indices :
+                <input class="input-custom" type="checkbox" id="optionIndice" [formControlName]="'optionIndice'">
+            </label><br/><br/>
+            
+            <label for="optionSupprimerMauvaisesReponses">Après une erreur, lance la question sans le choix sélectionné :
+                <input class="input-custom" type="checkbox" id="optionSupprimerMauvaisesReponses" [formControlName]="'optionSupprimerMauvaisesReponses'">
+            </label><br/><br/>
+            <label for="optionReposerQuestionApres">Repose les questions ratées plus tard :
+                <input class="input-custom" type="checkbox" id="optionReposerQuestionApres" [formControlName]="'optionReposerQuestionApres'">
+            </label><br/><br/>
 
-        <label for="optionTailleTexte"> Taille du texte :
-            <select name="input-custom" id="optionTailleTexte" [formControlName]="'optionTailleTexte'">
-                <option *ngFor="let currentFontSize of FontSizeList" [value]="currentFontSize">{{currentFontSize}}</option>
-            </select> 
-        </label>
+            <label for="optionTailleTexte"> Taille du texte :
+                <select name="input-custom" id="optionTailleTexte" [formControlName]="'optionTailleTexte'">
+                    <option *ngFor="let currentFontSize of FontSizeList" [value]="currentFontSize">{{currentFontSize}}</option>
+                </select> 
+            </label>
+        </section>
     </section>
-
-    <button type="submit" (click)="updateProfil()" [disabled]="!profilForm.valid">Modifier le profil </button>
+    <button class="valider" type="submit" (click)="updateProfil()" [disabled]="!profilForm.valid">Modifier le profil </button>
 </form>
-<button type="submit" (click)="return()">Retour</button>
+<button class="retourBouton" type="submit" (click)="return()">Retour</button>

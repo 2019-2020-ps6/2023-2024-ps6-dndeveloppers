@@ -62,6 +62,27 @@ h3 {
 .recapQuiz > .grapheGenerique{
     grid-row: 1;
     grid-column: 2;
+<<<<<<< HEAD
     margin-top: 10px;
     margin-right: 10px;
+=======
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('./assets/fond.jpg');
+    background-size: 100% auto;
+    background-position: center;
+>>>>>>> 3b776ba33075cbdc7a61429064e594cb11e58c4e
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('./assets/fond.jpg');
+    background-size: 100% auto;
+    background-position: center;
 }

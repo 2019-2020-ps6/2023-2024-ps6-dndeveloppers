@@ -2,7 +2,6 @@
 .linom{
     margin-top: 1%;
     font-weight: bold;
-
 }
 
 .liprenom{
@@ -16,32 +15,15 @@
     font-weight: bold;
 }
 
-.imageP{
-    position: absolute;
-    left:85%;
-    top:3%;
-}
-
-.audioClass, .videoClass, .photoClass, .indiceClass, .lectureAutoClass, .nbReponseClass, .disparitionClass, .reposeClass{
-    margin-left: 10%;
+.lirole{
     margin-top: 1%;
-}
-
-.optionName, .tailleText{
-    margin-left: 2%;
-}
-.tailleText{
-    margin-top: 1%;
-    margin-bottom: 1%;
-}
-
-.tailleText{
     font-weight: bold;
 }
 
 .titreSection{
     font-weight: bold;
 }
+
 .box{
     background-color: rgb(168, 168, 168);
     border: 2px black solid;
@@ -50,18 +32,9 @@
     border-radius: 10px;
     position: relative;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+    padding-left: 2%;
 }
 
-#imageProfil{
-    position: absolute;
-    left:94%;
-    top:8%;
-    height: 100px;
-}
-
-#infoPerso{
-    height: 110px;
-}
 
 .jour, .mois, .annee{
     margin-right: 10px;
@@ -75,17 +48,60 @@
     margin-right: 8px;
 }
 
-.boite{
-    background-color: rgb(168, 168, 168);
-    border: 2px black solid;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    position: relative;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
-}
-
 .returnButton{
     display: flex;
     padding-top: 10px;
     justify-content: center;
 }
+
+.Topbox{
+    background-color: rgb(168, 168, 168);
+    border: 2px black solid;
+    width: fit-content;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.retourBouton {
+    display: inline-block;
+    text-align: center;
+    font-size: 15px;
+    background-color: lightgrey;
+    border: solid black 2px;
+    border-radius: 1rem;
+    cursor:pointer;
+    margin-top: 1%;
+    margin-left: 45%;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.retourBouton:hover {
+    background-color: darkgrey;
+}
+
+.valider {
+    display: inline-block;
+    text-align: center;
+    font-size: 15px;
+    background-color: lightgrey;
+    border: solid black 2px;
+    border-radius: 1rem;
+    cursor:pointer;
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.valider:hover {
+    background-color: darkgrey;
+}
+

@@ -15,6 +15,7 @@
     display: grid;
     grid-template-rows: 30% 5% 30% 5% 30%;
     grid-template-columns: 30% 70%;
+    
 
 }
 

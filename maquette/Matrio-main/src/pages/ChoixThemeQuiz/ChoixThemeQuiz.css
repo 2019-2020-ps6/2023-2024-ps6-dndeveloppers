@@ -2,19 +2,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 5em;
-    color: white;
-    font-family: "OpenDyslexic", sans-serif;
-    text-shadow: 
-        -2px -2px 0 #000000,  
-        2px -2px 0 #000000,
-        -2px 2px 0 #000000,
-        2px 2px 0 #000000;
+    font-size: 50px;
+    font-family: Verdana, sans-serif; 
+    color: #555b33;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
     font-weight: bold;
-    color: rgb(196, 196, 196);
 }
 
-.background{
-    background-image: url('./assets/fond3.jpg');
-    background-repeat: no-repeat;  
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('./assets/fond.jpg');
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat;
 }

@@ -1,0 +1,108 @@
+
+.linom{
+    margin-top: 1%;
+    font-weight: bold;
+}
+
+.liprenom{
+    margin-top: 1%;
+    font-weight: bold;
+
+}
+
+.liage{
+    margin-top: 1%;
+    font-weight: bold;
+}
+
+.lirole{
+    margin-top: 1%;
+    font-weight: bold;
+}
+
+.titreSection{
+    font-weight: bold;
+}
+
+.box{
+    background-color: rgb(168, 168, 168);
+    border: 2px black solid;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+    padding-left: 2%;
+}
+
+
+.jour, .mois, .annee{
+    margin-right: 10px;
+}
+
+.jour, #name, #Prenom{
+    margin-left: 10px;
+}
+
+.Sizefont{
+    margin-right: 8px;
+}
+
+.returnButton{
+    display: flex;
+    padding-top: 10px;
+    justify-content: center;
+}
+
+.Topbox{
+    background-color: rgb(168, 168, 168);
+    border: 2px black solid;
+    width: fit-content;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+
+.retourBouton {
+    display: inline-block;
+    text-align: center;
+    font-size: 15px;
+    background-color: lightgrey;
+    border: solid black 2px;
+    border-radius: 1rem;
+    cursor:pointer;
+    margin-top: 1%;
+    margin-left: 45%;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.retourBouton:hover {
+    background-color: darkgrey;
+}
+
+.valider {
+    display: inline-block;
+    text-align: center;
+    font-size: 15px;
+    background-color: lightgrey;
+    border: solid black 2px;
+    border-radius: 1rem;
+    cursor:pointer;
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.valider:hover {
+    background-color: darkgrey;
+}
+
