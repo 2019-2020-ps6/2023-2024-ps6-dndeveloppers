@@ -1,86 +1,3 @@
-/* Content from src/pages\Index\Index.css */
-body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: lightyellow;    
-}
-
-.background{
-    background-image: url('./assets/fond3.jpg');
-    background-repeat: no-repeat;  
-}
-
-.boutons{
-    display: grid;
-    grid-template-rows: repeat(4, auto);
-    gap: 10px;
-    margin-right: 9%;  
-}
-
-.TexteModifierQuiz{
-    font-weight: bold;
-    color: rgb(196, 196, 196);
-}
-
-.TextConfigProfil{
-    font-weight: bold;
-    color: rgb(196, 196, 196);
-}
-
-.TextStat{
-    font-weight: bold;
-    color: rgb(196, 196, 196);
-}
-
-/* Content from src/components/allReponses/allReponses.css */
-.allResponses {
-    margin-top: 5%;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
-}
-
-.reponse1 {
-    grid-column: 1;
-    grid-row: 1;
-}
-
-.reponse2 {
-    grid-column: 2;
-    grid-row: 1;
-}
-
-.reponse3 {
-    margin-top: 5%;
-    grid-column: 1;
-    grid-row: 2;
-}
-
-.reponse4 {
-    margin-top: 5%;
-    grid-column: 2;
-    grid-row: 2;
-}
-/* Content from src/components/question/question.css */
-.question {
-    align-items: center;
-}
-
-.question-texte {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    height: auto;  
-    border-radius: 0.5rem;
-    background-color: #a0a023;
-    border: solid black 2px;
-    font-family: "OpenDyslexic", sans-serif;
-    font-weight: bold;
-    color: black;
-}
 /* Content from src/components/profil/profil.css */
 .total {
     width: 300px;
@@ -120,111 +37,6 @@ body {
     grid-row: 5;
     grid-column: 2;
 }
-/* Content from src/components/themeQuiz/themeQuiz.css */
-.custom-button1 {
-    background-image: url('./assets/drapeaux.jpg'); /* Remplacez par le chemin de votre image */
-    background-size: cover;
-    background-position: center;
-    border: black solid 2px;
-    border-radius: 5px;
-    padding: 60px 80px;
-    cursor: pointer;
-    outline: none;
-    color: #40E0D0;
-    font-size: 25px;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
-    font-family: Verdana, Geneva, sans-serif;
-  }
-
-  .custom-button2 {
-    background-image: url('./assets/carte.jpg'); /* Remplacez par le chemin de votre image */
-    background-size: cover;
-    background-position: center;
-    border: black solid 2px;
-    padding: 60px 80px;
-    cursor: pointer;
-    outline: none;
-    color: #40E0D0;
-    font-size: 25px;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
-    font-family: Verdana, Geneva, sans-serif;
-  }
-
-  .custom-button3 {
-    background-image: url('./assets/ballon.jpg'); /* Remplacez par le chemin de votre image */
-    background-size: cover;
-    background-position: center;
-    border: black solid 2px;
-    border-radius: 5px;
-    padding: 60px 80px;
-    cursor: pointer;
-    outline: none;
-    color: #40E0D0;
-    font-size: 25px;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
-    font-family: Verdana, Geneva, sans-serif;
-  }
-
-
-.themeQuizButton:hover {
-    background-color: rgb(1, 132, 97);
-}
-
-.boutonTheme{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    align-items: flex-start;
-    margin-top: 10%;
-}
-  
-.body{
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url('./assets/fond.jpg');
-  background-size: cover;
-}
-/* Content from src/pages\ChoixThemeQuiz\ChoixThemeQuiz.css */
-.titrePage{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 5em;
-    color: white;
-    font-family: "OpenDyslexic", sans-serif;
-    text-shadow: 
-        -2px -2px 0 #000000,  
-        2px -2px 0 #000000,
-        -2px 2px 0 #000000,
-        2px 2px 0 #000000;
-    font-weight: bold;
-    color: rgb(196, 196, 196);
-}
-
-.background{
-    background-image: url('./assets/fond3.jpg');
-    background-repeat: no-repeat;  
-}
 /* Content from src/components/indice/indice.css */
 button {
     border: white;
@@ -237,24 +49,31 @@ button {
     margin-top: auto;
     margin-bottom: auto;
 }
-/* Content from src/components/nomSite/nomSite.css */
-.nomSite {
-    margin-left: 1%;
-    margin-top: -1%;
-    width: 500px;
-}
+/* Content from src/components/bigButton/bigButton.css */
+.bigButton {
 
-.nomSite-texte {
     display: flex;
     align-items: center;
+    height: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bigButton-texte {
+    height: 5rem;
+    width: auto;
+    min-width: 500px;
+    color: white;
+    display: flex;
+    border-radius: 0.5rem;
+    background-color: rgb(71, 176, 80);
     justify-content: center;
-    width: 200px; 
-    font-size: 30px;
-    height: auto;
-    color: black;
-    border-radius: 3rem;
-    background-color: lightgray;
-    border : 2px solid black;
+    align-items: center;   
+    font-size: 2em;
+}
+
+.bigButton-texte:hover {
+    background-color: rgb(113, 145, 159);
 }
 /* Content from src/components/audio/audio.css */
 button {
@@ -265,6 +84,63 @@ button {
 
 #imageAudio {
     width: 120px;
+}
+/* Content from src/components/BoutonMenuDeroulant/BoutonMenuDeroulant.css */
+select, option {
+	background-color: #ffffff;
+	border: black 2px solid;
+	margin-left: 15px;
+}
+
+/* Content from src/components/themeQuiz/themeQuiz.css */
+.themeQuiz{
+    border: solid 2px black;   
+    width: 20vw;
+    height: 30vh;
+    position: relative;
+}
+
+.themeQuizButton{
+    width: 100%;
+    height: 100%;
+}
+
+.TextThemeQuiz{
+    border-bottom: solid;
+    position: relative;
+    text-align: center;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    height: 15%;
+    
+}
+
+.imageThemeQuiz{
+    width: 100%;
+    height: 84%;
+}
+/* Content from src/components/plusieursThemes/plusieursThemes.css */
+.plusieursThemes {
+    height: 300px;
+    margin-top: 70px;
+    margin-left: 250px;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+}
+
+#theme1 {
+    grid-column: 1;
+}
+
+#theme2 {
+    grid-column: 2;
+}
+
+#theme3 {
+    grid-column: 3;
 }
 /* Content from src/pages\Stats\Stats.css */
 #corps {
@@ -331,10 +207,57 @@ h3 {
 .recapQuiz > .grapheGenerique{
     grid-row: 1;
     grid-column: 2;
-    margin-top: 10px;
-    margin-right: 10px;
 }
-/* Content from src/pages\AjouterModifierProfil\AjouterModifierProfil.css */
+/* Content from src/components/question/question.css */
+.question {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    width: 100%;
+    height: 100%;  
+}
+
+.question-texte {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    width: 60%;
+    height: auto;  
+    color: white;
+    border-radius: 3rem;
+    background-color: lightsalmon;
+}
+/* Content from src/components/allReponses/allReponses.css */
+.allResponses {
+    margin-top: 5%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+}
+
+.reponse1 {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.reponse2 {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.reponse3 {
+    margin-top: 5%;
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.reponse4 {
+    margin-top: 5%;
+    grid-column: 2;
+    grid-row: 2;
+}
+/* Content from src/pages\Index\Index.css */
 body {
     width: 100%;
     height: 100%;
@@ -342,72 +265,34 @@ body {
     padding: 0;
 }
 
-.linom{
-    margin-top: 1%;
-    font-weight: bold;
-
+a {
+    text-decoration: none;
 }
 
-.liprenom{
-    margin-top: 1%;
-    font-weight: bold;
-
+.JouerQuiz1 {
+    margin-top: 5%;
+    margin-left: 30%;
 }
 
-.liage{
-    margin-top: 1%;
-    font-weight: bold;
-
+.ModifierQuiz1 {
+    margin-top: 4%;
+    margin-left: 30%;
 }
 
-.imageP{
-    position: absolute;
-    left:85%;
-    top:3%;
+.ConfigProfil1 {
+    margin-top: 4%;
+    margin-left: 30%;
 }
 
-.audioClass, .videoClass, .photoClass, .indiceClass, .lectureAutoClass, .nbReponseClass, .disparitionClass, .reposeClass{
-    margin-left: 10%;
-    margin-top: 1%;
+.Stats1 {
+    margin-top: 4%;
+    margin-left: 30%;
 }
 
-.optionName, .tailleText{
-    margin-left: 2%;
-}
-.tailleText{
-    margin-top: 1%;
-    margin-bottom: 1%;
-}
-
-.tailleText{
-    font-weight: bold;
-}
-
-.titreSection{
-    font-weight: bold;
-}
-/* Content from src/components/questionAide/questionAide.css */
-.QuestionPart {
+.boutons {
     display: flex;
-    width: 100%;
-    justify-content: space-around;
+    flex-direction: column;
 }
-
-.audio { 
-    padding-left: 5%; 
-    margin-right: 10%; 
-}
-
-.question, .QuestionPart {
-    flex-grow: 1;
-    text-align: center;
-}
-
-.indice {
-    padding-right: 5%;
-    margin-left: 10%;
-}
-
 
 /* Content from src/pages\index.css */
 
@@ -439,43 +324,27 @@ a {
   display: flex;
   flex-direction: column;
 }
-/* Content from src/components/BoutonMenuDeroulant/BoutonMenuDeroulant.css */
-select, option {
-	background-color: #ffffff;
-	border: black 2px solid;
-	margin-left: 15px;
-}
-.TextMenuDeroulant{
-	font-weight: bold;
-	color: rgb(196, 196, 196);
+/* Content from src/components/nomSite/nomSite.css */
+.nomSite {
+    margin-left: 1%;
+    margin-top: -1%;
+    width: 300px;
 }
 
-/* Content from src/pages\ConfigureProfil\ConfigureProfil.css */
-.boutonsConfig {
-    display: grid;
-    grid-template-rows: repeat(2, auto);
-    gap: 80px;
-}
-
-.AjouterProfil{
-    margin-left: 29%;
-}
-
-.TexteChoixProfil{
-    color: rgb(196, 196, 196);
-    font-weight: bold;
-}
-
-.TexteAjouterProfil{
-    color: rgb(196, 196, 196);
-    font-weight: bold;
-}
-/* Content from src/components/bigButton/bigButton.css */
-.bigButton {
-
+.nomSite-texte {
     display: flex;
     align-items: center;
-    height: 3rem;
+    justify-content: center;
+    width: 200px; 
+    font-size: 30px;
+    height: auto;
+    color: black;
+    border-radius: 3rem;
+    background-color: lightgray;
+    border : 2px solid black;
+}
+/* Content from src/pages\Resultats\Resultats.css */
+h2 {
     margin-left: auto;
     margin-right: auto;
 }
@@ -505,26 +374,128 @@ select, option {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.bigButton-texte:hover {
-    background-color: #a69fd1;
-    border: inset #322386 4px;
+.choixQuiz1 {
+    display: flex;
+    justify-content: center;
+}
+/* Content from src/components/sommet/sommet.css */
+.nomSite {
+    margin-left: 1%;
+    margin-top: -1%;
+    width: 300px;
+}
+
+.nomSite-texte {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px; 
+    font-size: 30px;
+    height: auto;
+    color: black;
+    border-radius: 3rem;
+    background-color: lightgray;
+    border : 2px solid black;
+}
+/* Content from src/components/BoutonMenuDeroulant/BoutonMenuDeroulant.css */
+select, option {
+	background-color: #ffffff;
+	border: black 2px solid;
+	margin-left: 15px;
+}
+
+/* Content from src/components/indice/indice.css */
+button {
+    border: white;
+}
+
+
+
+#imageIndice {
+    width: 150px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+/* Content from src/pages\ChoixThemeQuiz\ChoixThemeQuiz.css */
+.titrePage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    font-family: Verdana, sans-serif; 
+    color: #555b33;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    font-weight: bold;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('./assets/fond.jpg');
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 /* Content from src/pages\Quiz\Quiz.css */
 
-/* Content from src/components/sommet/sommet.css */
-.nomSite {
-    float: left;
+/* Content from src/pages\AjouterModifierProfil\AjouterModifierProfil.css */
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.linom{
+    margin-top: 1%;
+}
+
+.liprenom{
+    margin-top: 1%;
+}
+
+.liage{
+    margin-top: 1%;
+}
+
+.imageP{
+    position: absolute;
+    left:85%;
+    top:3%;
+}
+
+.audioClass, .videoClass, .photoClass, .indiceClass, .lectureAutoClass, .nbReponseClass, .disparitionClass, .reposeClass{
+    margin-left: 10%;
+    margin-top: 1%;
+}
+
+.optionName, .tailleText{
+    margin-left: 2%;
+}
+.tailleText{
+    margin-top: 4%;
+}
+/* Content from src/pages\ChoixQuiz\ChoixQuiz.css */
+
+/* Content from src/pages\ConfigureProfil\ConfigureProfil.css */
+.boutons {
     display: flex;
-    align-items: self-start;
+    flex-direction: column;
 }
 
-.profil {
-    margin-top: auto;
-    float: right;
+.ModifierQuiz1{
+    margin-left: 30%;
 }
 
-.sommet {
-    display: flow-root;
+.AjouterProfil1{
+    margin-top: 10%;
+    margin-left: 30%;
+}
+
+a {
+    text-decoration: none;
 }
 /* Content from src/components/reponse/reponse.css */
 .reponse {
@@ -540,26 +511,15 @@ select, option {
     align-items: center;
     justify-content: center;
     font-size: 30px;
-    width: 45%;
+    width: 25%;
     height: 100px;  
-    font-weight: bold;
-    color: rgb(196, 196, 196);
-    cursor: pointer;
-    
-    border-radius: 0.5rem;
-    border: outset #322386 4px;
-    background-color: #6958cf;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
-    font-family: Verdana, Geneva, sans-serif;
-
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    color: white;
+    border-radius: 3rem;
+    background-color: rgb(39, 186, 71);
 }
 
 .reponse-texte:hover {
-    background-color: #7e75b2;
-    background-color: #a69fd1;
-    border: inset #322386 4px;
+    background-color: rgb(113, 159, 117);
 }
 /* Content from src/pages\Resultats\Resultats.css */
 h2 {
@@ -596,9 +556,4 @@ h2 {
 .choixQuiz1 {
     display: flex;
     justify-content: center;
-}
-
-#TextBouton{
-    font-weight: bold;
-    color: rgb(196, 196, 196);
 }

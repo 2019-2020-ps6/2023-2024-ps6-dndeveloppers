@@ -2,19 +2,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 5em;
-    color: white;
-    font-family: "OpenDyslexic", sans-serif;
-    text-shadow: 
-        -2px -2px 0 #000000,  
-        2px -2px 0 #000000,
-        -2px 2px 0 #000000,
-        2px 2px 0 #000000;
+    font-size: 50px;
     font-weight: bold;
-    color: rgb(196, 196, 196);
-}
-
-.background{
-    background-image: url('./assets/fond3.jpg');
-    background-repeat: no-repeat;  
+    color: green;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
 }
