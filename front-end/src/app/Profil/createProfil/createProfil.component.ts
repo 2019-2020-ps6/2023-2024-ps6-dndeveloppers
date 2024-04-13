@@ -20,6 +20,7 @@ export class CreateProfilComponent implements OnInit {
     public MonthList: String[] = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
     public FontSizeList: String[] = ['Petit', 'Moyen', 'Grand'];
     
+    
 
     constructor(public formBuilder: FormBuilder, public profilService: ProfilService, private router: Router){
         //console.log("a");
@@ -75,4 +76,6 @@ export class CreateProfilComponent implements OnInit {
     return(){
         this.router.navigate(['home/listProfil/']);
     }
+
+    
 }
