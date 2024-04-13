@@ -14,16 +14,6 @@
     </form>
   </div>
 
-  <div class="card">
-    <h2>Ajouter un thème</h2>
-    <form [formGroup]="themeForm">
-      <label for="title"> Nouveau thème : <br>
-        <input class="input-custom" type="text" id="theme" [formControlName]="'theme'" required>
-      </label><br/>
-      <button type="submit" [disabled]="!themeForm.valid" (click)="addTheme()">Ajouter le thème</button>
-    </form>
-  </div>
-    <!-- Uncomment below to see your form structure and how it changes-->
-    <br><br>{{quizForm.getRawValue() | json}}
-    <br><br>{{themeForm.getRawValue() | json}}
+  <app-addTheme></app-addTheme>
+    <!-- <br><br>{{quizForm.getRawValue() | json}} -->
 </div>

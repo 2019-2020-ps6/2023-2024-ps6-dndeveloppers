@@ -4,7 +4,8 @@
 <app-addQuestion></app-addQuestion>
 
 <!-- Changer le nom / thème du quiz -->
-<app-editQuizGlobal></app-editQuizGlobal>
+<app-editQuizGlobal [nom]="quiz.name" [theme]="quiz.theme"></app-editQuizGlobal>
+<app-addTheme></app-addTheme>
 
 <!-- Modifier / Supprimer une question -->
 <div class="question-list">

@@ -34,6 +34,7 @@ import { StatsGlobalesComponent } from './stats/statsGlobales/statsGlobales.comp
 import { StatsPatientComponent } from './stats/statsPatient/statsPatient.component';
 import { StatsQuizComponent } from './stats/statsQuiz/statsQuiz.component';
 import { ViewQuizComponent } from './quizGestion/viewQuiz/viewQuiz.component';
+import { AddThemeComponent } from './quizGestion/addTheme/addTheme.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { ViewQuizComponent } from './quizGestion/viewQuiz/viewQuiz.component';
     EditQuizGlobalComponent,
     EditQuestionComponent,
     ViewQuizComponent,
+    AddThemeComponent,
 
     // Profil
     EditProfilComponent,

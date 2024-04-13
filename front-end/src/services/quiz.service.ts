@@ -22,7 +22,7 @@ export class QuizService {
   private endOfQuiz: boolean = false;
 
   private themeList: String[] = []; // liste des thèmes de quiz
-  private editedQuiz: Quiz = this.quizzes[0];
+  private editedQuiz: Quiz = this.quizzes[0]; // quiz en cours d'édition
 
   /**
    * Observable which contains the list of the quiz.
@@ -191,5 +191,18 @@ export class QuizService {
         return;
       }
     }
+  }
+
+  editGlobalQuiz(valeurs: string[]){
+    this.editedQuiz.name = valeurs[0];
+    this.editedQuiz.theme = valeurs[1];
+    this.editedQuiz$.next(this.editedQuiz);
+    console.log("Quiz édité");
+  }
+
+  updateQuiz(){
+    let quiz : Quiz = this.editedQuiz;
+    this.deleteQuiz(quiz);
+    this.addQuiz(quiz);
   }
 }

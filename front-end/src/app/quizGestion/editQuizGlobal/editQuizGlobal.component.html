@@ -1,0 +1,14 @@
+<div class="card">
+    <h2>Modifier les valeurs globales du Quiz </h2>
+    <form [formGroup]="quizGlobalForm">
+    <label> Nom <br>
+        <input class="input-custom" type="text" id="nom" [formControlName]="'nom'" required>
+    </label><br/>{{this.nom}}<br/>
+    <label> Thème <br>
+        <select name="input-custom" id="theme" [formControlName]="'theme'" required>
+            <option *ngFor="let currentTheme of themeList" [value]="currentTheme">{{currentTheme}}</option>
+        </select> 
+    </label><br/>{{this.theme}}<br/>
+    <button type="submit" [disabled]="!quizGlobalForm.valid" (click)="editGlobalQuiz()">Modifier</button>
+    </form>
+</div>
