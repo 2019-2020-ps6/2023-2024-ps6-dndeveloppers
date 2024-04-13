@@ -66,10 +66,19 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-
     box-shadow: 0 0 500rem 0 rgb(0, 0, 0);
     width: 500px;
     height: 500px;
+    border: 2px black solid;
     border-radius: 1rem;
-    background-color: white;
+    background-color: rgb(169, 166, 166);
+    padding-left: 3%;
+    padding-right: 3%;
+    text-align: center;
+}
+
+
+.felicitation{
+    font-family: "OpenDyslexic", sans-serif;
+    font-weight: bold;
 }

@@ -4,7 +4,7 @@
     <button class="reponse-texte" id="third" name="button" (click)="responseSelected(2)">{{actualResponses[2].value}}</button>
     <button class="reponse-texte" id="fourth" name="button" (click)="responseSelected(3)">{{actualResponses[3].value}}</button>
     <div id="endPopup" *ngIf="endOfQuiz">
-        <p>End of quiz</p>
-        <app-comeBack class="returnButton"></app-comeBack>
+        <p class="felicitation">Félicitation, vous avez terminé le quiz !</p>
+        <app-comeBack class="PopupreturnButton"></app-comeBack>
     </div>
 </div>
