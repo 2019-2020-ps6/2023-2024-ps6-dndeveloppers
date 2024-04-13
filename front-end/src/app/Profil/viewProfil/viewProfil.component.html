@@ -3,7 +3,7 @@
     <h2>
         <span> Nom : {{profil.nom}}   </span><br/>
         <span> Prénom: {{profil.prenom}} </span><br/>
-        <img id="imageProfil" src="./assets/imageProfil/default.png" ><br/>
+        <img id="imageProfil" [src]=profil.photo /><br/>
         <button [routerLink]="['listQuiz']" (click)="selectProfil(profil)">Sélectionner</button>
     </h2>
 </div>
@@ -13,7 +13,7 @@
     <h2>
         <span> Nom : {{profil.nom}}   </span><br/>
         <span> Prénom: {{profil.prenom}} </span><br/>
-        <img id="imageProfil" src="./assets/imageProfil/default.png" ><br/>
+        <img id="imageProfil" [src]=profil.photo /><br/>
         <button (click)="showProfil(profil)">Afficher</button>
         <button (click)="selectProfil(profil)">Sélectionner</button><br/>
         <button (click)="editProfil(profil)">Modifier</button>
@@ -24,7 +24,7 @@
 <div class="popup" *ngIf="typeView==='full'">
     <span> Nom : {{profil.nom}}   </span><br/>
     <span> Prénom: {{profil.prenom}} </span><br/>
-    <img id="imageProfil" src="./assets/imageProfil/default.png" ><br/>
+    <img id="imageProfil" [src]=profil.photo /><br/>
     Date de Naissance : <br/>
     <span *ngIf="profil.dateNaissance!==undefined; else elseDate"> {{profil.dateNaissance[0]}} / {{profil.dateNaissance[1]}} / {{profil.dateNaissance[2]}}</span>
     <ng-template #elseDate>Non renseignée</ng-template>
