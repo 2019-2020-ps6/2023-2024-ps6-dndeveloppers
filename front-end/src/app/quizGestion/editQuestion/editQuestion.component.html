@@ -1,29 +1,32 @@
 <div class="card">
     <form [formGroup]="questionForm">
     <label> Question <br>
-        <input class="input-custom" type="text" id="label" [formControlName]="'label'" required> <br>{{this?.question?.label}}
+        <input class="input-custom" type="text" id="label" [formControlName]="'label'" required> <br> <p class="indent">{{this?.question?.label}}</p>
     </label><br/>
     <label> Réponse 1 <br>
-        <input class="input-custom" type="text" id="q1" [formControlName]="'q1'" required> <br>{{this.answers[0]}}
+        <input class="input-custom" type="text" id="q1" [formControlName]="'q1'" required> <br> <p class="indent">{{this.answers[0]}}</p>
     </label><br/>
     <label> Réponse 2 <br>
-        <input class="input-custom" type="text" id="q2" [formControlName]="'q2'" required> <br>{{this.answers[1]}}
+        <input class="input-custom" type="text" id="q2" [formControlName]="'q2'" required> <br> <p class="indent">{{this.answers[1]}}</p>
         </label><br/>
     <label> Réponse 3 <br>
-        <input class="input-custom" type="text" id="q3" [formControlName]="'q3'" required> <br>{{this.answers[2]}}
+        <input class="input-custom" type="text" id="q3" [formControlName]="'q3'" required> <br><p class="indent">{{this.answers[2]}}</p>
         </label><br/>
     <label> Réponse 4 <br>
-        <input class="input-custom" type="text" id="q4" [formControlName]="'q4'" required> <br>{{this.answers[3]}}
+        <input class="input-custom" type="text" id="q4" [formControlName]="'q4'" required> <br><p class="indent">{{this.answers[3]}}</p>
         </label><br/>
     <label>Bonne réponse : <br>
-        <select name="theme-field" id="goodAnswer" [formControlName]="'goodAnswer'" required> 
-        <option [value]="1">1</option>
-        <option [value]="2">2</option>
-        <option [value]="3">3</option>
-        <option [value]="4">4</option>
-        </select> {{this.numberGoodAnswer}}
+            <select name="theme-field" id="goodAnswer" [formControlName]="'goodAnswer'" required> 
+                <option [value]="1">1</option>
+                <option [value]="2">2</option>
+                <option [value]="3">3</option>
+                <option [value]="4">4</option>
+                </select>{{this.numberGoodAnswer}}
     </label><br>
-    <button type="submit" [disabled]="!questionForm.valid" (click)="editQuestion()">Modifier</button>
-    <button type="submit" (click)="deleteQuestion()">Supprimer</button>
+    <div class="espace">
+        <button type="submit" [disabled]="!questionForm.valid" (click)="editQuestion()">Modifier</button>
+        <button type="submit" (click)="deleteQuestion()">Supprimer</button>
+    </div>
+    
     </form>
 </div>
