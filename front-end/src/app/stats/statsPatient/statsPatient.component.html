@@ -7,13 +7,13 @@
 
     <ul>
         <li>Nom du patient : {{actualPatient.prenom}}</li> <!--Static actualisable-->
+        <li *ngIf="!actualPatient.optionPhoto && !actualPatient.optionIndice">Option du patient : </li> <!--Static actualisable-->
         <li *ngIf="actualPatient.optionPhoto && !actualPatient.optionIndice">Option du patient : Photo</li> <!--Static actualisable-->
         <li *ngIf="!actualPatient.optionPhoto && actualPatient.optionIndice">Option du patient : Indice</li> <!--Static actualisable-->
         <li *ngIf="actualPatient.optionPhoto && actualPatient.optionIndice">Options du patient : Photo, Indice</li> <!--Static actualisable-->
         <li>Nombre de quiz réalisés : {{actualPatient.selfStats.nbQuizDone}}</li> <!--Actualisable-->
         <li>Score moyen : {{actualPatient.selfStats.meanScore}}</li> <!--Actualisable-->
-        <li>5 derniers quiz joués : </li>
+        <li>5 derniers quiz joués : {{actualPatient.selfStats.quizRes}} </li>
     </ul>
-    <p>view-graph works!</p>
     <div id="container"></div>
 </div>

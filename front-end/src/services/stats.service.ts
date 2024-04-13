@@ -63,15 +63,16 @@ export class StatsService {
     public patientMeanScore$: BehaviorSubject<number> = new BehaviorSubject(this.patientMeanScore);
     public fiveLastQuizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.fiveLastQuizzes);
 
-    /*
-     * Pour les statistiques par theme
-     */
+    patientNewData(profil: Profil, score: number) {
+      profil.selfStats.nbQuizDone++;
+      profil.selfStats.quizRes.push(score);
 
-    private theme: string = "";
-    private score: number = 0;
-
-    public theme$: BehaviorSubject<string> = new BehaviorSubject(this.theme);
-    public score$: BehaviorSubject<number> = new BehaviorSubject(this.score);
+      let num = 0;
+      for (let i=0; i<profil.selfStats.quizRes.length; i++) {
+        num += profil.selfStats.quizRes[i];
+      }
+      profil.selfStats.meanScore = num/profil.selfStats.quizRes.length;
+    }
 
     /*
      * Pour les statistiques par quiz
@@ -141,17 +142,6 @@ export class StatsService {
         num += this.actualQuiz.selfStats.nbHintUsed[i];
       }
       this.actualQuiz.selfStats.meanHintUsed = num/this.actualQuiz.selfStats.nbHintUsed.length;
-    }
-
-    patientNewData(profil: Profil, score: number) {
-      profil.selfStats.nbQuizDone++;
-      profil.selfStats.quizRes.push(score);
-
-      let num = 0;
-      for (let i=0; i<profil.selfStats.quizRes.length; i++) {
-        num += profil.selfStats.quizRes[i];
-      }
-      profil.selfStats.meanScore = num/profil.selfStats.quizRes.length;
     }
 
     refreshQuizSubscribers() {

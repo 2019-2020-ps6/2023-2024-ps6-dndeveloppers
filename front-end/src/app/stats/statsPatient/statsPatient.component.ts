@@ -29,7 +29,12 @@ export class StatsPatientComponent implements OnInit {
             categories: ['1', '2', '3'],
             tickmarkPlacement: 'on',
             title: {
-                enabled: false
+                text: 'Quiz joué n°',
+            }
+        },
+        yAxis: {
+            title: {
+                text: 'Score'
             }
         },
         series: [{

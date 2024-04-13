@@ -112,9 +112,9 @@ export class QuizService {
     if (this.actualQuestionNumber == quiz.questions.length-1) {
       console.log("C'était la dernière question");
       this.statsService.addQuizDone();
-      this.statsService.meanScoreNewData(this.actualScore);
+      this.statsService.meanScoreNewData(this.actualScore/quiz.questions.length);
       this.statsService.usedHintNewData(this.usedHint);
-      this.statsService.patientNewData(this.actualProfil, this.actualScore);
+      this.statsService.patientNewData(this.actualProfil, this.actualScore/quiz.questions.length);
       this.endOfQuiz = true;
       this.endOfQuiz$.next(this.endOfQuiz);
     } else {

@@ -11,16 +11,16 @@ export const STATS_PATIENT_INIT: statsPatient = {
 export const STATS_PATIENT_MAURICE: statsPatient = {
     options: [true],
     nbQuizDone: 2,
-    meanScore: 1.5,
-    quizRes: [2,1],
+    meanScore: 0.75,
+    quizRes: [1,0.5],
     nbAttemptForEachQuizDone: [1,1]
 }
 
 export const STATS_PATIENT_JOSEPH: statsPatient = {
     options: [true],
     nbQuizDone: 1,
-    meanScore: 1,
-    quizRes: [1],
+    meanScore: 0.5,
+    quizRes: [0.5],
     nbAttemptForEachQuizDone: [0,1]
 
 }
