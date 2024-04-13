@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { QUIZ_LIST } from "src/mocks/quiz-list.mock";
+import { QUIZ_LIST, QUIZ_NULL } from "src/mocks/quiz-list.mock";
 import { Quiz } from "src/models/quiz.model";
 import { StatsService } from "src/services/stats.service";
 
@@ -12,7 +12,7 @@ import { StatsService } from "src/services/stats.service";
 export class StatsQuizComponent implements OnInit {
 
     public listeQuiz: Quiz[] = QUIZ_LIST;
-    public actualQuiz: Quiz = this.listeQuiz[0];
+    public actualQuiz: Quiz = QUIZ_NULL;
 
     constructor(public statsService: StatsService){
         this.statsService.actualQuiz$.subscribe((actualQuiz) => {

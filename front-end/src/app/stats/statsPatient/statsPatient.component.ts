@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import * as Highcharts from 'highcharts'
-import { LISTE_PROFILS } from "src/mocks/profil-list.mock";
+import { LISTE_PATIENTS, LISTE_PROFILS } from "src/mocks/profil-list.mock";
+import { ADMIN } from "src/mocks/profil.mock";
 import { Profil } from "src/models/profil.model";
 
 @Component({
@@ -11,10 +12,10 @@ import { Profil } from "src/models/profil.model";
 
 export class StatsPatientComponent implements OnInit {
 
-    public listePatient: Profil[] = LISTE_PROFILS;
-    public actualPatient: Profil  = this.listePatient[0];
-    public actualCategories: string[] = ['1', '2'];
-    public actualData: number[] = [50, 70];//this.actualPatient.selfStats.quizRes;
+    public listePatient: Profil[] = LISTE_PATIENTS;
+    public actualPatient: Profil  = ADMIN;
+    public actualCategories: string[] = [];
+    public actualData: number[] = [];
 
     public options: any = {
         Chart: {
@@ -40,7 +41,7 @@ export class StatsPatientComponent implements OnInit {
             }
         },
         series: [{
-            name: 'QuizName',
+            name: 'Score du patient pour le quiz n°',
             data: this.actualData
         }]
     }

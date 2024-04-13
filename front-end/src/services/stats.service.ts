@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ListProfilComponent } from 'src/app/Profil/listProfil/listProfil.component';
 import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
-import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
+import { QUIZ_LIST, QUIZ_NULL } from 'src/mocks/quiz-list.mock';
 import { Profil } from 'src/models/profil.model';
 import { Quiz } from 'src/models/quiz.model';
 
@@ -78,7 +78,7 @@ export class StatsService {
      * Pour les statistiques par quiz
      */
 
-    private actualQuiz: Quiz = QUIZ_LIST[0];
+    private actualQuiz: Quiz = QUIZ_NULL;
     private actualQuizId: number = 0;
     private actualScore: number = 0;
     private maxScore: number = QUIZ_LIST[0].questions.length;
