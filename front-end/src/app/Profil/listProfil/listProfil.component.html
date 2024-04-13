@@ -8,5 +8,13 @@
             <app-viewProfil *ngIf="profil.role === 'patient'" [profil]="profil"></app-viewProfil>
         </div>
     </div>
+
+    <h2> Liste du personnel : </h2>
+    <div class="profil-list">
+        <div *ngFor="let profil of profilList">
+            <app-viewProfil *ngIf="profil.role === 'personnel'" [profil]="profil"></app-viewProfil>
+        </div>
+    </div>
+
     <app-comeBack class="returnButton"></app-comeBack>
 </section>
