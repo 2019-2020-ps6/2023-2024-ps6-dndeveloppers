@@ -1,24 +1,29 @@
 <div class="create">
   <div class="card">
     <h2>Créer un nouveau Quiz</h2>
-    <form class="quiz-form" [formGroup]="quizForm">
+    <form [formGroup]="quizForm">
       <label for="title"> Titre <br>
         <input class="input-custom" type="text" id="name" [formControlName]="'name'" required>
       </label><br/>
-      <label for="theme">
-        Thème <br>
-        <select name="theme-field" id="theme" [formControlName]="'theme'">
+      <label for="theme">Thème <br>
+        <select name="theme-field" id="theme" [formControlName]="'theme'" required>
           <option *ngFor="let currentTheme of themeList" [value]="currentTheme">{{currentTheme}}</option>
         </select>
-      </label>
-      <br>
-      <button type="submit" class="button-card" (click)="addQuiz()">Create</button>
+      </label><br>
+      <button type="submit" [disabled]="!quizForm.valid" (click)="addQuiz()">Ajouter le Quiz</button>
     </form>
   </div>
 
   <div class="card">
     <h2>Ajouter un thème</h2>
+    <form [formGroup]="themeForm">
+      <label for="title"> Nouveau thème : <br>
+        <input class="input-custom" type="text" id="theme" [formControlName]="'theme'" required>
+      </label><br/>
+      <button type="submit" [disabled]="!themeForm.valid" (click)="addTheme()">Ajouter le thème</button>
+    </form>
   </div>
     <!-- Uncomment below to see your form structure and how it changes-->
     <br><br>{{quizForm.getRawValue() | json}}
+    <br><br>{{themeForm.getRawValue() | json}}
 </div>

@@ -11,6 +11,7 @@ import { Quiz } from '../../../models/quiz.model';
 })
 export class CreateQuizComponent implements OnInit {
   public quizForm: FormGroup;
+  public themeForm: FormGroup;
   public themeList: String[] = []
 
   constructor(public formBuilder: FormBuilder, public quizService: QuizService) {
@@ -22,6 +23,11 @@ export class CreateQuizComponent implements OnInit {
       name: [''],
       theme: [''],
     });
+
+    this.themeForm = this.formBuilder.group({
+      theme: ['']
+    });
+
   }
 
   ngOnInit() {
@@ -32,6 +38,10 @@ export class CreateQuizComponent implements OnInit {
     quizToCreate.questions = [];
     console.log('Add quiz: ', quizToCreate);
     this.quizService.addQuiz(quizToCreate);
+  }
+
+  addTheme(){
+    this.quizService.addTheme(this.themeForm.value.theme);
   }
 
 }

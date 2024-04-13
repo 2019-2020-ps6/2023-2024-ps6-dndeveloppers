@@ -139,6 +139,15 @@ export class QuizService {
     }
     this.themeList = newThemeList;
     this.themeList$.next(this.themeList);
-    console.log(this.themeList);
+    console.log("Liste des thèmes actuellement présents : ",this.themeList);
+  }
+
+  addTheme(theme: String){
+    let a = "aaa";
+    console.log(theme);
+    console.log(a);
+    this.themeList.push(theme);
+    this.themeList$.next(this.themeList);
+    console.log("Le thème : ",theme," a été rajouté (temporairement)")
   }
 }
