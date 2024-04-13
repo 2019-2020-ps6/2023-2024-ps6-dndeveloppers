@@ -24,6 +24,14 @@ export class ListReponsesComponent implements OnInit {
     public profil: Profil  = this.listePatient[0];
     public possibleEndMessage: String[] = [];
 
+    public nbBonneReponses: number = 0;
+    public nbIndiceUtilise: number = 0;
+    public streakDeBonneReponse: number = 0;
+
+    public bonScore: boolean = false;
+    public bonneStreak: boolean = false;
+    public peuDindice: boolean = false;
+
     constructor(public quizService: QuizService){
         this.quizService.actualQuestionNumber$.subscribe((actualQuestionNumber) => {
             this.actualQuestionNumber = actualQuestionNumber;
@@ -31,6 +39,30 @@ export class ListReponsesComponent implements OnInit {
 
         this.quizService.endOfQuiz$.subscribe((endOfQuiz) => {
             this.endOfQuiz = endOfQuiz;
+        })
+
+        this.quizService.bonScore$.subscribe((bonScore) => {
+            this.bonScore = bonScore;
+        })
+
+        this.quizService.bonneStreak$.subscribe((bonneStreak) => {
+            this.bonneStreak = bonneStreak;
+        })
+
+        this.quizService.peuDindice$.subscribe((peuDindice) => {
+            this.peuDindice = peuDindice;
+        })
+
+        this.quizService.nbBonneReponses$.subscribe((nbBonneReponses) => {
+            this.nbBonneReponses = nbBonneReponses;
+        })
+
+        this.quizService.nbIndiceUtilise$.subscribe((nbIndiceUtilise) => {
+            this.nbIndiceUtilise = nbIndiceUtilise;
+        })
+
+        this.quizService.streakDeBonneReponse$.subscribe((streakDeBonneReponse) => {
+            this.streakDeBonneReponse = streakDeBonneReponse;
         })
     }
 
@@ -55,4 +87,5 @@ export class ListReponsesComponent implements OnInit {
     loadQuestion(nbQuestion: number) {
         this.actualResponses = this.quiz.questions[this.actualQuestionNumber].answers;
     }
+
 }

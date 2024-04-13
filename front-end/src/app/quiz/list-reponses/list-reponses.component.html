@@ -7,9 +7,9 @@
         <p class="felicitation">Félicitation, vous avez terminé le quiz !</p>
         <p>Bravo! :</p>
         <p>Vous avez répondu à {{actualQuestionNumber+1}} questions lors de ce quiz</p>
-        <p>Vouz avez eu ... bonne réponse.</p>
-        <p>Vous avez répondu correctement ... fois de suite</p>
-        <p>Vous n'avez utilisé que ... indices</p>
+        <p *ngIf="bonScore===true">Vouz avez eu {{nbBonneReponses}} bonne réponse.</p>
+        <p *ngIf="bonneStreak===true">Vous avez répondu correctement {{streakDeBonneReponse}} fois de suite</p>
+        <p *ngIf="peuDindice===true">Vous n'avez utilisé que {{nbIndiceUtilise}} indices</p>
         <app-comeBack class="PopupreturnButton"></app-comeBack>
     </div>
 </div>
