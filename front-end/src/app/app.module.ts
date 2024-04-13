@@ -6,16 +6,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { IndiceComponent } from './quiz/indice/indice.component';
+import { HomeComponent } from './home/home.component';
+
 import { QuestionComponent } from './quiz/question/question.component';
 import { ReponseComponent } from './quiz/reponse/reponse.component';
 import { ListReponsesComponent } from './quiz/list-reponses/list-reponses.component';
 import { QuizComponent } from './quiz/quiz/quiz.component';
-import { CreateQuizComponent } from './createQuiz/createQuiz.component';
 import { ListQuizComponent } from './listQuiz/listQuiz.component';
 import { ChoixQuizComponent } from './quiz/choixQuiz/choixQuiz.component';
-import { HomeComponent } from './home/home.component';
 import { ComeBackComponent } from './quiz/comeBack/comeBack.component';
 import { HeaderComponent } from './header/header.component';
+
+import { CreateQuizComponent } from './quizGestion/createQuiz/createQuiz.component';
+import { QuizGestionComponent } from './quizGestion/quizGestion/quizGestion.component';
+import { EditQuizComponent } from './quizGestion/editQuiz/editQuiz.component';
+import { AddQuestionComponent } from './quizGestion/addQuestion/addQuestion.component';
+import { EditQuizGlobalComponent } from './quizGestion/editQuizGlobal/editQuizGlobal.component';
+import { EditQuestionComponent } from './quizGestion/editQuestion/editQuestion.component';
 
 import { EditProfilComponent } from './Profil/editProfil/editProfil.component';
 import { ListProfilComponent } from './Profil/listProfil/listProfil.component';
@@ -26,31 +33,44 @@ import { StatsComponent } from './stats/stats.component';
 import { StatsGlobalesComponent } from './stats/statsGlobales/statsGlobales.component';
 import { StatsPatientComponent } from './stats/statsPatient/statsPatient.component';
 import { StatsQuizComponent } from './stats/statsQuiz/statsQuiz.component';
+import { ViewQuizComponent } from './quizGestion/viewQuiz/viewQuiz.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    HomeComponent,
+
+    // Jouer Quiz
     IndiceComponent,
     QuestionComponent,
     ReponseComponent,
     ListReponsesComponent,
     QuizComponent,
-    CreateQuizComponent,
     ListQuizComponent,
     ChoixQuizComponent,
-    HomeComponent,
     ComeBackComponent,
-    StatsComponent,
-    StatsGlobalesComponent,
-    StatsPatientComponent,
-    StatsQuizComponent,
-    
+
+    // Création - Edition - Gestion des Quiz
+    QuizGestionComponent,
+    CreateQuizComponent,
+    EditQuizComponent,
+    AddQuestionComponent,
+    EditQuizGlobalComponent,
+    EditQuestionComponent,
+    ViewQuizComponent,
+
     // Profil
     EditProfilComponent,
     ListProfilComponent,
     ViewProfilComponent,
-    CreateProfilComponent
+    CreateProfilComponent,
+
+    // Stats
+    StatsComponent,
+    StatsGlobalesComponent,
+    StatsPatientComponent,
+    StatsQuizComponent,
   ],
   imports: [
     BrowserModule,

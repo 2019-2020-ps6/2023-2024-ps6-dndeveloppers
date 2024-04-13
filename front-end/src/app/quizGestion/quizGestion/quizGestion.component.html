@@ -1,0 +1,14 @@
+<app-header></app-header>
+
+<!-- Création de quiz -->
+<app-create-quiz></app-create-quiz>
+
+
+<!-- Affichage de tout les quiz -->
+<div class="quiz-list">
+    <div *ngFor="let quiz of quizList">
+        <app-viewQuiz [quiz]="quiz"></app-viewQuiz>
+    </div>
+</div>
+
+<app-comeBack class="returnButton"></app-comeBack>

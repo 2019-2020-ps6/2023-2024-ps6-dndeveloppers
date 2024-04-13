@@ -4,6 +4,4 @@
         <span> Thème: {{quiz.theme}} </span><br/>
         <span> Nb questions : {{quiz.questions?.length}}</span><br/>
     </h2>
-    <button class="button-card" [routerLink]="['app-quiz',quiz.name]"  (click)="selectQuiz(this.quiz)">Sélectionner</button>
-    <button class="button-card" (click)="delete(this.quiz)">Supprimer</button>
 </div>
