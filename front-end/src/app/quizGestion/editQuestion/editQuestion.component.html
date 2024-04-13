@@ -1,1 +1,29 @@
-{{question?.label}}
+<div class="card">
+    <form [formGroup]="questionForm">
+    <label> Question <br>
+        <input class="input-custom" type="text" id="label" [formControlName]="'label'" required> <br>{{this?.question?.label}}
+    </label><br/>
+    <label> Réponse 1 <br>
+        <input class="input-custom" type="text" id="q1" [formControlName]="'q1'" required> <br>{{this.answers[0]}}
+    </label><br/>
+    <label> Réponse 2 <br>
+        <input class="input-custom" type="text" id="q2" [formControlName]="'q2'" required> <br>{{this.answers[1]}}
+        </label><br/>
+    <label> Réponse 3 <br>
+        <input class="input-custom" type="text" id="q3" [formControlName]="'q3'" required> <br>{{this.answers[2]}}
+        </label><br/>
+    <label> Réponse 4 <br>
+        <input class="input-custom" type="text" id="q4" [formControlName]="'q4'" required> <br>{{this.answers[3]}}
+        </label><br/>
+    <label>Bonne réponse : <br>
+        <select name="theme-field" id="goodAnswer" [formControlName]="'goodAnswer'" required> 
+        <option [value]="1">1</option>
+        <option [value]="2">2</option>
+        <option [value]="3">3</option>
+        <option [value]="4">4</option>
+        </select> {{this.numberGoodAnswer}}
+    </label><br>
+    <button type="submit" [disabled]="!questionForm.valid" (click)="editQuestion()">Modifier</button>
+    <button type="submit" (click)="deleteQuestion()">Supprimer</button>
+    </form>
+</div>

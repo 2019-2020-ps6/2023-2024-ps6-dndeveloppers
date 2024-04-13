@@ -8,7 +8,7 @@
 
 <!-- Modifier / Supprimer une question -->
 <div class="question-list">
-    <div *ngFor="let question of quiz?.questions">
-        <app-editQuestion [question]="question"></app-editQuestion>
+    <div *ngFor="let currentQuestion of quiz.questions">
+        <app-editQuestion [question]="currentQuestion" async></app-editQuestion>
     </div>
-</div>
+</div> 

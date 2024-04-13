@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { QUIZ_LIST } from "src/mocks/quiz-list.mock";
 import { Question } from "src/models/question.models";
 import { Quiz } from "src/models/quiz.model";
 import { QuizService } from "src/services/quiz.service";
@@ -11,12 +12,16 @@ import { QuizService } from "src/services/quiz.service";
 
 export class EditQuizComponent implements OnInit {
     @Input()
-    public quiz: Quiz | undefined;
+    public quiz: Quiz = QUIZ_LIST[0];
 
+    public questionListe : Question[] = [];
 
     constructor(public quizService: QuizService){
         this.quizService.editedQuiz$.subscribe( (quiz) => {
             this.quiz = quiz;
+            this.questionListe = this.quiz.questions;
+            console.log(this.questionListe)
+            console.log(this.questionListe[0])
         });
     }
 
