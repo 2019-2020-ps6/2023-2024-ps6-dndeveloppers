@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { Question } from "src/models/question.models";
 
 @Component({
     selector: 'app-editQuizGlobal',
@@ -13,6 +14,7 @@ export class EditQuizGlobalComponent implements OnInit {
     }
 
     @Input()
+    question: Question | undefined;
 
     ngOnInit(): void {}
 }

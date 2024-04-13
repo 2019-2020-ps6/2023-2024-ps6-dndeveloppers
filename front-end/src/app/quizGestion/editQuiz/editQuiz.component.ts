@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { Question } from "src/models/question.models";
+import { Quiz } from "src/models/quiz.model";
+import { QuizService } from "src/services/quiz.service";
 
 @Component({
     selector: 'editQuiz',
@@ -7,12 +10,17 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 
 export class EditQuizComponent implements OnInit {
+    @Input()
+    public quiz: Quiz | undefined;
 
 
-    constructor(){
+    constructor(public quizService: QuizService){
+        this.quizService.editedQuiz$.subscribe( (quiz) => {
+            this.quiz = quiz;
+        });
     }
 
-    @Input()
+    
 
     ngOnInit(): void {}
 }

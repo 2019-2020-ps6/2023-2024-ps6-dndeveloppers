@@ -22,6 +22,7 @@ export class QuizService {
   private endOfQuiz: boolean = false;
 
   private themeList: String[] = []; // liste des thèmes de quiz
+  private editedQuiz: Quiz = this.quizzes[0];
 
   /**
    * Observable which contains the list of the quiz.
@@ -35,6 +36,7 @@ export class QuizService {
   public endOfQuiz$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   public themeList$: BehaviorSubject<String[]> = new BehaviorSubject(this.themeList);
+  public editedQuiz$ : BehaviorSubject<Quiz> = new BehaviorSubject(this.editedQuiz);
 
   public url: string = "";
 
@@ -149,5 +151,17 @@ export class QuizService {
     this.themeList.push(theme);
     this.themeList$.next(this.themeList);
     console.log("Le thème : ",theme," a été rajouté (temporairement)")
+  }
+
+  editingQuiz(quiz: Quiz){
+    this.editedQuiz = quiz;
+    this.editedQuiz$.next(this.editedQuiz);
+    console.log("edition : ",quiz);
+  }
+
+  addQuestion(question: Question){
+    this.editedQuiz.questions.push(question);
+    console.log("Question ", question, " ajoutée.");
+    console.log(this.editedQuiz);
   }
 }

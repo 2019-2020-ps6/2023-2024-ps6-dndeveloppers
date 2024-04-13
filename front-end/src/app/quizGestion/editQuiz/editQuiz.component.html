@@ -1,0 +1,14 @@
+<app-header></app-header>
+
+<!-- Ajouter une question -->
+<app-addQuestion></app-addQuestion>
+
+<!-- Changer le nom / thème du quiz -->
+<app-editQuizGlobal></app-editQuizGlobal>
+
+<!-- Modifier / Supprimer une question -->
+<div class="question-list">
+    <div *ngFor="let question of quiz?.questions">
+        <app-editQuestion [question]="question"></app-editQuestion>
+    </div>
+</div>
