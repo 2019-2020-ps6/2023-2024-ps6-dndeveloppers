@@ -22,7 +22,7 @@ export class StatsPatientComponent implements OnInit {
             height: 700
         },
         title: {
-            text: 'Evolution'
+            text: 'Evolution du score du patient au fil des quiz joués'
         },
         credits: {
             enabled: false
@@ -36,7 +36,7 @@ export class StatsPatientComponent implements OnInit {
         },
         yAxis: {
             title: {
-                text: 'Score'
+                text: 'Score(%)'
             }
         },
         series: [{
