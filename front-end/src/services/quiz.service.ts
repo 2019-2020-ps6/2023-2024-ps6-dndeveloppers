@@ -11,16 +11,6 @@ import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
   providedIn: 'root'
 })
 export class QuizService {
-  /**
-   * Services Documentation:
-   * https://angular.io/docs/ts/latest/tutorial/toh-pt4.html
-   */  
-
-   /**
-    * The list of quiz.
-    * The list is retrieved from the mock.
-    */
-
   private actualProfil: Profil = LISTE_PROFILS[0];
   private quizzes: Quiz[] = QUIZ_LIST;
   private choosenQuiz: Quiz = this.quizzes[0];
@@ -30,6 +20,9 @@ export class QuizService {
   private actualScore: number = 0;
   private usedHint: number = 0;
   private endOfQuiz: boolean = false;
+
+  private themeList: String[] = []; // liste des thèmes de quiz
+  private editedQuiz: Quiz = this.quizzes[0]; // quiz en cours d'édition
 
   /**
    * Observable which contains the list of the quiz.
@@ -42,6 +35,9 @@ export class QuizService {
   public actualQuestionNumber$: BehaviorSubject<number> = new BehaviorSubject(0);
   public endOfQuiz$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
+  public themeList$: BehaviorSubject<String[]> = new BehaviorSubject(this.themeList);
+  public editedQuiz$ : BehaviorSubject<Quiz> = new BehaviorSubject(this.editedQuiz);
+
   public url: string = "";
 
   constructor(public statsService: StatsService) {}
@@ -51,8 +47,6 @@ export class QuizService {
   }
 
   addQuiz(quiz: Quiz) {
-    // You need here to update the list of quiz and then update our observable (Subject) with the new list
-    // More info: https://angular.io/tutorial/toh-pt6#the-searchterms-rxjs-subject
     this.quizzes.push(quiz);
     this.quizzes$.next(this.quizzes);
   }
@@ -136,5 +130,79 @@ export class QuizService {
         console.log("Quiz sélectionné : ",this.quizzes[i].name);
       }
     }
+  }
+
+  // ------------------------------------------------------------ thèmes ---------------------------------------------------------------------------------
+
+  setUpTheme(){ // mettre à jour la liste des thèmes
+    let newThemeList: String[] = [];
+    for(let i=0;i<this.quizzes.length;i++){
+      if(newThemeList.lastIndexOf(this.quizzes[i].theme) == -1){
+          newThemeList.push(this.quizzes[i].theme);
+      }
+    }
+    this.themeList = newThemeList;
+    this.themeList$.next(this.themeList);
+    console.log("Liste des thèmes actuellement présents : ",this.themeList);
+  }
+
+  addTheme(theme: String){
+    let a = "aaa";
+    console.log(theme);
+    console.log(a);
+    this.themeList.push(theme);
+    this.themeList$.next(this.themeList);
+    console.log("Le thème : ",theme," a été rajouté (temporairement)")
+  }
+
+  // ------------------------------------------------------------ édition quiz/questions ------------------------------------------------------------------------------
+
+  editingQuiz(quiz: Quiz){
+    this.editedQuiz = quiz;
+    this.editedQuiz$.next(this.editedQuiz);
+    console.log("edition : ",quiz);
+  }
+
+  addQuestion(question: Question){
+    this.editedQuiz.questions.push(question);
+
+    this.editedQuiz.nbQuestionsPerType
+    console.log("Question ", question, " ajoutée.");
+    console.log(this.editedQuiz);
+  }
+
+  deleteQuestion(question: Question){
+    let questions: Question[] = [];
+    for(let i=0;i<this.editedQuiz.questions.length;i++){
+      if(this.editedQuiz.questions[i] != question){
+        questions.push(this.editedQuiz.questions[i]);
+      }
+    }
+    this.editedQuiz.questions = questions;
+    this.editedQuiz$.next(this.editedQuiz);
+    console.log("Question supprimée");
+  }
+
+  editQuestion(question: Question){
+    for(let i=0;i<this.editedQuiz.questions.length;i++){
+      if(this.editedQuiz.questions[i].label == question.label){
+        this.editedQuiz.questions[i] = question;
+        console.log("Question éditée");
+        return;
+      }
+    }
+  }
+
+  editGlobalQuiz(valeurs: string[]){
+    this.editedQuiz.name = valeurs[0];
+    this.editedQuiz.theme = valeurs[1];
+    this.editedQuiz$.next(this.editedQuiz);
+    console.log("Quiz édité");
+  }
+
+  updateQuiz(){
+    let quiz : Quiz = this.editedQuiz;
+    this.deleteQuiz(quiz);
+    this.addQuiz(quiz);
   }
 }

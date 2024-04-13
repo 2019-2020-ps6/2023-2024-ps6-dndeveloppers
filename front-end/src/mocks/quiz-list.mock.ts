@@ -1,6 +1,33 @@
 import { Quiz } from '../models/quiz.model';
-import { Question } from '../models/question.models';
+import { Answer, Question } from '../models/question.models';
 import { STATS_ACTORS, STATS_SPORTS } from './statsMocks/stats-quiz.mock';
+
+export const Answer_Model1: Answer = {
+    value:'',
+    isCorrect:false,
+}
+
+export const Answer_Model2: Answer = {
+    value:'',
+    isCorrect:false,
+}
+
+export const Answer_Model3: Answer = {
+    value:'',
+    isCorrect:false,
+}
+
+export const Answer_Model4: Answer = {
+    value:'',
+    isCorrect:false,
+}
+
+export const Question_Model: Question = {
+    label:'',
+    answers: [],
+    questionImage: false,
+    questionTexte: true
+}
 
 export const QUESTION_ACTOR0: Question = {
      label: 'Jean Gabin a joué dans...',
