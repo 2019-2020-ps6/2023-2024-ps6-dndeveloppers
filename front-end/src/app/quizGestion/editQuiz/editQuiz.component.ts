@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { QUIZ_LIST } from "src/mocks/quiz-list.mock";
 import { Question } from "src/models/question.models";
 import { Quiz } from "src/models/quiz.model";
@@ -16,7 +17,7 @@ export class EditQuizComponent implements OnInit {
 
     public questionListe : Question[] = [];
 
-    constructor(public quizService: QuizService){
+    constructor(public quizService: QuizService, public router: Router){
         this.quizService.editedQuiz$.subscribe( (quiz) => {
             this.quiz = quiz;
             this.questionListe = this.quiz.questions;
@@ -25,7 +26,9 @@ export class EditQuizComponent implements OnInit {
         });
     }
 
-    
-
     ngOnInit(): void {}
+
+    return(){
+        this.router.navigate(['home/gestionQuiz/']);
+    }
 }

@@ -132,6 +132,8 @@ export class QuizService {
     }
   }
 
+  // ------------------------------------------------------------ thèmes ---------------------------------------------------------------------------------
+
   setUpTheme(){ // mettre à jour la liste des thèmes
     let newThemeList: String[] = [];
     for(let i=0;i<this.quizzes.length;i++){
@@ -153,6 +155,8 @@ export class QuizService {
     console.log("Le thème : ",theme," a été rajouté (temporairement)")
   }
 
+  // ------------------------------------------------------------ édition quiz/questions ------------------------------------------------------------------------------
+
   editingQuiz(quiz: Quiz){
     this.editedQuiz = quiz;
     this.editedQuiz$.next(this.editedQuiz);
@@ -161,7 +165,20 @@ export class QuizService {
 
   addQuestion(question: Question){
     this.editedQuiz.questions.push(question);
+
+    this.editedQuiz.nbQuestionsPerType
     console.log("Question ", question, " ajoutée.");
     console.log(this.editedQuiz);
+  }
+
+  deleteQuestion(question: Question){
+    let questions: Question[] = [];
+    for(let i=0;i<this.editedQuiz.questions.length;i++){
+      if(this.editedQuiz.questions[i] != question){
+        questions.push(this.editedQuiz.questions[i]);
+      }
+    }
+    this.editedQuiz.questions = questions;
+    this.editedQuiz$.next(this.editedQuiz);
   }
 }

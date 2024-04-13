@@ -88,5 +88,8 @@ export class EditQuestionComponent implements OnInit {
 
     deleteQuestion(){
         console.log("delete");
+        if(this.question != undefined){
+            this.quizService.deleteQuestion(this.question);
+        }
     }
 }
