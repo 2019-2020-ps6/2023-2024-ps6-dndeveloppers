@@ -104,9 +104,11 @@ export class QuizService {
     console.log("Response selected (service POV) : ",responseNumber);
     if (this.actualResponses[responseNumber].isCorrect) {
       console.log("Bonne réponse félicitation!");
+      this.statsService.successRateNewData(100, this.actualQuestionNumber);
       this.actualScore++;
     } else {
       console.log("Mauvaise Réponse!");
+      this.statsService.successRateNewData(0, this.actualQuestionNumber);
     }
 
     if (this.actualQuestionNumber == quiz.questions.length-1) {

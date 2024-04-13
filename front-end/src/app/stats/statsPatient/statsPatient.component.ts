@@ -37,11 +37,11 @@ export class StatsPatientComponent implements OnInit {
         },
         yAxis: {
             title: {
-                text: 'Score(%)'
+                text: 'Taux(%)'
             }
         },
         series: [{
-            name: 'Score du patient pour le quiz n°',
+            name: 'Taux de réussite du patient pour le quiz',
             data: this.actualData
         }]
     }
@@ -60,7 +60,7 @@ export class StatsPatientComponent implements OnInit {
         }
         this.options.xAxis.categories = this.categoriesChart();
         this.options.series[0].data = this.dataChart();
-        Highcharts.chart('container', this.options);
+        Highcharts.chart('patientChart', this.options);
     }
 
     categoriesChart() {

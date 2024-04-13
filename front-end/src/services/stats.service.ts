@@ -144,6 +144,14 @@ export class StatsService {
       this.actualQuiz.selfStats.meanHintUsed = num/this.actualQuiz.selfStats.nbHintUsed.length;
     }
 
+    successRateNewData(responseVeracity: number, actualQuestionNumber: number) {
+      let rate = this.actualQuiz.selfStats.successPercentageByQuestion[actualQuestionNumber];
+      rate *= this.actualQuiz.selfStats.playedTime-1;
+      rate += responseVeracity;
+      rate /= this.actualQuiz.selfStats.playedTime;
+      this.actualQuiz.selfStats.successPercentageByQuestion[actualQuestionNumber] = rate;
+    }
+
     refreshQuizSubscribers() {
       this.actualQuiz$.next(this.actualQuiz);
       this.actualQuizId$.next(this.actualQuizId);
