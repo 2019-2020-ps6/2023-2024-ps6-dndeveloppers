@@ -180,5 +180,16 @@ export class QuizService {
     }
     this.editedQuiz.questions = questions;
     this.editedQuiz$.next(this.editedQuiz);
+    console.log("Question supprimée");
+  }
+
+  editQuestion(question: Question){
+    for(let i=0;i<this.editedQuiz.questions.length;i++){
+      if(this.editedQuiz.questions[i].label == question.label){
+        this.editedQuiz.questions[i] = question;
+        console.log("Question éditée");
+        return;
+      }
+    }
   }
 }

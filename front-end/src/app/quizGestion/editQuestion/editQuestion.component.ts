@@ -83,7 +83,7 @@ export class EditQuestionComponent implements OnInit {
         question.answers[this.questionForm.value.goodAnswer-1].isCorrect = true;
 
         console.log("question : ",question)
-        //this.quizService.edQuestion(question);
+        this.quizService.editQuestion(question);
     }
 
     deleteQuestion(){
