@@ -3,8 +3,19 @@
     justify-content: center;
     align-items: center;
     font-size: 50px;
-    font-weight: bold;
-    color: green;
-    -webkit-text-stroke-width: 2px;
+    font-family: Verdana, sans-serif; 
+    color: #555b33;
+    -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
+    font-weight: bold;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('./assets/fond.jpg');
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat;
 }
