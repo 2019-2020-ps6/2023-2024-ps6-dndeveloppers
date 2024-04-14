@@ -37,6 +37,7 @@ export class QuizService {
    * Observable which contains the list of the quiz.
    * Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
    */
+  public actualProfil$: BehaviorSubject<Profil> = new BehaviorSubject(this.actualProfil);
   public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(QUIZ_LIST);
   public choosenQuiz$: BehaviorSubject<Quiz> = new BehaviorSubject(QUIZ_LIST[0]);
   public actualQuestion$: BehaviorSubject<Question> = new BehaviorSubject(QUESTION_ACTOR0);
@@ -61,6 +62,11 @@ export class QuizService {
 
   selectProfil(profil: Profil) {
     this.actualProfil = profil;
+    this.actualProfil$.next(this.actualProfil);
+  }
+
+  dontShowTutoriel() {
+    this.actualProfil.tutoriel = false;
   }
 
   addQuiz(quiz: Quiz) {
