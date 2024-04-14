@@ -14,7 +14,7 @@ import { ListReponsesComponent } from './quiz/list-reponses/list-reponses.compon
 import { QuizComponent } from './quiz/quiz/quiz.component';
 import { ListQuizComponent } from './listQuiz/listQuiz.component';
 import { ChoixQuizComponent } from './quiz/choixQuiz/choixQuiz.component';
-import { ComeBackComponent } from './quiz/comeBack/comeBack.component';
+import { ComeBackComponent } from './comeBack/comeBack.component';
 import { HeaderComponent } from './header/header.component';
 
 import { CreateQuizComponent } from './quizGestion/createQuiz/createQuiz.component';
@@ -43,6 +43,7 @@ import { TexteAdaptatifComponent } from './texteAdaptatif/texteAdaptatif.compone
     HeaderComponent,
     HomeComponent,
     TexteAdaptatifComponent,
+    ComeBackComponent,
 
     // Jouer Quiz
     IndiceComponent,
@@ -52,7 +53,6 @@ import { TexteAdaptatifComponent } from './texteAdaptatif/texteAdaptatif.compone
     QuizComponent,
     ListQuizComponent,
     ChoixQuizComponent,
-    ComeBackComponent,
 
     // Création - Edition - Gestion des Quiz
     QuizGestionComponent,

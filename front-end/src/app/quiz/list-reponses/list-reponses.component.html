@@ -11,7 +11,8 @@
         <p *ngIf="bonScore===true"><app-texteAdaptatif texte="Vouz avez eu {{nbBonneReponses}} bonne réponse."></app-texteAdaptatif></p>
         <p *ngIf="bonneStreak===true"><app-texteAdaptatif texte="Vous avez répondu correctement {{streakDeBonneReponse}} fois de suite"></app-texteAdaptatif></p>
         <p *ngIf="peuDindice===true"><app-texteAdaptatif texte="Vous n'avez utilisé que {{nbIndiceUtilise}} indices"></app-texteAdaptatif></p>
-        <app-comeBack class="PopupreturnButton"></app-comeBack>
+        <app-comeBack class="PopupreturnButton" [destination]="'quizList'"></app-comeBack>
+        
     </div>
 
 </div>

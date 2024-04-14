@@ -72,4 +72,4 @@
 
     <button class="valider" type="submit" (click)="addProfil()" [disabled]="!profilForm.valid">Ajouter le profil </button>
 </form>
-<button class="retourBouton" type="submit" (click)="return()">Retour</button>
+<app-comeBack [destination]="'profilList'"></app-comeBack>
