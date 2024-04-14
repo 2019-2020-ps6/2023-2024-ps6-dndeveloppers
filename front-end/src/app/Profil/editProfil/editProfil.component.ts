@@ -43,6 +43,8 @@ export class EditProfilComponent implements OnInit {
             mois:[this.initialMonth],
             annee:[this.profilEditing?.dateNaissance?.[2]],
 
+            photo: [],
+
             optionPhoto: [this.profilEditing?.optionPhoto],
             optionIndice: [this.profilEditing?.optionIndice],
 
@@ -65,6 +67,17 @@ export class EditProfilComponent implements OnInit {
                 this.MonthList.lastIndexOf(this.profilForm.getRawValue().mois)+1,
                 this.profilForm.getRawValue().annee
             ];
+        }
+
+        if(this.profilForm.value.photo != undefined){
+            let path : String = this.profilForm.value.photo;
+            var spliter = path.split('\\');
+            let bon_path : string = spliter[spliter.length-1];
+            console.log(bon_path);
+            profilToCreate.photo = "./assets/imageProfil/"+bon_path; 
+        }
+        else {
+            profilToCreate.photo = "./assets/imageProfil/default.png"
         }
 
         console.log("add profil ", profilToCreate);
