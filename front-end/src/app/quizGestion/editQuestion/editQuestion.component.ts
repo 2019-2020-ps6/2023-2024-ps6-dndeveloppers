@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { Question_Model, Answer_Model1, Answer_Model2, Answer_Model3, Answer_Model4, QUIZ_LIST, Indice_Model1, Indice_Model2, Indice_Model3 } from "src/mocks/quiz-list.mock";
 import { Answer, Question, Indice } from "src/models/question.models";
 import { Quiz } from "src/models/quiz.model";
+import { Question_Model, Answer_Model } from "src/mocks/quiz-list.mock";
+import { Answer, Question } from "src/models/question.models";
 import { QuizService } from "src/services/quiz.service";
 
 @Component({
@@ -20,6 +22,7 @@ export class EditQuestionComponent implements OnInit {
     public answers: String[] = ['','','',''];
     public indice: String[] = ['','',''];
     public numberGoodAnswer = 0;
+    public texteImage: String = '';
 
     constructor(public formBuilder: FormBuilder, public quizService: QuizService){
         this.questionForm = this.formBuilder.group({
@@ -28,10 +31,14 @@ export class EditQuestionComponent implements OnInit {
             q2: [this.question?.answers[1].value],
             q3: [this.question?.answers[2].value],
             q4: [this.question?.answers[3].value],
-            goodAnswer: [this.findGoodAnswer()+1],
             i1: [this.question?.indice[0].value],
             i2: [this.question?.indice[1].value],
             i3: [this.question?.indice[2].value],
+
+            photoLien: [],
+            photoTexte: [],
+
+            goodAnswer: [this.findGoodAnswer()]
         });
     }
 
@@ -41,6 +48,10 @@ export class EditQuestionComponent implements OnInit {
             this.numberGoodAnswer = this.findGoodAnswer()+1;
             this.indice = [this.question?.indice[0].value, this.question?.indice[1].value, this.question?.indice[2].value];
         }
+
+        if(this.question != undefined && this.question.optionImage != undefined){
+            this.texteImage = this.question.optionImage[1];
+        }
         
 
         this.questionForm = this.formBuilder.group({
@@ -49,10 +60,14 @@ export class EditQuestionComponent implements OnInit {
             q2: [this.question?.answers[1].value],
             q3: [this.question?.answers[2].value],
             q4: [this.question?.answers[3].value],
-            goodAnswer: [this.findGoodAnswer()+1],
+            goodAnswer: [this.findGoodAnswer()],
             i1: [this.question?.indice[0].value],
             i2: [this.question?.indice[1].value],
             i3: [this.question?.indice[2].value]
+
+            photoLien: [],
+            photoTexte: [this.texteImage],
+            goodAnswer: [this.findGoodAnswer()]
         });
     }
 
@@ -67,23 +82,23 @@ export class EditQuestionComponent implements OnInit {
     }
 
     editQuestion(){
-        let question : Question = Question_Model;        
+        let question : Question = JSON.parse(JSON.stringify(Question_Model));;        
         question.label = this.questionForm.value.label;
 
         // réponses
-        let answer1 : Answer = Answer_Model1;
+        let answer1 : Answer = JSON.parse(JSON.stringify(Answer_Model));;
         answer1.value = this.questionForm.value.q1;
         answer1.isCorrect = false;
 
-        let answer2 : Answer = Answer_Model2;
+        let answer2 : Answer = JSON.parse(JSON.stringify(Answer_Model));;
         answer2.value = this.questionForm.value.q2;
         answer2.isCorrect = false;
 
-        let answer3 : Answer = Answer_Model3;
+        let answer3 : Answer = JSON.parse(JSON.stringify(Answer_Model));;
         answer3.value = this.questionForm.value.q3;
         answer3.isCorrect = false;
 
-        let answer4 : Answer = Answer_Model4;
+        let answer4 : Answer = JSON.parse(JSON.stringify(Answer_Model));;
         answer4.value = this.questionForm.value.q4;
         answer4.isCorrect = false;
 
@@ -102,11 +117,20 @@ export class EditQuestionComponent implements OnInit {
         question.indice = [indice1, indice2, indice3];
 
         console.log("question : ",question)
+
+        // photo
+        if(this.questionForm.value.photoLien !== null && this.questionForm.value.photoTexte != null){
+            question.questionImage = true;
+            question.questionTexte = false;
+            let path : String = this.questionForm.value.photoLien;
+            var spliter = path.split('\\');
+            let bon_path : string = "./assets/quiz/"+spliter[spliter.length-1];
+            question.optionImage = [bon_path,this.questionForm.value.photoTexte];
+        }
         this.quizService.editQuestion(question);
     }
 
     deleteQuestion(){
-        console.log("delete");
         if(this.question != undefined){
             this.quizService.deleteQuestion(this.question);
         }

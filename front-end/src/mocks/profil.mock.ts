@@ -8,16 +8,17 @@ export const PATIENT_MAURICE: Profil = {
 
     dateNaissance: [21,1,1950],
     
-    optionPhoto: true,
+    optionPhoto: false,
     optionIndice: true,
 
     optionTailleTexte: 'Moyen',
 
     optionReposerQuestionApres: false,
     optionSupprimerMauvaisesReponses: true,
+    tutoriel: false,
     selfStats: STATS_PATIENT_MAURICE,
 
-    photo: './assets/imageProfil/default.png'
+    photo: './assets/imageProfil/imageProfilMaurice.png'
 }
 
 export const PATIENT_JOSEPH: Profil = {
@@ -33,10 +34,51 @@ export const PATIENT_JOSEPH: Profil = {
     optionTailleTexte: 'Grand',
 
     optionReposerQuestionApres: false,
-    optionSupprimerMauvaisesReponses: true,
+    optionSupprimerMauvaisesReponses: false,
+    tutoriel: true,
     selfStats: STATS_PATIENT_JOSEPH,
 
-    photo: './assets/imageProfil/default.png'
+    photo: './assets/imageProfil/imageProfilJoseph.png'
+}
+
+export const PATIENT_HUGUETTE: Profil = {
+    nom: "Hudson",
+    prenom: "Huguette",
+    role: "patient",
+
+    dateNaissance: [12,9,1957],
+
+    optionPhoto: true,
+    optionIndice: false,
+
+    optionTailleTexte: 'Moyen',
+
+    optionReposerQuestionApres: true,
+    optionSupprimerMauvaisesReponses: true,
+    tutoriel: true,
+    selfStats: STATS_PATIENT_NULL,
+
+    photo: './assets/imageProfil/imageProfilHuguette.png'
+}
+
+export const PERSONNEL_MATHILDE: Profil = {
+    nom: "Martin",
+    prenom: "Mathilde",
+    role: "personnel",
+
+    dateNaissance: [27,4,2000],
+
+    optionPhoto: true,
+    optionIndice: true,
+
+    optionTailleTexte: 'Petit',
+
+    optionReposerQuestionApres: false,
+    optionSupprimerMauvaisesReponses: false,
+    tutoriel: false,
+    selfStats: STATS_PATIENT_NULL,
+
+    photo: './assets/imageProfil/imageProfilMathilde.png'
 }
 
 export const ADMIN: Profil = {
@@ -47,6 +89,7 @@ export const ADMIN: Profil = {
     selfStats: STATS_PATIENT_NULL,
 
     optionTailleTexte: 'Moyen',
+    tutoriel: false,
 
     photo: './assets/imageProfil/default.png'
 }

@@ -17,6 +17,7 @@
 .question-list{
     display: flex;
     justify-content: flex-start;
+    flex-wrap: wrap;
     margin-top: 2%;
     margin-bottom: 2%;
     gap: 2%;

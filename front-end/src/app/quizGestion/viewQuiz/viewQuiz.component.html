@@ -3,7 +3,7 @@
         <span> Nom : {{quiz.name}}   </span><br/>
         <span> Thème: {{quiz.theme}} </span><br/>
         <span> Nb questions : {{quiz.questions.length}}</span><br/>
-
+        <img *ngIf="quiz.photo!==undefined" id="imageQuiz" [src]=quiz.photo /><br/>
         <button (click)="editQuiz(quiz)">Modifier</button>
         <button (click)="deleteQuiz(quiz)">Supprimer</button>
     </h2>

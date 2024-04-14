@@ -2,9 +2,9 @@
 
 <div class="quiz-list">
     <div class="quiz" *ngFor="let quiz of quizList">
-        <!--Inputs & Output allow communication between parent & child components.-->
-        <!--More information: https://angular.io/guide/component-interaction-->
         <choixQuiz [quiz]="quiz" (quizSelected)="quizSelected(quiz)" (deleteQuiz)="deleteQuiz(quiz)"></choixQuiz>
     </div>
 </div>
-<app-comeBack class="returnButton" [destination]="'home'"></app-comeBack>
+
+<button class="boutonClavier" (window:keypress)="onSomeAction($event)"></button> <!-- bouton pour prendre en compte le clavier, il est invisible -->
+<app-comeBack *ngIf="afficher" class="returnButton" [destination]="'home'"></app-comeBack>

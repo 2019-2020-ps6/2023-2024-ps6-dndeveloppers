@@ -6,6 +6,9 @@ import { Router } from "@angular/router";
 import { Indice } from "src/models/question.models";
 import { ProfilService } from "src/services/profil.service";
 
+import { ADMIN } from "src/mocks/profil.mock";
+import { Profil } from "src/models/profil.model";
+
 @Component({
     selector: 'app-quiz',
     templateUrl: './quiz.component.html',
@@ -20,6 +23,8 @@ export class QuizComponent implements OnInit {
     public usedIndice: number[] = [];
     public  optionIndice : boolean | undefined;
 
+    public actualProfil: Profil = ADMIN;
+
     constructor(public quizService: QuizService, public router: Router, public profilService: ProfilService){
         this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
             this.choosenQuiz = choosenQuiz;
@@ -28,6 +33,7 @@ export class QuizComponent implements OnInit {
         this.quizService.actualQuestionNumber$.subscribe((actualQuestionNumber) => {
             this.actualQuestionNumber = actualQuestionNumber;
         })
+
 
         this.quizService.actualIndices$.subscribe((actualIndices) => {
             this.actualIndices = actualIndices;
@@ -44,16 +50,34 @@ export class QuizComponent implements OnInit {
 
     ngOnInit(): void {
         console.log("indices",this.actualIndices);
+
+        this.quizService.actualProfil$.subscribe((actualProfil) => {
+            this.actualProfil = actualProfil;
+        })
     }
+
+    ngOnInit(): void {}
 
     @Input()
     tutorielView: boolean = true;
+    helpWanted: boolean = false;
 
     tutoriel(){
         this.tutorielView = true;
     }
 
+    tutorielWanted() {
+        this.helpWanted = true;
+    }
+
     stopShowTutoriel(){
         this.tutorielView = false;
+        this.helpWanted = false;
+    }
+
+    dontShowTutoriel() {
+        this.tutorielView = false;
+        this.helpWanted = false;
+        this.quizService.dontShowTutoriel();
     }
 }

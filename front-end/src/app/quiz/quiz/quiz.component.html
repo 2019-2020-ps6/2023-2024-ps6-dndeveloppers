@@ -1,11 +1,11 @@
 
 <section class="main-section" >
     <app-header class="profil"></app-header>
-    <div class="content" *ngIf="tutorielView===false">
+    <div class="content" *ngIf="!tutorielView || !actualProfil.tutoriel">
         <div class="side-by-side">
             <app-indice *ngIf="optionIndice===true" class="indice"></app-indice>
             <app-question [question]="choosenQuiz.questions[actualQuestionNumber].label" class="question"></app-question>
-            <button class="boutonAide" (click)="tutoriel()"><app-texteAdaptatif texte="Aide ?"></app-texteAdaptatif></button>
+            <button class="boutonAide" (click)="tutorielWanted()"><app-texteAdaptatif texte="Aide ?"></app-texteAdaptatif></button>
             
         </div> 
         <div class="listIndices" *ngFor="let indiceNum of usedIndice">
@@ -20,7 +20,7 @@
 </section>
 
 
-<div class="popup" *ngIf="tutorielView">
+<div class="popup" *ngIf="(tutorielView && actualProfil.tutoriel) || helpWanted">
     <p class="gras">Aide ?</p>
     <p>Vous êtes actuellement en train de jouer à un quiz.</p>
     <div class="Question">
@@ -41,6 +41,9 @@
         <button>Indice</button>
     </div>
     <p>Une question peut avoir plusieurs indices. Une fois arrivé au bout des indices disponible, cliquer sur le bouton indice fera disparaitre une réponse fausse</p>
+
+    <label for="showTutoriel">J'ai compris le tutoriel</label>
+    <input id="showTutoriel" type="checkbox" (change)="dontShowTutoriel()" value="show"><br/><br/>
 
     <button (click)="stopShowTutoriel()">Click gauche ici pour fermer l'aide</button>
 </div>

@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { Question } from "src/models/question.models";
 import { QuizService } from "src/services/quiz.service";
 
 @Component({
@@ -18,7 +17,8 @@ export class EditQuizGlobalComponent implements OnInit {
     constructor(public quizService: QuizService, public formBuilder: FormBuilder,){
         this.quizGlobalForm = this.formBuilder.group({
             nom: [''],
-            theme: ['']
+            theme: [''],
+            photo: []
         });
 
         this.quizService.themeList$.subscribe( (themeList) => {
@@ -36,6 +36,13 @@ export class EditQuizGlobalComponent implements OnInit {
 
     editGlobalQuiz(){
         let valeurs: string[] = [this.quizGlobalForm.value.nom,this.quizGlobalForm.value.theme];
+        if(this.quizGlobalForm.value.photo !== null){
+            let path : String = this.quizGlobalForm.value.photo;
+            var spliter = path.split('\\');
+            let bon_path : string = spliter[spliter.length-1];
+            valeurs.push("./assets/quiz/"+bon_path); 
+        }
+        console.log("valeurs : ",valeurs)
         this.quizService.editGlobalQuiz(valeurs);
     }
 }
