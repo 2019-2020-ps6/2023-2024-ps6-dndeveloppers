@@ -173,7 +173,7 @@ export class QuizService {
         nbOfTrue++;
       }
     }
-    if (nbOfTrue > 1) {
+    if (nbOfTrue > 2) {
       let rightResponse = 0;
       for (let i=0; i<this.actualQuestion.answers.length; i++) {
         if (this.actualQuestion.answers[i].isCorrect) {
