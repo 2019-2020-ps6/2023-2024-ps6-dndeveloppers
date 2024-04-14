@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import * as Highcharts from 'highcharts'
 import { LISTE_PATIENTS, LISTE_PROFILS } from "src/mocks/profil-list.mock";
 import { ADMIN } from "src/mocks/profil.mock";
+import { QUIZ_LIST } from "src/mocks/quiz-list.mock";
 import { Profil } from "src/models/profil.model";
 
 @Component({
@@ -41,8 +42,12 @@ export class StatsPatientComponent implements OnInit {
             }
         },
         series: [{
-            name: 'Taux de réussite du patient pour le quiz',
-            data: this.actualData
+            name: 'Quiz acteurs',
+            data: this.dataChart("Acteurs")
+        },
+        {
+            name: 'Quiz sports',
+            data: this.dataChart("Sports")
         }]
     }
 
@@ -59,22 +64,35 @@ export class StatsPatientComponent implements OnInit {
             }
         }
         this.options.xAxis.categories = this.categoriesChart();
-        this.options.series[0].data = this.dataChart();
+        for (let i=0; i<QUIZ_LIST.length; i++) {
+            console.log(QUIZ_LIST[i]);
+            if (i >= this.options.series.length) {
+                let newElement = {
+                    name: QUIZ_LIST[i].name,
+                    data: this.dataChart(QUIZ_LIST[i].name)
+                }
+                this.options.series.push(newElement);
+            } else {
+                this.options.series[i].data = this.dataChart(QUIZ_LIST[i].name);
+            }
+        }
         Highcharts.chart('patientChart', this.options);
     }
 
     categoriesChart() {
         let categories = [];
         for (let i=0; i<this.actualPatient.selfStats.quizRes.length; i++) {
-            categories.push(i.toString());
+            categories.push((i+1).toString());
         }
         return categories;
     }
 
-    dataChart() {
+    dataChart(quizName: string) {
         let data = [];
         for (let i=0; i<this.actualPatient.selfStats.quizRes.length; i++) {
-            data.push(this.actualPatient.selfStats.quizRes[i]);
+            if (this.actualPatient.selfStats.quizDone[i] == quizName) {
+                data.push(this.actualPatient.selfStats.quizRes[i]);
+            }
         }
         return data
     }

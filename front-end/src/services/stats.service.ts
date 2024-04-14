@@ -63,7 +63,7 @@ export class StatsService {
     public patientMeanScore$: BehaviorSubject<number> = new BehaviorSubject(this.patientMeanScore);
     public fiveLastQuizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.fiveLastQuizzes);
 
-    patientNewData(profil: Profil, score: number) {
+    patientScoreNewData(profil: Profil, score: number) {
       profil.selfStats.nbQuizDone++;
       profil.selfStats.quizRes.push(score*100);
 
