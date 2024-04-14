@@ -5,5 +5,4 @@
         <span><app-texteAdaptatif texte="Questions : {{quiz.questions.length}}"></app-texteAdaptatif></span>
     </h2>
     <button class="button-card" [routerLink]="['app-quiz',quiz.name]"  (click)="selectQuiz(this.quiz)"><app-texteAdaptatif texte="Sélectionner"></app-texteAdaptatif></button>
-    <button class="button-card" (click)="delete(this.quiz)"><app-texteAdaptatif texte="Supprimer"></app-texteAdaptatif></button>
 </div>
