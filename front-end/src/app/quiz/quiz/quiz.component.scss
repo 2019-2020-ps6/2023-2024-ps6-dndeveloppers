@@ -27,18 +27,39 @@
 
 .question{
     position: center;
-    margin-right: 18%;
+    justify-self: stretch;
+    align-self: stretch;
+    grid-column: 4/5;
+    text-align: center;
 }
 
 .indice{
-    margin-right: 10%;
+    justify-self: stretch;
+    align-self: center;
+    grid-column: 2/3;
+}
+
+
+.boutonAide {
+    width: auto;
+    height:auto;
+    text-align: center;
+    font-size: 30px;
+    background-color: lightgrey;
+    border: solid black 2px;
+    border-radius: 1rem;
+    cursor:pointer;
+    font-family: "OpenDyslexic", sans-serif;
+    justify-self: stretch;
+    align-self: center;
+    grid-column: 6/7;
 }
 
 .side-by-side {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 10% 10% 10% auto 10% 10% 10%;
     width: 100%;
-    justify-content: center;
+    
 }
 
 .returnButton {
@@ -58,6 +79,7 @@
     text-align: center;
     padding: 10px;
     border-radius: 10px;
+    font-family: "OpenDyslexic", sans-serif;
     
 }
 
@@ -70,6 +92,7 @@ button {
     border: solid black 2px;
     border-radius: 1rem;
     cursor:pointer;
+    font-family: "OpenDyslexic", sans-serif;
 }
 
 button:hover {
@@ -85,7 +108,7 @@ button:hover {
 }
 
 .Question-texte{
-    margin-left: 20%;
+    margin-left: 21%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -103,7 +126,7 @@ button:hover {
 }
 
 .reponse-texte {
-    margin-left: 15%;
+    margin-left: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -117,7 +140,7 @@ button:hover {
     background-color: #6958cf;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
-    font-family: Verdana, Geneva, sans-serif;
+    font-family: "OpenDyslexic", sans-serif;
 
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -130,17 +153,3 @@ button:hover {
     background-color: rgb(113, 159, 117);
 }
 
-#indiceTuto{
-    margin-left: 10%;
-}
-
-.boutonAide {
-    width: auto;
-    height:auto;
-    text-align: center;
-    font-size: 30px;
-    background-color: lightgrey;
-    border: solid black 2px;
-    border-radius: 1rem;
-    cursor:pointer;
-}
