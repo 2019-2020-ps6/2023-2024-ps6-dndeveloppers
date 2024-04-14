@@ -24,4 +24,5 @@ export class HomeComponent implements OnInit {
     choixProfil(){
         this.showProfil = !this.showProfil;
     }
+    
 }
