@@ -22,7 +22,17 @@
                 <option [value]="2">3</option>
                 <option [value]="3">4</option>
                 </select>{{this.numberGoodAnswer}}
-    </label><br>
+    </label><br><br>
+
+    
+    <label> Photo de la Question (optionel) :
+        <input class="input-custom" type="file" id="photoLien" [formControlName]="'photoLien'">    
+    </label><br><br>
+    <label> Question si la photo n'est pas affichée (uniquement si photo ajoutée):
+        <input class="input-custom" type="text" id="photoTexte" [formControlName]="'photoTexte'"><p class="indent">{{this.texteImage}}</p>    
+    </label>
+
+
     <div class="espace">
         <button type="submit" [disabled]="!questionForm.valid" (click)="editQuestion()">Modifier</button>
         <button type="submit" (click)="deleteQuestion()">Supprimer</button>

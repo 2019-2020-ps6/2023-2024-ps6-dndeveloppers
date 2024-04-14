@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
+
 import { Question_Model, Answer_Model } from "src/mocks/quiz-list.mock";
 import { Answer, Question } from "src/models/question.models";
-import { Quiz } from "src/models/quiz.model";
 import { QuizService } from "src/services/quiz.service";
 
 @Component({
@@ -19,6 +19,7 @@ export class EditQuestionComponent implements OnInit {
 
     public answers: String[] = ['','','',''];
     public numberGoodAnswer = 0;
+    public texteImage: String = '';
 
     constructor(public formBuilder: FormBuilder, public quizService: QuizService){
         this.questionForm = this.formBuilder.group({
@@ -27,6 +28,10 @@ export class EditQuestionComponent implements OnInit {
             q2: [this.question?.answers[1].value],
             q3: [this.question?.answers[2].value],
             q4: [this.question?.answers[3].value],
+
+            photoLien: [],
+            photoTexte: [],
+
             goodAnswer: [this.findGoodAnswer()]
         });
     }
@@ -36,6 +41,10 @@ export class EditQuestionComponent implements OnInit {
             this.answers = [this.question.answers[0].value,this.question.answers[1].value,this.question.answers[2].value,this.question.answers[3].value];
             this.numberGoodAnswer = this.findGoodAnswer()+1;
         }
+
+        if(this.question != undefined && this.question.optionImage != undefined){
+            this.texteImage = this.question.optionImage[1];
+        }
         
 
         this.questionForm = this.formBuilder.group({
@@ -44,6 +53,8 @@ export class EditQuestionComponent implements OnInit {
             q2: [this.question?.answers[1].value],
             q3: [this.question?.answers[2].value],
             q4: [this.question?.answers[3].value],
+            photoLien: [],
+            photoTexte: [this.texteImage],
             goodAnswer: [this.findGoodAnswer()]
         });
     }
@@ -80,8 +91,17 @@ export class EditQuestionComponent implements OnInit {
         answer4.isCorrect = false;
 
         question.answers = [answer1 , answer2 , answer3, answer4];        
-        console.log("numéro : ",this.questionForm.value.goodAnswer);
-        question.answers[this.questionForm.value.goodAnswer].isCorrect = true;
+        question.answers[this.questionForm.value.goodAnswer-1].isCorrect = true;
+
+        // photo
+        if(this.questionForm.value.photoLien !== null && this.questionForm.value.photoTexte != null){
+            question.questionImage = true;
+            question.questionTexte = false;
+            let path : String = this.questionForm.value.photoLien;
+            var spliter = path.split('\\');
+            let bon_path : string = "./assets/quiz/"+spliter[spliter.length-1];
+            question.optionImage = [bon_path,this.questionForm.value.photoTexte];
+        }
         this.quizService.editQuestion(question);
     }
 

@@ -104,6 +104,8 @@ export class QuizService {
     if (quizEnCours.questions === undefined) {
       console.log("Ce quiz n'a pas de quesiton!");
     } else {
+      console.log("Quiz valide");
+
       this.actualScore = 0;
       this.usedHint = 0;
       this.endOfQuiz = false;
@@ -277,6 +279,9 @@ export class QuizService {
   editGlobalQuiz(valeurs: string[]){
     this.editedQuiz.name = valeurs[0];
     this.editedQuiz.theme = valeurs[1];
+    if(valeurs.length == 3 ){
+      this.editedQuiz.photo = valeurs[2];
+    }
     this.editedQuiz$.next(this.editedQuiz);
     console.log("Quiz édité");
   }

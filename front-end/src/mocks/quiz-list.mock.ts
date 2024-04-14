@@ -128,7 +128,8 @@ export const QUIZ_LIST: Quiz[] = [
         questions: [QUESTION_ACTOR0,QUESTION_ACTOR1],
         nbQuestionsPerType: [2,0],
         id: 0,
-        selfStats: STATS_ACTORS
+        selfStats: STATS_ACTORS,
+        photo: "./assets/quiz/oscar.jpg"
     },
     {
         name: 'Sports',

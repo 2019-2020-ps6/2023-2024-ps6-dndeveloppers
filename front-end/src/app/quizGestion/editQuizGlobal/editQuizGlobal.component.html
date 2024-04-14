@@ -14,6 +14,12 @@
             </select> 
         </label><p class="valeurActuel">{{this.theme}}</p>
     </section>
+
+    <section class="indent">
+        <label for="annee"> Photo de Quiz :
+            <input class="input-custom" type="file" id="photo" [formControlName]="'photo'">    
+        </label>
+    </section>
     
     <button class="boutonValeurGlobal" type="submit" [disabled]="!quizGlobalForm.valid" (click)="editGlobalQuiz()">Modifier</button>
     </form>
