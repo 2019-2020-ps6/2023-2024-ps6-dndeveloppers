@@ -3,13 +3,16 @@
     <app-header class="profil"></app-header>
     <div class="content" *ngIf="tutorielView===false">
         <div class="side-by-side">
-            <app-indice class="indice"></app-indice>
+            <app-indice *ngIf="optionIndice===true" class="indice"></app-indice>
             <app-question [question]="choosenQuiz.questions[actualQuestionNumber].label" class="question"></app-question>
             <button class="boutonAide" (click)="tutoriel()"><app-texteAdaptatif texte="Aide ?"></app-texteAdaptatif></button>
             
         </div> 
         <div class="listIndices" *ngFor="let indiceNum of usedIndice">
-            <p>{{actualIndices[indiceNum].value}}</p>
+            <div class="zoneIndice">
+                <p>{{actualIndices[indiceNum].value}}</p>
+            </div>
+            
         </div>
         <app-list-reponses  [quiz]="choosenQuiz" class="listreponse"></app-list-reponses>
         <app-comeBack class="returnButton" [destination]="'quizList'"></app-comeBack>

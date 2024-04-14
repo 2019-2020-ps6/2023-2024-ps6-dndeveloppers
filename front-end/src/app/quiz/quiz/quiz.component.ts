@@ -4,6 +4,7 @@ import { Quiz } from "src/models/quiz.model";
 import { QUIZ_LIST } from "src/mocks/quiz-list.mock";
 import { Router } from "@angular/router";
 import { Indice } from "src/models/question.models";
+import { ProfilService } from "src/services/profil.service";
 
 @Component({
     selector: 'app-quiz',
@@ -17,8 +18,9 @@ export class QuizComponent implements OnInit {
     public actualQuestionNumber: number = 0;
     public actualIndices: Indice[] = QUIZ_LIST[1].questions[0].indice//this.choosenQuiz.questions[this.actualQuestionNumber].indice;
     public usedIndice: number[] = [];
+    public  optionIndice : boolean | undefined;
 
-    constructor(public quizService: QuizService, public router: Router){
+    constructor(public quizService: QuizService, public router: Router, public profilService: ProfilService){
         this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
             this.choosenQuiz = choosenQuiz;
         })
@@ -33,6 +35,10 @@ export class QuizComponent implements OnInit {
 
         this.quizService.usedIndice$.subscribe((usedIndice) => {
             this.usedIndice = usedIndice;
+        })
+
+        profilService.actualProfil$.subscribe((profil) => {
+            this.optionIndice = profil.optionIndice;
         })
     }
 
