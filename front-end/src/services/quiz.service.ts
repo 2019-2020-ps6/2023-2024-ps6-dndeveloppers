@@ -37,6 +37,7 @@ export class QuizService {
    * Observable which contains the list of the quiz.
    * Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
    */
+  public actualProfil$: BehaviorSubject<Profil> = new BehaviorSubject(this.actualProfil);
   public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(QUIZ_LIST);
   public choosenQuiz$: BehaviorSubject<Quiz> = new BehaviorSubject(QUIZ_LIST[0]);
   public actualQuestion$: BehaviorSubject<Question> = new BehaviorSubject(QUESTION_ACTOR0);
@@ -61,6 +62,11 @@ export class QuizService {
 
   selectProfil(profil: Profil) {
     this.actualProfil = profil;
+    this.actualProfil$.next(this.actualProfil);
+  }
+
+  dontShowTutoriel() {
+    this.actualProfil.tutoriel = false;
   }
 
   addQuiz(quiz: Quiz) {
@@ -90,6 +96,8 @@ export class QuizService {
         quizEnCours = this.quizzes[i];
         this.choosenQuiz = this.quizzes[i];
         this.choosenQuiz$.next(this.choosenQuiz);
+        this.actualResponses = this.quizzes[i].questions[0].answers;
+        this.actualResponses$.next(this.actualResponses);
         console.log("Quiz choisit : ",this.choosenQuiz);
       }
     }
@@ -97,6 +105,7 @@ export class QuizService {
       console.log("Ce quiz n'a pas de quesiton!");
     } else {
       console.log("Quiz valide");
+
       this.actualScore = 0;
       this.usedHint = 0;
       this.endOfQuiz = false;
@@ -156,9 +165,10 @@ export class QuizService {
 
       this.statsService.successRateNewData(0, this.actualQuestionNumber);
     }
-
+   
     if (this.actualQuestionNumber == quiz.questions.length-1) {
       console.log("C'était la dernière question");
+      console.log("score: ",this.actualScore);
       this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
       this.statsService.addQuizDone();
       this.statsService.meanScoreNewData(this.actualScore/quiz.questions.length);
@@ -190,10 +200,14 @@ export class QuizService {
       this.endOfQuiz = true;
       this.endOfQuiz$.next(this.endOfQuiz);
     } else {
-      this.actualQuestion = this.choosenQuiz.questions[this.actualQuestionNumber];
-      this.actualQuestion$.next(this.actualQuestion);
       this.actualQuestionNumber++;
       this.actualQuestionNumber$.next(this.actualQuestionNumber);
+
+      this.actualQuestion = this.choosenQuiz.questions[this.actualQuestionNumber];
+      this.actualQuestion$.next(this.actualQuestion);
+
+      this.actualResponses = this.actualQuestion.answers;
+      this.actualResponses$.next(this.actualResponses);
     }
   }
 
@@ -220,9 +234,6 @@ export class QuizService {
   }
 
   addTheme(theme: String){
-    let a = "aaa";
-    console.log(theme);
-    console.log(a);
     this.themeList.push(theme);
     this.themeList$.next(this.themeList);
     console.log("Le thème : ",theme," a été rajouté (temporairement)")
@@ -238,7 +249,6 @@ export class QuizService {
 
   addQuestion(question: Question){
     this.editedQuiz.questions.push(question);
-
     this.editedQuiz.nbQuestionsPerType
     console.log("Question ", question, " ajoutée.");
     console.log(this.editedQuiz);

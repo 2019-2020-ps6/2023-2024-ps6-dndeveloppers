@@ -2,25 +2,11 @@ import { Quiz } from '../models/quiz.model';
 import { Answer, Question } from '../models/question.models';
 import { STATS_ACTORS, STATS_INIT, STATS_SPORTS } from './statsMocks/stats-quiz.mock';
 
-export const Answer_Model1: Answer = {
+export const Answer_Model: Answer = {
     value:'',
     isCorrect:false,
 }
 
-export const Answer_Model2: Answer = {
-    value:'',
-    isCorrect:false,
-}
-
-export const Answer_Model3: Answer = {
-    value:'',
-    isCorrect:false,
-}
-
-export const Answer_Model4: Answer = {
-    value:'',
-    isCorrect:false,
-}
 
 export const Question_Model: Question = {
     label:'',
@@ -87,31 +73,23 @@ export const QUESTION_SPORT0: Question = {
        {
            value: 'Argentine',
            isCorrect: true,
+           
        },
        {
-
-        value: 'Chine',
-        isCorrect: false,
+            value: 'Chine',
+            isCorrect: false,
         },
         {
             value: 'Espagne',
             isCorrect: false,
         },
-        {
-           value: 'Brésil',
-           isCorrect: false,
-       },
-       {
-           value: 'Allemagne',
-           isCorrect: false,
-       }
    ],
    questionTexte: true,
    questionImage: false
 };
 
 export const QUESTION_SPORT1: Question = {
-    label: 'Quel pays a gagné la coupe du monde de foot 2022 .....',
+    label: 'Quel pays a gagné la coupe du monde de foot 1998 .....',
     answers: [
         {
            value: 'France',
@@ -145,7 +123,7 @@ export const QUIZ_NULL: Quiz = {
 
 export const QUIZ_LIST: Quiz[] = [
     {
-        name: 'Acteurs', // What's happening if I change this value..?
+        name: 'Acteurs', 
         theme: 'Actor',
         questions: [QUESTION_ACTOR0,QUESTION_ACTOR1],
         nbQuestionsPerType: [2,0],
