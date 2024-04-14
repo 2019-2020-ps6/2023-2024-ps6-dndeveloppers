@@ -1,9 +1,9 @@
 <div class="card" *ngIf="quiz">
     <h2>
-        <span> Nom : {{quiz.name}}   </span><br/>
-        <span> Thème: {{quiz.theme}} </span><br/>
-        <span> Nb questions : {{quiz.questions.length}}</span><br/>
+        <span><app-texteAdaptatif texte="Nom : {{quiz.name}}"></app-texteAdaptatif></span>
+        <span><app-texteAdaptatif texte="Thème: {{quiz.theme}}"></app-texteAdaptatif></span>
+        <span><app-texteAdaptatif texte="Questions : {{quiz.questions.length}}"></app-texteAdaptatif></span>
     </h2>
-    <button class="button-card" [routerLink]="['app-quiz',quiz.name]"  (click)="selectQuiz(this.quiz)">Sélectionner</button>
-    <button class="button-card" (click)="delete(this.quiz)">Supprimer</button>
+    <button class="button-card" [routerLink]="['app-quiz',quiz.name]"  (click)="selectQuiz(this.quiz)"><app-texteAdaptatif texte="Sélectionner"></app-texteAdaptatif></button>
+    <button class="button-card" (click)="delete(this.quiz)"><app-texteAdaptatif texte="Supprimer"></app-texteAdaptatif></button>
 </div>

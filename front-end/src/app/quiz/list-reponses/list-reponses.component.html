@@ -1,15 +1,23 @@
 <div class="listreponse" *ngIf="actualResponses">
-    <button class="reponse-texte" id="first" name="button" (click)="responseSelected(0)">{{actualResponses[0].value}}</button>
-    <button class="reponse-texte" id="second" name="button" (click)="responseSelected(1)">{{actualResponses[1].value}}</button>
-    <button class="reponse-texte" id="third" name="button" (click)="responseSelected(2)">{{actualResponses[2].value}}</button>
-    <button class="reponse-texte" id="fourth" name="button" (click)="responseSelected(3)">{{actualResponses[3].value}}</button>
+    <button class="reponse-texte" id="first" name="button" (click)="responseSelected(0)"><app-texteAdaptatif [texte]=actualResponses[0].value></app-texteAdaptatif></button>
+    <button class="reponse-texte" id="second" name="button" (click)="responseSelected(1)"><app-texteAdaptatif [texte]=actualResponses[1].value></app-texteAdaptatif></button>
+    <button class="reponse-texte" id="third" name="button" (click)="responseSelected(2)"><app-texteAdaptatif [texte]=actualResponses[2].value></app-texteAdaptatif></button>
+    <button class="reponse-texte" id="fourth" name="button" (click)="responseSelected(3)"><app-texteAdaptatif [texte]=actualResponses[3].value></app-texteAdaptatif></button>
+    
     <div id="endPopup" *ngIf="endOfQuiz">
-        <p class="felicitation">Félicitation, vous avez terminé le quiz !</p>
-        <p>Bravo!</p>
-        <p>Vous avez répondu à {{actualQuestionNumber+1}} questions lors de ce quiz</p>
-        <p *ngIf="bonScore===true">Vouz avez eu {{nbBonneReponses}} bonne réponse.</p>
-        <p *ngIf="bonneStreak===true">Vous avez répondu correctement {{streakDeBonneReponse}} fois de suite</p>
-        <p *ngIf="peuDindice===true">Vous n'avez utilisé que {{nbIndiceUtilise}} indices</p>
+        <p ><app-texteAdaptatif class="felicitation" texte="Félicitation, vous avez terminé le quiz !"></app-texteAdaptatif></p>
+        <p><app-texteAdaptatif texte="Bravo!"></app-texteAdaptatif></p>
+        <p><app-texteAdaptatif texte="Vous avez répondu à {{actualQuestionNumber+1}} questions lors de ce quiz"></app-texteAdaptatif></p>
+        <p *ngIf="bonScore===true"><app-texteAdaptatif texte="Vouz avez eu {{nbBonneReponses}} bonne réponse."></app-texteAdaptatif></p>
+        <p *ngIf="bonneStreak===true"><app-texteAdaptatif texte="Vous avez répondu correctement {{streakDeBonneReponse}} fois de suite"></app-texteAdaptatif></p>
+        <p *ngIf="peuDindice===true"><app-texteAdaptatif texte="Vous n'avez utilisé que {{nbIndiceUtilise}} indices"></app-texteAdaptatif></p>
         <app-comeBack class="PopupreturnButton"></app-comeBack>
     </div>
+
 </div>
+
+
+
+
+
+

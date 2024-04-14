@@ -1,18 +1,19 @@
 
-<section class="main-section">
+<section class="main-section" >
     <app-header class="profil"></app-header>
-    <div class="content">
+    <div class="content" *ngIf="tutorielView===false">
         <div class="side-by-side">
             <app-indice class="indice"></app-indice>
             <app-question [question]="choosenQuiz.questions[actualQuestionNumber].label" class="question"></app-question>
-            <button (click)="tutoriel()">Aide ?</button>
+            <button class="boutonAide" (click)="tutoriel()"><app-texteAdaptatif texte="Aide ?"></app-texteAdaptatif></button>
+            
         </div> 
         <app-list-reponses  [quiz]="choosenQuiz" class="listreponse"></app-list-reponses>
         <app-comeBack class="returnButton"></app-comeBack>
     </div>
 </section>
 
-<div class="popup" *ngIf="tutorielView===true">
+<div class="popup" *ngIf="tutorielView">
     <p class="gras">Aide ?</p>
     <p>Vous êtes actuellement en train de jouer à un quiz.</p>
     <div class="Question">

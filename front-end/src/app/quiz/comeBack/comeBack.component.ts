@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-comeBack',
@@ -9,10 +10,14 @@ import { Component, Input, OnInit } from "@angular/core";
 export class ComeBackComponent implements OnInit {
 
 
-    constructor(){
+    constructor(public router: Router){
     }
 
     @Input()
 
     ngOnInit(): void {}
+
+    return(){
+        this.router.navigate(['home/listQuiz/']);
+    }
 }
