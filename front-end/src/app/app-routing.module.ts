@@ -10,7 +10,7 @@ import { CreateQuizComponent } from './quizGestion/createQuiz/createQuiz.compone
 import { ListQuizComponent } from './listQuiz/listQuiz.component';
 import { ChoixQuizComponent } from './quiz/choixQuiz/choixQuiz.component';
 import { HomeComponent } from './home/home.component';
-import { ComeBackComponent } from './quiz/comeBack/comeBack.component'
+import { ComeBackComponent } from './comeBack/comeBack.component'
 import { StatsComponent } from './stats/stats.component';
 import { HeaderComponent } from './header/header.component';
 import { ListProfilComponent } from './Profil/listProfil/listProfil.component';

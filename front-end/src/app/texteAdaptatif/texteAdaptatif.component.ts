@@ -26,7 +26,6 @@ export class TexteAdaptatifComponent implements OnInit {
                 this.taille = 1.5;
             }
             this.fontSize = this.taille + "em";
-            console.log(profil.optionTailleTexte , " - ",this.taille);
         })
     }
 

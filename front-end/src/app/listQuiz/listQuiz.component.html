@@ -1,5 +1,5 @@
 <app-header></app-header>
-<app-texteAdaptatif></app-texteAdaptatif>
+
 <div class="quiz-list">
     <div class="quiz" *ngFor="let quiz of quizList">
         <!--Inputs & Output allow communication between parent & child components.-->
@@ -7,4 +7,4 @@
         <choixQuiz [quiz]="quiz" (quizSelected)="quizSelected(quiz)" (deleteQuiz)="deleteQuiz(quiz)"></choixQuiz>
     </div>
 </div>
-<app-comeBack class="returnButton"></app-comeBack>
+<app-comeBack class="returnButton" [destination]="'home'"></app-comeBack>

@@ -71,8 +71,4 @@ export class EditProfilComponent implements OnInit {
         this.profilService.updateProfil(this.profilInital,profilToCreate);
         this.router.navigate(['home/listProfil/']); 
     }
-
-    return(){
-        this.router.navigate(['home/listProfil/']);
-    }
 }
