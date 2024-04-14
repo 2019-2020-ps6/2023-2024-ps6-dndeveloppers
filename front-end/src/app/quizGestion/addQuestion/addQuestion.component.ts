@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder } from "@angular/forms";
-import { Answer_Model1, Answer_Model2, Answer_Model3, Answer_Model4, Question_Model, Indice_Model1, Indice_Model2, Indice_Model3} from "src/mocks/quiz-list.mock";
-import { Answer, Question, Indice } from "src/models/question.models";
-import { Answer_Model, Question_Model } from "src/mocks/quiz-list.mock";
+import { Question_Model, Indice_Model1, Indice_Model2, Indice_Model3} from "src/mocks/quiz-list.mock";
+import { Indice } from "src/models/question.models";
+import { Answer_Model } from "src/mocks/quiz-list.mock";
 import { Answer, Question } from "src/models/question.models";
 import { QuizService } from "src/services/quiz.service";
 

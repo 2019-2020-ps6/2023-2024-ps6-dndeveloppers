@@ -56,8 +56,6 @@ export class QuizComponent implements OnInit {
         })
     }
 
-    ngOnInit(): void {}
-
     @Input()
     tutorielView: boolean = true;
     helpWanted: boolean = false;

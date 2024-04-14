@@ -1,12 +1,10 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
 import { QUIZ_LIST } from "src/mocks/quiz-list.mock";
-import { Answer, Question } from "src/models/question.models";
+import { Answer } from "src/models/question.models";
 import { Quiz } from "src/models/quiz.model";
 import { QuizService } from "src/services/quiz.service";
 import { Profil } from "src/models/profil.model";
 import { LISTE_PROFILS } from "src/mocks/profil-list.mock";
-import { ProfilService } from "src/services/profil.service";
 
 
 @Component({
@@ -47,6 +45,8 @@ export class ListReponsesComponent implements OnInit {
 
         this.quizService.displayResponses$.subscribe((displayResponses) => {
             this.displayResponses = displayResponses;
+        })
+        
         this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
             this.choosenQuiz = choosenQuiz;
 

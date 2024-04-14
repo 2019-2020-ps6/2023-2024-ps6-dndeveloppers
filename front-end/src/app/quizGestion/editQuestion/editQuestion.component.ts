@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { Question_Model, Answer_Model1, Answer_Model2, Answer_Model3, Answer_Model4, QUIZ_LIST, Indice_Model1, Indice_Model2, Indice_Model3 } from "src/mocks/quiz-list.mock";
-import { Answer, Question, Indice } from "src/models/question.models";
-import { Quiz } from "src/models/quiz.model";
-import { Question_Model, Answer_Model } from "src/mocks/quiz-list.mock";
+import { Question_Model, Indice_Model1, Indice_Model2, Indice_Model3 } from "src/mocks/quiz-list.mock";
+import { Indice } from "src/models/question.models";
+import { Answer_Model } from "src/mocks/quiz-list.mock";
 import { Answer, Question } from "src/models/question.models";
 import { QuizService } from "src/services/quiz.service";
 
@@ -63,11 +62,10 @@ export class EditQuestionComponent implements OnInit {
             goodAnswer: [this.findGoodAnswer()],
             i1: [this.question?.indice[0].value],
             i2: [this.question?.indice[1].value],
-            i3: [this.question?.indice[2].value]
+            i3: [this.question?.indice[2].value],
 
             photoLien: [],
             photoTexte: [this.texteImage],
-            goodAnswer: [this.findGoodAnswer()]
         });
     }
 
