@@ -21,6 +21,15 @@ export class QuizService {
   private usedHint: number = 0;
   private endOfQuiz: boolean = false;
 
+  private nbBonneReponses: number = 0;
+  private nbIndiceUtilise: number = 0;
+  private streakDeBonneReponse: number = 0;
+  private enStreak: number = 0;
+
+  private bonScore: boolean = false;
+  private bonneStreak: boolean = false;
+  private peuDindice: boolean = false;
+
   private themeList: String[] = []; // liste des thèmes de quiz
   private editedQuiz: Quiz = this.quizzes[0]; // quiz en cours d'édition
 
@@ -37,6 +46,14 @@ export class QuizService {
 
   public themeList$: BehaviorSubject<String[]> = new BehaviorSubject(this.themeList);
   public editedQuiz$ : BehaviorSubject<Quiz> = new BehaviorSubject(this.editedQuiz);
+
+  public nbBonneReponses$: BehaviorSubject<number> = new BehaviorSubject(0);
+  public nbIndiceUtilise$: BehaviorSubject<number> = new BehaviorSubject(0);
+  public streakDeBonneReponse$: BehaviorSubject<number> = new BehaviorSubject(0);
+
+  public bonScore$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public bonneStreak$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public peuDindice$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   public url: string = "";
 
@@ -88,6 +105,22 @@ export class QuizService {
       this.actualQuestionNumber = 0;
       this.actualQuestionNumber$.next(this.actualQuestionNumber);
       this.displayQuestion(quizEnCours, this.actualQuestionNumber);
+
+      this.nbBonneReponses = 0;
+      this.nbBonneReponses$.next(this.nbBonneReponses);
+      this.nbIndiceUtilise = 0;
+      this.nbIndiceUtilise$.next(this.nbIndiceUtilise);
+      this.streakDeBonneReponse = 0;
+      this.streakDeBonneReponse$.next(this.streakDeBonneReponse);
+      this.enStreak = 0;
+
+      this.bonScore = false;
+      this.bonScore$.next(this.bonScore);
+      this.bonneStreak = false;
+      this.bonneStreak$.next(this.bonneStreak);
+      this.peuDindice = false;
+      this.peuDindice$.next(this.peuDindice);
+
     }
   }
 
@@ -99,6 +132,8 @@ export class QuizService {
 
   hintAsked() {
     this.usedHint++;
+    this.nbIndiceUtilise++;
+    this.nbIndiceUtilise$.next(this.nbIndiceUtilise);
   }
 
   responseSelected(quiz: Quiz, responseNumber: number) {
@@ -107,8 +142,18 @@ export class QuizService {
       console.log("Bonne réponse félicitation!");
       this.statsService.successRateNewData(100, this.actualQuestionNumber);
       this.actualScore++;
+      this.nbBonneReponses++;
+      this.nbBonneReponses$.next(this.nbBonneReponses);
+      this.enStreak++;
     } else {
       console.log("Mauvaise Réponse!");
+
+      if(this.streakDeBonneReponse < this.enStreak){
+        this.streakDeBonneReponse = this.enStreak;
+        this.streakDeBonneReponse$.next(this.streakDeBonneReponse);
+      }
+      this.enStreak = 0;
+
       this.statsService.successRateNewData(0, this.actualQuestionNumber);
     }
 
@@ -118,7 +163,30 @@ export class QuizService {
       this.statsService.addQuizDone();
       this.statsService.meanScoreNewData(this.actualScore/quiz.questions.length);
       this.statsService.usedHintNewData(this.usedHint);
-      this.statsService.patientScoreNewData(this.actualProfil, this.actualScore/quiz.questions.length);
+                                        
+      if(this.streakDeBonneReponse < this.enStreak){
+        this.streakDeBonneReponse = this.enStreak;
+        this.streakDeBonneReponse$.next(this.streakDeBonneReponse);
+      }
+
+      if(this.nbBonneReponses >= this.actualQuestionNumber){
+        this.bonScore = true;
+        this.bonScore$.next(this.bonScore);
+      }
+
+      if(this.streakDeBonneReponse >= 2){
+        this.bonneStreak = true;
+        this.bonneStreak$.next(this.bonneStreak);
+      }
+
+      if(this.nbIndiceUtilise <= this.actualQuestionNumber+1){
+        this.peuDindice = true;
+        this.peuDindice$.next(this.peuDindice);
+      }
+
+
+      this.statsService.patientNewData(this.actualProfil, this.actualScore/quiz.questions.length);
+
       this.endOfQuiz = true;
       this.endOfQuiz$.next(this.endOfQuiz);
     } else {

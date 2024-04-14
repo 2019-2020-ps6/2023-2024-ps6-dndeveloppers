@@ -11,13 +11,7 @@ import { QuizService } from "src/services/quiz.service";
 export class ChoixQuizComponent implements OnInit {
   @Input()
   quiz: Quiz | undefined;
-
-  //@Output()
-  //quizSelected: EventEmitter<boolean> = new EventEmitter<boolean>();
-
-  //@Output()
-  //deleteQuiz: EventEmitter<Quiz> = new EventEmitter<Quiz>();
-
+  
   constructor(private router: Router,public quizService: QuizService) {
   }
 

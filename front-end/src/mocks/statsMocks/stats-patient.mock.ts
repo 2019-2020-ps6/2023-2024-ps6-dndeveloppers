@@ -1,5 +1,4 @@
 import { statsPatient } from "src/models/stats/statsPatient.model";
-import { QUIZ_LIST } from "../quiz-list.mock";
 
 export const STATS_PATIENT_INIT: statsPatient = {
     options: [true],
