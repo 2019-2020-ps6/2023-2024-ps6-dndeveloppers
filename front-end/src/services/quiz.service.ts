@@ -144,13 +144,15 @@ export class QuizService {
   }
 
   hintAsked() {
-    this.usedHint++;
-    this.nbIndiceUtilise++;
-    this.nbIndiceUtilise$.next(this.nbIndiceUtilise);
-    if (this.usedIndice.length < this.actualIndices.length) {
-      this.usedIndice.push(this.usedIndice.length);
-    } else {
-      this.hideResponse();
+    if (this.usedHint < this.actualIndices.length+3) {
+      this.usedHint++;
+      this.nbIndiceUtilise++;
+      this.nbIndiceUtilise$.next(this.nbIndiceUtilise);
+      if (this.usedIndice.length < this.actualIndices.length) {
+        this.usedIndice.push(this.usedIndice.length);
+      } else {
+        this.hideResponse();
+      }
     }
   }
 
@@ -245,6 +247,13 @@ export class QuizService {
       this.actualIndices = this.choosenQuiz.questions[this.actualQuestionNumber].indice;
       this.actualIndices$.next(this.actualIndices);
     }
+  }
+
+  reset() {
+    this.displayResponses = [true, true, true, true];
+    this.usedIndice = [];
+    this.displayResponses$.next(this.displayResponses);
+    this.usedIndice$.next(this.usedIndice);
   }
 
   getQuizzes(quiz: Quiz){

@@ -1,5 +1,6 @@
-import { Component, Input, OnInit, signal } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { QuizService } from "src/services/quiz.service";
 
 @Component({
     selector: 'app-comeBack',
@@ -15,10 +16,7 @@ export class ComeBackComponent implements OnInit {
     public message: String = "";
     public path: String = "";
     
-    constructor(public router: Router){
-    }
-
-    @Input()
+    constructor(public router: Router, public quizService: QuizService){}
 
     ngOnInit(): void {
         switch(this.destination){
@@ -39,6 +37,7 @@ export class ComeBackComponent implements OnInit {
     }
 
     return(){
+        this.quizService.reset();
         this.router.navigate([this.path]);
     }
 }
