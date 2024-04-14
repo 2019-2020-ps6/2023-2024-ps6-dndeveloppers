@@ -9,8 +9,17 @@ import { Component, Input, OnInit } from "@angular/core";
 export class QuestionComponent implements OnInit {
     @Input()
     question: string | undefined;
+
+    @Input()
+    photo: string | undefined;
+
     
+    public texte : string = '';
+
     constructor(){
+        if(this.question){
+            this.texte = this.question; 
+        }
     }
     
     ngOnInit(): void {

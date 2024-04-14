@@ -21,13 +21,15 @@ export class QuizComponent implements OnInit {
     public actualQuestionNumber: number = 0;
     public actualIndices: Indice[] = QUIZ_LIST[1].questions[0].indice//this.choosenQuiz.questions[this.actualQuestionNumber].indice;
     public usedIndice: number[] = [];
-    public  optionIndice : boolean | undefined;
+    public optionIndice : boolean | undefined;
 
     public actualProfil: Profil = ADMIN;
+    public pathImage: String = '';
 
     constructor(public quizService: QuizService, public router: Router, public profilService: ProfilService){
         this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
             this.choosenQuiz = choosenQuiz;
+            
         })
 
         this.quizService.actualQuestionNumber$.subscribe((actualQuestionNumber) => {

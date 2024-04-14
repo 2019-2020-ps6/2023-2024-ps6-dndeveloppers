@@ -59,8 +59,10 @@ export const QUESTION_ACTOR0: Question = {
             value: 'Les Tuches II est sorti en 2016',
         }
     ],
-    questionTexte: true,
-    questionImage: false
+    questionTexte: false,
+    questionImage: true,
+    optionImageLien: "./assets/quiz/JeanGabin.jpg",
+    optionImageQuestion: 'Jean Gabin a joué dans...'
 };
 
 export const QUESTION_ACTOR1: Question = {
@@ -95,7 +97,7 @@ export const QUESTION_ACTOR1: Question = {
         }
     ],
     questionTexte: true,
-    questionImage: true,
+    questionImage: false,
 }
 
 export const QUESTION_SPORT0: Question = {
@@ -130,8 +132,10 @@ export const QUESTION_SPORT0: Question = {
         value: 'Le maillot gagnant est blanc et bleu',
     }
     ],
-   questionTexte: true,
-   questionImage: false
+   questionTexte: false,
+   questionImage: true,
+   optionImageLien: "./assets/quiz/foot.jpg",
+   optionImageQuestion: 'test'
 };
 
 export const QUESTION_SPORT1: Question = {
@@ -139,11 +143,11 @@ export const QUESTION_SPORT1: Question = {
     answers: [
         {
            value: 'France',
-           isCorrect: false,
+           isCorrect: true,
        },
        {
            value: 'Argentine',
-           isCorrect: true,
+           isCorrect: false,
        },
        {
            value: 'Brésil',
@@ -165,8 +169,10 @@ export const QUESTION_SPORT1: Question = {
         value: 'Le maillot gagnant est blanc et bleu',
     }
     ],
-   questionTexte: true,
-   questionImage: false
+   questionTexte: false,
+   questionImage: true,
+   optionImageLien: "./assets/quiz/france1998.jpg",
+   optionImageQuestion: 'Quel pays a gagné la coupe du monde de foot 1998 .....'
 };
 
 export const QUIZ_NULL: Quiz = {
@@ -194,6 +200,7 @@ export const QUIZ_LIST: Quiz[] = [
         questions: [QUESTION_SPORT0,QUESTION_SPORT1],
         nbQuestionsPerType: [2,0],
         id: 1,
-        selfStats: STATS_SPORTS
+        selfStats: STATS_SPORTS,
+        photo: "./assets/quiz/foot.jpg"
     }
 ];

@@ -15,5 +15,6 @@ export interface Question {
     indice: Indice[],
     dejaPosee?: false, // si la question a déjà été posée
     
-    optionImage?: string[], // 1 = lien  -   2 = texte si l'option photo est désactivée
+    optionImageLien?: string, // 1 = lien  -   
+    optionImageQuestion?: string, //2 = texte si l'option photo est désactivée
 }

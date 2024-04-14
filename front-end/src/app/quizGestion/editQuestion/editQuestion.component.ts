@@ -48,8 +48,8 @@ export class EditQuestionComponent implements OnInit {
             this.indice = [this.question?.indice[0].value, this.question?.indice[1].value, this.question?.indice[2].value];
         }
 
-        if(this.question != undefined && this.question.optionImage != undefined){
-            this.texteImage = this.question.optionImage[1];
+        if(this.question != undefined && this.question.optionImageLien != undefined && this.question.optionImageQuestion != undefined){
+            this.texteImage = this.question.optionImageQuestion;
         }
         
 
@@ -123,7 +123,8 @@ export class EditQuestionComponent implements OnInit {
             let path : String = this.questionForm.value.photoLien;
             var spliter = path.split('\\');
             let bon_path : string = "./assets/quiz/"+spliter[spliter.length-1];
-            question.optionImage = [bon_path,this.questionForm.value.photoTexte];
+            question.optionImageLien = bon_path,
+            question.optionImageQuestion = this.questionForm.value.photoTexte;
         }
         this.quizService.editQuestion(question);
     }
