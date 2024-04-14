@@ -21,7 +21,7 @@ export class QuizComponent implements OnInit {
     public actualQuestionNumber: number = 0;
     public actualIndices: Indice[] = QUIZ_LIST[1].questions[0].indice//this.choosenQuiz.questions[this.actualQuestionNumber].indice;
     public usedIndice: number[] = [];
-    public  optionIndice : boolean | undefined;
+    public optionIndice : boolean | undefined;
 
     public actualProfil: Profil = ADMIN;
 
@@ -43,7 +43,7 @@ export class QuizComponent implements OnInit {
             this.usedIndice = usedIndice;
         })
 
-        profilService.actualProfil$.subscribe((profil) => {
+        this.profilService.actualProfil$.subscribe((profil) => {
             this.optionIndice = profil.optionIndice;
         })
     }

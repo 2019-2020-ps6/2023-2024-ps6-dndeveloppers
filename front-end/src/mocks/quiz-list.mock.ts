@@ -139,11 +139,11 @@ export const QUESTION_SPORT1: Question = {
     answers: [
         {
            value: 'France',
-           isCorrect: false,
+           isCorrect: true,
        },
        {
            value: 'Argentine',
-           isCorrect: true,
+           isCorrect: false,
        },
        {
            value: 'Brésil',

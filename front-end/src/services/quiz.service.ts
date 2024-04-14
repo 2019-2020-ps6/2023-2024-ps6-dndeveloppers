@@ -29,6 +29,7 @@ export class QuizService {
   private nbIndiceUtilise: number = 0;
   private streakDeBonneReponse: number = 0;
   private enStreak: number = 0;
+  private scoreWithOptionSup: number = 0;
 
   private bonScore: boolean = false;
   private bonneStreak: boolean = false;
@@ -116,6 +117,7 @@ export class QuizService {
       this.hintAskedForQuestion = 0;
       console.log("Quiz valide");
 
+      this.scoreWithOptionSup = 1;
       this.actualScore = 0;
       this.usedHint = 0;
       this.endOfQuiz = false;
@@ -187,6 +189,83 @@ export class QuizService {
       }
       this.displayResponses[randomNumber] = false;
       this.displayResponses$.next(this.displayResponses);
+    }
+  }
+
+  responseSelectedWithOptionSupprimerMauvaiseReponse(quiz: Quiz, responseNumber: number){
+    if (this.actualResponses[responseNumber].isCorrect) {
+      console.log("Bonne réponse félicitation!");
+      this.statsService.successRateNewData(100, this.actualQuestionNumber);
+      this.actualScore += this.scoreWithOptionSup;
+      if(this.scoreWithOptionSup > 0.5){
+        this.nbBonneReponses++;
+        this.nbBonneReponses$.next(this.nbBonneReponses);
+      }  
+      this.enStreak++;
+      this.hintAskedForQuestion = 0;
+    this.usedIndice = [];
+    this.usedIndice$.next(this.usedIndice);
+
+    this.displayResponses = [true, true, true, true];
+    this.displayResponses$.next(this.displayResponses);
+
+    if (this.actualQuestionNumber == quiz.questions.length-1) {
+      console.log("C'était la dernière question");
+      console.log("score: ",this.actualScore);
+      this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
+      this.statsService.addQuizDone();
+      this.statsService.meanScoreNewData(this.actualScore/quiz.questions.length);
+      this.statsService.usedHintNewData(this.usedHint);
+                                        
+      if(this.streakDeBonneReponse < this.enStreak){
+        this.streakDeBonneReponse = this.enStreak;
+        this.streakDeBonneReponse$.next(this.streakDeBonneReponse);
+      }
+
+      if(this.nbBonneReponses >= this.actualQuestionNumber){
+        this.bonScore = true;
+        this.bonScore$.next(this.bonScore);
+      }
+
+      if(this.streakDeBonneReponse >= 2){
+        this.bonneStreak = true;
+        this.bonneStreak$.next(this.bonneStreak);
+      }
+
+      if(this.nbIndiceUtilise <= this.actualQuestionNumber+1){
+        this.peuDindice = true;
+        this.peuDindice$.next(this.peuDindice);
+      }
+
+
+      this.statsService.patientScoreNewData(this.actualProfil, this.actualScore/quiz.questions.length);
+
+      this.endOfQuiz = true;
+      this.endOfQuiz$.next(this.endOfQuiz);
+
+    } else {
+      this.actualQuestionNumber++;
+      this.actualQuestionNumber$.next(this.actualQuestionNumber);
+      this.actualIndices = this.choosenQuiz.questions[this.actualQuestionNumber].indice;
+      this.actualIndices$.next(this.actualIndices);
+
+      this.actualQuestion = this.choosenQuiz.questions[this.actualQuestionNumber];
+      this.actualQuestion$.next(this.actualQuestion);
+
+      this.actualResponses = this.actualQuestion.answers;
+      this.actualResponses$.next(this.actualResponses);
+    }
+    }
+    else{
+      if(this.streakDeBonneReponse < this.enStreak){
+        this.streakDeBonneReponse = this.enStreak;
+        this.streakDeBonneReponse$.next(this.streakDeBonneReponse);
+      }
+      this.enStreak = 0;
+      this.statsService.successRateNewData(0, this.actualQuestionNumber);
+      this.displayResponses[responseNumber] = false;
+      this.scoreWithOptionSup -= 0.25;
+      
     }
   }
 

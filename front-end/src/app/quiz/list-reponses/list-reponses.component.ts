@@ -5,6 +5,7 @@ import { Quiz } from "src/models/quiz.model";
 import { QuizService } from "src/services/quiz.service";
 import { Profil } from "src/models/profil.model";
 import { LISTE_PROFILS } from "src/mocks/profil-list.mock";
+import { ProfilService } from "src/services/profil.service";
 
 
 @Component({
@@ -34,7 +35,9 @@ export class ListReponsesComponent implements OnInit {
     public bonneStreak: boolean = false;
     public peuDindice: boolean = false;
 
-    constructor(public quizService: QuizService){
+    public optionSupprimerMauvaisesReponses : boolean | undefined;
+
+    constructor(public quizService: QuizService, public profilService: ProfilService){
         this.quizService.actualResponses$.subscribe((actualResponses) => {
             this.actualResponses = actualResponses;
         })
@@ -49,7 +52,10 @@ export class ListReponsesComponent implements OnInit {
         
         this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
             this.choosenQuiz = choosenQuiz;
+        })
 
+        this.profilService.actualProfil$.subscribe((profil) => {
+            this.optionSupprimerMauvaisesReponses = profil.optionSupprimerMauvaisesReponses;
         })
 
         this.quizService.endOfQuiz$.subscribe((endOfQuiz) => {
@@ -90,7 +96,12 @@ export class ListReponsesComponent implements OnInit {
     quiz: Quiz = this.choosenQuiz;
 
     responseSelected(responseNumber: number) {
-        this.quizService.responseSelected(this.choosenQuiz, responseNumber);
+        if(this.optionSupprimerMauvaisesReponses){
+            this.quizService.responseSelectedWithOptionSupprimerMauvaiseReponse(this.choosenQuiz, responseNumber);
+        }
+        else{
+            this.quizService.responseSelected(this.choosenQuiz, responseNumber);
+        }
         //this.loadQuestion(this.actualQuestionNumber);
     }
 
