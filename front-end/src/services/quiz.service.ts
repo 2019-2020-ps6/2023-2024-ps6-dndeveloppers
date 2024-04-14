@@ -35,6 +35,8 @@ export class QuizService {
   private bonneStreak: boolean = false;
   private peuDindice: boolean = false;
 
+  private goodAnswer: number = 0;
+
   private themeList: String[] = []; // liste des thèmes de quiz
   private editedQuiz: Quiz = this.quizzes[0]; // quiz en cours d'édition
 
@@ -65,6 +67,9 @@ export class QuizService {
   public peuDindice$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   public indice$: BehaviorSubject<string[]> = new BehaviorSubject([""]);
+
+  public goodAnswer$: BehaviorSubject<number> = new BehaviorSubject(0);
+
 
   public url: string = "";
 
@@ -190,6 +195,25 @@ export class QuizService {
       this.displayResponses[randomNumber] = false;
       this.displayResponses$.next(this.displayResponses);
     }
+  }
+
+  isGoodAnswer(quiz: Quiz, responseNumber: number){
+
+    if(this.actualResponses[0].isCorrect == true) {
+      this.goodAnswer = 1;
+    }
+    if(this.actualResponses[1].isCorrect == true) {
+      this.goodAnswer = 2;
+    }
+    if(this.actualResponses[2].isCorrect == true) {
+      this.goodAnswer = 3;
+    }
+    else{
+      if(this.actualResponses[3].isCorrect == true){
+        this.goodAnswer = 4;
+      }
+    }
+    this.goodAnswer$.next(this.goodAnswer);
   }
 
   responseSelectedWithOptionSupprimerMauvaiseReponse(quiz: Quiz, responseNumber: number) {

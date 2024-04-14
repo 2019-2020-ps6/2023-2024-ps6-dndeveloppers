@@ -35,6 +35,14 @@ export class ListReponsesComponent implements OnInit {
     public bonneStreak: boolean = false;
     public peuDindice: boolean = false;
 
+    public goodAnswer: number = 0;
+
+    public  couleur1: string | undefined;
+    public  couleur2: string | undefined;
+    public  couleur3: string | undefined;
+    public  couleur4: string | undefined;
+
+
     public optionSupprimerMauvaisesReponses : boolean | undefined;
 
     constructor(public quizService: QuizService, public profilService: ProfilService){
@@ -74,10 +82,6 @@ export class ListReponsesComponent implements OnInit {
             this.peuDindice = peuDindice;
         })
 
-        this.quizService.nbBonneReponses$.subscribe((nbBonneReponses) => {
-            this.nbBonneReponses = nbBonneReponses;
-        })
-
         this.quizService.nbIndiceUtilise$.subscribe((nbIndiceUtilise) => {
             this.nbIndiceUtilise = nbIndiceUtilise;
         })
@@ -85,6 +89,15 @@ export class ListReponsesComponent implements OnInit {
         this.quizService.streakDeBonneReponse$.subscribe((streakDeBonneReponse) => {
             this.streakDeBonneReponse = streakDeBonneReponse;
         })
+
+        this.quizService.streakDeBonneReponse$.subscribe((streakDeBonneReponse) => {
+            this.streakDeBonneReponse = streakDeBonneReponse;
+        })
+
+        this.quizService.goodAnswer$.subscribe((goodAnswer) => {
+            this.goodAnswer = goodAnswer;
+        })
+
     }
 
     ngOnInit(): void {
@@ -100,7 +113,26 @@ export class ListReponsesComponent implements OnInit {
             this.quizService.responseSelectedWithOptionSupprimerMauvaiseReponse(this.choosenQuiz, responseNumber);
         }
         else{
-            this.quizService.responseSelected(this.choosenQuiz, responseNumber);
+            this.quizService.isGoodAnswer(this.choosenQuiz, responseNumber);
+            if(this.goodAnswer == 1){
+                this.couleur1 = "lightgreen";
+            }
+            if(this.goodAnswer == 2){
+                this.couleur2 = "lightgreen";
+            }
+            if(this.goodAnswer == 3){
+                this.couleur3 = "lightgreen";
+            }
+            if(this.goodAnswer == 4){
+                this.couleur4 = "lightgreen";
+            }
+            setTimeout(() => {
+                this.quizService.responseSelected(this.choosenQuiz, responseNumber);
+                this.couleur1 = "#6958cf";
+                this.couleur2 = "#6958cf";
+                this.couleur3 = "#6958cf";
+                this.couleur4 = "#6958cf";
+            }, 3000);
         }
         //this.loadQuestion(this.actualQuestionNumber);
     }
