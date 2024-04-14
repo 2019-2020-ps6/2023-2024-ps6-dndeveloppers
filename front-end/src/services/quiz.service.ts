@@ -185,7 +185,7 @@ export class QuizService {
       }
 
 
-      this.statsService.patientNewData(this.actualProfil, this.actualScore/quiz.questions.length);
+      this.statsService.patientScoreNewData(this.actualProfil, this.actualScore/quiz.questions.length);
 
       this.endOfQuiz = true;
       this.endOfQuiz$.next(this.endOfQuiz);
