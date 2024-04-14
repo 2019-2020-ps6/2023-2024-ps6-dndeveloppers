@@ -169,11 +169,15 @@ export class StatsService {
     }
 
     successRateNewData(responseVeracity: number, actualQuestionNumber: number) {
-      let rate = this.actualQuiz.selfStats.successPercentageByQuestion[actualQuestionNumber];
-      rate *= this.actualQuiz.selfStats.playedTime-1;
-      rate += responseVeracity;
-      rate /= this.actualQuiz.selfStats.playedTime;
-      this.actualQuiz.selfStats.successPercentageByQuestion[actualQuestionNumber] = rate;
+      if (this.actualQuiz.selfStats.successPercentageByQuestion[actualQuestionNumber] == undefined) {
+        this.actualQuiz.selfStats.successPercentageByQuestion[actualQuestionNumber] = responseVeracity;
+      } else {
+        let rate = this.actualQuiz.selfStats.successPercentageByQuestion[actualQuestionNumber];
+        rate *= this.actualQuiz.selfStats.playedTime-1;
+        rate += responseVeracity;
+        rate /= this.actualQuiz.selfStats.playedTime;
+        this.actualQuiz.selfStats.successPercentageByQuestion[actualQuestionNumber] = rate;
+      }
     }
 
     refreshQuizSubscribers() {

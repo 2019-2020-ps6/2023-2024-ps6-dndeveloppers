@@ -71,18 +71,22 @@ export class StatsQuizComponent implements OnInit {
     }
 
     categoriesChart() {
+        console.log("success ",this.actualQuiz.selfStats.successPercentageByQuestion);
         let categories = [];
         for (let i=0; i<this.actualQuiz.selfStats.successPercentageByQuestion.length; i++) {
             categories.push((i+1).toString());
         }
+        console.log(categories);
         return categories;
     }
 
     dataChart() {
+        console.log("data");
         let data = [];
         for (let i=0; i<this.actualQuiz.selfStats.successPercentageByQuestion.length; i++) {
             data.push(this.actualQuiz.selfStats.successPercentageByQuestion[i]);
         }
+        console.log(data);
         return data
     }
 }
