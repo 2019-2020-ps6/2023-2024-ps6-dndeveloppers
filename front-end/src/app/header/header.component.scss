@@ -2,7 +2,7 @@
     width: 100%;
     height: auto;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 2fr 1fr;
     background-color: lightgray;
     border : 2px solid black;
 }
@@ -30,8 +30,9 @@
 .profil {
     grid-column: 2;
     margin-left: auto;
+    margin-right: 10px;
     align-items: center;
-    width: 300px;
+    width: auto;
     height: 100px;
     
     border-radius: 3rem;
@@ -40,29 +41,29 @@
 
     display: grid;
     grid-template-rows: 30% 5% 30% 5% 30%;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 1fr 5px 70%;
 
 }
 
 #imageProfil {
     max-height: 100px;
     width: auto;
-    grid-area: 1/1/6/3;
+    grid-area: 1/1/6/2;
     border-left : 2px solid black;  
     border-right : 2px solid black; 
 }
 
 #nom {
     grid-row: 1;
-    grid-column: 2;
+    grid-column: 3;
 }
 #prenom {
     grid-row: 3;
-    grid-column: 2;
+    grid-column: 3;
 }
 #role {
     grid-row: 5;
-    grid-column: 2;
+    grid-column: 3;
 }
 /////////////////////////////
 /// 
