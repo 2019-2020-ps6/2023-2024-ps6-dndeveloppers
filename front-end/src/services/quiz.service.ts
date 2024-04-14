@@ -96,7 +96,6 @@ export class QuizService {
     if (quizEnCours.questions === undefined) {
       console.log("Ce quiz n'a pas de quesiton!");
     } else {
-      console.log("ok");
       this.actualScore = 0;
       this.usedHint = 0;
       this.endOfQuiz = false;
@@ -220,9 +219,6 @@ export class QuizService {
   }
 
   addTheme(theme: String){
-    let a = "aaa";
-    console.log(theme);
-    console.log(a);
     this.themeList.push(theme);
     this.themeList$.next(this.themeList);
     console.log("Le thème : ",theme," a été rajouté (temporairement)")
@@ -238,7 +234,6 @@ export class QuizService {
 
   addQuestion(question: Question){
     this.editedQuiz.questions.push(question);
-
     this.editedQuiz.nbQuestionsPerType
     console.log("Question ", question, " ajoutée.");
     console.log(this.editedQuiz);

@@ -78,7 +78,7 @@ export class ListReponsesComponent implements OnInit {
     public choosenQuiz: Quiz = this.quiz;
 
     responseSelected(responseNumber: number) {
-        console.log("Response selected : ",responseNumber);
+        console.log("Response selected : ",responseNumber," - bonne réponse : ",this.quiz.questions[this.actualQuestionNumber].answers);
         this.quizService.responseSelected(this.choosenQuiz, responseNumber);
         
         this.loadQuestion(0);
