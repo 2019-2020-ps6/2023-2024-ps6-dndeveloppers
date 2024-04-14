@@ -7,9 +7,14 @@
     height: auto;  
     border-radius: 0.5rem;
     background-color: #a0a023;
-    padding: 15px;
+    padding: 10px;
     border: solid black 2px;
     font-family: "OpenDyslexic", sans-serif;
     font-weight: bold;
     color: black;
+}
+
+#imageQuestion {
+    max-height: 200px;
+    max-width: 600px;
 }

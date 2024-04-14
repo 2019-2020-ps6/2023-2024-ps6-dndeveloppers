@@ -91,5 +91,8 @@ export const ADMIN: Profil = {
     optionTailleTexte: 'Moyen',
     tutoriel: false,
 
+    optionPhoto: true,
+    optionIndice: true,
+
     photo: './assets/imageProfil/default.png'
 }

@@ -24,10 +24,12 @@ export class QuizComponent implements OnInit {
     public optionIndice : boolean | undefined;
 
     public actualProfil: Profil = ADMIN;
+    public pathImage: String = '';
 
     constructor(public quizService: QuizService, public router: Router, public profilService: ProfilService){
         this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
             this.choosenQuiz = choosenQuiz;
+            
         })
 
         this.quizService.actualQuestionNumber$.subscribe((actualQuestionNumber) => {
