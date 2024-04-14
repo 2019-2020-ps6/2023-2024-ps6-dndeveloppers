@@ -64,6 +64,7 @@ export class QuizService {
   }
 
   addQuiz(quiz: Quiz) {
+    this.statsService.addQuiz(quiz);
     this.quizzes.push(quiz);
     this.quizzes$.next(this.quizzes);
   }
@@ -158,12 +159,11 @@ export class QuizService {
 
     if (this.actualQuestionNumber == quiz.questions.length-1) {
       console.log("C'était la dernière question");
+      this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
       this.statsService.addQuizDone();
       this.statsService.meanScoreNewData(this.actualScore/quiz.questions.length);
       this.statsService.usedHintNewData(this.usedHint);
-
-      this.statsService.patientNewData(this.actualProfil, this.actualScore);
-
+                                        
       if(this.streakDeBonneReponse < this.enStreak){
         this.streakDeBonneReponse = this.enStreak;
         this.streakDeBonneReponse$.next(this.streakDeBonneReponse);

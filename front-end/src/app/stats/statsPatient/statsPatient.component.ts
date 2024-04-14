@@ -2,7 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import * as Highcharts from 'highcharts'
 import { LISTE_PATIENTS, LISTE_PROFILS } from "src/mocks/profil-list.mock";
 import { ADMIN } from "src/mocks/profil.mock";
+import { QUIZ_LIST } from "src/mocks/quiz-list.mock";
 import { Profil } from "src/models/profil.model";
+import { StatsService } from "src/services/stats.service";
 
 @Component({
     selector: 'app-stats-patient',
@@ -14,8 +16,10 @@ export class StatsPatientComponent implements OnInit {
 
     public listePatient: Profil[] = LISTE_PATIENTS;
     public actualPatient: Profil  = ADMIN;
+    public actualSeriesName: string[] = [];
     public actualCategories: string[] = [];
     public actualData: number[] = [];
+    public actualSeries: any[] = [];
 
     public options: any = {
         Chart: {
@@ -40,15 +44,18 @@ export class StatsPatientComponent implements OnInit {
                 text: 'Taux(%)'
             }
         },
-        series: [{
-            name: 'Taux de réussite du patient pour le quiz',
-            data: this.actualData
-        }]
+        series: []
     }
 
-    constructor(){}
+    constructor(public statsService: StatsService){
+        this.statsService.series$.subscribe((actualSeries) => {
+            this.actualSeries = actualSeries;
+        })
+    }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.fillSeries();
+    }
 
     selectedPatient(event: any) {
         let nomPatient: string = event.target.value;
@@ -59,22 +66,52 @@ export class StatsPatientComponent implements OnInit {
             }
         }
         this.options.xAxis.categories = this.categoriesChart();
-        this.options.series[0].data = this.dataChart();
+        for (let i=0; i<QUIZ_LIST.length; i++) {
+            this.options.series[i].data = this.dataChart(QUIZ_LIST[i].name);
+            /*
+            if (i >= this.options.series.length) {
+                let newElement = {
+                    name: QUIZ_LIST[i].name,
+                    data: this.dataChart(QUIZ_LIST[i].name)
+                }
+                this.options.series.push(newElement);
+            } else {
+            }*/
+        }
         Highcharts.chart('patientChart', this.options);
+    }
+
+    fillSeries() {
+        console.log(this.options.series);
+        this.options.series.splice(0, this.options.series.length);
+        console.log(this.options.series);
+        for (let i=0; i<QUIZ_LIST.length; i++) {
+            let name = QUIZ_LIST[i].name;
+            let data: number[] = [];
+            let tab = {
+                name: name,
+                data: data
+            }
+            
+            this.options.series.push(tab);
+        }
+        console.log(this.options.series);
     }
 
     categoriesChart() {
         let categories = [];
         for (let i=0; i<this.actualPatient.selfStats.quizRes.length; i++) {
-            categories.push(i.toString());
+            categories.push((i+1).toString());
         }
         return categories;
     }
 
-    dataChart() {
+    dataChart(quizName: string) {
         let data = [];
         for (let i=0; i<this.actualPatient.selfStats.quizRes.length; i++) {
-            data.push(this.actualPatient.selfStats.quizRes[i]);
+            if (this.actualPatient.selfStats.quizDone[i] == quizName) {
+                data.push(this.actualPatient.selfStats.quizRes[i]);
+            }
         }
         return data
     }

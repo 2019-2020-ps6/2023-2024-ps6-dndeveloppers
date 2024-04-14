@@ -5,6 +5,7 @@ export const STATS_PATIENT_INIT: statsPatient = {
     nbQuizDone: 0,
     meanScore: 0,
     quizRes: [],
+    quizDone: [],
     nbAttemptForEachQuizDone: []
 }
 
@@ -13,6 +14,7 @@ export const STATS_PATIENT_MAURICE: statsPatient = {
     nbQuizDone: 2,
     meanScore: 75,
     quizRes: [100,50],
+    quizDone: ['Acteurs', 'Sports'],
     nbAttemptForEachQuizDone: [1,1]
 }
 
@@ -21,6 +23,7 @@ export const STATS_PATIENT_JOSEPH: statsPatient = {
     nbQuizDone: 1,
     meanScore: 50,
     quizRes: [50],
+    quizDone: ['Sports'],
     nbAttemptForEachQuizDone: [0,1]
 
 }
@@ -30,5 +33,6 @@ export const STATS_PATIENT_NULL: statsPatient = {
     nbQuizDone: 0,
     meanScore: 0,
     quizRes: [],
+    quizDone: [],
     nbAttemptForEachQuizDone: [0,0]
 }
