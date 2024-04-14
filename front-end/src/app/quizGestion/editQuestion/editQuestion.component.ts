@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { Question_Model, Answer_Model1, Answer_Model2, Answer_Model3, Answer_Model4, QUIZ_LIST } from "src/mocks/quiz-list.mock";
-import { Answer, Question } from "src/models/question.models";
+import { Question_Model, Answer_Model1, Answer_Model2, Answer_Model3, Answer_Model4, QUIZ_LIST, Indice_Model1, Indice_Model2, Indice_Model3 } from "src/mocks/quiz-list.mock";
+import { Answer, Question, Indice } from "src/models/question.models";
 import { Quiz } from "src/models/quiz.model";
 import { QuizService } from "src/services/quiz.service";
 
@@ -18,6 +18,7 @@ export class EditQuestionComponent implements OnInit {
     public questionForm : FormGroup;
 
     public answers: String[] = ['','','',''];
+    public indice: String[] = ['','',''];
     public numberGoodAnswer = 0;
 
     constructor(public formBuilder: FormBuilder, public quizService: QuizService){
@@ -27,7 +28,10 @@ export class EditQuestionComponent implements OnInit {
             q2: [this.question?.answers[1].value],
             q3: [this.question?.answers[2].value],
             q4: [this.question?.answers[3].value],
-            goodAnswer: [this.findGoodAnswer()+1]
+            goodAnswer: [this.findGoodAnswer()+1],
+            i1: [this.question?.indice[0].value],
+            i2: [this.question?.indice[1].value],
+            i3: [this.question?.indice[2].value],
         });
     }
 
@@ -35,6 +39,7 @@ export class EditQuestionComponent implements OnInit {
         if (this.question != undefined){
             this.answers = [this.question.answers[0].value,this.question.answers[1].value,this.question.answers[2].value,this.question.answers[3].value];
             this.numberGoodAnswer = this.findGoodAnswer()+1;
+            this.indice = [this.question?.indice[0].value, this.question?.indice[1].value, this.question?.indice[2].value];
         }
         
 
@@ -44,7 +49,10 @@ export class EditQuestionComponent implements OnInit {
             q2: [this.question?.answers[1].value],
             q3: [this.question?.answers[2].value],
             q4: [this.question?.answers[3].value],
-            goodAnswer: [this.findGoodAnswer()+1]
+            goodAnswer: [this.findGoodAnswer()+1],
+            i1: [this.question?.indice[0].value],
+            i2: [this.question?.indice[1].value],
+            i3: [this.question?.indice[2].value]
         });
     }
 
@@ -81,6 +89,17 @@ export class EditQuestionComponent implements OnInit {
 
         question.answers = [answer1 , answer2 , answer3, answer4];        
         question.answers[this.questionForm.value.goodAnswer-1].isCorrect = true;
+
+        let indice1 : Indice = Indice_Model1;
+        indice1.value = this.questionForm.value.i1;
+
+        let indice2 : Indice = Indice_Model2;
+        indice2.value = this.questionForm.value.i2;
+
+        let indice3 : Indice = Indice_Model3;
+        indice3.value = this.questionForm.value.i3;
+
+        question.indice = [indice1, indice2, indice3];
 
         console.log("question : ",question)
         this.quizService.editQuestion(question);

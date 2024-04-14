@@ -30,6 +30,8 @@ export class QuizService {
   private bonneStreak: boolean = false;
   private peuDindice: boolean = false;
 
+  private indice: string[] = [];
+
   private themeList: String[] = []; // liste des thèmes de quiz
   private editedQuiz: Quiz = this.quizzes[0]; // quiz en cours d'édition
 
@@ -54,6 +56,8 @@ export class QuizService {
   public bonScore$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public bonneStreak$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public peuDindice$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+
+  public indice$: BehaviorSubject<string[]> = new BehaviorSubject([""]);
 
   public url: string = "";
 
@@ -134,6 +138,7 @@ export class QuizService {
     this.usedHint++;
     this.nbIndiceUtilise++;
     this.nbIndiceUtilise$.next(this.nbIndiceUtilise);
+
   }
 
   responseSelected(quiz: Quiz, responseNumber: number) {
