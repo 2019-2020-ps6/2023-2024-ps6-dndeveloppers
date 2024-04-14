@@ -57,11 +57,35 @@ export class StatsService {
     private playedQuiz: number = 0;
     private patientMeanScore: number = 0;
     private fiveLastQuizzes: Quiz[] = [];
+    private series = this.fillSeries();
 
     public options$: BehaviorSubject<string[]> = new BehaviorSubject(this.options);
     public playedQuiz$: BehaviorSubject<number> = new BehaviorSubject(this.playedQuiz);
     public patientMeanScore$: BehaviorSubject<number> = new BehaviorSubject(this.patientMeanScore);
     public fiveLastQuizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.fiveLastQuizzes);
+    public series$: BehaviorSubject<any> = new BehaviorSubject(this.series);
+
+    fillSeries() {
+      let res = [];
+      for (let i=0; i<QUIZ_LIST.length; i++) {
+          let name = QUIZ_LIST[i].name;
+          let data: number[] = [];
+          let tab = {
+              name: name,
+              data: data
+          }
+          res.push(tab);
+      }
+      return res;
+    }
+
+    addQuiz(quiz: Quiz) {
+      let newElement = {
+        name: quiz.name,
+        data: []
+      }
+      this.series.push(newElement);
+    }
 
     patientScoreNewData(profil: Profil, score: number) {
       profil.selfStats.nbQuizDone++;

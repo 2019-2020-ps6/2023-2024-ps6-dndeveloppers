@@ -47,6 +47,7 @@ export class QuizService {
   }
 
   addQuiz(quiz: Quiz) {
+    this.statsService.addQuiz(quiz);
     this.quizzes.push(quiz);
     this.quizzes$.next(this.quizzes);
   }
