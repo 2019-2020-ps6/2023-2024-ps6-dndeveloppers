@@ -17,6 +17,7 @@ export class QuizService {
   private actualQuestion: Question = QUESTION_ACTOR0;
   private actualResponses: Answer[] = QUESTION_ACTOR0.answers;
   private displayResponses: boolean[] = [true, true, true, true];
+  private hintAskedForQuestion: number = 0;
   private actualQuestionNumber: number = 0;
   private actualIndices: Indice[] = [];
   private actualScore: number = 0;
@@ -32,8 +33,6 @@ export class QuizService {
   private bonScore: boolean = false;
   private bonneStreak: boolean = false;
   private peuDindice: boolean = false;
-
-  private indice: string[] = [];
 
   private themeList: String[] = []; // liste des thèmes de quiz
   private editedQuiz: Quiz = this.quizzes[0]; // quiz en cours d'édition
@@ -107,6 +106,7 @@ export class QuizService {
       console.log("Ce quiz n'a pas de quesiton!");
     } else {
       console.log("ok");
+      this.hintAskedForQuestion = 0;
       this.actualScore = 0;
       this.usedHint = 0;
       this.endOfQuiz = false;
@@ -144,7 +144,7 @@ export class QuizService {
   }
 
   hintAsked() {
-    if (this.usedHint < this.actualIndices.length+3) {
+    if (this.hintAskedForQuestion < this.actualIndices.length+3) {
       this.usedHint++;
       this.nbIndiceUtilise++;
       this.nbIndiceUtilise$.next(this.nbIndiceUtilise);
@@ -154,6 +154,7 @@ export class QuizService {
         this.hideResponse();
       }
     }
+    this.hintAskedForQuestion++;
   }
 
   hideResponse() {
@@ -200,6 +201,7 @@ export class QuizService {
 
       this.statsService.successRateNewData(0, this.actualQuestionNumber);
     }
+    this.hintAskedForQuestion = 0;
     this.usedIndice = [];
     this.usedIndice$.next(this.usedIndice);
 
@@ -250,6 +252,7 @@ export class QuizService {
   }
 
   reset() {
+    this.hintAskedForQuestion = 0;
     this.displayResponses = [true, true, true, true];
     this.usedIndice = [];
     this.displayResponses$.next(this.displayResponses);
