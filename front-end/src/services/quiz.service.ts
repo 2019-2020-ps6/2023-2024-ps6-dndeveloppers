@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Quiz } from '../models/quiz.model';
 import { QUESTION_ACTOR0, QUIZ_LIST } from '../mocks/quiz-list.mock';
-import { Answer, Question } from 'src/models/question.models';
+import { Answer, Indice, Question } from 'src/models/question.models';
 import { StatsService } from './stats.service';
 import { Profil } from 'src/models/profil.model';
 import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
@@ -16,8 +16,11 @@ export class QuizService {
   private choosenQuiz: Quiz = this.quizzes[0];
   private actualQuestion: Question = QUESTION_ACTOR0;
   private actualResponses: Answer[] = QUESTION_ACTOR0.answers;
+  private displayResponses: boolean[] = [true, true, true, true];
   private actualQuestionNumber: number = 0;
+  private actualIndices: Indice[] = [];
   private actualScore: number = 0;
+  private usedIndice: number[] = [];
   private usedHint: number = 0;
   private endOfQuiz: boolean = false;
 
@@ -43,7 +46,10 @@ export class QuizService {
   public choosenQuiz$: BehaviorSubject<Quiz> = new BehaviorSubject(QUIZ_LIST[0]);
   public actualQuestion$: BehaviorSubject<Question> = new BehaviorSubject(QUESTION_ACTOR0);
   public actualResponses$: BehaviorSubject<Answer[]> = new BehaviorSubject(QUESTION_ACTOR0.answers);
+  public displayResponses$: BehaviorSubject<boolean[]> = new BehaviorSubject(this.displayResponses);
   public actualQuestionNumber$: BehaviorSubject<number> = new BehaviorSubject(0);
+  public actualIndices$: BehaviorSubject<Indice[]> = new BehaviorSubject(this.actualIndices);
+  public usedIndice$: BehaviorSubject<number[]> = new BehaviorSubject(this.usedIndice);
   public endOfQuiz$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   public themeList$: BehaviorSubject<String[]> = new BehaviorSubject(this.themeList);
@@ -105,6 +111,9 @@ export class QuizService {
       this.usedHint = 0;
       this.endOfQuiz = false;
       this.endOfQuiz$.next(this.endOfQuiz);
+
+      this.actualIndices = this.choosenQuiz.questions[0].indice;
+      this.actualIndices$.next(this.actualIndices);
       
       this.actualQuestionNumber = 0;
       this.actualQuestionNumber$.next(this.actualQuestionNumber);
@@ -138,7 +147,35 @@ export class QuizService {
     this.usedHint++;
     this.nbIndiceUtilise++;
     this.nbIndiceUtilise$.next(this.nbIndiceUtilise);
+    if (this.usedIndice.length < this.actualIndices.length) {
+      this.usedIndice.push(this.usedIndice.length);
+    } else {
+      this.hideResponse();
+    }
+  }
 
+  hideResponse() {
+    let nbOfTrue = 0;
+    for (let i=0; i<this.displayResponses.length; i++) {
+      if (this.displayResponses[i]) {
+        nbOfTrue++;
+      }
+    }
+    if (nbOfTrue > 1) {
+      let rightResponse = 0;
+      for (let i=0; i<this.actualQuestion.answers.length; i++) {
+        if (this.actualQuestion.answers[i].isCorrect) {
+          rightResponse = i;
+          break;
+        }
+      }
+      let randomNumber = Math.trunc(Math.random()*(4-0) + 0);
+      while (randomNumber == rightResponse || this.displayResponses[randomNumber] == false) {
+        randomNumber = Math.trunc(Math.random()*(4-0) + 0);
+      }
+      this.displayResponses[randomNumber] = false;
+      this.displayResponses$.next(this.displayResponses);
+    }
   }
 
   responseSelected(quiz: Quiz, responseNumber: number) {
@@ -161,6 +198,11 @@ export class QuizService {
 
       this.statsService.successRateNewData(0, this.actualQuestionNumber);
     }
+    this.usedIndice = [];
+    this.usedIndice$.next(this.usedIndice);
+
+    this.displayResponses = [true, true, true, true];
+    this.displayResponses$.next(this.displayResponses);
 
     if (this.actualQuestionNumber == quiz.questions.length-1) {
       console.log("C'était la dernière question");
@@ -194,11 +236,14 @@ export class QuizService {
 
       this.endOfQuiz = true;
       this.endOfQuiz$.next(this.endOfQuiz);
+
     } else {
       this.actualQuestion = this.choosenQuiz.questions[this.actualQuestionNumber];
       this.actualQuestion$.next(this.actualQuestion);
       this.actualQuestionNumber++;
       this.actualQuestionNumber$.next(this.actualQuestionNumber);
+      this.actualIndices = this.choosenQuiz.questions[this.actualQuestionNumber].indice;
+      this.actualIndices$.next(this.actualIndices);
     }
   }
 

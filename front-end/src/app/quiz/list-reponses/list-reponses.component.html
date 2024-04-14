@@ -1,8 +1,8 @@
 <div class="listreponse" *ngIf="actualResponses">
-    <button class="reponse-texte" id="first" name="button" (click)="responseSelected(0)"><app-texteAdaptatif [texte]=actualResponses[0].value></app-texteAdaptatif></button>
-    <button class="reponse-texte" id="second" name="button" (click)="responseSelected(1)"><app-texteAdaptatif [texte]=actualResponses[1].value></app-texteAdaptatif></button>
-    <button class="reponse-texte" id="third" name="button" (click)="responseSelected(2)"><app-texteAdaptatif [texte]=actualResponses[2].value></app-texteAdaptatif></button>
-    <button class="reponse-texte" id="fourth" name="button" (click)="responseSelected(3)"><app-texteAdaptatif [texte]=actualResponses[3].value></app-texteAdaptatif></button>
+    <button class="reponse-texte" id="first" *ngIf="displayResponses[0]" name="button" (click)="responseSelected(0)"><app-texteAdaptatif [texte]=actualResponses[0].value></app-texteAdaptatif></button>
+    <button class="reponse-texte" id="second" *ngIf="displayResponses[1]" name="button" (click)="responseSelected(1)"><app-texteAdaptatif [texte]=actualResponses[1].value></app-texteAdaptatif></button>
+    <button class="reponse-texte" id="third" *ngIf="displayResponses[2]" name="button" (click)="responseSelected(2)"><app-texteAdaptatif [texte]=actualResponses[2].value></app-texteAdaptatif></button>
+    <button class="reponse-texte" id="fourth" *ngIf="displayResponses[3]" name="button" (click)="responseSelected(3)"><app-texteAdaptatif [texte]=actualResponses[3].value></app-texteAdaptatif></button>
     
     <div id="endPopup" *ngIf="endOfQuiz">
         <p ><app-texteAdaptatif class="felicitation" texte="Félicitation, vous avez terminé le quiz !"></app-texteAdaptatif></p>

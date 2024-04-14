@@ -8,6 +8,9 @@
             <button class="boutonAide" (click)="tutoriel()"><app-texteAdaptatif texte="Aide ?"></app-texteAdaptatif></button>
             
         </div> 
+        <div class="listIndices" *ngFor="let indiceNum of usedIndice">
+            <p>{{actualIndices[indiceNum].value}}</p>
+        </div>
         <app-list-reponses  [quiz]="choosenQuiz" class="listreponse"></app-list-reponses>
         <app-comeBack class="returnButton" [destination]="'quizList'"></app-comeBack>
     </div>
