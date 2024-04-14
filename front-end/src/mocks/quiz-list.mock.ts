@@ -1,5 +1,5 @@
 import { Quiz } from '../models/quiz.model';
-import { Answer, Question } from '../models/question.models';
+import { Answer, Indice, Question } from '../models/question.models';
 import { STATS_ACTORS, STATS_INIT, STATS_SPORTS } from './statsMocks/stats-quiz.mock';
 
 export const Answer_Model: Answer = {
@@ -8,10 +8,23 @@ export const Answer_Model: Answer = {
 }
 
 
+export const Indice_Model1: Indice = {
+    value:'',
+}
+
+export const Indice_Model2: Indice = {
+    value:'',
+}
+
+export const Indice_Model3: Indice = {
+    value:'',
+}
+
 export const Question_Model: Question = {
     label:'',
     answers: [],
     questionImage: false,
+    indice: [],
     questionTexte: true
 }
 
@@ -33,6 +46,17 @@ export const QUESTION_ACTOR0: Question = {
         {
             value: 'Star Wars',
             isCorrect: false,
+        }
+    ],
+    indice: [
+        {
+            value: 'Jean Gabin est un acteur francais né en 1904',
+        },
+        {
+            value: 'Harry Potter et Star Wars ne sont pas des films francais',
+        },
+        {
+            value: 'Les Tuches II est sorti en 2016',
         }
     ],
     questionTexte: true,
@@ -57,6 +81,17 @@ export const QUESTION_ACTOR1: Question = {
         {
             value: 'Omar Sy',
             isCorrect: false,
+        }
+    ],
+    indice: [
+        {
+            value: 'Le personnage principale est Jack Sparrow',
+        },
+        {
+            value: 'Ce personnage est un homme',
+        },
+        {
+            value: 'Le film est americain',
         }
     ],
     questionTexte: true,
@@ -84,6 +119,17 @@ export const QUESTION_SPORT0: Question = {
             isCorrect: false,
         },
    ],
+   indice: [
+    {
+        value: 'Messi a gagne la coupe du monde en 2022',
+    },
+    {
+        value: 'Le pays vainqueur est sud Americain',
+    },
+    {
+        value: 'Le maillot gagnant est blanc et bleu',
+    }
+    ],
    questionTexte: true,
    questionImage: false
 };
@@ -108,6 +154,17 @@ export const QUESTION_SPORT1: Question = {
            isCorrect: false,
        }
    ],
+   indice: [
+    {
+        value: 'Messi a gagne la coupe du monde en 2022',
+    },
+    {
+        value: 'Le pays vainqueur est sud Americain',
+    },
+    {
+        value: 'Le maillot gagnant est blanc et bleu',
+    }
+    ],
    questionTexte: true,
    questionImage: false
 };

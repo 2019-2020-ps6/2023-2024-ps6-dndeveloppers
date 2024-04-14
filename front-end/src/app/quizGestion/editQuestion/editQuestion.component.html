@@ -15,6 +15,26 @@
     <label> Réponse 4 <br>
         <input class="input-custom" type="text" id="q4" [formControlName]="'q4'" required> <br><p class="indent">{{this.answers[3]}}</p>
         </label><br/>
+
+    <section class="indent">
+        <label> Indices:<br>
+            <div class="DAindice">
+                <p>1.</p>
+                <input class="input-custom" type="text" id="i1" [formControlName]="'i1'" required> <br>
+            </div>
+            <div class="DAindice">
+                <p>2.</p>
+                <input class="input-custom" type="text" id="i2" [formControlName]="'i2'" required> <br>
+            </div>
+            <div class="DAindice">
+                <p>3.</p>
+                <input class="input-custom" type="text" id="i3" [formControlName]="'i3'" required> <br>
+            </div>
+
+        </label><br/>
+    </section>
+
+
     <label>Bonne réponse : <br>
             <select name="theme-field" id="goodAnswer" [formControlName]="'goodAnswer'" required> 
                 <option [value]="0">1</option>

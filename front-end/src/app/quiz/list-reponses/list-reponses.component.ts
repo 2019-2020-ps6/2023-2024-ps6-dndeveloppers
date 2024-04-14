@@ -19,7 +19,10 @@ export class ListReponsesComponent implements OnInit {
 
     public actualResponses: Answer[] = [];
     public actualQuestionNumber: number = 0;
+    public displayResponses: boolean[] = [true, true, true , true];
+
     public choosenQuiz: Quiz = QUIZ_LIST[0];
+
     public endOfQuiz: boolean = false;
     public listePatient: Profil[] = LISTE_PROFILS;
     public profil: Profil  = this.listePatient[0];
@@ -42,8 +45,11 @@ export class ListReponsesComponent implements OnInit {
             this.actualQuestionNumber = actualQuestionNumber;
         })
 
+        this.quizService.displayResponses$.subscribe((displayResponses) => {
+            this.displayResponses = displayResponses;
         this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
             this.choosenQuiz = choosenQuiz;
+
         })
 
         this.quizService.endOfQuiz$.subscribe((endOfQuiz) => {

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder } from "@angular/forms";
+import { Answer_Model1, Answer_Model2, Answer_Model3, Answer_Model4, Question_Model, Indice_Model1, Indice_Model2, Indice_Model3} from "src/mocks/quiz-list.mock";
+import { Answer, Question, Indice } from "src/models/question.models";
 import { Answer_Model, Question_Model } from "src/mocks/quiz-list.mock";
 import { Answer, Question } from "src/models/question.models";
 import { QuizService } from "src/services/quiz.service";
@@ -21,6 +23,9 @@ export class AddQuestionComponent implements OnInit {
             q2: ['b'],
             q3: ['c'],
             q4: ['d'],
+            i1: ['indice 1'],
+            i2: ['indice 2'],
+            i3: ['indice 3'],
             goodAnswer: [0]
         });
     }
@@ -56,6 +61,18 @@ export class AddQuestionComponent implements OnInit {
         question.questionTexte = true;
         question.questionImage = false;
 
+        let indice1 : Indice = Indice_Model1;
+        indice1.value = this.questionForm.value.i1;
+
+        let indice2 : Indice = Indice_Model2;
+        indice2.value = this.questionForm.value.i2;
+
+        let indice3 : Indice = Indice_Model3;
+        indice3.value = this.questionForm.value.i3;
+
+        question.indice = [indice1, indice2, indice3];
+
+        console.log("question : ",question)
         this.quizService.addQuestion(question);
     }
 }
