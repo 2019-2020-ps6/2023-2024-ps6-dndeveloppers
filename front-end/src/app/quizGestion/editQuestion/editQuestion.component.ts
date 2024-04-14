@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { Question_Model, Answer_Model1, Answer_Model2, Answer_Model3, Answer_Model4, QUIZ_LIST } from "src/mocks/quiz-list.mock";
+import { Question_Model, Answer_Model1, Answer_Model2, Answer_Model3, Answer_Model4 } from "src/mocks/quiz-list.mock";
 import { Answer, Question } from "src/models/question.models";
-import { Quiz } from "src/models/quiz.model";
 import { QuizService } from "src/services/quiz.service";
 
 @Component({
@@ -19,6 +18,7 @@ export class EditQuestionComponent implements OnInit {
 
     public answers: String[] = ['','','',''];
     public numberGoodAnswer = 0;
+    public texteImage: String = '';
 
     constructor(public formBuilder: FormBuilder, public quizService: QuizService){
         this.questionForm = this.formBuilder.group({
@@ -27,7 +27,10 @@ export class EditQuestionComponent implements OnInit {
             q2: [this.question?.answers[1].value],
             q3: [this.question?.answers[2].value],
             q4: [this.question?.answers[3].value],
-            goodAnswer: [this.findGoodAnswer()+1]
+            goodAnswer: [this.findGoodAnswer()+1],
+
+            photoLien: [],
+            photoTexte: []
         });
     }
 
@@ -35,6 +38,10 @@ export class EditQuestionComponent implements OnInit {
         if (this.question != undefined){
             this.answers = [this.question.answers[0].value,this.question.answers[1].value,this.question.answers[2].value,this.question.answers[3].value];
             this.numberGoodAnswer = this.findGoodAnswer()+1;
+        }
+
+        if(this.question != undefined && this.question.optionImage != undefined){
+            this.texteImage = this.question.optionImage[1];
         }
         
 
@@ -44,7 +51,10 @@ export class EditQuestionComponent implements OnInit {
             q2: [this.question?.answers[1].value],
             q3: [this.question?.answers[2].value],
             q4: [this.question?.answers[3].value],
-            goodAnswer: [this.findGoodAnswer()+1]
+            goodAnswer: [this.findGoodAnswer()+1],
+
+            photoLien: [],
+            photoTexte: [this.texteImage]
         });
     }
 
@@ -82,12 +92,19 @@ export class EditQuestionComponent implements OnInit {
         question.answers = [answer1 , answer2 , answer3, answer4];        
         question.answers[this.questionForm.value.goodAnswer-1].isCorrect = true;
 
-        console.log("question : ",question)
+        // photo
+        if(this.questionForm.value.photoLien !== null && this.questionForm.value.photoTexte != null){
+            question.questionImage = true;
+            question.questionTexte = false;
+            let path : String = this.questionForm.value.photoLien;
+            var spliter = path.split('\\');
+            let bon_path : string = "./assets/quiz/"+spliter[spliter.length-1];
+            question.optionImage = [bon_path,this.questionForm.value.photoTexte];
+        }
         this.quizService.editQuestion(question);
     }
 
     deleteQuestion(){
-        console.log("delete");
         if(this.question != undefined){
             this.quizService.deleteQuestion(this.question);
         }

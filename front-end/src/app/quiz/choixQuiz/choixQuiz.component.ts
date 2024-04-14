@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Quiz } from '../../../models/quiz.model';
 import { Router } from '@angular/router';
 import { QuizService } from "src/services/quiz.service";
+import { ProfilService } from 'src/services/profil.service';
 
 @Component({
   selector: 'choixQuiz',
@@ -11,19 +12,22 @@ import { QuizService } from "src/services/quiz.service";
 export class ChoixQuizComponent implements OnInit {
   @Input()
   quiz: Quiz | undefined;
-  
-  constructor(private router: Router,public quizService: QuizService) {
+
+  public optionPhoto : boolean = false;
+
+  constructor(private router: Router,public quizService: QuizService, public profilService: ProfilService) {
+    this.profilService.actualProfil$.subscribe( (profil) => {
+      if(profil.optionPhoto){
+        this.optionPhoto = profil.optionPhoto;
+      }
+    })
   }
 
   ngOnInit() {
   }
 
   selectQuiz(quiz: Quiz): void {
-    console.log("ccc ",quiz);
-    //this.quizSelected.emit(true);
     this.quizService.selectQuiz(quiz);
-    console.log(this.router.url);
-    console.log(quiz.name);
     this.router.navigate(['home/listQuiz/app-quiz/' + quiz.name]); 
   }
 
