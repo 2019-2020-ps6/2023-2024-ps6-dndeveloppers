@@ -16,6 +16,7 @@ export class QuizComponent implements OnInit {
 
     public choosenQuiz: Quiz = QUIZ_LIST[0];
     public actualQuestionNumber: number = 0;
+    public actualProfil: Profil = ADMIN;
 
     constructor(public quizService: QuizService, public router: Router){
         this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
@@ -25,18 +26,34 @@ export class QuizComponent implements OnInit {
         this.quizService.actualQuestionNumber$.subscribe((actualQuestionNumber) => {
             this.actualQuestionNumber = actualQuestionNumber;
         })
+
+        this.quizService.actualProfil$.subscribe((actualProfil) => {
+            this.actualProfil = actualProfil;
+        })
     }
 
     ngOnInit(): void {}
 
     @Input()
-    tutorielView: boolean = this.quizService.getTuto();
+    tutorielView: boolean = true;
+    helpWanted: boolean = false;
 
     tutoriel(){
         this.tutorielView = true;
     }
 
+    tutorielWanted() {
+        this.helpWanted = true;
+    }
+
     stopShowTutoriel(){
         this.tutorielView = false;
+        this.helpWanted = false;
+    }
+
+    dontShowTutoriel() {
+        this.tutorielView = false;
+        this.helpWanted = false;
+        this.quizService.dontShowTutoriel();
     }
 }

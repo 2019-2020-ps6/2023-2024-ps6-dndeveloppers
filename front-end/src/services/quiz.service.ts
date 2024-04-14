@@ -65,8 +65,8 @@ export class QuizService {
     this.actualProfil$.next(this.actualProfil);
   }
 
-  getTuto() {
-    return this.actualProfil.tutoriel;
+  dontShowTutoriel() {
+    this.actualProfil.tutoriel = false;
   }
 
   addQuiz(quiz: Quiz) {
