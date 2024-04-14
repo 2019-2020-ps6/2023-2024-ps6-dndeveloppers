@@ -3,6 +3,7 @@ import { Profil } from '../models/profil.model';
 import { Injectable } from '@angular/core';
 import { QuizService } from './quiz.service';
 import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
+import { StatsService } from './stats.service';
 
 @Injectable({
     providedIn: 'root'
@@ -17,11 +18,14 @@ export class ProfilService {
     public actualProfil$: BehaviorSubject<Profil> = new BehaviorSubject(this.actualProfil);
     public actualEditingProfil$: BehaviorSubject<Profil> = new BehaviorSubject(this.actualEditingProfil);
 
-    constructor(public quizService: QuizService) {}
+    constructor(public quizService: QuizService, public statsService: StatsService) {}
 
     addProfil(profil: Profil) {
         this.profilList.push(profil);
         this.profilList$.next(this.profilList);
+        if (profil.role == "patient") {
+            this.statsService.addPatient(profil);
+        }
         console.log("Le profil ",profil.nom," ",profil.prenom," a été ajouté.");
     }
 

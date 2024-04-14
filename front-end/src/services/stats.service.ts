@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ListProfilComponent } from 'src/app/Profil/listProfil/listProfil.component';
-import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
+import { LISTE_PATIENTS, LISTE_PROFILS } from 'src/mocks/profil-list.mock';
 import { QUIZ_LIST, QUIZ_NULL } from 'src/mocks/quiz-list.mock';
 import { Profil } from 'src/models/profil.model';
 import { Quiz } from 'src/models/quiz.model';
@@ -53,18 +53,24 @@ export class StatsService {
      * Pour les statistiques par patient
      */
 
+    private listePatient: Profil[] = LISTE_PATIENTS;
     private options: string[] = [];
     private playedQuiz: number = 0;
     private patientMeanScore: number = 0;
     private fiveLastQuizzes: Quiz[] = [];
     private series = this.fillSeries();
 
+    public listePatient$: BehaviorSubject<Profil[]> = new BehaviorSubject(this.listePatient);
     public options$: BehaviorSubject<string[]> = new BehaviorSubject(this.options);
     public playedQuiz$: BehaviorSubject<number> = new BehaviorSubject(this.playedQuiz);
     public patientMeanScore$: BehaviorSubject<number> = new BehaviorSubject(this.patientMeanScore);
     public fiveLastQuizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.fiveLastQuizzes);
     public series$: BehaviorSubject<any> = new BehaviorSubject(this.series);
 
+    addPatient(patient: Profil) {
+      this.listePatient.push(patient);
+    }
+    
     fillSeries() {
       let res = [];
       for (let i=0; i<QUIZ_LIST.length; i++) {

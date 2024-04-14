@@ -48,6 +48,10 @@ export class StatsPatientComponent implements OnInit {
     }
 
     constructor(public statsService: StatsService){
+        this.statsService.listePatient$.subscribe((listePatient) => {
+            this.listePatient = listePatient;
+        })
+        
         this.statsService.series$.subscribe((actualSeries) => {
             this.actualSeries = actualSeries;
         })
