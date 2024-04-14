@@ -47,7 +47,7 @@
 }
 
 .popup {
-    position:absolute;
+    position:fixed;
     left: 50%;
     width: 1000px;
     top: 45%;
@@ -58,6 +58,7 @@
     text-align: center;
     padding: 10px;
     border-radius: 10px;
+    
 }
 
 button {
@@ -131,4 +132,15 @@ button:hover {
 
 #indiceTuto{
     margin-left: 10%;
+}
+
+.boutonAide {
+    width: auto;
+    height:auto;
+    text-align: center;
+    font-size: 30px;
+    background-color: lightgrey;
+    border: solid black 2px;
+    border-radius: 1rem;
+    cursor:pointer;
 }

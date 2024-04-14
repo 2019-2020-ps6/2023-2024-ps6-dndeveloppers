@@ -46,5 +46,7 @@ export const ADMIN: Profil = {
 
     selfStats: STATS_PATIENT_NULL,
 
+    optionTailleTexte: 'Moyen',
+
     photo: './assets/imageProfil/default.png'
 }

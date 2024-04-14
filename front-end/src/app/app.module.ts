@@ -35,12 +35,14 @@ import { StatsPatientComponent } from './stats/statsPatient/statsPatient.compone
 import { StatsQuizComponent } from './stats/statsQuiz/statsQuiz.component';
 import { ViewQuizComponent } from './quizGestion/viewQuiz/viewQuiz.component';
 import { AddThemeComponent } from './quizGestion/addTheme/addTheme.component';
+import { TexteAdaptatifComponent } from './texteAdaptatif/texteAdaptatif.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
+    TexteAdaptatifComponent,
 
     // Jouer Quiz
     IndiceComponent,
