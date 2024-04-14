@@ -15,6 +15,7 @@ export const PATIENT_MAURICE: Profil = {
 
     optionReposerQuestionApres: false,
     optionSupprimerMauvaisesReponses: true,
+    tutoriel: true,
     selfStats: STATS_PATIENT_MAURICE,
 
     photo: './assets/imageProfil/default.png'
@@ -34,6 +35,7 @@ export const PATIENT_JOSEPH: Profil = {
 
     optionReposerQuestionApres: false,
     optionSupprimerMauvaisesReponses: true,
+    tutoriel: true,
     selfStats: STATS_PATIENT_JOSEPH,
 
     photo: './assets/imageProfil/default.png'
@@ -47,6 +49,7 @@ export const ADMIN: Profil = {
     selfStats: STATS_PATIENT_NULL,
 
     optionTailleTexte: 'Moyen',
+    tutoriel: false,
 
     photo: './assets/imageProfil/default.png'
 }

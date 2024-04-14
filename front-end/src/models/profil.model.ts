@@ -17,5 +17,7 @@ export interface Profil {
 
     optionTailleTexte?: string; // Petit, Moyen ou Grand
 
+    tutoriel: boolean; // Pour savoir s'il faut afficher le tutoriel
+
     selfStats: statsPatient
 }
