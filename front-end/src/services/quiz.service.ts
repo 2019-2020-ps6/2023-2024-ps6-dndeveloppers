@@ -205,6 +205,7 @@ export class QuizService {
       this.hintAskedForQuestion = 0;
       this.usedIndice = [];
       this.usedIndice$.next(this.usedIndice);
+      this.scoreWithOptionSup = 1;
 
       this.displayResponses = [true, true, true, true];
       this.displayResponses$.next(this.displayResponses);
