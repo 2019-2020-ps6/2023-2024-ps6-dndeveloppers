@@ -19,6 +19,7 @@ export class ListReponsesComponent implements OnInit {
 
     public actualResponses: Answer[] = [];
     public actualQuestionNumber: number = 0;
+    public choosenQuiz: Quiz = QUIZ_LIST[0];
     public endOfQuiz: boolean = false;
     public listePatient: Profil[] = LISTE_PROFILS;
     public profil: Profil  = this.listePatient[0];
@@ -33,8 +34,16 @@ export class ListReponsesComponent implements OnInit {
     public peuDindice: boolean = false;
 
     constructor(public quizService: QuizService){
+        this.quizService.actualResponses$.subscribe((actualResponses) => {
+            this.actualResponses = actualResponses;
+        })
+
         this.quizService.actualQuestionNumber$.subscribe((actualQuestionNumber) => {
             this.actualQuestionNumber = actualQuestionNumber;
+        })
+
+        this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
+            this.choosenQuiz = choosenQuiz;
         })
 
         this.quizService.endOfQuiz$.subscribe((endOfQuiz) => {
@@ -66,26 +75,24 @@ export class ListReponsesComponent implements OnInit {
         })
     }
 
-    @Input()
-    quiz: Quiz = QUIZ_LIST[0];
-
-
     ngOnInit(): void {
-        this.actualResponses = this.quiz.questions[0].answers;
+        this.actualResponses = this.choosenQuiz.questions[0].answers;
         console.log("init",this.actualResponses);
     }
 
-    public choosenQuiz: Quiz = this.quiz;
+    @Input()
+    quiz: Quiz = this.choosenQuiz;
 
     responseSelected(responseNumber: number) {
-        console.log("Response selected : ",responseNumber," - bonne réponse : ",this.quiz.questions[this.actualQuestionNumber].answers);
         this.quizService.responseSelected(this.choosenQuiz, responseNumber);
-        
-        this.loadQuestion(0);
+        //this.loadQuestion(this.actualQuestionNumber);
     }
 
     loadQuestion(nbQuestion: number) {
-        this.actualResponses = this.quiz.questions[this.actualQuestionNumber].answers;
+        console.log(this.actualQuestionNumber);
+        console.log(this.actualResponses);
+        this.actualResponses = this.choosenQuiz.questions[this.actualQuestionNumber].answers;
+        console.log(this.actualResponses);
     }
 
 }

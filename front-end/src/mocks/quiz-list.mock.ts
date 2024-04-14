@@ -76,8 +76,8 @@ export const QUESTION_SPORT0: Question = {
            
        },
        {
-        value: 'Chine',
-        isCorrect: false,
+            value: 'Chine',
+            isCorrect: false,
         },
         {
             value: 'Espagne',
@@ -93,11 +93,11 @@ export const QUESTION_SPORT1: Question = {
     answers: [
         {
            value: 'France',
-           isCorrect: true,
+           isCorrect: false,
        },
        {
            value: 'Argentine',
-           isCorrect: false,
+           isCorrect: true,
        },
        {
            value: 'Brésil',

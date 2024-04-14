@@ -90,6 +90,8 @@ export class QuizService {
         quizEnCours = this.quizzes[i];
         this.choosenQuiz = this.quizzes[i];
         this.choosenQuiz$.next(this.choosenQuiz);
+        this.actualResponses = this.quizzes[i].questions[0].answers;
+        this.actualResponses$.next(this.actualResponses);
         console.log("Quiz choisit : ",this.choosenQuiz);
       }
     }
@@ -155,9 +157,10 @@ export class QuizService {
 
       this.statsService.successRateNewData(0, this.actualQuestionNumber);
     }
-
+   
     if (this.actualQuestionNumber == quiz.questions.length-1) {
       console.log("C'était la dernière question");
+      console.log("score: ",this.actualScore);
       this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
       this.statsService.addQuizDone();
       this.statsService.meanScoreNewData(this.actualScore/quiz.questions.length);
@@ -189,10 +192,14 @@ export class QuizService {
       this.endOfQuiz = true;
       this.endOfQuiz$.next(this.endOfQuiz);
     } else {
-      this.actualQuestion = this.choosenQuiz.questions[this.actualQuestionNumber];
-      this.actualQuestion$.next(this.actualQuestion);
       this.actualQuestionNumber++;
       this.actualQuestionNumber$.next(this.actualQuestionNumber);
+
+      this.actualQuestion = this.choosenQuiz.questions[this.actualQuestionNumber];
+      this.actualQuestion$.next(this.actualQuestion);
+
+      this.actualResponses = this.actualQuestion.answers;
+      this.actualResponses$.next(this.actualResponses);
     }
   }
 
