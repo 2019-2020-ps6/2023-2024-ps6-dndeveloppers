@@ -96,13 +96,14 @@ export class QuizService {
         quizEnCours = this.quizzes[i];
         this.choosenQuiz = this.quizzes[i];
         this.choosenQuiz$.next(this.choosenQuiz);
+        this.actualResponses = this.quizzes[i].questions[0].answers;
+        this.actualResponses$.next(this.actualResponses);
         console.log("Quiz choisit : ",this.choosenQuiz);
       }
     }
     if (quizEnCours.questions === undefined) {
       console.log("Ce quiz n'a pas de quesiton!");
     } else {
-      console.log("ok");
       this.actualScore = 0;
       this.usedHint = 0;
       this.endOfQuiz = false;
@@ -162,9 +163,10 @@ export class QuizService {
 
       this.statsService.successRateNewData(0, this.actualQuestionNumber);
     }
-
+   
     if (this.actualQuestionNumber == quiz.questions.length-1) {
       console.log("C'était la dernière question");
+      console.log("score: ",this.actualScore);
       this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
       this.statsService.addQuizDone();
       this.statsService.meanScoreNewData(this.actualScore/quiz.questions.length);
@@ -196,10 +198,14 @@ export class QuizService {
       this.endOfQuiz = true;
       this.endOfQuiz$.next(this.endOfQuiz);
     } else {
-      this.actualQuestion = this.choosenQuiz.questions[this.actualQuestionNumber];
-      this.actualQuestion$.next(this.actualQuestion);
       this.actualQuestionNumber++;
       this.actualQuestionNumber$.next(this.actualQuestionNumber);
+
+      this.actualQuestion = this.choosenQuiz.questions[this.actualQuestionNumber];
+      this.actualQuestion$.next(this.actualQuestion);
+
+      this.actualResponses = this.actualQuestion.answers;
+      this.actualResponses$.next(this.actualResponses);
     }
   }
 
@@ -226,9 +232,6 @@ export class QuizService {
   }
 
   addTheme(theme: String){
-    let a = "aaa";
-    console.log(theme);
-    console.log(a);
     this.themeList.push(theme);
     this.themeList$.next(this.themeList);
     console.log("Le thème : ",theme," a été rajouté (temporairement)")
@@ -244,7 +247,6 @@ export class QuizService {
 
   addQuestion(question: Question){
     this.editedQuiz.questions.push(question);
-
     this.editedQuiz.nbQuestionsPerType
     console.log("Question ", question, " ajoutée.");
     console.log(this.editedQuiz);
