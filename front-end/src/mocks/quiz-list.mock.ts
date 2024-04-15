@@ -160,13 +160,13 @@ export const QUESTION_SPORT1: Question = {
    ],
    indice: [
     {
-        value: 'Messi a gagne la coupe du monde en 2022',
+        value: 'Zidane est champion du monde 98',
     },
     {
-        value: 'Le pays vainqueur est sud Americain',
+        value: 'Le maillot gagnant est bleu',
     },
     {
-        value: 'Le maillot gagnant est blanc et bleu',
+        value: 'C est la premiere etoile du pays gagnant',
     }
     ],
    questionTexte: false,
