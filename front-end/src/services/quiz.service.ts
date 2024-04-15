@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Quiz } from '../models/quiz.model';
-import { QUESTION_ACTOR0, QUIZ_LIST } from '../mocks/quiz-list.mock';
+import { QUIZ_LIST } from '../mocks/quiz-list.mock';
 import { Answer, Indice, Question } from 'src/models/question.models';
 import { StatsService } from './stats.service';
 import { Profil } from 'src/models/profil.model';
 import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
+import { QUESTION_ACTOR0 } from 'src/mocks/quizQuestion/question-acteur.mock';
 
 @Injectable({
   providedIn: 'root'

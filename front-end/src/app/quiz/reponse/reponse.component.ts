@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { QUESTION_ACTOR0 } from "src/mocks/quiz-list.mock";
-import { Answer, Question } from "src/models/question.models";
+import { Answer } from "src/models/question.models";
 import { QuizService } from "src/services/quiz.service";
 
 @Component({
