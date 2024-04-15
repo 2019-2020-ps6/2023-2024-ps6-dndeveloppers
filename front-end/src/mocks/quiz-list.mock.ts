@@ -1,8 +1,6 @@
 import { Quiz } from '../models/quiz.model';
 import { Answer, Indice, Question } from '../models/question.models';
 import { STATS_ACTORS, STATS_INIT, STATS_SPORTS } from './statsMocks/stats-quiz.mock';
-import { QUESTION_ACTOR0, QUESTION_ACTOR1 } from './quizQuestion/question-acteur.mock';
-import { QUESTION_SPORT0, QUESTION_SPORT1 } from './quizQuestion/question-sport.mock';
 import { QUESTION_ACTEUR, QUESTION_CUISINE, QUESTION_FLEUR, QUESTION_SPORT, QUESTION_VOITURE } from './questions.mock';
 
 export const Answer_Model: Answer = {
@@ -66,7 +64,7 @@ export const QUIZ_LIST: Quiz[] = [
         nbQuestionsPerType: [2,1],
         id: 2,
         selfStats: JSON.parse(JSON.stringify(STATS_INIT)),
-        photo: "" //tochange
+        photo: "./assets/quiz/imageQuizCuisine.png"
     },
     {
         name: 'Voiture',
@@ -75,7 +73,7 @@ export const QUIZ_LIST: Quiz[] = [
         nbQuestionsPerType: [2,0],
         id: 3,
         selfStats: JSON.parse(JSON.stringify(STATS_INIT)),
-        photo: "" //tochange
+        photo: "./assets/quiz/imageQuizVoiture.png"
     },
     {
         name: 'Fleur',
@@ -84,6 +82,6 @@ export const QUIZ_LIST: Quiz[] = [
         nbQuestionsPerType: [],
         id: 4,
         selfStats: JSON.parse(JSON.stringify(STATS_INIT)),
-        photo: "" //tochange
+        photo: "./assets/quiz/imageQuizFleur.png"
     }
 ];

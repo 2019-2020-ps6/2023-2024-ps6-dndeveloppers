@@ -33,7 +33,7 @@ export const QUESTION_FLEUR0: Question = {
    ],
    questionTexte: false,
    questionImage: true,
-   optionImageLien: "./assets/quiz/JeanGabin.jpg",//to change
+   optionImageLien: "./assets/quiz/imageQuizFleurCoquelicot.png",//to change
    optionImageQuestion: "Quelle fleur est rouge et pousse dans des champs ?"
 };
 
@@ -175,4 +175,5 @@ export const QUESTION_FLEUR4: Question = {
     ],
     questionTexte: true,
     questionImage: false,
+    optionImageLien: "./assets/quiz/imageQuizFleurLys.png",
 }
