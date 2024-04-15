@@ -65,7 +65,7 @@ export const QUIZ_LIST: Quiz[] = [
         questions: QUESTION_CUISINE,
         nbQuestionsPerType: [2,1],
         id: 2,
-        selfStats: STATS_INIT,
+        selfStats: JSON.parse(JSON.stringify(STATS_INIT)),
         photo: "" //tochange
     },
     {
@@ -74,7 +74,7 @@ export const QUIZ_LIST: Quiz[] = [
         questions: QUESTION_VOITURE,
         nbQuestionsPerType: [2,0],
         id: 3,
-        selfStats: STATS_INIT,
+        selfStats: JSON.parse(JSON.stringify(STATS_INIT)),
         photo: "" //tochange
     },
     {
@@ -83,7 +83,7 @@ export const QUIZ_LIST: Quiz[] = [
         questions: QUESTION_FLEUR,
         nbQuestionsPerType: [],
         id: 4,
-        selfStats: STATS_INIT,
+        selfStats: JSON.parse(JSON.stringify(STATS_INIT)),
         photo: "" //tochange
     }
 ];
