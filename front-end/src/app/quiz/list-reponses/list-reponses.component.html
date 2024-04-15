@@ -3,7 +3,7 @@
     <button [ngStyle]="{'background-color': couleur2}" class="reponse-texte" id="second" *ngIf="displayResponses[1]" name="button" (click)="responseSelected(1)"><app-texteAdaptatif [texte]=actualResponses[1].value></app-texteAdaptatif></button>
     <button [ngStyle]="{'background-color': couleur3}" class="reponse-texte" id="third" *ngIf="displayResponses[2]" name="button" (click)="responseSelected(2)"><app-texteAdaptatif [texte]=actualResponses[2].value></app-texteAdaptatif></button>
     <button [ngStyle]="{'background-color': couleur4}" class="reponse-texte" id="fourth" *ngIf="displayResponses[3]" name="button" (click)="responseSelected(3)"><app-texteAdaptatif [texte]=actualResponses[3].value></app-texteAdaptatif></button>
-    <p>{{goodAnswer}}</p>
+    <!--<p>{{goodAnswer}}</p>-->
     <div id="endPopup" *ngIf="endOfQuiz">
         <p ><app-texteAdaptatif class="felicitation" texte="Félicitation, vous avez terminé le quiz !"></app-texteAdaptatif></p>
         <p><app-texteAdaptatif texte="Bravo!"></app-texteAdaptatif></p>
