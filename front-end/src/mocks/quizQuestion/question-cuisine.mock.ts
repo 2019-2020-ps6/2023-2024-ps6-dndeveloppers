@@ -33,7 +33,7 @@ export const QUESTION_CUISINE0: Question = {
    ],
    questionTexte: false,
    questionImage: true,
-   optionImageLien: "./assets/quiz/JeanGabin.jpg",//to change
+   optionImageLien: "./assets/quiz/imageQuizCuisineCerise.png",//to change
    optionImageQuestion: 'Quelle est la saison des cerises ?'
 };
 
@@ -70,7 +70,7 @@ export const QUESTION_CUISINE1: Question = {
    ],
    questionTexte: true,
    questionImage: false,
-   optionImageLien: "./assets/quiz/JeanGabin.jpg",//to change
+   optionImageLien: "./assets/quiz/imageQuizCuisineCuison.png",//to change
    optionImageQuestion: 'Quelle est la plus basse cuisson de la viande rouge ?'
 }
 
@@ -107,6 +107,6 @@ export const QUESTION_CUISINE2: Question = {
     ],
     questionTexte: true,
     questionImage: false,
-    optionImageLien: "./assets/quiz/JeanGabin.jpg",//to change
+    optionImageLien: "./assets/quiz/imageQuizCuisineJambon.png",//to change
    optionImageQuestion: "De quel animal vient le jambon ?"
  }

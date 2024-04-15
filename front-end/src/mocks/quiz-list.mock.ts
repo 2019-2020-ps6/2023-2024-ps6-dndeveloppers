@@ -66,7 +66,7 @@ export const QUIZ_LIST: Quiz[] = [
         nbQuestionsPerType: [2,1],
         id: 2,
         selfStats: STATS_INIT,
-        photo: "" //tochange
+        photo: "./assets/quiz/imageQuizCuisine.png"
     },
     {
         name: 'Voiture',
@@ -75,7 +75,7 @@ export const QUIZ_LIST: Quiz[] = [
         nbQuestionsPerType: [2,0],
         id: 3,
         selfStats: STATS_INIT,
-        photo: "" //tochange
+        photo: "./assets/quiz/imageQuizVoiture.png"
     },
     {
         name: 'Fleur',
@@ -84,6 +84,6 @@ export const QUIZ_LIST: Quiz[] = [
         nbQuestionsPerType: [],
         id: 4,
         selfStats: STATS_INIT,
-        photo: "" //tochange
+        photo: "./assets/quiz/imageQuizFleur.png"
     }
 ];
