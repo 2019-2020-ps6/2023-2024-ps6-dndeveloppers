@@ -176,4 +176,5 @@ export const QUESTION_FLEUR4: Question = {
     questionTexte: true,
     questionImage: false,
     optionImageLien: "./assets/quiz/imageQuizFleurLys.png",
+    optionImageQuestion: "Quelle fleur représente la royauté française ?"
 }
