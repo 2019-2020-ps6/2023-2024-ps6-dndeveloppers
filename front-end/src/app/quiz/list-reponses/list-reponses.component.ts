@@ -27,7 +27,7 @@ export class ListReponsesComponent implements OnInit {
     public profil: Profil  = this.listePatient[0];
     public possibleEndMessage: String[] = [];
 
-    public nbBonneReponses: number = 0;
+    public nbBonnesReponses: number = 0;
     public nbIndiceUtilise: number = 0;
     public streakDeBonneReponse: number = 0;
 
@@ -43,7 +43,7 @@ export class ListReponsesComponent implements OnInit {
     public  couleur4: string | undefined;
 
 
-    public optionSupprimerMauvaisesReponses : boolean | undefined;
+    public optionSupprimerMauvaisesReponses : boolean | undefined = this.profil.optionSupprimerMauvaisesReponses;
 
     constructor(public quizService: QuizService, public profilService: ProfilService){
         this.quizService.actualResponses$.subscribe((actualResponses) => {
@@ -84,6 +84,10 @@ export class ListReponsesComponent implements OnInit {
 
         this.quizService.nbIndiceUtilise$.subscribe((nbIndiceUtilise) => {
             this.nbIndiceUtilise = nbIndiceUtilise;
+        })
+
+        this.quizService.nbBonneReponses$.subscribe((nbBonneReponses) => {
+            this.nbBonnesReponses = nbBonneReponses;
         })
 
         this.quizService.streakDeBonneReponse$.subscribe((streakDeBonneReponse) => {

@@ -49,6 +49,7 @@ export class QuizService {
   public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(QUIZ_LIST);
   public choosenQuiz$: BehaviorSubject<Quiz> = new BehaviorSubject(QUIZ_LIST[0]);
   public actualQuestion$: BehaviorSubject<Question> = new BehaviorSubject(QUESTION_ACTOR0);
+  public actualScore$: BehaviorSubject<number> = new BehaviorSubject(this.actualScore);
   public actualResponses$: BehaviorSubject<Answer[]> = new BehaviorSubject(QUESTION_ACTOR0.answers);
   public displayResponses$: BehaviorSubject<boolean[]> = new BehaviorSubject(this.displayResponses);
   public actualQuestionNumber$: BehaviorSubject<number> = new BehaviorSubject(0);

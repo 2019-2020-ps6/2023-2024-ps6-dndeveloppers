@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import * as Highcharts from 'highcharts'
 import { LISTE_PATIENTS, LISTE_PROFILS } from "src/mocks/profil-list.mock";
-import { ADMIN } from "src/mocks/profil.mock";
+import { NULL } from "src/mocks/profil.mock";
 import { QUIZ_LIST } from "src/mocks/quiz-list.mock";
 import { Profil } from "src/models/profil.model";
 import { StatsService } from "src/services/stats.service";
@@ -15,7 +15,7 @@ import { StatsService } from "src/services/stats.service";
 export class StatsPatientComponent implements OnInit {
 
     public listePatient: Profil[] = LISTE_PATIENTS;
-    public actualPatient: Profil  = ADMIN;
+    public actualPatient: Profil  = NULL;
     public actualSeriesName: string[] = [];
     public actualCategories: string[] = [];
     public actualData: number[] = [];
@@ -69,18 +69,12 @@ export class StatsPatientComponent implements OnInit {
                 break;
             }
         }
+        if (nomPatient.length == 0) {
+            this.actualPatient = NULL;
+        }
         this.options.xAxis.categories = this.categoriesChart();
         for (let i=0; i<QUIZ_LIST.length; i++) {
             this.options.series[i].data = this.dataChart(QUIZ_LIST[i].name);
-            /*
-            if (i >= this.options.series.length) {
-                let newElement = {
-                    name: QUIZ_LIST[i].name,
-                    data: this.dataChart(QUIZ_LIST[i].name)
-                }
-                this.options.series.push(newElement);
-            } else {
-            }*/
         }
         Highcharts.chart('patientChart', this.options);
     }

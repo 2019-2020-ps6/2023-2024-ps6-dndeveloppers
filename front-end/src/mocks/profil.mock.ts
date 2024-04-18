@@ -96,3 +96,18 @@ export const ADMIN: Profil = {
 
     photo: './assets/imageProfil/default.png'
 }
+
+export const NULL: Profil = {
+    nom: "",
+    prenom: "",
+    role: "",
+
+    selfStats: STATS_PATIENT_NULL,
+
+    optionTailleTexte: 'Moyen',
+    tutoriel: false,
+
+    optionPhoto: false,
+    optionIndice: false,
+    photo: ""
+}

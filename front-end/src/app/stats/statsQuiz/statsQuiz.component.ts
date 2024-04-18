@@ -65,8 +65,14 @@ export class StatsQuizComponent implements OnInit {
                 break;
             }
         }
-        this.options.xAxis.categories = this.categoriesChart();
-        this.options.series[0].data = this.dataChart();
+        if (nomQuiz.length == 0) {
+            this.actualQuiz = QUIZ_NULL;
+            this.options.xAxis.categories = [];
+            this.options.series[0].data = [];
+        } else {
+            this.options.xAxis.categories = this.categoriesChart();
+            this.options.series[0].data = this.dataChart();
+        }
         Highcharts.chart('quizChart', this.options);
     }
 
