@@ -59,17 +59,17 @@ export class StatsQuizComponent implements OnInit {
 
     selectedQuiz(event: any) {
         let nomQuiz: string = event.target.value;
-        for (let i=0; i<QUIZ_LIST.length; i++) {
-            if (QUIZ_LIST[i].name == nomQuiz) {
-                this.actualQuiz = QUIZ_LIST[i];
-                break;
-            }
-        }
         if (nomQuiz.length == 0) {
             this.actualQuiz = QUIZ_NULL;
             this.options.xAxis.categories = [];
             this.options.series[0].data = [];
         } else {
+            for (let i=0; i<QUIZ_LIST.length; i++) {
+                if (QUIZ_LIST[i].name == nomQuiz) {
+                    this.actualQuiz = QUIZ_LIST[i];
+                    break;
+                }
+            }
             this.options.xAxis.categories = this.categoriesChart();
             this.options.series[0].data = this.dataChart();
         }

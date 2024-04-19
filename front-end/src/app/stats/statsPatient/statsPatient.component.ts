@@ -16,9 +16,6 @@ export class StatsPatientComponent implements OnInit {
 
     public listePatient: Profil[] = LISTE_PATIENTS;
     public actualPatient: Profil  = NULL;
-    public actualSeriesName: string[] = [];
-    public actualCategories: string[] = [];
-    public actualData: number[] = [];
     public actualSeries: any[] = [];
 
     public options: any = {
@@ -33,7 +30,7 @@ export class StatsPatientComponent implements OnInit {
             enabled: false
         },
         xAxis: {
-            categories: this.actualCategories,
+            categories: [],
             tickmarkPlacement: 'on',
             title: {
                 text: 'Quiz joué n°',

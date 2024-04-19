@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ListProfilComponent } from 'src/app/Profil/listProfil/listProfil.component';
 import { LISTE_PATIENTS, LISTE_PROFILS } from 'src/mocks/profil-list.mock';
 import { QUIZ_LIST, QUIZ_NULL } from 'src/mocks/quiz-list.mock';
 import { Profil } from 'src/models/profil.model';
@@ -54,23 +53,23 @@ export class StatsService {
      */
 
     private listePatient: Profil[] = LISTE_PATIENTS;
-    private options: string[] = [];
-    private playedQuiz: number = 0;
-    private patientMeanScore: number = 0;
-    private fiveLastQuizzes: Quiz[] = [];
     private series = this.fillSeries();
 
     public listePatient$: BehaviorSubject<Profil[]> = new BehaviorSubject(this.listePatient);
-    public options$: BehaviorSubject<string[]> = new BehaviorSubject(this.options);
-    public playedQuiz$: BehaviorSubject<number> = new BehaviorSubject(this.playedQuiz);
-    public patientMeanScore$: BehaviorSubject<number> = new BehaviorSubject(this.patientMeanScore);
-    public fiveLastQuizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.fiveLastQuizzes);
     public series$: BehaviorSubject<any> = new BehaviorSubject(this.series);
 
     addPatient(patient: Profil) {
       this.listePatient.push(patient);
     }
-    
+
+    addQuiz(quiz: Quiz) {
+      let newElement = {
+        name: quiz.name,
+        data: []
+      }
+      this.series.push(newElement);
+    }
+
     fillSeries() {
       let res = [];
       for (let i=0; i<QUIZ_LIST.length; i++) {
@@ -83,14 +82,6 @@ export class StatsService {
           res.push(tab);
       }
       return res;
-    }
-
-    addQuiz(quiz: Quiz) {
-      let newElement = {
-        name: quiz.name,
-        data: []
-      }
-      this.series.push(newElement);
     }
 
     patientScoreNewData(profil: Profil, score: number) {
@@ -109,49 +100,22 @@ export class StatsService {
      */
 
     private actualQuiz: Quiz = QUIZ_NULL;
-    private actualQuizId: number = 0;
     private actualScore: number = 0;
-    private maxScore: number = QUIZ_LIST[0].questions.length;
     private usedHint: number = 0;
-    private nbQuestionsTexte: number = this.nbTypeQuestion(this.actualQuiz, "Texte");
-    private nbQuestionsImage: number = this.nbTypeQuestion(this.actualQuiz, "Image");
 
     public actualQuiz$: BehaviorSubject<Quiz> = new BehaviorSubject(this.actualQuiz);
-    public actualQuizId$: BehaviorSubject<number> = new BehaviorSubject(this.actualQuizId);
     public actualScore$: BehaviorSubject<number> = new BehaviorSubject(this.actualScore);
-    public maxScore$: BehaviorSubject<number> = new BehaviorSubject(this.maxScore);
     public usedHint$: BehaviorSubject<number> = new BehaviorSubject(this.usedHint);
-    public nbQuestionsTexte$: BehaviorSubject<number> = new BehaviorSubject(this.nbQuestionsTexte);
-    public nbQuestionsImage$: BehaviorSubject<number> = new BehaviorSubject(this.nbQuestionsImage);
 
     selectQuiz(quiz: Quiz) {
       this.actualQuiz = quiz;
       this.actualQuiz.selfStats.playedTime++;
-      this.actualQuizId = quiz.id;
       this.actualScore = 0;
-      this.maxScore = quiz.questions.length;
       this.usedHint = 0;
-      this.nbQuestionsTexte = this.nbTypeQuestion(quiz, "Texte");
-      this.nbQuestionsImage = this.nbTypeQuestion(quiz, "Image");
-      this.refreshQuizSubscribers();
-    }
 
-    nbTypeQuestion(quiz: Quiz, type: string) {
-      let res = 0;
-      if (type == "Texte") {
-        for (let i=0; i<quiz.questions.length; i++) {
-          if (quiz.questions[i].questionTexte) {
-            res++;
-          }
-        }
-      } else if (type == "Image") {
-        for (let i=0; i<quiz.questions.length; i++) {
-          if (quiz.questions[i].questionImage) {
-            res++;
-          }
-        }
-      }
-      return res;
+      this.actualQuiz$.next(this.actualQuiz);
+      this.actualScore$.next(this.actualScore);
+      this.usedHint$.next(this.usedHint);
     }
 
     meanScoreNewData(score: number) {
@@ -184,15 +148,5 @@ export class StatsService {
         rate /= this.actualQuiz.selfStats.playedTime;
         this.actualQuiz.selfStats.successPercentageByQuestion[actualQuestionNumber] = rate;
       }
-    }
-
-    refreshQuizSubscribers() {
-      this.actualQuiz$.next(this.actualQuiz);
-      this.actualQuizId$.next(this.actualQuizId);
-      this.actualScore$.next(this.actualScore);
-      this.maxScore$.next(this.maxScore);
-      this.usedHint$.next(this.usedHint);
-      this.nbQuestionsTexte$.next(this.nbQuestionsTexte);
-      this.nbQuestionsImage$.next(this.nbQuestionsImage);
     }
 }
