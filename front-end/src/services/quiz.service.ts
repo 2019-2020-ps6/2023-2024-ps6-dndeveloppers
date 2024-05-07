@@ -97,6 +97,18 @@ export class QuizService {
     this.themeList$.next(this.themeList);
   }
 
+  triQuizParTheme() {
+    let sortedQuizList: Quiz[] = [];
+    for (let i=0; i<this.themeList.length; i++) {
+      for (let j=0; j<this.quizzes.length; j++) {
+        if (this.quizzes[j].theme == this.themeList[i]) {
+          sortedQuizList.push(this.quizzes[j]);
+        }
+      }
+    }
+    this.quizzes = sortedQuizList;
+  }
+
   selectProfil(profil: Profil) {
     this.actualProfil = profil;
     this.actualProfil$.next(this.actualProfil);
@@ -109,6 +121,7 @@ export class QuizService {
   addQuiz(quiz: Quiz) {
     this.statsService.addQuiz(quiz);
     this.quizzes.push(quiz);
+    this.triQuizParTheme();
     this.quizzes$.next(this.quizzes);
   }
 

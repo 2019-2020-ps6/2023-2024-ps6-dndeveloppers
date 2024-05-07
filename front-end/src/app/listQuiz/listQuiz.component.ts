@@ -27,19 +27,7 @@ export class ListQuizComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.triQuizParTheme();
-  }
-
-  triQuizParTheme() {
-    let sortedQuizList: Quiz[] = [];
-    for (let i=0; i<this.themeList.length; i++) {
-      for (let j=0; j<this.quizList.length; j++) {
-        if (this.quizList[j].theme == this.themeList[i]) {
-          sortedQuizList.push(this.quizList[j]);
-        }
-      }
-    }
-    this.quizList = sortedQuizList;
+    this.quizService.triQuizParTheme();
   }
 
   quizSelected(quiz: Quiz) {
