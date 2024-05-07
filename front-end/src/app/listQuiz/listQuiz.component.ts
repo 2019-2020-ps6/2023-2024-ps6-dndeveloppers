@@ -10,6 +10,7 @@ import { Quiz } from '../../models/quiz.model';
 export class ListQuizComponent implements OnInit {
 
   public quizList: Quiz[] = [];
+  public themeList: String[] = [];
   public afficher: boolean = false;
 
   public messageEcrit: String = '';
@@ -19,6 +20,10 @@ export class ListQuizComponent implements OnInit {
     this.quizService.quizzes$.subscribe((quizList) => {
       this.quizList = quizList;
     });
+
+    this.quizService.themeList$.subscribe((themeList) => {
+      this.themeList = themeList;
+    })
   }
 
   ngOnInit() {
@@ -26,23 +31,10 @@ export class ListQuizComponent implements OnInit {
   }
 
   triQuizParTheme() {
-    let listeTheme: String[] = [];
-    for (let i=0; i<this.quizList.length; i++) {
-      let toAdd = true;
-      for (let j=0; j<listeTheme.length; j++) {
-        if (this.quizList[i].theme == listeTheme[j]) {
-          toAdd = false;
-          break;
-        }
-      }
-      if (toAdd) {
-        listeTheme.push(this.quizList[i].theme);
-      }
-    }
     let sortedQuizList: Quiz[] = [];
-    for (let i=0; i<listeTheme.length; i++) {
+    for (let i=0; i<this.themeList.length; i++) {
       for (let j=0; j<this.quizList.length; j++) {
-        if (this.quizList[j].theme == listeTheme[i]) {
+        if (this.quizList[j].theme == this.themeList[i]) {
           sortedQuizList.push(this.quizList[j]);
         }
       }

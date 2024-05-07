@@ -75,7 +75,27 @@ export class QuizService {
 
   public url: string = "";
 
-  constructor(public statsService: StatsService) {}
+  constructor(public statsService: StatsService) {
+    this.fillThemeList();
+  }
+
+  fillThemeList() {
+    let res: String[] = [];
+    for (let i=0; i<this.quizzes.length; i++) {
+      let toAdd = true;
+      for (let j=0; j<res.length; j++) {
+        if (this.quizzes[i].theme == res[j]) {
+          toAdd = false;
+          break;
+        }
+      }
+      if (toAdd) {
+        res.push(this.quizzes[i].theme);
+      }
+    }
+    this.themeList = res;
+    this.themeList$.next(this.themeList);
+  }
 
   selectProfil(profil: Profil) {
     this.actualProfil = profil;
