@@ -13,7 +13,7 @@ export interface Question {
     questionTexte: boolean, // stats
     questionImage: boolean, // stats
     indice: Indice[],
-    dejaPosee?: false, // si la question a déjà été posée
+    dejaPosee?: boolean, // si la question a déjà été posée
     
     optionImageLien?: string, // 1 = lien  -   
     optionImageQuestion?: string, //2 = texte si l'option photo est désactivée

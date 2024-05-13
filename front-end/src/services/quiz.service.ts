@@ -41,6 +41,8 @@ export class QuizService {
   private themeList: String[] = []; // liste des thèmes de quiz
   private editedQuiz: Quiz = this.quizzes[0]; // quiz en cours d'édition
 
+  private askQuestionsAgain: boolean = false;
+
   /**
    * Observable which contains the list of the quiz.
    * Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
@@ -290,6 +292,108 @@ export class QuizService {
       this.statsService.successRateNewData(0, this.actualQuestionNumber);
       this.displayResponses[responseNumber] = false;
       this.scoreWithOptionSup -= 0.25;
+    }
+  }
+
+  responseSelectedWithAskAgainOption(quiz: Quiz, responseNumber: number){
+    console.log("lancement ok");
+    if (this.actualResponses[responseNumber].isCorrect) {
+      console.log("Bonne réponse félicitation!");
+      this.actualQuestion.dejaPosee = false;
+      this.statsService.successRateNewData(100, this.actualQuestionNumber);
+      this.actualScore++;
+      this.nbBonneReponses++;
+      this.nbBonneReponses$.next(this.nbBonneReponses);
+      this.enStreak++;
+
+    } else {
+      console.log("Mauvaise Réponse!");
+      this.actualQuestion.dejaPosee = true;
+
+      if(this.streakDeBonneReponse < this.enStreak){
+        this.streakDeBonneReponse = this.enStreak;
+        this.streakDeBonneReponse$.next(this.streakDeBonneReponse);
+      }
+      this.enStreak = 0;
+
+      this.statsService.successRateNewData(0, this.actualQuestionNumber);
+    }
+    this.hintAskedForQuestion = 0;
+    this.usedIndice = [];
+    this.usedIndice$.next(this.usedIndice);
+
+    this.displayResponses = [true, true, true, true];
+    this.displayResponses$.next(this.displayResponses);
+
+    if (this.actualQuestionNumber == quiz.questions.length-1 || this.askQuestionsAgain) {
+      console.log("repose")
+      this.askQuestionsAgain = true;
+      quiz.questions[this.actualQuestionNumber].dejaPosee = false;
+      let toAskAgain = -1;
+      for(let i=0;i<quiz.questions.length;i++){
+        if(quiz.questions[i].dejaPosee){
+          toAskAgain = i;
+        }
+      }
+      if (toAskAgain == -1) {
+        console.log("C'était la dernière question");
+        console.log("score: ",this.actualScore);
+        this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
+        this.statsService.addQuizDone();
+        this.statsService.meanScoreNewData(this.actualScore/quiz.questions.length);
+        this.statsService.usedHintNewData(this.usedHint);
+                                        
+        if(this.streakDeBonneReponse < this.enStreak){
+          this.streakDeBonneReponse = this.enStreak;
+          this.streakDeBonneReponse$.next(this.streakDeBonneReponse);
+        }
+
+        if(this.nbBonneReponses >= this.actualQuestionNumber){
+          this.bonScore = true;
+          this.bonScore$.next(this.bonScore);
+        }
+
+        if(this.streakDeBonneReponse >= 2){
+          this.bonneStreak = true;
+          this.bonneStreak$.next(this.bonneStreak);
+        }
+
+        if(this.nbIndiceUtilise <= this.actualQuestionNumber+1){
+          this.peuDindice = true;
+          this.peuDindice$.next(this.peuDindice);
+        }
+
+
+        this.statsService.patientScoreNewData(this.actualProfil, this.actualScore/quiz.questions.length);
+
+        this.askQuestionsAgain = false;
+        this.endOfQuiz = true;
+        this.endOfQuiz$.next(this.endOfQuiz);
+      }
+      else{
+        this.actualQuestionNumber = toAskAgain;
+        this.actualQuestionNumber$.next(this.actualQuestionNumber);
+        this.actualIndices = this.choosenQuiz.questions[this.actualQuestionNumber].indice;
+        this.actualIndices$.next(this.actualIndices);
+
+        this.actualQuestion = this.choosenQuiz.questions[this.actualQuestionNumber];
+        this.actualQuestion$.next(this.actualQuestion);
+
+        this.actualResponses = this.actualQuestion.answers;
+        this.actualResponses$.next(this.actualResponses);
+      }
+    }
+    else {
+      this.actualQuestionNumber++;
+      this.actualQuestionNumber$.next(this.actualQuestionNumber);
+      this.actualIndices = this.choosenQuiz.questions[this.actualQuestionNumber].indice;
+      this.actualIndices$.next(this.actualIndices);
+
+      this.actualQuestion = this.choosenQuiz.questions[this.actualQuestionNumber];
+      this.actualQuestion$.next(this.actualQuestion);
+
+      this.actualResponses = this.actualQuestion.answers;
+      this.actualResponses$.next(this.actualResponses);
     }
   }
 

@@ -45,6 +45,8 @@ export class ListReponsesComponent implements OnInit {
 
     public optionSupprimerMauvaisesReponses : boolean | undefined = this.profil.optionSupprimerMauvaisesReponses;
 
+    public optionAskQuestionsAgain : boolean | undefined = this.profil.optionReposerQuestionApres;
+
     constructor(public quizService: QuizService, public profilService: ProfilService){
         this.quizService.actualResponses$.subscribe((actualResponses) => {
             this.actualResponses = actualResponses;
@@ -64,6 +66,10 @@ export class ListReponsesComponent implements OnInit {
 
         this.profilService.actualProfil$.subscribe((profil) => {
             this.optionSupprimerMauvaisesReponses = profil.optionSupprimerMauvaisesReponses;
+        })
+
+        this.profilService.actualProfil$.subscribe((profil) => {
+            this.optionAskQuestionsAgain = profil.optionReposerQuestionApres;
         })
 
         this.quizService.endOfQuiz$.subscribe((endOfQuiz) => {
@@ -115,6 +121,9 @@ export class ListReponsesComponent implements OnInit {
     responseSelected(responseNumber: number) {
         if(this.optionSupprimerMauvaisesReponses){
             this.quizService.responseSelectedWithOptionSupprimerMauvaiseReponse(this.choosenQuiz, responseNumber);
+        }
+        if(this.optionAskQuestionsAgain){
+            this.quizService.responseSelectedWithAskAgainOption(this.choosenQuiz,responseNumber);
         }
         else{
             this.quizService.isGoodAnswer(this.choosenQuiz, responseNumber);
