@@ -43,29 +43,20 @@
 <div class="popup" *ngIf="(tutorielView && actualProfil.tutoriel) || helpWanted">
     <p class="gras">Aide ?</p>
     <p>Vous êtes actuellement en train de jouer à un quiz.</p>
-    <div class="Question">
+    <div class="Question-tuto">
         <p class="Question-texte">
-            Le rectangle de couleur jaune correspond à la question.
+            Ceci est une question.
         </p>
-    </div>
-
-    <div class="reponse">
         <button class="reponse-texte" name="button">
-            les rectangles violets corresponds à une réponse possible.
+            Ceci est une réponse.
         </button>
     </div>
-    <p>Cliquer sur le bouton aide ? ouvre la page actuel tout en conservant le quiz</p>
-    <button>Aide ?</button>
-    <p>Cliquer sur le bouton indice vous donnera une aide pour répondre à la question posé.</p>
-    <div id="indiceTuto" class="indice">
-        <button>Indice</button>
-    </div>
-    <p>Une question peut avoir plusieurs indices. Une fois arrivé au bout des indices disponible, cliquer sur le bouton indice fera disparaitre une réponse fausse</p>
+    <p>Cliquer sur <button class="button-classique">Aide ?</button> ouvre cette page</p>
+    
+    <p>Cliquer sur <button class="button-classique">Indice</button> affiche un indice textuel. Une question peut avoir plusieurs indice, et quand il n'y en a plus, une mauvaise réponse disparait.</p>
 
     <label for="showTutoriel">J'ai compris le tutoriel</label>
     <input id="showTutoriel" type="checkbox" (change)="dontShowTutoriel()" value="show"><br/><br/>
 
-    <button (click)="stopShowTutoriel()">Click gauche ici pour fermer l'aide</button>
+    <button class="button-classique" (click)="stopShowTutoriel()">Clic gauche ici pour fermer l'aide</button>
 </div>
-
-
