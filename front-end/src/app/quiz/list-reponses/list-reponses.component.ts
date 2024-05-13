@@ -27,14 +27,6 @@ export class ListReponsesComponent implements OnInit {
     public profil: Profil  = this.listePatient[0];
     public possibleEndMessage: String[] = [];
 
-    public nbBonnesReponses: number = 0;
-    public nbIndiceUtilise: number = 0;
-    public streakDeBonneReponse: number = 0;
-
-    public bonScore: boolean = false;
-    public bonneStreak: boolean = false;
-    public peuDindice: boolean = false;
-
     public goodAnswer: number = 0;
 
     public  couleur1: string | undefined;
@@ -48,10 +40,6 @@ export class ListReponsesComponent implements OnInit {
     constructor(public quizService: QuizService, public profilService: ProfilService){
         this.quizService.actualResponses$.subscribe((actualResponses) => {
             this.actualResponses = actualResponses;
-        })
-
-        this.quizService.actualQuestionNumber$.subscribe((actualQuestionNumber) => {
-            this.actualQuestionNumber = actualQuestionNumber;
         })
 
         this.quizService.displayResponses$.subscribe((displayResponses) => {
@@ -68,34 +56,6 @@ export class ListReponsesComponent implements OnInit {
 
         this.quizService.endOfQuiz$.subscribe((endOfQuiz) => {
             this.endOfQuiz = endOfQuiz;
-        })
-
-        this.quizService.bonScore$.subscribe((bonScore) => {
-            this.bonScore = bonScore;
-        })
-
-        this.quizService.bonneStreak$.subscribe((bonneStreak) => {
-            this.bonneStreak = bonneStreak;
-        })
-
-        this.quizService.peuDindice$.subscribe((peuDindice) => {
-            this.peuDindice = peuDindice;
-        })
-
-        this.quizService.nbIndiceUtilise$.subscribe((nbIndiceUtilise) => {
-            this.nbIndiceUtilise = nbIndiceUtilise;
-        })
-
-        this.quizService.nbBonneReponses$.subscribe((nbBonneReponses) => {
-            this.nbBonnesReponses = nbBonneReponses;
-        })
-
-        this.quizService.streakDeBonneReponse$.subscribe((streakDeBonneReponse) => {
-            this.streakDeBonneReponse = streakDeBonneReponse;
-        })
-
-        this.quizService.streakDeBonneReponse$.subscribe((streakDeBonneReponse) => {
-            this.streakDeBonneReponse = streakDeBonneReponse;
         })
 
         this.quizService.goodAnswer$.subscribe((goodAnswer) => {
