@@ -34,7 +34,8 @@ export const QUESTION_FLEUR0: Question = {
    questionTexte: false,
    questionImage: true,
    optionImageLien: "./assets/quiz/imageQuizFleurCoquelicot.png",//to change
-   optionImageQuestion: "Quelle fleur est rouge et pousse dans des champs ?"
+   optionImageQuestion: "Quelle fleur est rouge et pousse dans des champs ?",
+   nbIndiceUtiliseQuestion: 0
 };
 
 export const QUESTION_FLEUR1: Question = {
@@ -70,6 +71,7 @@ export const QUESTION_FLEUR1: Question = {
    ],
    questionTexte: true,
    questionImage: false,
+   nbIndiceUtiliseQuestion: 0
 }
 
 export const QUESTION_FLEUR2: Question = {
@@ -105,6 +107,7 @@ export const QUESTION_FLEUR2: Question = {
     ],
     questionTexte: true,
     questionImage: false,
+    nbIndiceUtiliseQuestion: 0
 }
 
 export const QUESTION_FLEUR3: Question = {
@@ -140,6 +143,7 @@ export const QUESTION_FLEUR3: Question = {
     ],
     questionTexte: true,
     questionImage: false,
+    nbIndiceUtiliseQuestion: 0
 }
 
 export const QUESTION_FLEUR4: Question = {
@@ -176,5 +180,6 @@ export const QUESTION_FLEUR4: Question = {
     questionTexte: true,
     questionImage: false,
     optionImageLien: "./assets/quiz/imageQuizFleurLys.png",
-    optionImageQuestion: "Quelle fleur représente la royauté française ?"
+    optionImageQuestion: "Quelle fleur représente la royauté française ?",
+    nbIndiceUtiliseQuestion: 0
 }

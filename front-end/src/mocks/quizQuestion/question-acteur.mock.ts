@@ -34,7 +34,8 @@ export const QUESTION_ACTOR0: Question = {
    questionTexte: false,
    questionImage: true,
    optionImageLien: "./assets/quiz/JeanGabin.jpg",
-   optionImageQuestion: 'Jean Gabin a joué dans...'
+   optionImageQuestion: 'Jean Gabin a joué dans...',
+   nbIndiceUtiliseQuestion: 0
 };
 
 export const QUESTION_ACTOR1: Question = {
@@ -70,4 +71,5 @@ export const QUESTION_ACTOR1: Question = {
    ],
    questionTexte: true,
    questionImage: false,
+   nbIndiceUtiliseQuestion: 0
 }

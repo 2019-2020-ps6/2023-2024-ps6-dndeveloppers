@@ -7,19 +7,19 @@
             <span class="question">
                 <!-- OptionPhoto activée -->
                 <span *ngIf="actualProfil.optionPhoto===true; else elsePasOptionPhoto">
-                    <span *ngIf="choosenQuiz.questions[actualQuestionNumber]?.optionImageLien!==undefined; else elsePhoto">
-                        <app-question [question]="choosenQuiz.questions[actualQuestionNumber].label" [photo]="choosenQuiz.questions[actualQuestionNumber].optionImageLien" class="question"></app-question>
+                    <span *ngIf="choosenQuiz.questions[choosenQuiz.actualQuestionNumber]?.optionImageLien!==undefined; else elsePhoto">
+                        <app-question [question]="choosenQuiz.questions[choosenQuiz.actualQuestionNumber].label" [photo]="choosenQuiz.questions[choosenQuiz.actualQuestionNumber].optionImageLien" class="question"></app-question>
                     </span>
-                    <ng-template #elsePhoto><app-question [question]="choosenQuiz.questions[actualQuestionNumber].label" class="question"></app-question></ng-template>
+                    <ng-template #elsePhoto><app-question [question]="choosenQuiz.questions[choosenQuiz.actualQuestionNumber].label" class="question"></app-question></ng-template>
                 </span>
 
                 <!-- Option Photo désactivée -->
                 <ng-template #elsePasOptionPhoto> 
-                    <span *ngIf="choosenQuiz.questions[actualQuestionNumber]?.optionImageLien!==undefined; else elsePasOptionPhoto2">
-                        <app-question [question]="choosenQuiz.questions[actualQuestionNumber].optionImageQuestion" class="question"></app-question>
+                    <span *ngIf="choosenQuiz.questions[choosenQuiz.actualQuestionNumber]?.optionImageLien!==undefined; else elsePasOptionPhoto2">
+                        <app-question [question]="choosenQuiz.questions[choosenQuiz.actualQuestionNumber].optionImageQuestion" class="question"></app-question>
                     </span>
                     <ng-template #elsePasOptionPhoto2> 
-                        <app-question [question]="choosenQuiz.questions[actualQuestionNumber].label" class="question"></app-question> 
+                        <app-question [question]="choosenQuiz.questions[choosenQuiz.actualQuestionNumber].label" class="question"></app-question> 
                     </ng-template>
                 </ng-template>
             </span>
