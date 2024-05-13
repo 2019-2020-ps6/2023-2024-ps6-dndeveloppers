@@ -10,18 +10,24 @@ import { Quiz } from '../../models/quiz.model';
 export class ListQuizComponent implements OnInit {
 
   public quizList: Quiz[] = [];
+  public themeList: String[] = [];
   public afficher: boolean = false;
 
-  public messageEcrit : String = '';
+  public messageEcrit: String = '';
   public motDePasse: String = 'admin';
 
   constructor(public quizService: QuizService) {
     this.quizService.quizzes$.subscribe((quizList) => {
       this.quizList = quizList;
     });
+
+    this.quizService.themeList$.subscribe((themeList) => {
+      this.themeList = themeList;
+    })
   }
 
   ngOnInit() {
+    this.quizService.setUpTheme();
   }
 
   quizSelected(quiz: Quiz) {
