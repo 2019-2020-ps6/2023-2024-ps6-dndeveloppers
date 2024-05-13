@@ -166,7 +166,7 @@ export class QuizService {
       this.usedHint++;
       this.nbIndiceUtilise++;
       this.nbIndiceUtilise$.next(this.nbIndiceUtilise);
-      if (this.usedIndice.length < this.actualIndices.length) {
+      if ((this.usedIndice.length < this.actualIndices.length) && (this.actualQuestion.indice[this.usedIndice.length].value != '')) {
         this.usedIndice.push(this.usedIndice.length);
       } else {
         this.hideResponse();
