@@ -27,7 +27,7 @@ export class ListQuizComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.quizService.triQuizParTheme();
+    this.quizService.setUpTheme();
   }
 
   quizSelected(quiz: Quiz) {

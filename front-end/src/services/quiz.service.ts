@@ -76,37 +76,7 @@ export class QuizService {
   public url: string = "";
 
   constructor(public statsService: StatsService) {
-    this.fillThemeList();
-  }
-
-  fillThemeList() {
-    let res: String[] = [];
-    for (let i=0; i<this.quizzes.length; i++) {
-      let toAdd = true;
-      for (let j=0; j<res.length; j++) {
-        if (this.quizzes[i].theme == res[j]) {
-          toAdd = false;
-          break;
-        }
-      }
-      if (toAdd) {
-        res.push(this.quizzes[i].theme);
-      }
-    }
-    this.themeList = res;
-    this.themeList$.next(this.themeList);
-  }
-
-  triQuizParTheme() {
-    let sortedQuizList: Quiz[] = [];
-    for (let i=0; i<this.themeList.length; i++) {
-      for (let j=0; j<this.quizzes.length; j++) {
-        if (this.quizzes[j].theme == this.themeList[i]) {
-          sortedQuizList.push(this.quizzes[j]);
-        }
-      }
-    }
-    this.quizzes = sortedQuizList;
+    this.setUpTheme();
   }
 
   selectProfil(profil: Profil) {
@@ -121,7 +91,7 @@ export class QuizService {
   addQuiz(quiz: Quiz) {
     this.statsService.addQuiz(quiz);
     this.quizzes.push(quiz);
-    this.triQuizParTheme();
+    this.setUpQuiz();
     this.quizzes$.next(this.quizzes);
   }
 
@@ -429,6 +399,7 @@ export class QuizService {
     this.themeList = newThemeList;
     this.themeList$.next(this.themeList);
     console.log("Liste des thèmes actuellement présents : ",this.themeList);
+    this.setUpQuiz();
   }
 
   addTheme(theme: String){
@@ -443,6 +414,18 @@ export class QuizService {
     this.editedQuiz = quiz;
     this.editedQuiz$.next(this.editedQuiz);
     console.log("edition : ",quiz);
+  }
+
+  setUpQuiz() {
+    let sortedQuizList: Quiz[] = [];
+    for (let i=0; i<this.themeList.length; i++) {
+      for (let j=0; j<this.quizzes.length; j++) {
+        if (this.quizzes[j].theme == this.themeList[i]) {
+          sortedQuizList.push(this.quizzes[j]);
+        }
+      }
+    }
+    this.quizzes = sortedQuizList;
   }
 
   addQuestion(question: Question){
