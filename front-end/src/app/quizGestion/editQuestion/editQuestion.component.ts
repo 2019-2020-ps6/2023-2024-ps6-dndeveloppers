@@ -104,7 +104,7 @@ export class EditQuestionComponent implements OnInit {
         answer4.isCorrect = false;
 
         question.answers = [answer1 , answer2 , answer3, answer4];        
-        question.answers[this.questionForm.value.goodAnswer-1].isCorrect = true;
+        question.answers[this.questionForm.value.goodAnswer].isCorrect = true;
 
         let indice1 : Indice = Indice_Model1;
         indice1.value = this.questionForm.value.i1;

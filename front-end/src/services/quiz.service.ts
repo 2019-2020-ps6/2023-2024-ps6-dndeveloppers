@@ -173,6 +173,13 @@ export class QuizService {
       }
     }
     this.hintAskedForQuestion++;
+    let indiceQuestion = 0;
+    for (let i=0; i<this.actualQuestion.indice.length; i++) {
+      if (this.actualQuestion.indice[i].value != "") {
+        indiceQuestion++;
+      }
+    }
+    this.scoreWithOptionSup = 1 - (this.hintAskedForQuestion/(indiceQuestion + 3));
   }
 
   hideResponse() {
