@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from "@angular/router";
+import { PROFIL_NULL } from "src/mocks/profil.mock";
 import { STATS_PATIENT_INIT } from "src/mocks/statsMocks/stats-patient.mock";
 
 import { Profil } from "src/models/profil.model";
@@ -48,15 +49,20 @@ export class CreateProfilComponent implements OnInit {
     ngOnInit(): void {}
 
     addProfil(){
-        const profilToCreate: Profil = this.profilForm.getRawValue() as Profil;
-        if(this.profilForm.getRawValue().jour!=undefined && this.profilForm.getRawValue().mois!=undefined && this.profilForm.getRawValue().annee!=undefined){
+        const profilToCreate: Profil = JSON.parse(JSON.stringify(PROFIL_NULL));
         
+        profilToCreate.nom = this.profilForm.getRawValue().nom;
+        profilToCreate.prenom = this.profilForm.getRawValue().prenom;
+        profilToCreate.role = this.profilForm.getRawValue().role;
+
+        if(this.profilForm.getRawValue().jour!=undefined && this.profilForm.getRawValue().mois!=undefined && this.profilForm.getRawValue().annee!=undefined){
             profilToCreate.dateNaissance = [
                 this.profilForm.getRawValue().jour,
                 this.MonthList.lastIndexOf(this.profilForm.getRawValue().mois)+1,
                 this.profilForm.getRawValue().annee
             ];
         }
+
         if(this.profilForm.value.photo != undefined){
             let path : String = this.profilForm.value.photo;
             var spliter = path.split('\\');
@@ -67,7 +73,9 @@ export class CreateProfilComponent implements OnInit {
         else {
             profilToCreate.photo = "./assets/imageProfil/default.png"
         }
-        profilToCreate.selfStats = STATS_PATIENT_INIT;
+
+        profilToCreate.selfStats = JSON.parse(JSON.stringify(STATS_PATIENT_INIT));
+
         console.log("add profil ", profilToCreate);
         this.profilService.addProfil(profilToCreate);
         this.router.navigate(['home/listProfil/']); 

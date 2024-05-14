@@ -23,5 +23,6 @@ module.exports = new BaseModel('Profil', {
 
     tutoriel: Joi.boolean(), // Pour savoir s'il faut afficher le tutoriel
 
-    // selfStats: statsPatient
+    idProfil: Joi.number(),
+    selfStats: Joi.number() // selfStats: statsPatient
 })

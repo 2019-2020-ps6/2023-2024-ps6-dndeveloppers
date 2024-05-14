@@ -24,7 +24,7 @@
 
                 <p class="liage">Date de Naissance :</p>
                 <label for="jour"> Jour :  
-                    <select name="input-custom" id="jour" [formControlName]="'jour'">
+                    <select name="input-custom" type="number" id="jour" [formControlName]="'jour'">
                         <option *ngFor="let currentDay of DayList" [value]="currentDay">{{currentDay}}</option>
                     </select> 
                 </label>
