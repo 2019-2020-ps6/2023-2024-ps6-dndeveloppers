@@ -34,5 +34,5 @@ export const STATS_PATIENT_NULL: statsPatient = {
     meanScore: 0,
     quizRes: [],
     quizDone: [],
-    nbAttemptForEachQuizDone: [0,0]
+    nbAttemptForEachQuizDone: []
 }

@@ -25,12 +25,14 @@ export class ProfilService {
 
     constructor(public quizService: QuizService, public statsService: StatsService, private http: HttpClient) {
         this.retrievesProfils();
+        
     }
 
     retrievesProfils(): void {
         this.http.get<Profil[]>(this.profilUrl).subscribe((profilList) => {
             this.profilList = profilList;
             this.profilList$.next(this.profilList);
+            console.log(this.profilList);
         })
     }
 
@@ -87,6 +89,7 @@ export class ProfilService {
         console.log("Profil : ", profil, " en cours d'édition.");
     }
 
+    /*
     updateProfil(profilAncien: Profil, profilNouveau: Profil) {
         for (let i = 0; i < this.profilList.length; i++) {
             if (this.profilList[i].nom == profilAncien.nom && this.profilList[i].prenom == profilAncien.prenom) {
@@ -98,5 +101,11 @@ export class ProfilService {
             }
         }
 
+    }*/
+
+    updateProfil(profil: Profil) {
+        console.log("Le profil : " ,profil.id, " a été mise à jour");
+        const urlWithId = this.profilUrl + '/:' + profil.id;
+        this.http.put<Profil>(urlWithId, profil ,this.httpOptions).subscribe(() => this.retrievesProfils());
     }
 }

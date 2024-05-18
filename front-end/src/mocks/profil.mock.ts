@@ -98,9 +98,9 @@ export const ADMIN: Profil = {
 }
 
 export const PROFIL_NULL: Profil = {
-    nom: "",
-    prenom: "",
-    role: "",
+    nom: "a",
+    prenom: "a",
+    role: "patient",
 
     selfStats: STATS_PATIENT_NULL,
 

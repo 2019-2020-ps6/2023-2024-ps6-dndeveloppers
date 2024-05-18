@@ -24,7 +24,6 @@ export class CreateProfilComponent implements OnInit {
     
 
     constructor(public formBuilder: FormBuilder, public profilService: ProfilService, private router: Router){
-        //console.log("a");
         this.profilForm = this.formBuilder.group({
             nom: [''],
             prenom: [''],
@@ -57,10 +56,13 @@ export class CreateProfilComponent implements OnInit {
 
         if(this.profilForm.getRawValue().jour!=undefined && this.profilForm.getRawValue().mois!=undefined && this.profilForm.getRawValue().annee!=undefined){
             profilToCreate.dateNaissance = [
-                this.profilForm.getRawValue().jour,
+                parseInt(this.profilForm.getRawValue().jour,10),
                 this.MonthList.lastIndexOf(this.profilForm.getRawValue().mois)+1,
                 this.profilForm.getRawValue().annee
             ];
+        }
+        else {
+            profilToCreate.dateNaissance = [0,0,0]
         }
 
         if(this.profilForm.value.photo != undefined){
@@ -75,6 +77,13 @@ export class CreateProfilComponent implements OnInit {
         }
 
         profilToCreate.selfStats = JSON.parse(JSON.stringify(STATS_PATIENT_INIT));
+
+        profilToCreate.optionTailleTexte = this.profilForm.getRawValue().optionTailleTexte,
+
+        profilToCreate.optionIndice = this.profilForm.getRawValue().optionIndice,
+        profilToCreate.optionPhoto = this.profilForm.getRawValue().optionPhoto,
+        profilToCreate.optionSupprimerMauvaisesReponses = this.profilForm.getRawValue().optionSupprimerMauvaisesReponses,
+        profilToCreate.optionReposerQuestionApres = this.profilForm.getRawValue().optionReposerQuestionApres,
 
         console.log("add profil ", profilToCreate);
         this.profilService.addProfil(profilToCreate);

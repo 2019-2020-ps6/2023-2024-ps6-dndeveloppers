@@ -41,4 +41,14 @@ export class ViewProfilComponent implements OnInit {
         this.router.navigate(['home/listProfil/editProfil/' + profil.nom + "-" + profil.prenom]);
         this.profilService.editingProfil(profil);
     }
+
+    birthDayOk(){
+        if(this.profil.dateNaissance != undefined && this.profil.dateNaissance.length == 3){
+            if(this.profil.dateNaissance[0] != 0 && this.profil.dateNaissance[1] != 0 && this.profil.dateNaissance[2] != 0){
+                return true;
+            }
+        }
+        return false
+    }
+    
 }
