@@ -18,11 +18,11 @@ export class AddQuestionComponent implements OnInit {
     public questionForm : FormGroup;
     constructor(public formBuilder: FormBuilder, public quizService: QuizService){
         this.questionForm = this.formBuilder.group({
-            label: ['abcd'],
-            q1: ['a'],
-            q2: ['b'],
-            q3: ['c'],
-            q4: ['d'],
+            label: ['Question'],
+            q1: ['Réponse 1'],
+            q2: ['Réponse 2'],
+            q3: ['Réponse 3'],
+            q4: ['Réponse 4'],
             i1: ['indice 1'],
             i2: ['indice 2'],
             i3: ['indice 3'],
@@ -32,7 +32,13 @@ export class AddQuestionComponent implements OnInit {
 
     @Input()
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        const firstCheckbox = document.getElementById("r1") as HTMLInputElement;
+        firstCheckbox.checked = true;
+        this.questionForm.patchValue({
+            goodAnswer: 0
+        })
+    }
 
     addQuestion(){
         let question : Question = JSON.parse(JSON.stringify(Question_Model));       
@@ -74,5 +80,21 @@ export class AddQuestionComponent implements OnInit {
 
         console.log("question : ",question)
         this.quizService.addQuestion(question);
+    }
+
+    selectResponseNumber(event: Event, responseNumber: number) {
+        if (event.target instanceof HTMLInputElement) {
+            if (event.target.checked) {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach((checkbox: Element) => {
+                    if (checkbox != event.target) {
+                        (checkbox as HTMLInputElement).checked = false;
+                    }
+                })
+            }
+        }
+        this.questionForm.patchValue({
+            goodAnswer: responseNumber
+        })
     }
 }
