@@ -27,8 +27,6 @@ export class ListReponsesComponent implements OnInit {
     public profil: Profil  = this.listePatient[0];
     public possibleEndMessage: String[] = [];
 
-    public goodAnswer: number = 0;
-
     public  couleur1: string | undefined;
     public  couleur2: string | undefined;
     public  couleur3: string | undefined;
@@ -58,10 +56,6 @@ export class ListReponsesComponent implements OnInit {
             this.endOfQuiz = endOfQuiz;
         })
 
-        this.quizService.goodAnswer$.subscribe((goodAnswer) => {
-            this.goodAnswer = goodAnswer;
-        })
-
     }
 
     ngOnInit(): void {
@@ -77,26 +71,28 @@ export class ListReponsesComponent implements OnInit {
             this.quizService.responseSelectedWithOptionSupprimerMauvaiseReponse(this.choosenQuiz, responseNumber);
         }
         else{
-            this.quizService.isGoodAnswer(this.choosenQuiz, responseNumber);
-            if(this.goodAnswer == 1){
+            if(this.actualResponses[0].isCorrect == true) {
                 this.couleur1 = "lightgreen";
-            }
-            if(this.goodAnswer == 2){
+              }
+              if(this.actualResponses[1].isCorrect == true) {
                 this.couleur2 = "lightgreen";
-            }
-            if(this.goodAnswer == 3){
+              }
+              if(this.actualResponses[2].isCorrect == true) {
                 this.couleur3 = "lightgreen";
-            }
-            if(this.goodAnswer == 4){
-                this.couleur4 = "lightgreen";
-            }
+              }
+              else{
+                if(this.actualResponses[3].isCorrect == true){
+                  this.couleur4 = "lightgreen";
+                }
+              }
+
             setTimeout(() => {
                 this.quizService.responseSelected(this.choosenQuiz, responseNumber);
                 this.couleur1 = "#6958cf";
                 this.couleur2 = "#6958cf";
                 this.couleur3 = "#6958cf";
                 this.couleur4 = "#6958cf";
-            }, 3000);
+            }, 5000);
         }
         //this.loadQuestion(this.actualQuestionNumber);
     }
