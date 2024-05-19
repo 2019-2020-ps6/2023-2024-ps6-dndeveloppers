@@ -128,17 +128,24 @@ export class QuizService {
   }
 
   hintAsked() {
-    if (this.actualQuestion.nbIndiceUtiliseQuestion < this.actualIndices.length+3) {
+    this.hintAskedForQuestion++;
+    if (this.hintAskedForQuestion < this.actualIndices.length+3) {
       this.usedHint++;
-      this.choosenQuiz.nbIndiceUtilises++;
-      this.choosenQuiz$.next(this.choosenQuiz);
-      if (this.usedIndice.length < this.actualIndices.length) {
+      this.nbIndiceUtilise++;
+      this.nbIndiceUtilise$.next(this.nbIndiceUtilise);
+      let indiceQuestion = 0;
+      for (let i=0; i<this.actualQuestion.indice.length; i++) {
+        if (this.actualQuestion.indice[i].value != "") {
+          indiceQuestion++;
+        }
+      }
+      this.scoreWithOptionSup = 1 - (this.hintAskedForQuestion/(indiceQuestion + 3));
+      if ((this.usedIndice.length < this.actualIndices.length) && (this.actualQuestion.indice[this.usedIndice.length].value != '')) {
         this.usedIndice.push(this.usedIndice.length);
       } else {
         this.hideResponse();
       }
     }
-    this.actualQuestion.nbIndiceUtiliseQuestion++;
   }
 
   hideResponse() {

@@ -13,13 +13,12 @@ import { QuizService } from "src/services/quiz.service";
 })
 
 export class EditQuestionComponent implements OnInit {
-    @Input()
-    question : Question | undefined;
 
     public questionForm : FormGroup;
 
     public answers: String[] = ['','','',''];
     public indice: String[] = ['','',''];
+    public indicesNum: boolean[] = [true, true, true];
     public numberGoodAnswer = 0;
     public texteImage: String = '';
 
@@ -69,6 +68,10 @@ export class EditQuestionComponent implements OnInit {
         });
     }
 
+    @Input()
+    question : Question | undefined;
+    nbIndice: boolean[] = this.indicesNum;
+
 
     findGoodAnswer(){
         for(let i=0;i<4;i++){
@@ -101,7 +104,7 @@ export class EditQuestionComponent implements OnInit {
         answer4.isCorrect = false;
 
         question.answers = [answer1 , answer2 , answer3, answer4];        
-        question.answers[this.questionForm.value.goodAnswer-1].isCorrect = true;
+        question.answers[this.questionForm.value.goodAnswer].isCorrect = true;
 
         let indice1 : Indice = Indice_Model1;
         indice1.value = this.questionForm.value.i1;
@@ -132,6 +135,39 @@ export class EditQuestionComponent implements OnInit {
     deleteQuestion(){
         if(this.question != undefined){
             this.quizService.deleteQuestion(this.question);
+        }
+    }
+
+    addIndice(){
+        for (let i=0; i<this.indicesNum.length; i++) {
+            if (this.indicesNum[i] == false) {
+                this.indicesNum[i] = true;
+                break;
+            }
+        }
+    }
+
+    deleteIndice(){
+        let indice = -1;
+        for (let i=this.indicesNum.length-1; i>=0; i--) {
+            if (this.indicesNum[i] == true) {
+                this.indicesNum[i] = false;
+                indice = i;
+                break;
+            }
+        }
+        if (indice == 0) {
+            this.questionForm.patchValue({
+                i1: '',
+            })
+        } else if (indice == 1) {
+            this.questionForm.patchValue({
+                i2: '',
+            })
+        } else {
+            this.questionForm.patchValue({
+                i3: '',
+            })
         }
     }
 }

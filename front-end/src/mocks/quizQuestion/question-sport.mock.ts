@@ -35,7 +35,7 @@ export const QUESTION_SPORT0: Question = {
    questionTexte: false,
    questionImage: true,
    optionImageLien: "./assets/quiz/foot.jpg",
-   optionImageQuestion: 'test',
+   optionImageQuestion: 'Quel pays a gagné la coupe du monde de foot 2022',
    nbIndiceUtiliseQuestion: 0
 };
 
