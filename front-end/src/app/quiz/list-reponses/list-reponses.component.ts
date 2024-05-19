@@ -120,14 +120,26 @@ export class ListReponsesComponent implements OnInit {
             this.quizService.isGoodAnswer(this.choosenQuiz, responseNumber);
             if(this.goodAnswer == 1){
                 this.couleur1 = "lightgreen";
+                this.couleur2 = "#939393";
+                this.couleur3 = "#939393";
+                this.couleur4 = "#939393";
             }
             if(this.goodAnswer == 2){
+                this.couleur1 = "#939393";
                 this.couleur2 = "lightgreen";
+                this.couleur3 = "#939393";
+                this.couleur4 = "#939393";
             }
             if(this.goodAnswer == 3){
+                this.couleur1 = "#939393";
+                this.couleur2 = "#939393";
                 this.couleur3 = "lightgreen";
+                this.couleur4 = "#939393";
             }
             if(this.goodAnswer == 4){
+                this.couleur1 = "#939393";
+                this.couleur2 = "#939393";
+                this.couleur3 = "#939393";
                 this.couleur4 = "lightgreen";
             }
             setTimeout(() => {
@@ -136,9 +148,8 @@ export class ListReponsesComponent implements OnInit {
                 this.couleur2 = "#6958cf";
                 this.couleur3 = "#6958cf";
                 this.couleur4 = "#6958cf";
-            }, 3000);
+            }, 5000);
         }
-        //this.loadQuestion(this.actualQuestionNumber);
     }
 
     loadQuestion(nbQuestion: number) {
