@@ -1,10 +1,10 @@
                 <!-- Vue très simple pour choisir un joueur -->
-<div class="shortView" *ngIf="typeView==='play'" >
+<div (click)="selectProfil(profil)" class="shortView" *ngIf="typeView==='play'" >
     <h2>
         <span> Nom : {{profil.nom}}   </span><br/>
         <span> Prénom: {{profil.prenom}} </span><br/>
         <img id="imageProfil" [src]=profil.photo /><br/>
-        <button [routerLink]="['listQuiz']" (click)="selectProfil(profil)">Sélectionner</button>
+        <!--<button [routerLink]="['listQuiz']" (click)="selectProfil(profil)">Sélectionner</button>-->
     </h2>
 </div>
 

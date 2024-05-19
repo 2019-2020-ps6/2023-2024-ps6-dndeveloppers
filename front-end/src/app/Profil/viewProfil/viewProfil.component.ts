@@ -23,6 +23,7 @@ export class ViewProfilComponent implements OnInit {
 
     selectProfil(profil:Profil){
         this.profilService.selectProfil(profil);
+        this.router.navigate(['home/listQuiz']);
     }
 
     deleteProfil(profil:Profil){
