@@ -91,6 +91,8 @@ export class AddQuestionComponent implements OnInit {
                         (checkbox as HTMLInputElement).checked = false;
                     }
                 })
+            } else {
+                event.target.checked = true;
             }
         }
         this.questionForm.patchValue({
