@@ -73,6 +73,17 @@ export class CreateProfilComponent implements OnInit {
         this.router.navigate(['home/listProfil/']); 
     }
 
+    getFontSizeValue(): number {
+        const sizeControl = this.profilForm.get('optionTailleTexte');
+        const size = sizeControl ? sizeControl.value : 'Moyen';
+        switch(size) {
+            case 'Petit': return 1;
+            case 'Moyen': return 1.2;
+            case 'Grand': return 1.5;
+            default: return 1.2;
+        }
+    }
+
     return(){
         this.router.navigate(['home/listProfil/']);
     }
