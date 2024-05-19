@@ -6,8 +6,6 @@ module.exports = new BaseModel('StatsPatient', {
     nbQuizDone: Joi.number().required(),
     meanScore: Joi.number().required(),
     quizRes: Joi.array().required(), 
-    quizDone: Joi.array().required(), 
-    nbAttemptForEachQuizDone: Joi.array().required(), 
-    
+    quizDone: Joi.array().required(),     
     idStatsPatient: Joi.number()
 })
