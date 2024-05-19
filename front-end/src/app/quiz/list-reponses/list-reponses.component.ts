@@ -71,21 +71,30 @@ export class ListReponsesComponent implements OnInit {
             this.quizService.responseSelectedWithOptionSupprimerMauvaiseReponse(this.choosenQuiz, responseNumber);
         }
         else{
-            if(this.actualResponses[0].isCorrect == true) {
+            if(this.goodAnswer == 1) {
                 this.couleur1 = "lightgreen";
-              }
-              if(this.actualResponses[1].isCorrect == true) {
+                this.couleur2 = "#939393";
+                this.couleur3 = "#939393";
+                this.couleur4 = "#939393";
+            }
+            if(this.goodAnswer == 2){
+                this.couleur1 = "#939393";
                 this.couleur2 = "lightgreen";
-              }
-              if(this.actualResponses[2].isCorrect == true) {
+                this.couleur3 = "#939393";
+                this.couleur4 = "#939393";
+            }
+            if(this.goodAnswer == 3){
+                this.couleur1 = "#939393";
+                this.couleur2 = "#939393";
                 this.couleur3 = "lightgreen";
-              }
-              else{
-                if(this.actualResponses[3].isCorrect == true){
-                  this.couleur4 = "lightgreen";
-                }
-              }
-
+                this.couleur4 = "#939393";
+            }
+            if(this.goodAnswer == 4){
+                this.couleur1 = "#939393";
+                this.couleur2 = "#939393";
+                this.couleur3 = "#939393";
+                this.couleur4 = "lightgreen";
+            }
             setTimeout(() => {
                 this.quizService.responseSelected(this.choosenQuiz, responseNumber);
                 this.couleur1 = "#6958cf";
@@ -94,7 +103,6 @@ export class ListReponsesComponent implements OnInit {
                 this.couleur4 = "#6958cf";
             }, 5000);
         }
-        //this.loadQuestion(this.actualQuestionNumber);
     }
 
     loadQuestion(nbQuestion: number) {

@@ -36,9 +36,9 @@ export class CreateProfilComponent implements OnInit {
             photo: [],
 
             optionPhoto: [false],
-            optionIndice: [false],
+            optionIndice: [true],
 
-            optionSupprimerMauvaisesReponses: [false],
+            optionSupprimerMauvaisesReponses: [true],
             optionReposerQuestionApres: [false],
 
             optionTailleTexte: ['Moyen'],
