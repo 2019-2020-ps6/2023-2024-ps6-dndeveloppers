@@ -106,3 +106,12 @@
     background-color: darkgrey;
 }
 
+.text-size-label {
+    display: flex;
+    align-items: center;
+  }
+  
+  #optionTailleTexte,
+  .exempleTailleTexte {
+    margin-left: 10px;
+  }
