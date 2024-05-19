@@ -1,10 +1,9 @@
                 <!-- Vue très simple pour choisir un joueur -->
-<div class="shortView" *ngIf="typeView==='play'" >
+<div (click)="selectProfil(profil)" class="shortView" *ngIf="typeView==='play'" >
     <h2>
         <span> Nom : {{profil.nom}}   </span><br/>
-        <span> Prénom: {{profil.prenom}} </span><br/>
+        <span> Prénom: {{profil.prenom}} </span><br/><br/>
         <img id="imageProfil" [src]=profil.photo /><br/>
-        <button [routerLink]="['listQuiz']" (click)="selectProfil(profil)">Sélectionner</button>
     </h2>
 </div>
 
@@ -14,8 +13,7 @@
         <span> Nom : {{profil.nom}}   </span><br/>
         <span> Prénom: {{profil.prenom}} </span><br/>
         <img id="imageProfil" [src]=profil.photo /><br/>
-        <button (click)="showProfil(profil)">Afficher</button>
-        <button (click)="selectProfil(profil)">Sélectionner</button><br/>
+        <button (click)="profilShow('full')">Afficher</button>
         <button (click)="editProfil(profil)">Modifier</button>
         <button (click)="deleteProfil(profil)">Supprimer</button>
     </h2>
@@ -46,5 +44,6 @@
     </div>
     
     <br/><br/>Taille du texte : {{profil.optionTailleTexte}}<br/>
-    <button (click)="stopShowProfil(profil)">Fermer</button>
+    <button (click)="selectProfil(profil)">Jouer</button>
+    <button (click)="profilShow('list')">Fermer</button>
 </div>
