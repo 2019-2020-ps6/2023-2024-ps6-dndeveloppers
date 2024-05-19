@@ -30,12 +30,8 @@ export class ViewProfilComponent implements OnInit {
         this.profilService.deleteProfil(profil);    
     }
 
-    showProfil(profil:Profil){
-        this.typeView="full";
-    }
-
-    stopShowProfil(profil:Profil){
-        this.typeView="list";
+    profilShow(str: String) {
+        this.typeView=str;
     }
 
     editProfil(profil:Profil){
