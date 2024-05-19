@@ -18,25 +18,12 @@ export class QuizService {
   private actualQuestion: Question = QUESTION_ACTOR0;
   private actualResponses: Answer[] = QUESTION_ACTOR0.answers;
   private displayResponses: boolean[] = [true, true, true, true];
-  private hintAskedForQuestion: number = 0;
-  private actualQuestionNumber: number = 0;
   private actualIndices: Indice[] = [];
-  private actualScore: number = 0;
   private usedIndice: number[] = [];
   private usedHint: number = 0;
   private endOfQuiz: boolean = false;
 
-  private nbBonneReponses: number = 0;
-  private nbIndiceUtilise: number = 0;
-  private streakDeBonneReponse: number = 0;
-  private enStreak: number = 0;
   private scoreWithOptionSup: number = 0;
-
-  private bonScore: boolean = false;
-  private bonneStreak: boolean = false;
-  private peuDindice: boolean = false;
-
-  private goodAnswer: number = 0;
 
   private themeList: String[] = []; // liste des thèmes de quiz
   private editedQuiz: Quiz = this.quizzes[0]; // quiz en cours d'édition
@@ -49,10 +36,8 @@ export class QuizService {
   public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(QUIZ_LIST);
   public choosenQuiz$: BehaviorSubject<Quiz> = new BehaviorSubject(QUIZ_LIST[0]);
   public actualQuestion$: BehaviorSubject<Question> = new BehaviorSubject(QUESTION_ACTOR0);
-  public actualScore$: BehaviorSubject<number> = new BehaviorSubject(this.actualScore);
   public actualResponses$: BehaviorSubject<Answer[]> = new BehaviorSubject(QUESTION_ACTOR0.answers);
   public displayResponses$: BehaviorSubject<boolean[]> = new BehaviorSubject(this.displayResponses);
-  public actualQuestionNumber$: BehaviorSubject<number> = new BehaviorSubject(0);
   public actualIndices$: BehaviorSubject<Indice[]> = new BehaviorSubject(this.actualIndices);
   public usedIndice$: BehaviorSubject<number[]> = new BehaviorSubject(this.usedIndice);
   public endOfQuiz$: BehaviorSubject<boolean> = new BehaviorSubject(false);
@@ -60,22 +45,11 @@ export class QuizService {
   public themeList$: BehaviorSubject<String[]> = new BehaviorSubject(this.themeList);
   public editedQuiz$ : BehaviorSubject<Quiz> = new BehaviorSubject(this.editedQuiz);
 
-  public nbBonneReponses$: BehaviorSubject<number> = new BehaviorSubject(0);
-  public nbIndiceUtilise$: BehaviorSubject<number> = new BehaviorSubject(0);
-  public streakDeBonneReponse$: BehaviorSubject<number> = new BehaviorSubject(0);
-
-  public bonScore$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  public bonneStreak$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  public peuDindice$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-
-  public indice$: BehaviorSubject<string[]> = new BehaviorSubject([""]);
-
-  public goodAnswer$: BehaviorSubject<number> = new BehaviorSubject(0);
-
-
   public url: string = "";
 
-  constructor(public statsService: StatsService) {}
+  constructor(public statsService: StatsService) {
+    this.setUpTheme();
+  }
 
   selectProfil(profil: Profil) {
     this.actualProfil = profil;
@@ -89,6 +63,7 @@ export class QuizService {
   addQuiz(quiz: Quiz) {
     this.statsService.addQuiz(quiz);
     this.quizzes.push(quiz);
+    this.setUpQuiz();
     this.quizzes$.next(this.quizzes);
   }
 
@@ -121,11 +96,11 @@ export class QuizService {
     if (quizEnCours.questions === undefined) {
       console.log("Ce quiz n'a pas de quesiton!");
     } else {
-      this.hintAskedForQuestion = 0;
+      this.actualQuestion.nbIndiceUtiliseQuestion = 0;
       console.log("Quiz valide");
 
       this.scoreWithOptionSup = 1;
-      this.actualScore = 0;
+      this.choosenQuiz.actualScore = 0;
       this.usedHint = 0;
       this.endOfQuiz = false;
       this.endOfQuiz$.next(this.endOfQuiz);
@@ -133,25 +108,16 @@ export class QuizService {
       this.actualIndices = this.choosenQuiz.questions[0].indice;
       this.actualIndices$.next(this.actualIndices);
       
-      this.actualQuestionNumber = 0;
-      this.actualQuestionNumber$.next(this.actualQuestionNumber);
-      this.displayQuestion(quizEnCours, this.actualQuestionNumber);
+      this.choosenQuiz.actualQuestionNumber = 0;
+      this.choosenQuiz$.next(this.choosenQuiz);
+      this.displayQuestion(quizEnCours, this.choosenQuiz.actualQuestionNumber);
 
-      this.nbBonneReponses = 0;
-      this.nbBonneReponses$.next(this.nbBonneReponses);
-      this.nbIndiceUtilise = 0;
-      this.nbIndiceUtilise$.next(this.nbIndiceUtilise);
-      this.streakDeBonneReponse = 0;
-      this.streakDeBonneReponse$.next(this.streakDeBonneReponse);
-      this.enStreak = 0;
-
-      this.bonScore = false;
-      this.bonScore$.next(this.bonScore);
-      this.bonneStreak = false;
-      this.bonneStreak$.next(this.bonneStreak);
-      this.peuDindice = false;
-      this.peuDindice$.next(this.peuDindice);
-
+      this.choosenQuiz.nbBonnesReponses = 0;
+      this.choosenQuiz.nbIndiceUtilises = 0;
+      this.choosenQuiz.MeilleurStreak = 0;
+      this.choosenQuiz.streakActuel = 0;
+      this.choosenQuiz$.next(this.choosenQuiz);
+      
     }
   }
 
@@ -162,17 +128,17 @@ export class QuizService {
   }
 
   hintAsked() {
-    if (this.hintAskedForQuestion < this.actualIndices.length+3) {
+    if (this.actualQuestion.nbIndiceUtiliseQuestion < this.actualIndices.length+3) {
       this.usedHint++;
-      this.nbIndiceUtilise++;
-      this.nbIndiceUtilise$.next(this.nbIndiceUtilise);
+      this.choosenQuiz.nbIndiceUtilises++;
+      this.choosenQuiz$.next(this.choosenQuiz);
       if (this.usedIndice.length < this.actualIndices.length) {
         this.usedIndice.push(this.usedIndice.length);
       } else {
         this.hideResponse();
       }
     }
-    this.hintAskedForQuestion++;
+    this.actualQuestion.nbIndiceUtiliseQuestion++;
   }
 
   hideResponse() {
@@ -199,36 +165,17 @@ export class QuizService {
     }
   }
 
-  isGoodAnswer(quiz: Quiz, responseNumber: number){
-
-    if(this.actualResponses[0].isCorrect == true) {
-      this.goodAnswer = 1;
-    }
-    if(this.actualResponses[1].isCorrect == true) {
-      this.goodAnswer = 2;
-    }
-    if(this.actualResponses[2].isCorrect == true) {
-      this.goodAnswer = 3;
-    }
-    else{
-      if(this.actualResponses[3].isCorrect == true){
-        this.goodAnswer = 4;
-      }
-    }
-    this.goodAnswer$.next(this.goodAnswer);
-  }
-
   responseSelectedWithOptionSupprimerMauvaiseReponse(quiz: Quiz, responseNumber: number) {
     if (this.actualResponses[responseNumber].isCorrect) {
       console.log("Bonne réponse félicitation!");
-      this.statsService.successRateNewData(100, this.actualQuestionNumber);
-      this.actualScore += this.scoreWithOptionSup;
+      this.statsService.successRateNewData(100, this.choosenQuiz.actualQuestionNumber);
+      this.choosenQuiz.actualScore += this.scoreWithOptionSup;
       if (this.scoreWithOptionSup > 0.5) {
-        this.nbBonneReponses++;
-        this.nbBonneReponses$.next(this.nbBonneReponses);
+        this.choosenQuiz.nbBonnesReponses++;
+        this.choosenQuiz$.next(this.choosenQuiz);
       }  
-      this.enStreak++;
-      this.hintAskedForQuestion = 0;
+      this.choosenQuiz.streakActuel++;
+      this.actualQuestion.nbIndiceUtiliseQuestion = 0;
       this.usedIndice = [];
       this.usedIndice$.next(this.usedIndice);
       this.scoreWithOptionSup = 1;
@@ -236,58 +183,56 @@ export class QuizService {
       this.displayResponses = [true, true, true, true];
       this.displayResponses$.next(this.displayResponses);
 
-      if (this.actualQuestionNumber == quiz.questions.length-1) {
+      if (this.choosenQuiz.actualQuestionNumber == quiz.questions.length-1) {
         console.log("C'était la dernière question");
-        console.log("score: ",this.actualScore);
+        console.log("score: ",this.choosenQuiz.actualScore);
         this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
         this.statsService.addQuizDone();
-        this.statsService.meanScoreNewData(this.actualScore/quiz.questions.length);
+        this.statsService.meanScoreNewData(this.choosenQuiz.actualScore/quiz.questions.length);
         this.statsService.usedHintNewData(this.usedHint);
                                           
-        if (this.streakDeBonneReponse < this.enStreak) {
-          this.streakDeBonneReponse = this.enStreak;
-          this.streakDeBonneReponse$.next(this.streakDeBonneReponse);
+        if (this.choosenQuiz.MeilleurStreak < this.choosenQuiz.streakActuel) {
+          this.choosenQuiz.MeilleurStreak = this.choosenQuiz.streakActuel;
+          this.choosenQuiz$.next(this.choosenQuiz);
         }
 
-        if (this.nbBonneReponses >= this.actualQuestionNumber) {
-          this.bonScore = true;
-          this.bonScore$.next(this.bonScore);
+        if (this.choosenQuiz.nbBonnesReponses >= this.choosenQuiz.actualQuestionNumber) {
+          this.choosenQuiz$.next(this.choosenQuiz);
         }
 
-        if (this.streakDeBonneReponse >= 2) {
-          this.bonneStreak = true;
-          this.bonneStreak$.next(this.bonneStreak);
+        if (this.choosenQuiz.MeilleurStreak >= 2) {
+          this.choosenQuiz$.next(this.choosenQuiz);
         }
 
-        if (this.nbIndiceUtilise <= this.actualQuestionNumber+1) {
-          this.peuDindice = true;
-          this.peuDindice$.next(this.peuDindice);
+        if (this.choosenQuiz.nbIndiceUtilises <= this.choosenQuiz.actualQuestionNumber+1) {
+          this.choosenQuiz$.next(this.choosenQuiz);
+
         }
 
-        this.statsService.patientScoreNewData(this.actualProfil, this.actualScore/quiz.questions.length);
+        this.statsService.patientScoreNewData(this.actualProfil, this.choosenQuiz.actualScore/quiz.questions.length);
 
         this.endOfQuiz = true;
         this.endOfQuiz$.next(this.endOfQuiz);
 
       } else {
-        this.actualQuestionNumber++;
-        this.actualQuestionNumber$.next(this.actualQuestionNumber);
-        this.actualIndices = this.choosenQuiz.questions[this.actualQuestionNumber].indice;
+        this.choosenQuiz.actualQuestionNumber++;
+        this.choosenQuiz$.next(this.choosenQuiz);
+        this.actualIndices = this.choosenQuiz.questions[this.choosenQuiz.actualQuestionNumber].indice;
         this.actualIndices$.next(this.actualIndices);
 
-        this.actualQuestion = this.choosenQuiz.questions[this.actualQuestionNumber];
+        this.actualQuestion = this.choosenQuiz.questions[this.choosenQuiz.actualQuestionNumber];
         this.actualQuestion$.next(this.actualQuestion);
 
         this.actualResponses = this.actualQuestion.answers;
         this.actualResponses$.next(this.actualResponses);
       }
     } else {
-      if (this.streakDeBonneReponse < this.enStreak) {
-        this.streakDeBonneReponse = this.enStreak;
-        this.streakDeBonneReponse$.next(this.streakDeBonneReponse);
+      if (this.choosenQuiz.MeilleurStreak < this.choosenQuiz.streakActuel) {
+        this.choosenQuiz.MeilleurStreak = this.choosenQuiz.streakActuel;
+        this.choosenQuiz$.next(this.choosenQuiz);
       }
-      this.enStreak = 0;
-      this.statsService.successRateNewData(0, this.actualQuestionNumber);
+      this.choosenQuiz.streakActuel = 0;
+      this.statsService.successRateNewData(0, this.choosenQuiz.actualQuestionNumber);
       this.displayResponses[responseNumber] = false;
       this.scoreWithOptionSup -= 0.25;
     }
@@ -297,70 +242,70 @@ export class QuizService {
     console.log("Response selected (service POV) : ",responseNumber);
     if (this.actualResponses[responseNumber].isCorrect) {
       console.log("Bonne réponse félicitation!");
-      this.statsService.successRateNewData(100, this.actualQuestionNumber);
-      this.actualScore++;
-      this.nbBonneReponses++;
-      this.nbBonneReponses$.next(this.nbBonneReponses);
-      this.enStreak++;
+      this.statsService.successRateNewData(100, this.choosenQuiz.actualQuestionNumber);
+      this.choosenQuiz.actualScore++;
+      this.choosenQuiz.nbBonnesReponses++;
+      this.choosenQuiz$.next(this.choosenQuiz);
+      this.choosenQuiz.streakActuel++;
     } else {
       console.log("Mauvaise Réponse!");
 
-      if(this.streakDeBonneReponse < this.enStreak){
-        this.streakDeBonneReponse = this.enStreak;
-        this.streakDeBonneReponse$.next(this.streakDeBonneReponse);
+      if(this.choosenQuiz.MeilleurStreak < this.choosenQuiz.streakActuel){
+        this.choosenQuiz.MeilleurStreak = this.choosenQuiz.streakActuel;
+        this.choosenQuiz$.next(this.choosenQuiz);
       }
-      this.enStreak = 0;
+      this.choosenQuiz.streakActuel = 0;
 
-      this.statsService.successRateNewData(0, this.actualQuestionNumber);
+      this.statsService.successRateNewData(0, this.choosenQuiz.actualQuestionNumber);
     }
-    this.hintAskedForQuestion = 0;
+    this.actualQuestion.nbIndiceUtiliseQuestion = 0;
     this.usedIndice = [];
     this.usedIndice$.next(this.usedIndice);
 
     this.displayResponses = [true, true, true, true];
     this.displayResponses$.next(this.displayResponses);
 
-    if (this.actualQuestionNumber == quiz.questions.length-1) {
+    if (this.choosenQuiz.actualQuestionNumber == quiz.questions.length-1) {
       console.log("C'était la dernière question");
-      console.log("score: ",this.actualScore);
+      console.log("score: ",this.choosenQuiz.actualScore);
       this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
       this.statsService.addQuizDone();
-      this.statsService.meanScoreNewData(this.actualScore/quiz.questions.length);
+      this.statsService.meanScoreNewData(this.choosenQuiz.actualScore/quiz.questions.length);
       this.statsService.usedHintNewData(this.usedHint);
                                         
-      if(this.streakDeBonneReponse < this.enStreak){
-        this.streakDeBonneReponse = this.enStreak;
-        this.streakDeBonneReponse$.next(this.streakDeBonneReponse);
+      if(this.choosenQuiz.MeilleurStreak < this.choosenQuiz.streakActuel){
+        this.choosenQuiz.MeilleurStreak = this.choosenQuiz.streakActuel;
+        this.choosenQuiz$.next(this.choosenQuiz);
       }
 
-      if(this.nbBonneReponses >= this.actualQuestionNumber){
-        this.bonScore = true;
-        this.bonScore$.next(this.bonScore);
+      if(this.choosenQuiz.nbBonnesReponses >= this.choosenQuiz.actualQuestionNumber){
+        this.choosenQuiz$.next(this.choosenQuiz);
+
       }
 
-      if(this.streakDeBonneReponse >= 2){
-        this.bonneStreak = true;
-        this.bonneStreak$.next(this.bonneStreak);
+      if(this.choosenQuiz.MeilleurStreak >= 2){
+        this.choosenQuiz$.next(this.choosenQuiz);
+
       }
 
-      if(this.nbIndiceUtilise <= this.actualQuestionNumber+1){
-        this.peuDindice = true;
-        this.peuDindice$.next(this.peuDindice);
+      if(this.choosenQuiz.nbIndiceUtilises <= this.choosenQuiz.actualQuestionNumber+1){
+        this.choosenQuiz$.next(this.choosenQuiz);
+
       }
 
 
-      this.statsService.patientScoreNewData(this.actualProfil, this.actualScore/quiz.questions.length);
+      this.statsService.patientScoreNewData(this.actualProfil, this.choosenQuiz.actualScore/quiz.questions.length);
 
       this.endOfQuiz = true;
       this.endOfQuiz$.next(this.endOfQuiz);
 
     } else {
-      this.actualQuestionNumber++;
-      this.actualQuestionNumber$.next(this.actualQuestionNumber);
-      this.actualIndices = this.choosenQuiz.questions[this.actualQuestionNumber].indice;
+      this.choosenQuiz.actualQuestionNumber++;
+      this.choosenQuiz$.next(this.choosenQuiz);
+      this.actualIndices = this.choosenQuiz.questions[this.choosenQuiz.actualQuestionNumber].indice;
       this.actualIndices$.next(this.actualIndices);
 
-      this.actualQuestion = this.choosenQuiz.questions[this.actualQuestionNumber];
+      this.actualQuestion = this.choosenQuiz.questions[this.choosenQuiz.actualQuestionNumber];
       this.actualQuestion$.next(this.actualQuestion);
 
       this.actualResponses = this.actualQuestion.answers;
@@ -369,7 +314,7 @@ export class QuizService {
   }
 
   reset() {
-    this.hintAskedForQuestion = 0;
+    this.actualQuestion.nbIndiceUtiliseQuestion = 0;
     this.displayResponses = [true, true, true, true];
     this.usedIndice = [];
     this.displayResponses$.next(this.displayResponses);
@@ -396,6 +341,7 @@ export class QuizService {
     this.themeList = newThemeList;
     this.themeList$.next(this.themeList);
     console.log("Liste des thèmes actuellement présents : ",this.themeList);
+    this.setUpQuiz();
   }
 
   addTheme(theme: String){
@@ -410,6 +356,18 @@ export class QuizService {
     this.editedQuiz = quiz;
     this.editedQuiz$.next(this.editedQuiz);
     console.log("edition : ",quiz);
+  }
+
+  setUpQuiz() {
+    let sortedQuizList: Quiz[] = [];
+    for (let i=0; i<this.themeList.length; i++) {
+      for (let j=0; j<this.quizzes.length; j++) {
+        if (this.quizzes[j].theme == this.themeList[i]) {
+          sortedQuizList.push(this.quizzes[j]);
+        }
+      }
+    }
+    this.quizzes = sortedQuizList;
   }
 
   addQuestion(question: Question){

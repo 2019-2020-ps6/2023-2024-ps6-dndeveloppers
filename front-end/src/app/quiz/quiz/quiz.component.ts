@@ -32,11 +32,6 @@ export class QuizComponent implements OnInit {
             
         })
 
-        this.quizService.actualQuestionNumber$.subscribe((actualQuestionNumber) => {
-            this.actualQuestionNumber = actualQuestionNumber;
-        })
-
-
         this.quizService.actualIndices$.subscribe((actualIndices) => {
             this.actualIndices = actualIndices;
         })
