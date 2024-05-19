@@ -21,6 +21,7 @@ export class QuizService {
   private actualIndices: Indice[] = [];
   private usedIndice: number[] = [];
   private usedHint: number = 0;
+  private hintAskedForQuestion: number = 0;
   private endOfQuiz: boolean = false;
 
   private scoreWithOptionSup: number = 0;
@@ -40,6 +41,7 @@ export class QuizService {
   public displayResponses$: BehaviorSubject<boolean[]> = new BehaviorSubject(this.displayResponses);
   public actualIndices$: BehaviorSubject<Indice[]> = new BehaviorSubject(this.actualIndices);
   public usedIndice$: BehaviorSubject<number[]> = new BehaviorSubject(this.usedIndice);
+  public usedHint$: BehaviorSubject<number> = new BehaviorSubject(this.usedHint);
   public endOfQuiz$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   public themeList$: BehaviorSubject<String[]> = new BehaviorSubject(this.themeList);
@@ -131,8 +133,7 @@ export class QuizService {
     this.hintAskedForQuestion++;
     if (this.hintAskedForQuestion < this.actualIndices.length+3) {
       this.usedHint++;
-      this.nbIndiceUtilise++;
-      this.nbIndiceUtilise$.next(this.nbIndiceUtilise);
+      this.usedHint$.next(this.usedHint);
       let indiceQuestion = 0;
       for (let i=0; i<this.actualQuestion.indice.length; i++) {
         if (this.actualQuestion.indice[i].value != "") {
@@ -227,6 +228,8 @@ export class QuizService {
         this.actualIndices = this.choosenQuiz.questions[this.choosenQuiz.actualQuestionNumber].indice;
         this.actualIndices$.next(this.actualIndices);
 
+        this.hintAskedForQuestion = 0;
+
         this.actualQuestion = this.choosenQuiz.questions[this.choosenQuiz.actualQuestionNumber];
         this.actualQuestion$.next(this.actualQuestion);
 
@@ -312,6 +315,8 @@ export class QuizService {
       this.actualIndices = this.choosenQuiz.questions[this.choosenQuiz.actualQuestionNumber].indice;
       this.actualIndices$.next(this.actualIndices);
 
+      this.hintAskedForQuestion = 0;
+
       this.actualQuestion = this.choosenQuiz.questions[this.choosenQuiz.actualQuestionNumber];
       this.actualQuestion$.next(this.actualQuestion);
 
@@ -324,6 +329,7 @@ export class QuizService {
     this.actualQuestion.nbIndiceUtiliseQuestion = 0;
     this.displayResponses = [true, true, true, true];
     this.usedIndice = [];
+    this.hintAskedForQuestion = 0;
     this.displayResponses$.next(this.displayResponses);
     this.usedIndice$.next(this.usedIndice);
   }

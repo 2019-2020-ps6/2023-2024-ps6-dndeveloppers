@@ -71,25 +71,32 @@ export class ListReponsesComponent implements OnInit {
             this.quizService.responseSelectedWithOptionSupprimerMauvaiseReponse(this.choosenQuiz, responseNumber);
         }
         else{
-            if(this.goodAnswer == 1) {
+            let goodAnswer = 0;
+            for (let i=0; i<this.actualResponses.length; i++) {
+                if (this.actualResponses[i].isCorrect) {
+                    goodAnswer = i + 1;
+                    break;
+                }
+            }
+            if(goodAnswer == 1) {
                 this.couleur1 = "lightgreen";
                 this.couleur2 = "#939393";
                 this.couleur3 = "#939393";
                 this.couleur4 = "#939393";
             }
-            if(this.goodAnswer == 2){
+            if(goodAnswer == 2){
                 this.couleur1 = "#939393";
                 this.couleur2 = "lightgreen";
                 this.couleur3 = "#939393";
                 this.couleur4 = "#939393";
             }
-            if(this.goodAnswer == 3){
+            if(goodAnswer == 3){
                 this.couleur1 = "#939393";
                 this.couleur2 = "#939393";
                 this.couleur3 = "lightgreen";
                 this.couleur4 = "#939393";
             }
-            if(this.goodAnswer == 4){
+            if(goodAnswer == 4){
                 this.couleur1 = "#939393";
                 this.couleur2 = "#939393";
                 this.couleur3 = "#939393";
