@@ -7,19 +7,19 @@
             <span class="question">
                 <!-- OptionPhoto activée -->
                 <span *ngIf="actualProfil.optionPhoto===true; else elsePasOptionPhoto">
-                    <span *ngIf="choosenQuiz.questions[actualQuestionNumber]?.optionImageLien!==undefined; else elsePhoto">
-                        <app-question [question]="choosenQuiz.questions[actualQuestionNumber].label" [photo]="choosenQuiz.questions[actualQuestionNumber].optionImageLien" class="question"></app-question>
+                    <span *ngIf="choosenQuiz.questions[choosenQuiz.actualQuestionNumber]?.optionImageLien!==undefined; else elsePhoto">
+                        <app-question [question]="choosenQuiz.questions[choosenQuiz.actualQuestionNumber].label" [photo]="choosenQuiz.questions[choosenQuiz.actualQuestionNumber].optionImageLien" class="question"></app-question>
                     </span>
-                    <ng-template #elsePhoto><app-question [question]="choosenQuiz.questions[actualQuestionNumber].label" class="question"></app-question></ng-template>
+                    <ng-template #elsePhoto><app-question [question]="choosenQuiz.questions[choosenQuiz.actualQuestionNumber].label" class="question"></app-question></ng-template>
                 </span>
 
                 <!-- Option Photo désactivée -->
                 <ng-template #elsePasOptionPhoto> 
-                    <span *ngIf="choosenQuiz.questions[actualQuestionNumber]?.optionImageLien!==undefined; else elsePasOptionPhoto2">
-                        <app-question [question]="choosenQuiz.questions[actualQuestionNumber].optionImageQuestion" class="question"></app-question>
+                    <span *ngIf="choosenQuiz.questions[choosenQuiz.actualQuestionNumber]?.optionImageLien!==undefined; else elsePasOptionPhoto2">
+                        <app-question [question]="choosenQuiz.questions[choosenQuiz.actualQuestionNumber].optionImageQuestion" class="question"></app-question>
                     </span>
                     <ng-template #elsePasOptionPhoto2> 
-                        <app-question [question]="choosenQuiz.questions[actualQuestionNumber].label" class="question"></app-question> 
+                        <app-question [question]="choosenQuiz.questions[choosenQuiz.actualQuestionNumber].label" class="question"></app-question> 
                     </ng-template>
                 </ng-template>
             </span>
@@ -43,29 +43,20 @@
 <div class="popup" *ngIf="(tutorielView && actualProfil.tutoriel) || helpWanted">
     <p class="gras">Aide ?</p>
     <p>Vous êtes actuellement en train de jouer à un quiz.</p>
-    <div class="Question">
+    <div class="Question-tuto">
         <p class="Question-texte">
-            Le rectangle de couleur jaune correspond à la question.
+            Ceci est une question.
         </p>
-    </div>
-
-    <div class="reponse">
         <button class="reponse-texte" name="button">
-            les rectangles violets corresponds à une réponse possible.
+            Ceci est une réponse.
         </button>
     </div>
-    <p>Cliquer sur le bouton aide ? ouvre la page actuel tout en conservant le quiz</p>
-    <button>Aide ?</button>
-    <p>Cliquer sur le bouton indice vous donnera une aide pour répondre à la question posé.</p>
-    <div id="indiceTuto" class="indice">
-        <button>Indice</button>
-    </div>
-    <p>Une question peut avoir plusieurs indices. Une fois arrivé au bout des indices disponible, cliquer sur le bouton indice fera disparaitre une réponse fausse</p>
+    <p>Cliquer sur <button class="button-classique">Aide ?</button> ouvre cette page</p>
+    
+    <p>Cliquer sur <button class="button-classique">Indice</button> affiche un indice textuel. Une question peut avoir plusieurs indice, et quand il n'y en a plus, une mauvaise réponse disparait.</p>
 
     <label for="showTutoriel">J'ai compris le tutoriel</label>
     <input id="showTutoriel" type="checkbox" (change)="dontShowTutoriel()" value="show"><br/><br/>
 
-    <button (click)="stopShowTutoriel()">Click gauche ici pour fermer l'aide</button>
+    <button class="button-classique" (click)="stopShowTutoriel()">Clic gauche ici pour fermer l'aide</button>
 </div>
-
-

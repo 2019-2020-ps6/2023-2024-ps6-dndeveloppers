@@ -16,6 +16,9 @@ import { QuizService } from "src/services/quiz.service";
 export class AddQuestionComponent implements OnInit {
 
     public questionForm : FormGroup;
+
+    public indicesNum: boolean[] = [true, true, true];
+
     constructor(public formBuilder: FormBuilder, public quizService: QuizService){
         this.questionForm = this.formBuilder.group({
             label: ['Question'],
@@ -31,6 +34,7 @@ export class AddQuestionComponent implements OnInit {
     }
 
     @Input()
+    nbIndice: boolean[] = this.indicesNum;
 
     ngOnInit(): void {
         const firstCheckbox = document.getElementById("r1") as HTMLInputElement;
@@ -98,5 +102,23 @@ export class AddQuestionComponent implements OnInit {
         this.questionForm.patchValue({
             goodAnswer: responseNumber
         })
+    }
+      
+    addIndice() {
+        for (let i=0; i<this.indicesNum.length; i++) {
+            if (this.indicesNum[i] == false) {
+                this.indicesNum[i] = true;
+                break;
+            }
+        }
+    }
+
+    deleteIndice() {
+        for (let i=this.indicesNum.length-1; i>=0; i--) {
+            if (this.indicesNum[i] == true) {
+                this.indicesNum[i] = false;
+                break;
+            }
+        }
     }
 }

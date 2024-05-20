@@ -23,22 +23,29 @@ export class ViewProfilComponent implements OnInit {
 
     selectProfil(profil:Profil){
         this.profilService.selectProfil(profil);
+        this.router.navigate(['home/listQuiz']);
     }
 
     deleteProfil(profil:Profil){
         this.profilService.deleteProfil(profil);    
     }
 
-    showProfil(profil:Profil){
-        this.typeView="full";
-    }
-
-    stopShowProfil(profil:Profil){
-        this.typeView="list";
+    profilShow(str: String) {
+        this.typeView=str;
     }
 
     editProfil(profil:Profil){
         this.router.navigate(['home/listProfil/editProfil/' + profil.nom + "-" + profil.prenom]);
         this.profilService.editingProfil(profil);
     }
+
+    birthDayOk(){
+        if(this.profil.dateNaissance != undefined && this.profil.dateNaissance.length == 3){
+            if(this.profil.dateNaissance[0] != 0 && this.profil.dateNaissance[1] != 0 && this.profil.dateNaissance[2] != 0){
+                return true;
+            }
+        }
+        return false
+    }
+    
 }

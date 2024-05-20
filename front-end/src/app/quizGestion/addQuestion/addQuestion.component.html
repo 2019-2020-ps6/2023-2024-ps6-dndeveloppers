@@ -41,20 +41,23 @@
 
         <section class="indent">
             <label> Indices:<br>
-                <div class="DAindice">
+                <div class="DAindice" *ngIf="nbIndice[0]===true">
                     <p>1.</p>
                     <input class="input-custom" type="text" id="i1" [formControlName]="'i1'" required>
                 </div>
-                <div class="DAindice">
+                <div class="DAindice" *ngIf="nbIndice[1]===true">
                     <p>2.</p>
                     <input class="input-custom" type="text" id="i2" [formControlName]="'i2'" required>
                 </div>
-                <div class="DAindice">
+                <div class="DAindice" *ngIf="nbIndice[2]===true">
                     <p>3.</p>
                     <input class="input-custom" type="text" id="i3" [formControlName]="'i3'" required>
                 </div>
 
             </label><br/>
+
+            <button (click)="addIndice()">Ajouter indice</button>
+            <button (click)="deleteIndice()">Supprimer indice</button>
         </section>
 
         <button class="boutonAddQuestion" type="submit" [disabled]="!questionForm.valid" (click)="addQuestion()">Ajouter la Question</button>

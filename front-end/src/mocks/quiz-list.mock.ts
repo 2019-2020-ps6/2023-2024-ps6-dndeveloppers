@@ -26,7 +26,8 @@ export const Question_Model: Question = {
     answers: [],
     questionImage: false,
     indice: [],
-    questionTexte: true
+    questionTexte: true,
+    nbIndiceUtiliseQuestion: 0
 }
 
 export const QUIZ_NULL: Quiz = {
@@ -35,7 +36,13 @@ export const QUIZ_NULL: Quiz = {
     questions: [],
     nbQuestionsPerType: [],
     id: -1,
-    selfStats: STATS_INIT
+    selfStats: STATS_INIT,
+    nbBonnesReponses: 0,
+    nbIndiceUtilises: 0,
+    MeilleurStreak: 0,
+    streakActuel: 0,
+    actualScore: 0,
+    actualQuestionNumber: 0
 }
 
 export const QUIZ_LIST: Quiz[] = [
@@ -46,7 +53,13 @@ export const QUIZ_LIST: Quiz[] = [
         nbQuestionsPerType: [2,0],
         id: 0,
         selfStats: STATS_ACTORS,
-        photo: "./assets/quiz/oscar.jpg"
+        photo: "./assets/quiz/oscar.jpg",
+        nbBonnesReponses: 0,
+        nbIndiceUtilises: 0,
+        MeilleurStreak: 0,
+        streakActuel: 0,
+        actualScore: 0,
+        actualQuestionNumber: 0
     },
     {
         name: 'Sports',
@@ -55,7 +68,13 @@ export const QUIZ_LIST: Quiz[] = [
         nbQuestionsPerType: [2,0],
         id: 1,
         selfStats: STATS_SPORTS,
-        photo: "./assets/quiz/foot.jpg"
+        photo: "./assets/quiz/foot.jpg",
+        nbBonnesReponses: 0,
+        nbIndiceUtilises: 0,
+        MeilleurStreak: 0,
+        streakActuel: 0,
+        actualScore: 0,
+        actualQuestionNumber: 0
     },
     {
         name: 'Cuisine',
@@ -64,7 +83,13 @@ export const QUIZ_LIST: Quiz[] = [
         nbQuestionsPerType: [2,1],
         id: 2,
         selfStats: JSON.parse(JSON.stringify(STATS_INIT)),
-        photo: "./assets/quiz/imageQuizCuisine.png"
+        photo: "./assets/quiz/imageQuizCuisine.png",
+        nbIndiceUtilises: 0,
+        nbBonnesReponses: 0,
+        MeilleurStreak: 0,
+        streakActuel: 0,
+        actualScore: 0,
+        actualQuestionNumber: 0
     },
     {
         name: 'Voiture',
@@ -73,7 +98,13 @@ export const QUIZ_LIST: Quiz[] = [
         nbQuestionsPerType: [2,0],
         id: 3,
         selfStats: JSON.parse(JSON.stringify(STATS_INIT)),
-        photo: "./assets/quiz/imageQuizVoiture.png"
+        photo: "./assets/quiz/imageQuizVoiture.png",
+        nbBonnesReponses: 0,
+        nbIndiceUtilises: 0,
+        MeilleurStreak: 0,
+        streakActuel: 0,
+        actualScore: 0,
+        actualQuestionNumber: 0
     },
     {
         name: 'Fleur',
@@ -82,6 +113,12 @@ export const QUIZ_LIST: Quiz[] = [
         nbQuestionsPerType: [],
         id: 4,
         selfStats: JSON.parse(JSON.stringify(STATS_INIT)),
-        photo: "./assets/quiz/imageQuizFleur.png"
+        photo: "./assets/quiz/imageQuizFleur.png",
+        nbBonnesReponses: 0,
+        nbIndiceUtilises: 0,
+        MeilleurStreak: 0,
+        streakActuel: 0,
+        actualScore: 0,
+        actualQuestionNumber: 0
     }
 ];

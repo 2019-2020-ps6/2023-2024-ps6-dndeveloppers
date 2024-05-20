@@ -1,15 +1,19 @@
-button {
+.boutton-indice {
     width: auto;
     height:auto;
     text-align: center;
     font-size: 30px;
     background-color: lightgrey;
-    border: solid black 2px;
+    border: solid black 3px;
     border-radius: 1rem;
     cursor:pointer;
     font-family: "OpenDyslexic", sans-serif;
+    justify-self: stretch;
+    align-self: center;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
-button:hover {
+.boutton-indice:hover {
     background-color: darkgrey;
 }

@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { ADMIN } from "src/mocks/profil.mock";
+import { Profil } from "src/models/profil.model";
+import { ProfilService } from "src/services/profil.service";
 import { QuizService } from "src/services/quiz.service";
 
 @Component({
@@ -16,7 +19,7 @@ export class ComeBackComponent implements OnInit {
     public message: String = "";
     public path: String = "";
     
-    constructor(public router: Router, public quizService: QuizService){}
+    constructor(public router: Router, public quizService: QuizService, public profilService: ProfilService){}
 
     ngOnInit(): void {
         switch(this.destination){
@@ -38,6 +41,10 @@ export class ComeBackComponent implements OnInit {
 
     return(){
         this.quizService.reset();
+        if (this.path == "home/") {
+             let admin: Profil = this.profilService.profilList$.value.at(0) || ADMIN;
+            this.profilService.selectProfil(admin);
+        }
         this.router.navigate([this.path]);
     }
 }

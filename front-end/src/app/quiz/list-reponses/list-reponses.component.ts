@@ -27,16 +27,6 @@ export class ListReponsesComponent implements OnInit {
     public profil: Profil  = this.listePatient[0];
     public possibleEndMessage: String[] = [];
 
-    public nbBonnesReponses: number = 0;
-    public nbIndiceUtilise: number = 0;
-    public streakDeBonneReponse: number = 0;
-
-    public bonScore: boolean = false;
-    public bonneStreak: boolean = false;
-    public peuDindice: boolean = false;
-
-    public goodAnswer: number = 0;
-
     public  couleur1: string | undefined;
     public  couleur2: string | undefined;
     public  couleur3: string | undefined;
@@ -45,13 +35,11 @@ export class ListReponsesComponent implements OnInit {
 
     public optionSupprimerMauvaisesReponses : boolean | undefined = this.profil.optionSupprimerMauvaisesReponses;
 
+    public optionAskQuestionsAgain : boolean | undefined = this.profil.optionReposerQuestionApres;
+
     constructor(public quizService: QuizService, public profilService: ProfilService){
         this.quizService.actualResponses$.subscribe((actualResponses) => {
             this.actualResponses = actualResponses;
-        })
-
-        this.quizService.actualQuestionNumber$.subscribe((actualQuestionNumber) => {
-            this.actualQuestionNumber = actualQuestionNumber;
         })
 
         this.quizService.displayResponses$.subscribe((displayResponses) => {
@@ -66,40 +54,12 @@ export class ListReponsesComponent implements OnInit {
             this.optionSupprimerMauvaisesReponses = profil.optionSupprimerMauvaisesReponses;
         })
 
+        this.profilService.actualProfil$.subscribe((profil) => {
+            this.optionAskQuestionsAgain = profil.optionReposerQuestionApres;
+        })
+
         this.quizService.endOfQuiz$.subscribe((endOfQuiz) => {
             this.endOfQuiz = endOfQuiz;
-        })
-
-        this.quizService.bonScore$.subscribe((bonScore) => {
-            this.bonScore = bonScore;
-        })
-
-        this.quizService.bonneStreak$.subscribe((bonneStreak) => {
-            this.bonneStreak = bonneStreak;
-        })
-
-        this.quizService.peuDindice$.subscribe((peuDindice) => {
-            this.peuDindice = peuDindice;
-        })
-
-        this.quizService.nbIndiceUtilise$.subscribe((nbIndiceUtilise) => {
-            this.nbIndiceUtilise = nbIndiceUtilise;
-        })
-
-        this.quizService.nbBonneReponses$.subscribe((nbBonneReponses) => {
-            this.nbBonnesReponses = nbBonneReponses;
-        })
-
-        this.quizService.streakDeBonneReponse$.subscribe((streakDeBonneReponse) => {
-            this.streakDeBonneReponse = streakDeBonneReponse;
-        })
-
-        this.quizService.streakDeBonneReponse$.subscribe((streakDeBonneReponse) => {
-            this.streakDeBonneReponse = streakDeBonneReponse;
-        })
-
-        this.quizService.goodAnswer$.subscribe((goodAnswer) => {
-            this.goodAnswer = goodAnswer;
         })
 
     }
@@ -116,18 +76,39 @@ export class ListReponsesComponent implements OnInit {
         if(this.optionSupprimerMauvaisesReponses){
             this.quizService.responseSelectedWithOptionSupprimerMauvaiseReponse(this.choosenQuiz, responseNumber);
         }
+        if(this.optionAskQuestionsAgain){
+            this.quizService.responseSelectedWithAskAgainOption(this.choosenQuiz,responseNumber);
+        }
         else{
-            this.quizService.isGoodAnswer(this.choosenQuiz, responseNumber);
-            if(this.goodAnswer == 1){
+            let goodAnswer = 0;
+            for (let i=0; i<this.actualResponses.length; i++) {
+                if (this.actualResponses[i].isCorrect) {
+                    goodAnswer = i + 1;
+                    break;
+                }
+            }
+            if(goodAnswer == 1) {
                 this.couleur1 = "lightgreen";
+                this.couleur2 = "#939393";
+                this.couleur3 = "#939393";
+                this.couleur4 = "#939393";
             }
-            if(this.goodAnswer == 2){
+            if(goodAnswer == 2){
+                this.couleur1 = "#939393";
                 this.couleur2 = "lightgreen";
+                this.couleur3 = "#939393";
+                this.couleur4 = "#939393";
             }
-            if(this.goodAnswer == 3){
+            if(goodAnswer == 3){
+                this.couleur1 = "#939393";
+                this.couleur2 = "#939393";
                 this.couleur3 = "lightgreen";
+                this.couleur4 = "#939393";
             }
-            if(this.goodAnswer == 4){
+            if(goodAnswer == 4){
+                this.couleur1 = "#939393";
+                this.couleur2 = "#939393";
+                this.couleur3 = "#939393";
                 this.couleur4 = "lightgreen";
             }
             setTimeout(() => {
@@ -136,9 +117,8 @@ export class ListReponsesComponent implements OnInit {
                 this.couleur2 = "#6958cf";
                 this.couleur3 = "#6958cf";
                 this.couleur4 = "#6958cf";
-            }, 3000);
+            }, 5000);
         }
-        //this.loadQuestion(this.actualQuestionNumber);
     }
 
     loadQuestion(nbQuestion: number) {

@@ -1,6 +1,7 @@
 import { statsPatient } from "./stats/statsPatient.model";
 
 export interface Profil {
+    id?: number;
     nom: string;
     prenom: string;
     role: string; // "patient" ou "personnel" ou "admin"
