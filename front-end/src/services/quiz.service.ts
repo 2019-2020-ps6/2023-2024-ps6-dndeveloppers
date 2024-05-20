@@ -255,23 +255,21 @@ export class QuizService {
     if (this.actualResponses[responseNumber].isCorrect) {
       console.log("Bonne réponse félicitation!");
       this.actualQuestion.dejaPosee = false;
-      this.statsService.successRateNewData(100, this.actualQuestionNumber);
-      this.actualScore++;
-      this.nbBonneReponses++;
-      this.nbBonneReponses$.next(this.nbBonneReponses);
-      this.enStreak++;
+      this.statsService.successRateNewData(100, this.choosenQuiz.actualQuestionNumber);
+      this.choosenQuiz.actualScore++;
+      this.choosenQuiz.nbBonnesReponses++;
+      this.choosenQuiz.streakActuel++;
 
     } else {
       console.log("Mauvaise Réponse!");
       this.actualQuestion.dejaPosee = true;
 
-      if(this.streakDeBonneReponse < this.enStreak){
-        this.streakDeBonneReponse = this.enStreak;
-        this.streakDeBonneReponse$.next(this.streakDeBonneReponse);
+      if(this.choosenQuiz.MeilleurStreak < this.choosenQuiz.streakActuel){
+        this.choosenQuiz.MeilleurStreak = this.choosenQuiz.streakActuel;
       }
-      this.enStreak = 0;
+      this.choosenQuiz.streakActuel = 0;
 
-      this.statsService.successRateNewData(0, this.actualQuestionNumber);
+      this.statsService.successRateNewData(0, this.choosenQuiz.actualQuestionNumber);
     }
     this.hintAskedForQuestion = 0;
     this.usedIndice = [];
@@ -280,10 +278,10 @@ export class QuizService {
     this.displayResponses = [true, true, true, true];
     this.displayResponses$.next(this.displayResponses);
 
-    if (this.actualQuestionNumber == quiz.questions.length-1 || this.askQuestionsAgain) {
+    if (this.choosenQuiz.actualQuestionNumber == quiz.questions.length-1 || this.askQuestionsAgain) {
       console.log("repose")
       this.askQuestionsAgain = true;
-      quiz.questions[this.actualQuestionNumber].dejaPosee = false;
+      quiz.questions[this.choosenQuiz.actualQuestionNumber].dejaPosee = false;
       let toAskAgain = -1;
       for(let i=0;i<quiz.questions.length;i++){
         if(quiz.questions[i].dejaPosee){
@@ -292,47 +290,29 @@ export class QuizService {
       }
       if (toAskAgain == -1) {
         console.log("C'était la dernière question");
-        console.log("score: ",this.actualScore);
+        console.log("score: ",this.choosenQuiz.actualScore);
         this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
         this.statsService.addQuizDone();
-        this.statsService.meanScoreNewData(this.actualScore/quiz.questions.length);
+        this.statsService.meanScoreNewData(this.choosenQuiz.actualScore/quiz.questions.length);
         this.statsService.usedHintNewData(this.usedHint);
                                         
-        if(this.streakDeBonneReponse < this.enStreak){
-          this.streakDeBonneReponse = this.enStreak;
-          this.streakDeBonneReponse$.next(this.streakDeBonneReponse);
+        if(this.choosenQuiz.MeilleurStreak < this.choosenQuiz.streakActuel){
+          this.choosenQuiz.MeilleurStreak = this.choosenQuiz.streakActuel;
         }
 
-        if(this.nbBonneReponses >= this.actualQuestionNumber){
-          this.bonScore = true;
-          this.bonScore$.next(this.bonScore);
-        }
-
-        if(this.streakDeBonneReponse >= 2){
-          this.bonneStreak = true;
-          this.bonneStreak$.next(this.bonneStreak);
-        }
-
-        if(this.nbIndiceUtilise <= this.actualQuestionNumber+1){
-          this.peuDindice = true;
-          this.peuDindice$.next(this.peuDindice);
-        }
-
-
-        this.statsService.patientScoreNewData(this.actualProfil, this.actualScore/quiz.questions.length);
+        this.statsService.patientScoreNewData(this.actualProfil, this.choosenQuiz.actualScore/quiz.questions.length);
 
         this.askQuestionsAgain = false;
         this.endOfQuiz = true;
         this.endOfQuiz$.next(this.endOfQuiz);
       }
       else{
-        this.nbBonneReponses--;
-        this.actualQuestionNumber = toAskAgain;
-        this.actualQuestionNumber$.next(this.actualQuestionNumber);
-        this.actualIndices = this.choosenQuiz.questions[this.actualQuestionNumber].indice;
+        this.choosenQuiz.nbBonnesReponses--;
+        this.choosenQuiz.actualQuestionNumber = toAskAgain;
+        this.actualIndices = this.choosenQuiz.questions[this.choosenQuiz.actualQuestionNumber].indice;
         this.actualIndices$.next(this.actualIndices);
 
-        this.actualQuestion = this.choosenQuiz.questions[this.actualQuestionNumber];
+        this.actualQuestion = this.choosenQuiz.questions[this.choosenQuiz.actualQuestionNumber];
         this.actualQuestion$.next(this.actualQuestion);
 
         this.actualResponses = this.actualQuestion.answers;
@@ -340,17 +320,18 @@ export class QuizService {
       }
     }
     else {
-      this.actualQuestionNumber++;
-      this.actualQuestionNumber$.next(this.actualQuestionNumber);
-      this.actualIndices = this.choosenQuiz.questions[this.actualQuestionNumber].indice;
+      this.choosenQuiz.actualQuestionNumber++;
+      this.actualIndices = this.choosenQuiz.questions[this.choosenQuiz.actualQuestionNumber].indice;
       this.actualIndices$.next(this.actualIndices);
 
-      this.actualQuestion = this.choosenQuiz.questions[this.actualQuestionNumber];
+      this.actualQuestion = this.choosenQuiz.questions[this.choosenQuiz.actualQuestionNumber];
       this.actualQuestion$.next(this.actualQuestion);
 
       this.actualResponses = this.actualQuestion.answers;
       this.actualResponses$.next(this.actualResponses);
     }
+
+    this.choosenQuiz$.next(this.choosenQuiz);
   }
 
   responseSelected(quiz: Quiz, responseNumber: number) {
