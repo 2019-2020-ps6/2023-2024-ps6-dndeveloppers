@@ -14,6 +14,7 @@ export class StatsQuizComponent implements OnInit {
 
     public listeQuiz: Quiz[] = QUIZ_LIST;
     public actualQuiz: Quiz = QUIZ_NULL;
+    public actualQuizMeanScore: number = Math.round(this.actualQuiz.selfStats.meanScore*100)/100;
     public actualCategories: string[] = [];
     public actualData: number[] = [];
 
@@ -67,6 +68,7 @@ export class StatsQuizComponent implements OnInit {
             for (let i=0; i<QUIZ_LIST.length; i++) {
                 if (QUIZ_LIST[i].name == nomQuiz) {
                     this.actualQuiz = QUIZ_LIST[i];
+                    this.actualQuizMeanScore = Math.round(this.actualQuiz.selfStats.meanScore*100)/100;
                     break;
                 }
             }

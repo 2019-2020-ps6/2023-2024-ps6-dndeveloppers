@@ -10,24 +10,32 @@
         <section  class="indent">
             <label> Réponse 1 <br>
                 <input class="input-custom" type="text" id="q1" [formControlName]="'q1'" required>
+                <input type="checkbox" id="r1" (change)="selectResponseNumber($event, 0)">
+                <label>Juste</label>
             </label><br/>
         </section>
         
         <section  class="indent">
             <label> Réponse 2 <br>
                 <input class="input-custom" type="text" id="q2" [formControlName]="'q2'" required>
+                <input type="checkbox" id="r2" (change)="selectResponseNumber($event, 1)">
+                <label>Juste</label>
             </label><br/>
         </section>
 
         <section  class="indent">
             <label> Réponse 3 <br>
                 <input class="input-custom" type="text" id="q3" [formControlName]="'q3'" required>
+                <input type="checkbox" id="r3" (change)="selectResponseNumber($event, 2)">
+                <label>Juste</label>
             </label><br/>
         </section>
         
         <section  class="indent">
             <label> Réponse 4 <br>
                 <input class="input-custom" type="text" id="q4" [formControlName]="'q4'" required>
+                <input type="checkbox" id="r4" (change)="selectResponseNumber($event, 3)">
+                <label>Juste</label>
             </label><br/>
         </section>
 
@@ -51,17 +59,6 @@
             <button (click)="addIndice()">Ajouter indice</button>
             <button (click)="deleteIndice()">Supprimer indice</button>
         </section>
-        
-        <section  class="indent">
-            <label><br>Bonne réponse : <br>
-                <select name="theme-field" id="goodAnswer" [formControlName]="'goodAnswer'" required>
-                <option [value]="0">1</option>
-                <option [value]="1">2</option>
-                <option [value]="2">3</option>
-                <option [value]="3">4</option>
-                </select>
-            </label><br>
-        </section><br>
 
         <button class="boutonAddQuestion" type="submit" [disabled]="!questionForm.valid" (click)="addQuestion()">Ajouter la Question</button>
         </form>

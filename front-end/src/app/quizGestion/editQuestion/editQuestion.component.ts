@@ -106,6 +106,14 @@ export class EditQuestionComponent implements OnInit {
         question.answers = [answer1 , answer2 , answer3, answer4];        
         question.answers[this.questionForm.value.goodAnswer].isCorrect = true;
 
+        let oneChecked = 0;
+        const checkboxes = document.getElementsByClassName("rr");
+        for (let i=0; i<checkboxes.length; i++) {
+            if ((checkboxes[i] as HTMLInputElement).checked) {
+                oneChecked++;
+            }
+        }
+
         let indice1 : Indice = Indice_Model1;
         indice1.value = this.questionForm.value.i1;
 
@@ -129,7 +137,18 @@ export class EditQuestionComponent implements OnInit {
             question.optionImageLien = bon_path,
             question.optionImageQuestion = this.questionForm.value.photoTexte;
         }
-        this.quizService.editQuestion(question);
+        if (oneChecked == 1) {
+            this.quizService.editQuestion(question);
+        } else {
+            alert("Veuillez selectionner une unique bonne réponse");
+        }
+    }
+
+    selectResponseNumber(responseNumber: number) {
+        console.log("responseNumber: " + responseNumber);
+        this.questionForm.patchValue({
+            goodAnswer: responseNumber
+        })
     }
 
     deleteQuestion(){

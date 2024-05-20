@@ -4,17 +4,32 @@
         <input class="input-custom" type="text" id="label" [formControlName]="'label'" required> <br> <p class="indent">{{this?.question?.label}}</p>
     </label><br/>
     <label> Réponse 1 <br>
-        <input class="input-custom" type="text" id="q1" [formControlName]="'q1'" required> <br> <p class="indent">{{this.answers[0]}}</p>
+        <input class="input-custom" type="text" id="q1" [formControlName]="'q1'" required>
+        <input class="rr" type="checkbox" id="rr1" (change)="selectResponseNumber(0)">
+        <label>Juste</label>
+        <p class="indent">{{this.answers[0]}}</p>
     </label><br/>
+
     <label> Réponse 2 <br>
-        <input class="input-custom" type="text" id="q2" [formControlName]="'q2'" required> <br> <p class="indent">{{this.answers[1]}}</p>
-        </label><br/>
+        <input class="input-custom" type="text" id="q2" [formControlName]="'q2'" required>
+        <input class="rr" type="checkbox" id="rr2" (change)="selectResponseNumber(1)">
+        <label>Juste</label> 
+        <p class="indent">{{this.answers[1]}}</p>
+    </label><br/>
+
     <label> Réponse 3 <br>
-        <input class="input-custom" type="text" id="q3" [formControlName]="'q3'" required> <br><p class="indent">{{this.answers[2]}}</p>
-        </label><br/>
+        <input class="input-custom" type="text" id="q3" [formControlName]="'q3'" required>
+        <input class="rr" type="checkbox" id="rr3" (change)="selectResponseNumber(2)">
+        <label>Juste</label>
+        <p class="indent">{{this.answers[2]}}</p>
+    </label><br/>
+
     <label> Réponse 4 <br>
-        <input class="input-custom" type="text" id="q4" [formControlName]="'q4'" required> <br><p class="indent">{{this.answers[3]}}</p>
-        </label><br/>
+        <input class="input-custom" type="text" id="q4" [formControlName]="'q4'" required>
+        <input class="rr" type="checkbox" id="rr4" (change)="selectResponseNumber(3)">
+        <label>Juste</label>
+        <p class="indent">{{this.answers[3]}}</p>
+    </label><br/>
 
     <section class="indent">
         <label> Indices:<br>
@@ -37,17 +52,6 @@
         <button (click)="addIndice()">Ajouter indice</button>
         <button (click)="deleteIndice()">Supprimer indice</button>
     </section>
-
-
-    <label><br>Bonne réponse : <br>
-            <select name="theme-field" id="goodAnswer" [formControlName]="'goodAnswer'" required> 
-                <option [value]="0">1</option>
-                <option [value]="1">2</option>
-                <option [value]="2">3</option>
-                <option [value]="3">4</option>
-                </select>
-    </label><br><br>
-
     
     <label> Photo de la Question (optionel) :
         <input class="input-custom" type="file" id="photoLien" [formControlName]="'photoLien'">    
