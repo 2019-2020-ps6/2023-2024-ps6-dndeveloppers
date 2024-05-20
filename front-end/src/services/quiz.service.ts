@@ -371,6 +371,7 @@ export class QuizService {
         this.endOfQuiz$.next(this.endOfQuiz);
       }
       else{
+        this.nbBonneReponses--;
         this.actualQuestionNumber = toAskAgain;
         this.actualQuestionNumber$.next(this.actualQuestionNumber);
         this.actualIndices = this.choosenQuiz.questions[this.actualQuestionNumber].indice;
