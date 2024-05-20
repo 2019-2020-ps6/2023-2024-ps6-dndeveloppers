@@ -14,6 +14,7 @@ export interface Question {
     questionImage: boolean, // stats
     indice: Indice[],
     dejaPosee?: boolean, // si la question a déjà été posée
+    nbIndiceUtiliseQuestion: number, 
     
     optionImageLien?: string, // 1 = lien  -   
     optionImageQuestion?: string, //2 = texte si l'option photo est désactivée

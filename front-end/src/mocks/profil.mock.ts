@@ -97,10 +97,10 @@ export const ADMIN: Profil = {
     photo: './assets/imageProfil/default.png'
 }
 
-export const NULL: Profil = {
-    nom: "",
-    prenom: "",
-    role: "",
+export const PROFIL_NULL: Profil = {
+    nom: "a",
+    prenom: "a",
+    role: "patient",
 
     selfStats: STATS_PATIENT_NULL,
 

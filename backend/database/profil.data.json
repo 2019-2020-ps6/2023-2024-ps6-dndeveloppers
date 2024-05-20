@@ -1,0 +1,40 @@
+[
+  {
+    "nom": "admin",
+    "prenom": "admin",
+    "role": "admin",
+    "selfStats": 1716139229677,
+    "optionTailleTexte": "Moyen",
+    "tutoriel": false,
+    "optionPhoto": false,
+    "optionIndice": true,
+    "photo": "./assets/imageProfil/default.png",
+    "dateNaissance": [
+      0,
+      0,
+      0
+    ],
+    "optionSupprimerMauvaisesReponses": true,
+    "optionReposerQuestionApres": false,
+    "id": 1716139229680
+  },
+  {
+    "nom": "a",
+    "prenom": "b",
+    "role": "patient",
+    "selfStats": 1716139318253,
+    "optionTailleTexte": "Moyen",
+    "tutoriel": false,
+    "optionPhoto": false,
+    "optionIndice": true,
+    "photo": "./assets/imageProfil/default.png",
+    "dateNaissance": [
+      0,
+      0,
+      0
+    ],
+    "optionSupprimerMauvaisesReponses": true,
+    "optionReposerQuestionApres": false,
+    "id": 1716139318255
+  }
+]

@@ -24,7 +24,7 @@
 
                 <p class="liage">Date de Naissance :</p>
                 <label for="jour"> Jour :  
-                    <select name="input-custom" id="jour" [formControlName]="'jour'">
+                    <select name="input-custom" type="number" id="jour" [formControlName]="'jour'">
                         <option *ngFor="let currentDay of DayList" [value]="currentDay">{{currentDay}}</option>
                     </select> 
                 </label>
@@ -61,12 +61,12 @@
             <label for="optionReposerQuestionApres">Repose les questions ratées plus tard :
                 <input class="input-custom" type="checkbox" id="optionReposerQuestionApres" [formControlName]="'optionReposerQuestionApres'">
             </label><br/><br/>
-
-            <label for="optionTailleTexte"> Taille du texte :
+            
+            <label for="optionTailleTexte" class="text-size-label"> Taille du texte :
                 <select name="input-custom" id="optionTailleTexte" [formControlName]="'optionTailleTexte'">
-                    <option *ngFor="let currentFontSize of FontSizeList" [value]="currentFontSize">{{currentFontSize}}</option>
-                </select> 
-            </label>
+                  <option *ngFor="let currentFontSize of FontSizeList" [value]="currentFontSize">{{currentFontSize}}</option>
+                </select>       
+                <p class="exempleTailleTexte" [style.fontSize.em]="getFontSizeValue()">Exemple</p>              </label>
         </section>
     </section>
 

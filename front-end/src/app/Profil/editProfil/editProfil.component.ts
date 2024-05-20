@@ -3,7 +3,8 @@ import { Profil } from "src/models/profil.model";
 import { ProfilService } from "src/services/profil.service";
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from "@angular/router";
-import { ADMIN } from "src/mocks/profil.mock";
+import { ADMIN, PROFIL_NULL } from "src/mocks/profil.mock";
+import { STATS_PATIENT_INIT } from "src/mocks/statsMocks/stats-patient.mock";
 
 
 @Component({
@@ -40,7 +41,8 @@ export class EditProfilComponent implements OnInit {
             role: [this.profilEditing?.role],
             
             jour: [this.profilEditing?.dateNaissance?.[0]],
-            mois:[this.initialMonth],
+            
+            mois:[this.setMonth()],
             annee:[this.profilEditing?.dateNaissance?.[2]],
 
             photo: [],
@@ -58,15 +60,28 @@ export class EditProfilComponent implements OnInit {
 
     ngOnInit(): void {}
 
+    setMonth(): String{
+        if(this.profilEditing?.dateNaissance?.[1] != undefined){
+            return this.MonthList[this.profilEditing?.dateNaissance?.[1]-1];
+        }
+        return 'janvier'
+    }
+
     updateProfil(){
-        const profilToCreate: Profil = this.profilForm.getRawValue() as Profil;
+        const profilToCreate: Profil = JSON.parse(JSON.stringify(PROFIL_NULL));
+        profilToCreate.nom = this.profilForm.getRawValue().nom;
+        profilToCreate.prenom = this.profilForm.getRawValue().prenom;
+        profilToCreate.role = this.profilForm.getRawValue().role;
+
         if(this.profilForm.getRawValue().jour!=undefined && this.profilForm.getRawValue().mois!=undefined && this.profilForm.getRawValue().annee!=undefined){
-        
             profilToCreate.dateNaissance = [
-                this.profilForm.getRawValue().jour,
+                parseInt(this.profilForm.getRawValue().jour, 10) ,
                 this.MonthList.lastIndexOf(this.profilForm.getRawValue().mois)+1,
                 this.profilForm.getRawValue().annee
             ];
+        }
+        else {
+            profilToCreate.dateNaissance = [0,0,0]
         }
 
         if(this.profilForm.value.photo != undefined){
@@ -80,8 +95,17 @@ export class EditProfilComponent implements OnInit {
             profilToCreate.photo = "./assets/imageProfil/default.png"
         }
 
+        profilToCreate.optionTailleTexte = this.profilForm.getRawValue().optionTailleTexte,
+        profilToCreate.optionIndice = this.profilForm.getRawValue().optionIndice,
+        profilToCreate.optionPhoto = this.profilForm.getRawValue().optionPhoto,
+        profilToCreate.optionSupprimerMauvaisesReponses = this.profilForm.getRawValue().optionSupprimerMauvaisesReponses,
+        profilToCreate.optionReposerQuestionApres = this.profilForm.getRawValue().optionReposerQuestionApres,
+        
+        profilToCreate.selfStats = JSON.parse(JSON.stringify(STATS_PATIENT_INIT));
+        profilToCreate.id = this.profilEditing?.id;
+
         console.log("add profil ", profilToCreate);
-        this.profilService.updateProfil(this.profilInital,profilToCreate);
+        this.profilService.updateProfil(profilToCreate);
         this.router.navigate(['home/listProfil/']); 
     }
 }
