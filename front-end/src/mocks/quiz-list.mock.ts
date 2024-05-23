@@ -37,12 +37,6 @@ export const QUIZ_NULL: Quiz = {
     nbQuestionsPerType: [],
     id: -1,
     selfStats: STATS_INIT,
-    nbBonnesReponses: 0,
-    nbIndiceUtilises: 0,
-    MeilleurStreak: 0,
-    streakActuel: 0,
-    actualScore: 0,
-    actualQuestionNumber: 0
 }
 
 export const QUIZ_LIST: Quiz[] = [
@@ -54,12 +48,6 @@ export const QUIZ_LIST: Quiz[] = [
         id: 0,
         selfStats: STATS_ACTORS,
         photo: "./assets/quiz/oscar.jpg",
-        nbBonnesReponses: 0,
-        nbIndiceUtilises: 0,
-        MeilleurStreak: 0,
-        streakActuel: 0,
-        actualScore: 0,
-        actualQuestionNumber: 0
     },
     {
         name: 'Sports',
@@ -69,12 +57,6 @@ export const QUIZ_LIST: Quiz[] = [
         id: 1,
         selfStats: STATS_SPORTS,
         photo: "./assets/quiz/foot.jpg",
-        nbBonnesReponses: 0,
-        nbIndiceUtilises: 0,
-        MeilleurStreak: 0,
-        streakActuel: 0,
-        actualScore: 0,
-        actualQuestionNumber: 0
     },
     {
         name: 'Cuisine',
@@ -84,12 +66,6 @@ export const QUIZ_LIST: Quiz[] = [
         id: 2,
         selfStats: JSON.parse(JSON.stringify(STATS_INIT)),
         photo: "./assets/quiz/imageQuizCuisine.png",
-        nbIndiceUtilises: 0,
-        nbBonnesReponses: 0,
-        MeilleurStreak: 0,
-        streakActuel: 0,
-        actualScore: 0,
-        actualQuestionNumber: 0
     },
     {
         name: 'Voiture',
@@ -99,12 +75,6 @@ export const QUIZ_LIST: Quiz[] = [
         id: 3,
         selfStats: JSON.parse(JSON.stringify(STATS_INIT)),
         photo: "./assets/quiz/imageQuizVoiture.png",
-        nbBonnesReponses: 0,
-        nbIndiceUtilises: 0,
-        MeilleurStreak: 0,
-        streakActuel: 0,
-        actualScore: 0,
-        actualQuestionNumber: 0
     },
     {
         name: 'Fleur',
@@ -114,11 +84,5 @@ export const QUIZ_LIST: Quiz[] = [
         id: 4,
         selfStats: JSON.parse(JSON.stringify(STATS_INIT)),
         photo: "./assets/quiz/imageQuizFleur.png",
-        nbBonnesReponses: 0,
-        nbIndiceUtilises: 0,
-        MeilleurStreak: 0,
-        streakActuel: 0,
-        actualScore: 0,
-        actualQuestionNumber: 0
     }
 ];

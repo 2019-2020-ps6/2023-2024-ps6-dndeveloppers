@@ -9,14 +9,4 @@ export interface Quiz {
     id: number,
     selfStats: statsQuiz,
     photo?: string,
-    actualQuestionNumber: number, // à enlever
-
-    // stats
-
-    nbBonnesReponses: number,
-    nbIndiceUtilises: number,
-    MeilleurStreak: number,
-    streakActuel: number,
-    actualScore: number,
-    
 }

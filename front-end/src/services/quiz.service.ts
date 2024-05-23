@@ -107,24 +107,8 @@ export class QuizService {
       this.actualQuestion.nbIndiceUtiliseQuestion = 0;
       console.log("Quiz valide");
 
-      this.choosenQuiz.actualScore = 0;
-      this.usedHint = 0;
-      this.endOfQuiz = false;
-      this.endOfQuiz$.next(this.endOfQuiz);
-
       this.actualIndices = this.choosenQuiz.questions[0].indice;
-      this.actualIndices$.next(this.actualIndices);
-      
-      this.choosenQuiz.actualQuestionNumber = 0;
-      this.choosenQuiz$.next(this.choosenQuiz);
-      this.displayQuestion(quizEnCours, this.choosenQuiz.actualQuestionNumber);
-
-      this.choosenQuiz.nbBonnesReponses = 0;
-      this.choosenQuiz.nbIndiceUtilises = 0;
-      this.choosenQuiz.MeilleurStreak = 0;
-      this.choosenQuiz.streakActuel = 0;
-      this.choosenQuiz$.next(this.choosenQuiz);
-      
+      this.actualIndices$.next(this.actualIndices); 
     }
   }
 
@@ -187,7 +171,6 @@ export class QuizService {
   // si canClickButtonAnswer = false, les boutons sont désactivés
   updatedisableAnswerButton(bool: boolean){
     this.canClickButtonAnswer = bool;
-    console.log("can : ",this.canClickButtonAnswer);
   }
 
   getCanClickButtonAnswer(){
@@ -238,7 +221,6 @@ export class QuizService {
   }
 
   responseSelected(quiz: Quiz, responseNumber: number) {
-    console.log("ssss ",this.canClickButtonAnswer)
     if(this.canClickButtonAnswer){
       console.log("Response selected (service POV) : ",responseNumber);
       if(this.actualProfil.optionReposerQuestionApres){
