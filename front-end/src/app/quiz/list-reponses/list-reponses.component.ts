@@ -6,6 +6,8 @@ import { QuizService } from "src/services/quiz.service";
 import { Profil } from "src/models/profil.model";
 import { LISTE_PROFILS } from "src/mocks/profil-list.mock";
 import { ProfilService } from "src/services/profil.service";
+import { InfoQuiz } from "src/models/infoQuiz.model";
+import { infoQuiz_INIT } from "src/mocks/infoQuiz.mock";
 
 
 @Component({
@@ -17,51 +19,33 @@ import { ProfilService } from "src/services/profil.service";
 export class ListReponsesComponent implements OnInit {
 
     public actualResponses: Answer[] = [];
-    public actualQuestionNumber: number = 0;
-    public displayResponses: boolean[] = [true, true, true , true];
 
     public choosenQuiz: Quiz = QUIZ_LIST[0];
 
-    public endOfQuiz: boolean = false;
     public listePatient: Profil[] = LISTE_PROFILS;
     public profil: Profil  = this.listePatient[0];
-    public possibleEndMessage: String[] = [];
 
-    public  couleur1: string | undefined;
-    public  couleur2: string | undefined;
-    public  couleur3: string | undefined;
-    public  couleur4: string | undefined;
+    public couleur: string[] = ["#6958cf","#6958cf","#6958cf","#6958cf"];
 
-
-    public optionSupprimerMauvaisesReponses : boolean | undefined = this.profil.optionSupprimerMauvaisesReponses;
-
-    public optionAskQuestionsAgain : boolean | undefined = this.profil.optionReposerQuestionApres;
+    public infoQuiz: InfoQuiz = infoQuiz_INIT;
+    public canClickButton: boolean = true;
 
     constructor(public quizService: QuizService, public profilService: ProfilService){
         this.quizService.actualResponses$.subscribe((actualResponses) => {
             this.actualResponses = actualResponses;
-        })
-
-        this.quizService.displayResponses$.subscribe((displayResponses) => {
-            this.displayResponses = displayResponses;
         })
         
         this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
             this.choosenQuiz = choosenQuiz;
         })
 
-        this.profilService.actualProfil$.subscribe((profil) => {
-            this.optionSupprimerMauvaisesReponses = profil.optionSupprimerMauvaisesReponses;
+        this.quizService.infoQuiz$.subscribe((infoQuiz) => {
+            this.infoQuiz = infoQuiz;
         })
 
-        this.profilService.actualProfil$.subscribe((profil) => {
-            this.optionAskQuestionsAgain = profil.optionReposerQuestionApres;
+        this.profilService.actualProfil$.subscribe((actualProfil)=>{
+            this.profil = actualProfil;
         })
-
-        this.quizService.endOfQuiz$.subscribe((endOfQuiz) => {
-            this.endOfQuiz = endOfQuiz;
-        })
-
     }
 
     ngOnInit(): void {
@@ -69,63 +53,45 @@ export class ListReponsesComponent implements OnInit {
         console.log("init",this.actualResponses);
     }
 
-    @Input()
-    quiz: Quiz = this.choosenQuiz;
-
     responseSelected(responseNumber: number) {
-        if(this.optionSupprimerMauvaisesReponses){
-            this.quizService.responseSelectedWithOptionSupprimerMauvaiseReponse(this.choosenQuiz, responseNumber);
-        }
-        if(this.optionAskQuestionsAgain){
-            this.quizService.responseSelectedWithAskAgainOption(this.choosenQuiz,responseNumber);
-        }
-        else{
-            let goodAnswer = 0;
-            for (let i=0; i<this.actualResponses.length; i++) {
-                if (this.actualResponses[i].isCorrect) {
-                    goodAnswer = i + 1;
-                    break;
-                }
-            }
-            if(goodAnswer == 1) {
-                this.couleur1 = "lightgreen";
-                this.couleur2 = "#939393";
-                this.couleur3 = "#939393";
-                this.couleur4 = "#939393";
-            }
-            if(goodAnswer == 2){
-                this.couleur1 = "#939393";
-                this.couleur2 = "lightgreen";
-                this.couleur3 = "#939393";
-                this.couleur4 = "#939393";
-            }
-            if(goodAnswer == 3){
-                this.couleur1 = "#939393";
-                this.couleur2 = "#939393";
-                this.couleur3 = "lightgreen";
-                this.couleur4 = "#939393";
-            }
-            if(goodAnswer == 4){
-                this.couleur1 = "#939393";
-                this.couleur2 = "#939393";
-                this.couleur3 = "#939393";
-                this.couleur4 = "lightgreen";
-            }
+        if(this.actualResponses[responseNumber].isCorrect){
+            this.quizService.updatedisableAnswerButton(false);
+            this.couleur = ["#939393","#939393","#939393","#939393"];
+            this.couleur[responseNumber] = "lightgreen";
             setTimeout(() => {
+                this.couleur = ["#6958cf","#6958cf","#6958cf","#6958cf"];
+                this.quizService.updatedisableAnswerButton(true);
                 this.quizService.responseSelected(this.choosenQuiz, responseNumber);
-                this.couleur1 = "#6958cf";
-                this.couleur2 = "#6958cf";
-                this.couleur3 = "#6958cf";
-                this.couleur4 = "#6958cf";
             }, 5000);
         }
+        else if(this.quizService.getCanClickButtonAnswer()){
+            
+            if(!this.profil.optionSupprimerMauvaisesReponses){
+                this.quizService.updatedisableAnswerButton(false);
+                this.couleur = ["#939393","#939393","#939393","#939393"];
+                let goodAnswer = 0;
+                for(let i=0;i<4;i++){
+                    if(this.actualResponses[i].isCorrect) goodAnswer=i;
+                }
+                this.couleur[goodAnswer] = "lightgreen"
+                setTimeout(() => {
+                    this.couleur = ["#6958cf","#6958cf","#6958cf","#6958cf"];
+                    this.quizService.updatedisableAnswerButton(true);
+                    this.quizService.responseSelected(this.choosenQuiz, responseNumber);
+                }, 5000);
+            }
+            else {
+                this.quizService.responseSelected(this.choosenQuiz, responseNumber);
+            }
+
+        
+        }  
     }
 
     loadQuestion(nbQuestion: number) {
-        console.log(this.actualQuestionNumber);
+        console.log(this.infoQuiz.actualQuestionNumber);
         console.log(this.actualResponses);
-        this.actualResponses = this.choosenQuiz.questions[this.actualQuestionNumber].answers;
+        this.actualResponses = this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber].answers;
         console.log(this.actualResponses);
     }
-
 }
