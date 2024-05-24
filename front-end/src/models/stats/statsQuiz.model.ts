@@ -5,7 +5,6 @@ export interface statsQuiz {
     meanScore: number,
     meanHintUsed: number,
     resTab: number[],
-    playedBy: Profil[],
     nbHintUsed: number[],
     successPercentageByQuestion: number[]
 }
