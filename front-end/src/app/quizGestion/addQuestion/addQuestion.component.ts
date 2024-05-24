@@ -68,8 +68,6 @@ export class AddQuestionComponent implements OnInit {
         question.answers = [answer1 , answer2 , answer3, answer4];       
         console.log("numéro : ",this.questionForm.value.goodAnswer); 
         question.answers[this.questionForm.value.goodAnswer].isCorrect = true;
-        question.questionTexte = true;
-        question.questionImage = false;
 
         let indice1 : Indice = Indice_Model1;
         indice1.value = this.questionForm.value.i1;

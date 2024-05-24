@@ -5,18 +5,7 @@ export interface Quiz {
     name: string,
     theme: string,
     questions: Question[],
-    nbQuestionsPerType: number[],
     id: number,
     selfStats: statsQuiz,
     photo?: string,
-    actualQuestionNumber: number,
-
-    // stats
-
-    nbBonnesReponses: number,
-    nbIndiceUtilises: number,
-    MeilleurStreak: number,
-    streakActuel: number,
-    actualScore: number,
-    
 }

@@ -24,9 +24,7 @@ export const Indice_Model3: Indice = {
 export const Question_Model: Question = {
     label:'',
     answers: [],
-    questionImage: false,
     indice: [],
-    questionTexte: true,
     nbIndiceUtiliseQuestion: 0
 }
 
@@ -34,15 +32,8 @@ export const QUIZ_NULL: Quiz = {
     name: '',
     theme: '',
     questions: [],
-    nbQuestionsPerType: [],
     id: -1,
     selfStats: STATS_INIT,
-    nbBonnesReponses: 0,
-    nbIndiceUtilises: 0,
-    MeilleurStreak: 0,
-    streakActuel: 0,
-    actualScore: 0,
-    actualQuestionNumber: 0
 }
 
 export const QUIZ_LIST: Quiz[] = [
@@ -50,75 +41,40 @@ export const QUIZ_LIST: Quiz[] = [
         name: 'Acteurs', 
         theme: 'Actor',
         questions: QUESTION_ACTEUR,
-        nbQuestionsPerType: [2,0],
         id: 0,
         selfStats: STATS_ACTORS,
         photo: "./assets/quiz/oscar.jpg",
-        nbBonnesReponses: 0,
-        nbIndiceUtilises: 0,
-        MeilleurStreak: 0,
-        streakActuel: 0,
-        actualScore: 0,
-        actualQuestionNumber: 0
     },
     {
         name: 'Sports',
         theme: 'Sport',
         questions: QUESTION_SPORT,
-        nbQuestionsPerType: [2,0],
         id: 1,
         selfStats: STATS_SPORTS,
         photo: "./assets/quiz/foot.jpg",
-        nbBonnesReponses: 0,
-        nbIndiceUtilises: 0,
-        MeilleurStreak: 0,
-        streakActuel: 0,
-        actualScore: 0,
-        actualQuestionNumber: 0
     },
     {
         name: 'Cuisine',
         theme: 'Quotidien',
         questions: QUESTION_CUISINE,
-        nbQuestionsPerType: [2,1],
         id: 2,
         selfStats: JSON.parse(JSON.stringify(STATS_INIT)),
         photo: "./assets/quiz/imageQuizCuisine.png",
-        nbIndiceUtilises: 0,
-        nbBonnesReponses: 0,
-        MeilleurStreak: 0,
-        streakActuel: 0,
-        actualScore: 0,
-        actualQuestionNumber: 0
     },
     {
         name: 'Voiture',
         theme: 'Mécanique',
         questions: QUESTION_VOITURE,
-        nbQuestionsPerType: [2,0],
         id: 3,
         selfStats: JSON.parse(JSON.stringify(STATS_INIT)),
         photo: "./assets/quiz/imageQuizVoiture.png",
-        nbBonnesReponses: 0,
-        nbIndiceUtilises: 0,
-        MeilleurStreak: 0,
-        streakActuel: 0,
-        actualScore: 0,
-        actualQuestionNumber: 0
     },
     {
         name: 'Fleur',
         theme: 'Nature',
         questions: QUESTION_FLEUR,
-        nbQuestionsPerType: [],
         id: 4,
         selfStats: JSON.parse(JSON.stringify(STATS_INIT)),
         photo: "./assets/quiz/imageQuizFleur.png",
-        nbBonnesReponses: 0,
-        nbIndiceUtilises: 0,
-        MeilleurStreak: 0,
-        streakActuel: 0,
-        actualScore: 0,
-        actualQuestionNumber: 0
     }
 ];

@@ -31,8 +31,6 @@ export const QUESTION_CUISINE0: Question = {
            value: 'Ce fruit aime le soleil',
        }
    ],
-   questionTexte: false,
-   questionImage: true,
    optionImageLien: "./assets/quiz/imageQuizCuisineCerise.png",//to change
    optionImageQuestion: 'Quelle est la saison des cerises ?',
    nbIndiceUtiliseQuestion: 0
@@ -69,8 +67,6 @@ export const QUESTION_CUISINE1: Question = {
            value: "c'est une couleur",
        }
    ],
-   questionTexte: true,
-   questionImage: false,
    optionImageLien: "./assets/quiz/imageQuizCuisineCuison.png",//to change
    optionImageQuestion: 'Quelle est la plus basse cuisson de la viande rouge ?',
    nbIndiceUtiliseQuestion: 0
@@ -107,8 +103,6 @@ export const QUESTION_CUISINE2: Question = {
             value: 'Cet animal est rose',
         }
     ],
-    questionTexte: true,
-    questionImage: false,
     optionImageLien: "./assets/quiz/imageQuizCuisineJambon.png",//to change
    optionImageQuestion: "De quel animal vient le jambon ?",
    nbIndiceUtiliseQuestion: 0
