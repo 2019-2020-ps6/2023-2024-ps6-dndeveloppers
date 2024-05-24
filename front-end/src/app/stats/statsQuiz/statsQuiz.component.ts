@@ -92,7 +92,7 @@ export class StatsQuizComponent implements OnInit {
         console.log("data");
         let data = [];
         for (let i=0; i<this.actualQuiz.selfStats.successPercentageByQuestion.length; i++) {
-            data.push(this.actualQuiz.selfStats.successPercentageByQuestion[i]);
+            data.push(Math.round(this.actualQuiz.selfStats.successPercentageByQuestion[i]*100)/100);
         }
         console.log(data);
         return data
