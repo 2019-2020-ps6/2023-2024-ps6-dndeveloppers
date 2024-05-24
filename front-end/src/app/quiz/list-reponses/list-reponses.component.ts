@@ -52,6 +52,7 @@ export class ListReponsesComponent implements OnInit {
             this.quizService.updatedisableAnswerButton(false);
             this.couleur = ["#939393","#939393","#939393","#939393"];
             this.couleur[responseNumber] = "lightgreen";
+
             setTimeout(() => {
                 this.couleur = ["#6958cf","#6958cf","#6958cf","#6958cf"];
                 this.quizService.updatedisableAnswerButton(true);

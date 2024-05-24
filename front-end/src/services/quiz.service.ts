@@ -335,7 +335,7 @@ export class QuizService {
         console.log("score: ",this.choosenQuiz.actualScore);
         this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
         this.statsService.addQuizDone();
-        this.statsService.meanScoreNewData(this.choosenQuiz.actualScore/quiz.questions.length);
+        this.statsService.meanScoreNewData(this.choosenQuiz.actualScore);
         this.statsService.usedHintNewData(this.usedHint);
                                         
         if(this.choosenQuiz.MeilleurStreak < this.choosenQuiz.streakActuel){
@@ -375,6 +375,7 @@ export class QuizService {
 
     this.choosenQuiz$.next(this.choosenQuiz);
   }*/
+
 
   // ------------------------------------------------------------ thèmes ---------------------------------------------------------------------------------
 

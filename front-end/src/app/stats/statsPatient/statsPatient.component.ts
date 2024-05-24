@@ -58,10 +58,6 @@ export class StatsPatientComponent implements OnInit {
 
     ngOnInit(): void {
         this.fillSeries();
-        let x = this.actualPatient.selfStats.meanScore;
-        let roundNumber = Math.round(x*100)/100;
-        console.log(x);
-        console.log(roundNumber);
     }
 
     selectedPatient(event: any) {
@@ -112,7 +108,7 @@ export class StatsPatientComponent implements OnInit {
         let data = [];
         for (let i=0; i<this.actualPatient.selfStats.quizRes.length; i++) {
             if (this.actualPatient.selfStats.quizDone[i] == quizName) {
-                data.push(this.actualPatient.selfStats.quizRes[i]);
+                data.push(Math.round(this.actualPatient.selfStats.quizRes[i]*100)/100);
             }
         }
         return data
