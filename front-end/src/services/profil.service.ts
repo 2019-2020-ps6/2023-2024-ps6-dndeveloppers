@@ -71,6 +71,7 @@ export class ProfilService {
 
     selectProfil(profil: Profil) {
         this.quizService.selectProfil(profil);
+        this.quizService.resetInfoQuiz();
 
         for (let i = 0; i < this.profilList.length; i++) {
             if (this.profilList[i] == profil) {

@@ -244,11 +244,15 @@ export class QuizService {
       console.log(score);
       console.log("score à cette question : ",score-(this.infoQuiz.nbErrors/4));
 
-      this.infoQuiz.actualScore += score-(this.infoQuiz.nbErrors/4); // on ajoute le score
+      if(score > 0){
+        this.infoQuiz.actualScore += score-(this.infoQuiz.nbErrors/4); // on ajoute le score s'il est positif
+      }
+      
       
       if(this.infoQuiz.nbErrors==0){
         this.infoQuiz.nbGoodAnswer++; // on a bien répondu du premier coup
       }
+
       this.infoQuiz.actualStreak++; // on continue la suite de bonnes réponses
       this.infoQuiz.nbHintUsed += this.infoQuiz.nbHintAskedForActualQuestion; // on ajoute le nombre d'indices utilisés
       this.infoQuiz.nbHintAskedForActualQuestion = 0;
@@ -293,9 +297,9 @@ export class QuizService {
 
       // disjonction de cas : on supprime la mauvaise réponse
       if(this.actualProfil.optionSupprimerMauvaisesReponses){
-        
+        console.log("ok")
         this.infoQuiz.displayResponses[responseNumber] = false;
-        this.infoQuiz.nbErrors++;
+        this.infoQuiz.nbErrors ++;
       }
       // sinon on passe à la question suivante
       else {
@@ -321,6 +325,7 @@ export class QuizService {
         }
       }
     }
+    console.log("update");
     this.updateInfoQuiz();
   }
 
