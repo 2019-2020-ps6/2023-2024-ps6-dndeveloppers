@@ -73,13 +73,11 @@ export class ListReponsesComponent implements OnInit {
     quiz: Quiz = this.choosenQuiz;
 
     responseSelected(responseNumber: number) {
-        if(this.optionSupprimerMauvaisesReponses){
+        if (this.optionSupprimerMauvaisesReponses) {
             this.quizService.responseSelectedWithOptionSupprimerMauvaiseReponse(this.choosenQuiz, responseNumber);
-        }
-        if(this.optionAskQuestionsAgain){
+        } else if (this.optionAskQuestionsAgain) {
             this.quizService.responseSelectedWithAskAgainOption(this.choosenQuiz,responseNumber);
-        }
-        else{
+        } else {
             let goodAnswer = 0;
             for (let i=0; i<this.actualResponses.length; i++) {
                 if (this.actualResponses[i].isCorrect) {
