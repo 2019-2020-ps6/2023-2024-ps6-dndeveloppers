@@ -19,16 +19,12 @@ export class QuizService {
   private choosenQuiz: Quiz = this.quizzes[0];
   private actualQuestion: Question = QUESTION_ACTOR0;
   private actualResponses: Answer[] = QUESTION_ACTOR0.answers;
-  private displayResponses: boolean[] = [true, true, true, true];
   private actualIndices: Indice[] = [];
   private usedIndice: number[] = [];
   private usedHint: number = 0;
-  private endOfQuiz: boolean = false;
 
   private themeList: String[] = []; // liste des thèmes de quiz
   private editedQuiz: Quiz = this.quizzes[0]; // quiz en cours d'édition
-
-  private askQuestionsAgain: boolean = false;
 
   private infoQuiz: InfoQuiz = JSON.parse(JSON.stringify(infoQuiz_INIT)); // contient les info du quiz joué en cours
   private canClickButtonAnswer: boolean = true;
@@ -42,7 +38,6 @@ export class QuizService {
   public choosenQuiz$: BehaviorSubject<Quiz> = new BehaviorSubject(QUIZ_LIST[0]);
   public actualQuestion$: BehaviorSubject<Question> = new BehaviorSubject(QUESTION_ACTOR0);
   public actualResponses$: BehaviorSubject<Answer[]> = new BehaviorSubject(QUESTION_ACTOR0.answers);
-  public displayResponses$: BehaviorSubject<boolean[]> = new BehaviorSubject(this.displayResponses);
   public actualIndices$: BehaviorSubject<Indice[]> = new BehaviorSubject(this.actualIndices);
   public usedIndice$: BehaviorSubject<number[]> = new BehaviorSubject(this.usedIndice);
   public usedHint$: BehaviorSubject<number> = new BehaviorSubject(this.usedHint);
@@ -179,15 +174,15 @@ export class QuizService {
 
   hintAsked(){
     // premier cas : on affiche l'indice
-    if(this.infoQuiz.hintAskedForQuestion < this.getActualQuestionNumberHint()){
-      this.infoQuiz.hintAskedForQuestion++;
+    if(this.infoQuiz.nbHintAskedForActualQuestion < this.getActualQuestionNumberHint()){
+      this.infoQuiz.nbHintAskedForActualQuestion++;
       console.log("Indice demandé");
-      this.updateQuiz();  
+      this.updateInfoQuiz();  
     }
     // deuxième cas : on enlève une réponse (car on a déjà utilisé tout les indices textuels)
-    else if (this.infoQuiz.hintAskedForQuestion-2 < this.getActualQuestionNumberHint()) {
-      this.infoQuiz.hintAskedForQuestion++;
-      this.updateQuiz(); 
+    else if (this.infoQuiz.nbHintAskedForActualQuestion-2 < this.getActualQuestionNumberHint()) {
+      this.infoQuiz.nbHintAskedForActualQuestion++;
+      this.updateInfoQuiz(); 
       this.hideResponse();
       console.log("cache une réponse");
     } 
@@ -245,7 +240,7 @@ export class QuizService {
     if (this.getActualQuestion().answers[responseNumber].isCorrect) {
       console.log("Bonne réponse félicitation!");
       this.statsService.successRateNewData(100, this.infoQuiz.actualQuestionNumber);
-      let score = 1 - (this.infoQuiz.hintAskedForQuestion/(this.getActualQuestionNumberHint() + 3));
+      let score = 1 - (this.infoQuiz.nbHintAskedForActualQuestion/(this.getActualQuestionNumberHint() + 3));
       console.log(score);
       console.log("score à cette question : ",score-(this.infoQuiz.nbErrors/4));
 
@@ -255,8 +250,8 @@ export class QuizService {
         this.infoQuiz.nbGoodAnswer++; // on a bien répondu du premier coup
       }
       this.infoQuiz.actualStreak++; // on continue la suite de bonnes réponses
-      this.infoQuiz.nbHintUsed += this.infoQuiz.hintAskedForQuestion; // on ajoute le nombre d'indices utilisés
-      this.infoQuiz.hintAskedForQuestion = 0;
+      this.infoQuiz.nbHintUsed += this.infoQuiz.nbHintAskedForActualQuestion; // on ajoute le nombre d'indices utilisés
+      this.infoQuiz.nbHintAskedForActualQuestion = 0;
       this.infoQuiz.displayResponses = [true, true, true, true];
       this.infoQuiz.nbErrors = 0;
       this.infoQuiz.showGoodAnswer = true;
@@ -279,7 +274,7 @@ export class QuizService {
       } 
       else { // sinon on continue le quiz
         this.infoQuiz.actualQuestionNumber++;
-        this.infoQuiz.hintAskedForQuestion = 0
+        this.infoQuiz.nbHintAskedForActualQuestion = 0
 
         this.actualQuestion = this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber];
         this.actualQuestion$.next(this.actualQuestion);
@@ -316,8 +311,8 @@ export class QuizService {
         }
         else {
           this.infoQuiz.actualQuestionNumber++;
-          this.infoQuiz.nbHintUsed += this.infoQuiz.hintAskedForQuestion;
-          this.infoQuiz.hintAskedForQuestion = 0;
+          this.infoQuiz.nbHintUsed += this.infoQuiz.nbHintAskedForActualQuestion;
+          this.infoQuiz.nbHintAskedForActualQuestion = 0;
           this.actualQuestion = this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber];
           this.actualQuestion$.next(this.actualQuestion);
 
@@ -457,7 +452,6 @@ export class QuizService {
 
   addQuestion(question: Question){
     this.editedQuiz.questions.push(question);
-    this.editedQuiz.nbQuestionsPerType
     console.log("Question ", question, " ajoutée.");
     console.log(this.editedQuiz);
   }

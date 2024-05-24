@@ -6,7 +6,7 @@ export const infoQuiz_INIT: InfoQuiz = {
     nbGoodAnswer: 0,
     actualScore: 0,
     nbHintUsed: 0,
-    hintAskedForQuestion: 0,
+    nbHintAskedForActualQuestion: 0,
     bestStreak: 0,
     actualStreak: 0,
     displayResponses: [true,true,true,true],

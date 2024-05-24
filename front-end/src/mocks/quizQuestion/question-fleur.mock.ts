@@ -31,8 +31,6 @@ export const QUESTION_FLEUR0: Question = {
            value: "Cette fleur est rouge",
        }
    ],
-   questionTexte: false,
-   questionImage: true,
    optionImageLien: "./assets/quiz/imageQuizFleurCoquelicot.png",//to change
    optionImageQuestion: "Quelle fleur est rouge et pousse dans des champs ?",
    nbIndiceUtiliseQuestion: 0
@@ -69,8 +67,6 @@ export const QUESTION_FLEUR1: Question = {
            value: "C'est une fleur peu connue'",
        }
    ],
-   questionTexte: true,
-   questionImage: false,
    nbIndiceUtiliseQuestion: 0
 }
 
@@ -105,8 +101,6 @@ export const QUESTION_FLEUR2: Question = {
             value: "C'est une fleur violette",
         }
     ],
-    questionTexte: true,
-    questionImage: false,
     nbIndiceUtiliseQuestion: 0
 }
 
@@ -141,8 +135,6 @@ export const QUESTION_FLEUR3: Question = {
             value: "Les fleurs sont blanches",
         }
     ],
-    questionTexte: true,
-    questionImage: false,
     nbIndiceUtiliseQuestion: 0
 }
 
@@ -177,8 +169,6 @@ export const QUESTION_FLEUR4: Question = {
             value: "Elle a un pistil prohéminant",
         }
     ],
-    questionTexte: true,
-    questionImage: false,
     optionImageLien: "./assets/quiz/imageQuizFleurLys.png",
     optionImageQuestion: "Quelle fleur représente la royauté française ?",
     nbIndiceUtiliseQuestion: 0

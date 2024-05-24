@@ -31,8 +31,6 @@ export const QUESTION_ACTOR0: Question = {
            value: 'Les Tuches II est sorti en 2016',
        }
    ],
-   questionTexte: false,
-   questionImage: true,
    optionImageLien: "./assets/quiz/JeanGabin.jpg",
    optionImageQuestion: 'Jean Gabin a joué dans...',
    nbIndiceUtiliseQuestion: 0
@@ -69,7 +67,5 @@ export const QUESTION_ACTOR1: Question = {
            value: 'Le film est americain',
        }
    ],
-   questionTexte: true,
-   questionImage: false,
    nbIndiceUtiliseQuestion: 0
 }

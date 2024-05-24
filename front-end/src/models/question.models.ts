@@ -10,8 +10,6 @@ export interface Indice {
 export interface Question {
     label: string,
     answers: Answer[],
-    questionTexte: boolean, // stats
-    questionImage: boolean, // stats
     indice: Indice[],
     dejaPosee?: boolean, // si la question a déjà été posée
     nbIndiceUtiliseQuestion: number, 

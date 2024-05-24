@@ -24,9 +24,7 @@ export const Indice_Model3: Indice = {
 export const Question_Model: Question = {
     label:'',
     answers: [],
-    questionImage: false,
     indice: [],
-    questionTexte: true,
     nbIndiceUtiliseQuestion: 0
 }
 
@@ -34,7 +32,6 @@ export const QUIZ_NULL: Quiz = {
     name: '',
     theme: '',
     questions: [],
-    nbQuestionsPerType: [],
     id: -1,
     selfStats: STATS_INIT,
 }
@@ -44,7 +41,6 @@ export const QUIZ_LIST: Quiz[] = [
         name: 'Acteurs', 
         theme: 'Actor',
         questions: QUESTION_ACTEUR,
-        nbQuestionsPerType: [2,0],
         id: 0,
         selfStats: STATS_ACTORS,
         photo: "./assets/quiz/oscar.jpg",
@@ -53,7 +49,6 @@ export const QUIZ_LIST: Quiz[] = [
         name: 'Sports',
         theme: 'Sport',
         questions: QUESTION_SPORT,
-        nbQuestionsPerType: [2,0],
         id: 1,
         selfStats: STATS_SPORTS,
         photo: "./assets/quiz/foot.jpg",
@@ -62,7 +57,6 @@ export const QUIZ_LIST: Quiz[] = [
         name: 'Cuisine',
         theme: 'Quotidien',
         questions: QUESTION_CUISINE,
-        nbQuestionsPerType: [2,1],
         id: 2,
         selfStats: JSON.parse(JSON.stringify(STATS_INIT)),
         photo: "./assets/quiz/imageQuizCuisine.png",
@@ -71,7 +65,6 @@ export const QUIZ_LIST: Quiz[] = [
         name: 'Voiture',
         theme: 'Mécanique',
         questions: QUESTION_VOITURE,
-        nbQuestionsPerType: [2,0],
         id: 3,
         selfStats: JSON.parse(JSON.stringify(STATS_INIT)),
         photo: "./assets/quiz/imageQuizVoiture.png",
@@ -80,7 +73,6 @@ export const QUIZ_LIST: Quiz[] = [
         name: 'Fleur',
         theme: 'Nature',
         questions: QUESTION_FLEUR,
-        nbQuestionsPerType: [],
         id: 4,
         selfStats: JSON.parse(JSON.stringify(STATS_INIT)),
         photo: "./assets/quiz/imageQuizFleur.png",

@@ -7,7 +7,8 @@ export interface InfoQuiz {
     actualScore: number, // nombre de points actuellement
 
     nbHintUsed: number,  // nombre total d'indice
-    hintAskedForQuestion: number, // nombre d'indice pour la question actuelle
+    nbHintAskedForActualQuestion: number, // nombre d'indice pour la question actuelle
+    
 
     bestStreak: number, // meilleur suite de bonnes réponses
     actualStreak: number, // suite de bonnes réponses en cours
