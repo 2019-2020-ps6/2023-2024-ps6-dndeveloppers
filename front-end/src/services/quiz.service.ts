@@ -17,11 +17,6 @@ export class QuizService {
   private actualProfil: Profil = LISTE_PROFILS[0];
   private quizzes: Quiz[] = QUIZ_LIST;
   private choosenQuiz: Quiz = this.quizzes[0];
-  private actualQuestion: Question = QUESTION_ACTOR0;
-  private actualResponses: Answer[] = QUESTION_ACTOR0.answers;
-  private actualIndices: Indice[] = [];
-  private usedIndice: number[] = [];
-  private usedHint: number = 0;
 
   private themeList: String[] = []; // liste des thèmes de quiz
   private editedQuiz: Quiz = this.quizzes[0]; // quiz en cours d'édition
@@ -36,12 +31,6 @@ export class QuizService {
   public actualProfil$: BehaviorSubject<Profil> = new BehaviorSubject(this.actualProfil);
   public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(QUIZ_LIST);
   public choosenQuiz$: BehaviorSubject<Quiz> = new BehaviorSubject(QUIZ_LIST[0]);
-  public actualQuestion$: BehaviorSubject<Question> = new BehaviorSubject(QUESTION_ACTOR0);
-  public actualResponses$: BehaviorSubject<Answer[]> = new BehaviorSubject(QUESTION_ACTOR0.answers);
-  public actualIndices$: BehaviorSubject<Indice[]> = new BehaviorSubject(this.actualIndices);
-  public usedIndice$: BehaviorSubject<number[]> = new BehaviorSubject(this.usedIndice);
-  public usedHint$: BehaviorSubject<number> = new BehaviorSubject(this.usedHint);
-  public endOfQuiz$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   public themeList$: BehaviorSubject<String[]> = new BehaviorSubject(this.themeList);
   public editedQuiz$ : BehaviorSubject<Quiz> = new BehaviorSubject(this.editedQuiz);
@@ -91,19 +80,13 @@ export class QuizService {
         quizEnCours = this.quizzes[i];
         this.choosenQuiz = this.quizzes[i];
         this.choosenQuiz$.next(this.choosenQuiz);
-        this.actualResponses = this.quizzes[i].questions[0].answers;
-        this.actualResponses$.next(this.actualResponses);
         console.log("Quiz choisit : ",this.choosenQuiz);
       }
     }
     if (quizEnCours.questions === undefined) {
       console.log("Ce quiz n'a pas de quesiton!");
     } else {
-      this.actualQuestion.nbIndiceUtiliseQuestion = 0;
       console.log("Quiz valide");
-
-      this.actualIndices = this.choosenQuiz.questions[0].indice;
-      this.actualIndices$.next(this.actualIndices); 
     }
   }
 
@@ -129,13 +112,6 @@ export class QuizService {
 
   dontShowTutoriel() {
     this.actualProfil.tutoriel = false;
-  }
-
-
-  displayQuestion(quiz: Quiz, numQuestion: number) {
-    console.log(quiz.questions[numQuestion]);
-    this.actualQuestion = quiz.questions[numQuestion];
-    this.actualQuestion$.next(this.actualQuestion);
   }
 
   getActualQuestion(){
@@ -241,7 +217,6 @@ export class QuizService {
       console.log("Bonne réponse félicitation!");
       this.statsService.successRateNewData(100, this.infoQuiz.actualQuestionNumber);
       let score = 1 - (this.infoQuiz.nbHintAskedForActualQuestion/(this.getActualQuestionNumberHint() + 3));
-      console.log(score);
       console.log("score à cette question : ",score-(this.infoQuiz.nbErrors/4));
 
       if(score > 0){
@@ -279,12 +254,6 @@ export class QuizService {
       else { // sinon on continue le quiz
         this.infoQuiz.actualQuestionNumber++;
         this.infoQuiz.nbHintAskedForActualQuestion = 0
-
-        this.actualQuestion = this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber];
-        this.actualQuestion$.next(this.actualQuestion);
-
-        this.actualResponses = this.actualQuestion.answers;
-        this.actualResponses$.next(this.actualResponses);
       }
     } 
     // sinon on a donc une mauvaise réponse
@@ -297,7 +266,6 @@ export class QuizService {
 
       // disjonction de cas : on supprime la mauvaise réponse
       if(this.actualProfil.optionSupprimerMauvaisesReponses){
-        console.log("ok")
         this.infoQuiz.displayResponses[responseNumber] = false;
         this.infoQuiz.nbErrors ++;
       }
@@ -317,15 +285,9 @@ export class QuizService {
           this.infoQuiz.actualQuestionNumber++;
           this.infoQuiz.nbHintUsed += this.infoQuiz.nbHintAskedForActualQuestion;
           this.infoQuiz.nbHintAskedForActualQuestion = 0;
-          this.actualQuestion = this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber];
-          this.actualQuestion$.next(this.actualQuestion);
-
-          this.actualResponses = this.actualQuestion.answers;
-          this.actualResponses$.next(this.actualResponses);
         }
       }
     }
-    console.log("update");
     this.updateInfoQuiz();
   }
 

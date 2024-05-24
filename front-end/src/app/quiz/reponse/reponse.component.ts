@@ -9,13 +9,7 @@ import { QuizService } from "src/services/quiz.service";
 })
 
 export class ReponseComponent implements OnInit {
-
-    public actualResponses: Answer[] = [];
-
-    constructor(public quizService: QuizService){
-        this.quizService.actualResponses$.subscribe((actualResponses) => {
-            this.actualResponses = actualResponses;
-        })
+    constructor(){
     }
 
     @Input()

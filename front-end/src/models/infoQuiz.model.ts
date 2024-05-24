@@ -1,3 +1,5 @@
+import { Answer, Question } from "./question.models"
+
 export interface InfoQuiz {
     questionsToAskAgain: Array<number>, // contient tout les numéros des questions à reposer
 
@@ -17,7 +19,10 @@ export interface InfoQuiz {
     nbErrors: number // nombre d'erreur lors d'une même question (si on a l'option)
     showGoodAnswer: boolean, // affiche la bonne réponse 
 
-    endOfQuiz: boolean // si le quiz est fini
+    endOfQuiz: boolean, // si le quiz est fini
+
+    actualQuestion: Question, 
+    actualResponses: Answer[],
 }
 
 

@@ -30,17 +30,14 @@ export class ListReponsesComponent implements OnInit {
     public infoQuiz: InfoQuiz = infoQuiz_INIT;
     public canClickButton: boolean = true;
 
-    constructor(public quizService: QuizService, public profilService: ProfilService){
-        this.quizService.actualResponses$.subscribe((actualResponses) => {
-            this.actualResponses = actualResponses;
-        })
-        
+    constructor(public quizService: QuizService, public profilService: ProfilService){     
         this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
             this.choosenQuiz = choosenQuiz;
         })
 
         this.quizService.infoQuiz$.subscribe((infoQuiz) => {
             this.infoQuiz = infoQuiz;
+            this.actualResponses = this.choosenQuiz.questions[infoQuiz.actualQuestionNumber].answers;
         })
 
         this.profilService.actualProfil$.subscribe((actualProfil)=>{
@@ -48,10 +45,7 @@ export class ListReponsesComponent implements OnInit {
         })
     }
 
-    ngOnInit(): void {
-        this.actualResponses = this.choosenQuiz.questions[0].answers;
-        console.log("init",this.actualResponses);
-    }
+    ngOnInit(): void {}
 
     responseSelected(responseNumber: number) {
         if(this.actualResponses[responseNumber].isCorrect){

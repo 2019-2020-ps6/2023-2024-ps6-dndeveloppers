@@ -1,4 +1,5 @@
 import { InfoQuiz } from "src/models/infoQuiz.model";
+import { Question_Model } from "./quiz-list.mock";
 
 export const infoQuiz_INIT: InfoQuiz = {
     questionsToAskAgain: [],
@@ -12,5 +13,7 @@ export const infoQuiz_INIT: InfoQuiz = {
     displayResponses: [true,true,true,true],
     nbErrors: 0,
     showGoodAnswer: false,
-    endOfQuiz: false
+    endOfQuiz: false,
+    actualQuestion: Question_Model,
+    actualResponses: []
 }
