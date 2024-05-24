@@ -219,10 +219,9 @@ export class QuizService {
       let score = 1 - (this.infoQuiz.nbHintAskedForActualQuestion/(this.getActualQuestionNumberHint() + 3));
       console.log("score à cette question : ",score-(this.infoQuiz.nbErrors/4));
 
-      if(score > 0){
+      if(score-(this.infoQuiz.nbErrors/4) > 0){
         this.infoQuiz.actualScore += score-(this.infoQuiz.nbErrors/4); // on ajoute le score s'il est positif
       }
-      
       
       if(this.infoQuiz.nbErrors==0){
         this.infoQuiz.nbGoodAnswer++; // on a bien répondu du premier coup
