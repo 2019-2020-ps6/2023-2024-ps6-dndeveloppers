@@ -40,10 +40,12 @@ export class ComeBackComponent implements OnInit {
     }
 
     return(){
-        this.quizService.reset();
         if (this.path == "home/") {
              let admin: Profil = this.profilService.profilList$.value.at(0) || ADMIN;
             this.profilService.selectProfil(admin);
+        }
+        else if(this.path == "home/listQuiz/"){
+            this.quizService.resetInfoQuiz();
         }
         this.router.navigate([this.path]);
     }

@@ -7,19 +7,19 @@
             <span class="question">
                 <!-- OptionPhoto activée -->
                 <span *ngIf="actualProfil.optionPhoto===true; else elsePasOptionPhoto">
-                    <span *ngIf="choosenQuiz.questions[choosenQuiz.actualQuestionNumber]?.optionImageLien!==undefined; else elsePhoto">
-                        <app-question [question]="choosenQuiz.questions[choosenQuiz.actualQuestionNumber].label" [photo]="choosenQuiz.questions[choosenQuiz.actualQuestionNumber].optionImageLien" class="question"></app-question>
+                    <span *ngIf="choosenQuiz.questions[infoQuiz.actualQuestionNumber]?.optionImageLien!==undefined; else elsePhoto">
+                        <app-question [question]="choosenQuiz.questions[infoQuiz.actualQuestionNumber].label" [photo]="choosenQuiz.questions[infoQuiz.actualQuestionNumber].optionImageLien" class="question"></app-question>
                     </span>
-                    <ng-template #elsePhoto><app-question [question]="choosenQuiz.questions[choosenQuiz.actualQuestionNumber].label" class="question"></app-question></ng-template>
+                    <ng-template #elsePhoto><app-question [question]="choosenQuiz.questions[infoQuiz.actualQuestionNumber].label" class="question"></app-question></ng-template>
                 </span>
 
                 <!-- Option Photo désactivée -->
                 <ng-template #elsePasOptionPhoto> 
-                    <span *ngIf="choosenQuiz.questions[choosenQuiz.actualQuestionNumber]?.optionImageLien!==undefined; else elsePasOptionPhoto2">
-                        <app-question [question]="choosenQuiz.questions[choosenQuiz.actualQuestionNumber].optionImageQuestion" class="question"></app-question>
+                    <span *ngIf="choosenQuiz.questions[infoQuiz.actualQuestionNumber]?.optionImageLien!==undefined; else elsePasOptionPhoto2">
+                        <app-question [question]="choosenQuiz.questions[infoQuiz.actualQuestionNumber].optionImageQuestion" class="question"></app-question>
                     </span>
                     <ng-template #elsePasOptionPhoto2> 
-                        <app-question [question]="choosenQuiz.questions[choosenQuiz.actualQuestionNumber].label" class="question"></app-question> 
+                        <app-question [question]="choosenQuiz.questions[infoQuiz.actualQuestionNumber].label" class="question"></app-question> 
                     </ng-template>
                 </ng-template>
             </span>
@@ -28,13 +28,19 @@
             <button class="boutonAide" (click)="tutorielWanted()"><app-texteAdaptatif texte="Aide ?"></app-texteAdaptatif></button>
             
         </div> 
-        <div class="listIndices" *ngFor="let indiceNum of usedIndice">
-            <div class="zoneIndice">
-                <p>{{actualIndices[indiceNum].value}}</p>
+        <div class="listIndices">
+            <div class="zoneIndice" *ngIf="infoQuiz.nbHintAskedForActualQuestion>0">
+                <p>{{choosenQuiz.questions[infoQuiz.actualQuestionNumber].indice[0].value}}</p>
+            </div>
+            <div class="zoneIndice" *ngIf="infoQuiz.nbHintAskedForActualQuestion>1">
+                <p>{{choosenQuiz.questions[infoQuiz.actualQuestionNumber].indice[1].value}}</p>
+            </div>
+            <div class="zoneIndice" *ngIf="infoQuiz.nbHintAskedForActualQuestion>2">
+                <p>{{choosenQuiz.questions[infoQuiz.actualQuestionNumber].indice[2].value}}</p>
             </div>
             
         </div>
-        <app-list-reponses  [quiz]="choosenQuiz" class="listreponse"></app-list-reponses>
+        <app-list-reponses  class="listreponse"></app-list-reponses>
         <app-comeBack class="returnButton" [destination]="'quizList'"></app-comeBack>
     </div>
 </section>

@@ -8,6 +8,8 @@ import { ProfilService } from "src/services/profil.service";
 
 import { ADMIN } from "src/mocks/profil.mock";
 import { Profil } from "src/models/profil.model";
+import { InfoQuiz } from "src/models/infoQuiz.model";
+import { infoQuiz_INIT } from "src/mocks/infoQuiz.mock";
 
 @Component({
     selector: 'app-quiz',
@@ -16,11 +18,8 @@ import { Profil } from "src/models/profil.model";
 })
 
 export class QuizComponent implements OnInit {
-
+    public infoQuiz: InfoQuiz = infoQuiz_INIT;
     public choosenQuiz: Quiz = QUIZ_LIST[0];
-    public actualQuestionNumber: number = 0;
-    public actualIndices: Indice[] = QUIZ_LIST[1].questions[0].indice//this.choosenQuiz.questions[this.actualQuestionNumber].indice;
-    public usedIndice: number[] = [];
     public optionIndice : boolean | undefined;
 
     public actualProfil: Profil = ADMIN;
@@ -32,12 +31,8 @@ export class QuizComponent implements OnInit {
             
         })
 
-        this.quizService.actualIndices$.subscribe((actualIndices) => {
-            this.actualIndices = actualIndices;
-        })
-
-        this.quizService.usedIndice$.subscribe((usedIndice) => {
-            this.usedIndice = usedIndice;
+        this.quizService.infoQuiz$.subscribe((infoQuiz)=>{
+            this.infoQuiz = infoQuiz;
         })
 
         this.profilService.actualProfil$.subscribe((profil) => {
@@ -46,8 +41,6 @@ export class QuizComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log("indices",this.actualIndices);
-
         this.quizService.actualProfil$.subscribe((actualProfil) => {
             this.actualProfil = actualProfil;
         })

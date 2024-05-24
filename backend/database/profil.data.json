@@ -1,7 +1,7 @@
 [
   {
-    "nom": "admin",
-    "prenom": "admin",
+    "nom": "",
+    "prenom": "",
     "role": "admin",
     "selfStats": 1716139229677,
     "optionTailleTexte": "Moyen",
@@ -36,5 +36,24 @@
     "optionSupprimerMauvaisesReponses": true,
     "optionReposerQuestionApres": false,
     "id": 1716139318255
+  },
+  {
+    "nom": "b",
+    "prenom": "bbbbb",
+    "role": "patient",
+    "selfStats": 1716540188363,
+    "optionTailleTexte": "Moyen",
+    "tutoriel": false,
+    "optionPhoto": true,
+    "optionIndice": true,
+    "photo": "./assets/imageProfil/default.png",
+    "dateNaissance": [
+      0,
+      0,
+      0
+    ],
+    "optionSupprimerMauvaisesReponses": true,
+    "optionReposerQuestionApres": false,
+    "id": 1716540188366
   }
 ]

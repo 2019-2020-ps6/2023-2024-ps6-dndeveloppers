@@ -91,6 +91,8 @@ export const ADMIN: Profil = {
     optionTailleTexte: 'Moyen',
     tutoriel: false,
 
+    optionReposerQuestionApres: false,
+    optionSupprimerMauvaisesReponses: false,
     optionPhoto: true,
     optionIndice: true,
 

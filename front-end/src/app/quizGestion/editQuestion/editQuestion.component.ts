@@ -129,8 +129,6 @@ export class EditQuestionComponent implements OnInit {
 
         // photo
         if(this.questionForm.value.photoLien !== null && this.questionForm.value.photoTexte != null){
-            question.questionImage = true;
-            question.questionTexte = false;
             let path : String = this.questionForm.value.photoLien;
             var spliter = path.split('\\');
             let bon_path : string = "./assets/quiz/"+spliter[spliter.length-1];
