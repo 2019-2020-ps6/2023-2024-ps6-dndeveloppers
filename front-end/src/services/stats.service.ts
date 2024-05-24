@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { httpOptionsBase, serverUrl } from 'src/configs/server.config';
 import { LISTE_PATIENTS, LISTE_PROFILS } from 'src/mocks/profil-list.mock';
 import { QUIZ_LIST, QUIZ_NULL } from 'src/mocks/quiz-list.mock';
 import { Profil } from 'src/models/profil.model';
@@ -17,10 +19,25 @@ export class StatsService {
     private nbPatient: number = this.numberPatient();
     private nbQuiz: number = QUIZ_LIST.length;
     private quizDone: number = this.nbQuizDone();
+    private statsGlobalesURL: string = serverUrl + '/stats/globales';
+    private httpOptions = httpOptionsBase;
 
     public nbPatient$: BehaviorSubject<number> = new BehaviorSubject(this.nbPatient);
     public nbQuiz$: BehaviorSubject<number> = new BehaviorSubject(this.nbQuiz);
     public quizDone$: BehaviorSubject<number> = new BehaviorSubject(this.quizDone);
+
+    constructor(private http: HttpClient) {}
+
+    getStatsGlobales() {
+      this.http.get<number[]>(this.statsGlobalesURL).subscribe((statsGlobales) => {
+        this.nbPatient = statsGlobales[0];
+        this.nbPatient$.next(this.nbPatient);
+        this.nbQuiz = statsGlobales[1];
+        this.nbQuiz$.next(this.nbQuiz);
+        this.quizDone = statsGlobales[2];
+        this.quizDone$.next(this.quizDone);
+      })
+    }
 
     numberPatient() {
       let res = 0;
