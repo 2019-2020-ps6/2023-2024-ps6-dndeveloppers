@@ -1,6 +1,6 @@
 const { Router } = require('express')
 
-const { statsPatientModel } = require('../../models')
+const { statsPatientModel, ProfilModel } = require('../../models')
 const manageAllErrors = require('../../utils/routes/error-management')
 
 const router = new Router()
@@ -21,6 +21,30 @@ router.post('/', (req, res) => {
   } catch (err) {
     console.log(err);
     manageAllErrors(res, err)
+  }
+})
+
+router.put('/:profilId', (req, res) => {
+  try{
+    const idProfil = req.params.profilId.substring(1); // on enlève les ":" de :profilId
+    const profil = ProfilModel.getById(idProfil);
+    console.log("requête : ", req.body);
+    res.status(200).json(statsPatientModel.update(profil.selfStats));
+  } catch (err) {
+    console.log(err);
+    manageAllErrors(res, err);
+  }
+})
+
+router.delete('/:profilId', (req, res) => {
+  try {
+    const idProfil = req.params.profilId.substring(1); // on retire les ":" de :profilId
+    const idSelfStats = ProfilModel.getById(idProfil).selfStats;
+    statsPatientModel.delete(idSelfStats);
+    res.status(204).end();
+  } catch (err) {
+    console.log(err);
+    manageAllErrors(res, err);
   }
 })
 

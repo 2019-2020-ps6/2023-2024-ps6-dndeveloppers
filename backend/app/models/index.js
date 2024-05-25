@@ -4,7 +4,6 @@ const QuestionModel = require('./question.model.js')
 const QuizModel = require('./quiz.model.js')
 const IndiceModel = require('./indice.model.js')
 const AnswerModel = require('./answer.model.js')
-const statsGlobalesModel = require('./statsGlobales.model.js')
 const statsPatientModel = require('./statsPatient.model.js')
 const statsQuizModel = require('./statsQuiz.model.js')
 
@@ -15,7 +14,6 @@ module.exports = {
   QuizModel,
   IndiceModel,
   AnswerModel,
-  statsGlobalesModel,
   statsPatientModel,
   statsQuizModel
 }
