@@ -48,6 +48,7 @@ export class ProfilService {
 
     addProfil(profil: Profil): void {
         this.http.post<Profil>(this.profilUrl, profil, this.httpOptions).subscribe(() => this.retrievesProfils());
+        this.statsService.retrievePatients();
     }
 
     /*
@@ -67,6 +68,7 @@ export class ProfilService {
         console.log("Le profil : " ,profil.id, " a été supprimé");
         const urlWithId = this.profilUrl + '/:' + profil.id;
         this.http.delete<Profil>(urlWithId, this.httpOptions).subscribe(() => this.retrievesProfils());
+        this.statsService.retrievePatients();
       }
 
     selectProfil(profil: Profil) {

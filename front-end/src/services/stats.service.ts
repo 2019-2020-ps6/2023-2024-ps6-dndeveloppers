@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { LISTE_PATIENTS } from 'src/mocks/profil-list.mock';
+import { httpOptionsBase, serverUrl } from 'src/configs/server.config';
 import { QUIZ_LIST, QUIZ_NULL } from 'src/mocks/quiz-list.mock';
 import { Profil } from 'src/models/profil.model';
 import { Quiz } from 'src/models/quiz.model';
@@ -16,19 +16,38 @@ export class StatsService {
      * Pour les statistiques par patient
      */
 
-    constructor(private http: HttpClient){}
-
-    private listePatient: Profil[] = LISTE_PATIENTS;
+    private listePatient: Profil[] = [];
     private series = this.fillSeries();
+    private profilURL: string = serverUrl + '/profils';
+    private httpOptions = httpOptionsBase;
 
     public listePatient$: BehaviorSubject<Profil[]> = new BehaviorSubject(this.listePatient);
     public series$: BehaviorSubject<any> = new BehaviorSubject(this.series);
 
-    addPatient(patient: Profil) {
-      this.listePatient.push(patient);
+    constructor(private http: HttpClient) {
+      this.retrievePatients();
     }
 
-    addQuiz(quiz: Quiz) {
+    retrievePatients() {
+      this.http.get<Profil[]>(this.profilURL).subscribe((profilList) => {
+        let listeProfils = profilList;
+        this.listePatient = [];
+        for (let i=0; i<listeProfils.length; i++) {
+          if (listeProfils[i].role == "patient") {
+            this.listePatient.push(listeProfils[i]);
+          }
+        }
+        this.listePatient$.next(this.listePatient);
+      })
+      return this.listePatient;
+    }
+
+    /* Cette fonction n'est plus utile car listePatient subscribe au back actualisé par profilService
+    addPatient(patient: Profil) {
+      this.listePatient.push(patient);
+    }*/
+
+    addQuizToSeries(quiz: Quiz) {
       let newElement = {
         name: quiz.name,
         data: []
@@ -59,6 +78,14 @@ export class StatsService {
         num += profil.selfStats.quizRes[i];
       }
       profil.selfStats.meanScore = num/profil.selfStats.quizRes.length;
+      this.updatePatientStats(profil);
+    }
+
+    updatePatientStats(profil: Profil) {
+      console.log("Les stats du profil : ", profil.id, " ont été mise à jour");
+      const urlWithId = this.profilURL + '/:' + profil.id;
+      // LE CALL HTTP NE FONCTIONNE PAS
+      this.http.put<Profil>(urlWithId, profil, this.httpOptions).subscribe(() => this.retrievePatients());
     }
 
     /*

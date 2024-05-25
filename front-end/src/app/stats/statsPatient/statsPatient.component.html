@@ -11,8 +11,8 @@
         <li *ngIf="actualPatient.optionPhoto && !actualPatient.optionIndice">Option du patient : Photo</li>
         <li *ngIf="!actualPatient.optionPhoto && actualPatient.optionIndice">Option du patient : Indice</li>
         <li *ngIf="actualPatient.optionPhoto && actualPatient.optionIndice">Options du patient : Photo, Indice</li>
-        <li>Nombre de quiz réalisés : {{actualPatient.selfStats.nbQuizDone}}</li>
-        <li>Score moyen : {{actualPatientMeanScore}}</li>
+        <li>Nombre de quiz réalisés : {{actualPatientSelfStats.nbQuizDone}}</li>
+        <li>Score moyen : {{actualPatientSelfStats.meanScore}}</li>
     </ul>
     <div id="patientChart"></div>
 </div>

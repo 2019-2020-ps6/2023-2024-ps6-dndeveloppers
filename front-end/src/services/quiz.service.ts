@@ -53,7 +53,7 @@ export class QuizService {
   // ---------- Méthodes Appel Back ----------
 
   addQuiz(quiz: Quiz) {
-    this.statsService.addQuiz(quiz);
+    this.statsService.addQuizToSeries(quiz);
     this.quizzes.push(quiz);
     this.setUpQuiz();
     this.quizzes$.next(this.quizzes);
