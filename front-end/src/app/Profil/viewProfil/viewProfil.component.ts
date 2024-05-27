@@ -11,6 +11,9 @@ import { ProfilService } from "src/services/profil.service";
 })
 
 export class ViewProfilComponent implements OnInit {
+
+    public worstQuiz = "";
+    
     @Input()
     typeView: String = "list"; // full = afficher entièrement le profil | list = afficher comme dans la listProfil (nom/prénom/photo) | play = pour choisir un joueur dans home
 
@@ -23,6 +26,7 @@ export class ViewProfilComponent implements OnInit {
 
     selectProfil(profil:Profil){
         this.profilService.selectProfil(profil);
+        this.getWorstQuiz(profil);
         this.router.navigate(['home/listQuiz']);
     }
 
@@ -32,6 +36,8 @@ export class ViewProfilComponent implements OnInit {
 
     profilShow(str: String) {
         this.typeView=str;
+        console.log(this.profil);
+        this.getWorstQuiz(this.profil);
     }
 
     editProfil(profil:Profil){
@@ -46,6 +52,16 @@ export class ViewProfilComponent implements OnInit {
             }
         }
         return false
+    }
+
+    getWorstQuiz(profil: Profil) {
+        let worstQuizIndice = 0;
+        for (let i=0; i<profil.selfStats.quizRes.length; i++) {
+            if (profil.selfStats.quizRes[i] < profil.selfStats.quizRes[worstQuizIndice]) {
+                worstQuizIndice = i;
+            }
+        }
+        this.worstQuiz = profil.selfStats.quizDone[worstQuizIndice];
     }
     
 }
