@@ -3,10 +3,8 @@ import { Profil } from '../models/profil.model';
 import { Injectable } from '@angular/core';
 import { QuizService } from './quiz.service';
 import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
-import { StatsService } from './stats.service';
 import { HttpClient } from '@angular/common/http';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
-import { statsPatient } from 'src/models/stats/statsPatient.model';
 
 @Injectable({
     providedIn: 'root'
@@ -23,7 +21,7 @@ export class ProfilService {
     public actualProfil$: BehaviorSubject<Profil> = new BehaviorSubject(this.actualProfil);
     public actualEditingProfil$: BehaviorSubject<Profil> = new BehaviorSubject(this.actualEditingProfil);
 
-    constructor(public quizService: QuizService, public statsService: StatsService, private http: HttpClient) {
+    constructor(public quizService: QuizService, private http: HttpClient) {
         this.retrievesProfils();
         
     }
@@ -107,6 +105,8 @@ export class ProfilService {
     updateProfil(profil: Profil) {
         console.log("Le profil : " ,profil.id, " a été mise à jour");
         const urlWithId = this.profilUrl + '/:' + profil.id;
+        const urlWithIdStats = serverUrl + '/stats' + '/:' + profil.id;
+        this.http.put<Profil>(urlWithIdStats, profil ,this.httpOptions);
         this.http.put<Profil>(urlWithId, profil ,this.httpOptions).subscribe(() => this.retrievesProfils());
     }
 }

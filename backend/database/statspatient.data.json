@@ -14,10 +14,18 @@
     "options": [
       true
     ],
-    "nbQuizDone": 0,
-    "meanScore": 0,
-    "quizRes": [],
-    "quizDone": [],
+    "nbQuizDone": 3,
+    "meanScore": 91.66666666666667,
+    "quizRes": [
+      100,
+      100,
+      75
+    ],
+    "quizDone": [
+      "Acteurs",
+      "Sports",
+      "Sports"
+    ],
     "id": 1716139318253
   },
   {

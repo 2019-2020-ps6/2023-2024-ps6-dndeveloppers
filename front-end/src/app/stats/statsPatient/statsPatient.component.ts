@@ -1,9 +1,11 @@
+import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import * as Highcharts from 'highcharts'
-import { LISTE_PATIENTS, LISTE_PROFILS } from "src/mocks/profil-list.mock";
+import { serverUrl } from "src/configs/server.config";
 import { PROFIL_NULL } from "src/mocks/profil.mock";
 import { QUIZ_LIST } from "src/mocks/quiz-list.mock";
 import { Profil } from "src/models/profil.model";
+import { statsPatient } from "src/models/stats/statsPatient.model";
 import { StatsService } from "src/services/stats.service";
 
 @Component({
@@ -14,9 +16,11 @@ import { StatsService } from "src/services/stats.service";
 
 export class StatsPatientComponent implements OnInit {
 
-    public listePatient: Profil[] = LISTE_PATIENTS;
+    private profilURL: string = serverUrl + '/profils';
+
+    public listePatient: Profil[] = [];
     public actualPatient: Profil  = PROFIL_NULL;
-    public actualPatientMeanScore: number = Math.round(this.actualPatient.selfStats.meanScore*100)/100;
+    public actualPatientSelfStats: statsPatient = this.actualPatient.selfStats;
 
     public actualSeries: any[] = [];
 
@@ -46,7 +50,8 @@ export class StatsPatientComponent implements OnInit {
         series: []
     }
 
-    constructor(public statsService: StatsService){
+    constructor(private http: HttpClient, public statsService: StatsService){
+        // Pour une raison obscure, ce subscribe ne fonctionne pas lorsqu'un profil est supprimé
         this.statsService.listePatient$.subscribe((listePatient) => {
             this.listePatient = listePatient;
         })
@@ -58,25 +63,41 @@ export class StatsPatientComponent implements OnInit {
 
     ngOnInit(): void {
         this.fillSeries();
+        this.listePatient = this.statsService.retrievePatients();
     }
 
     selectedPatient(event: any) {
         let nomPatient: string = event.target.value;
+        this.http.get<Profil[]>(this.profilURL).subscribe((profilList) => {
+            const listeProfils = profilList;
+            for (let i=0; i<listeProfils.length; i++) {
+                if (listeProfils[i].nom == nomPatient) {
+                    this.actualPatient = listeProfils[i];
+                    this.actualPatientSelfStats = listeProfils[i].selfStats;
+                    console.log("stats : ",this.actualPatient)
+
+                    this.options.xAxis.categories = this.categoriesChart();
+                    for (let i=0; i<QUIZ_LIST.length; i++) {
+                        this.options.series[i].data = this.dataChart(QUIZ_LIST[i].name);
+                    }
+                    Highcharts.chart('patientChart', this.options);
+                    break;
+                }
+            }
+        })
+        /*
         for (let i=0; i<LISTE_PROFILS.length; i++) {
             if (LISTE_PROFILS[i].nom == nomPatient) {
                 this.actualPatient = LISTE_PROFILS[i];
                 this.actualPatientMeanScore = Math.round(this.actualPatient.selfStats.meanScore*100)/100;
                 break;
             }
-        }
+        }*/
+        console.log("Patient selectionné : ", nomPatient);
+        console.log("nbQuizDone : ", this.actualPatientSelfStats.nbQuizDone);
         if (nomPatient.length == 0) {
             this.actualPatient = PROFIL_NULL;
         }
-        this.options.xAxis.categories = this.categoriesChart();
-        for (let i=0; i<QUIZ_LIST.length; i++) {
-            this.options.series[i].data = this.dataChart(QUIZ_LIST[i].name);
-        }
-        Highcharts.chart('patientChart', this.options);
     }
 
     fillSeries() {

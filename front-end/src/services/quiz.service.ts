@@ -53,7 +53,7 @@ export class QuizService {
   // ---------- Méthodes Appel Back ----------
 
   addQuiz(quiz: Quiz) {
-    this.statsService.addQuiz(quiz);
+    this.statsService.addQuizToSeries(quiz);
     this.quizzes.push(quiz);
     this.setUpQuiz();
     this.quizzes$.next(this.quizzes);
@@ -239,8 +239,7 @@ export class QuizService {
         console.log("C'était la dernière question");
         console.log("score final : ",this.infoQuiz.actualScore);
         this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
-        this.statsService.addQuizDone();
-        this.statsService.meanScoreNewData(this.infoQuiz.actualScore/quiz.questions.length);
+        this.statsService.meanScoreNewData(this.infoQuiz.actualScore);
         this.statsService.usedHintNewData(this.infoQuiz.nbHintUsed);
                                           
         if (this.infoQuiz.bestStreak < this.infoQuiz.actualStreak) {
@@ -274,8 +273,7 @@ export class QuizService {
           console.log("C'était la dernière question");
           console.log("score final : ",this.infoQuiz.actualScore);
           this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
-          this.statsService.addQuizDone();
-          this.statsService.meanScoreNewData(this.infoQuiz.actualScore/quiz.questions.length);
+          this.statsService.meanScoreNewData(this.infoQuiz.actualScore);
           this.statsService.usedHintNewData(this.infoQuiz.nbHintUsed);
           this.statsService.patientScoreNewData(this.actualProfil, this.infoQuiz.actualScore/quiz.questions.length);
           this.infoQuiz.endOfQuiz = true;
