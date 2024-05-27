@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import * as Highcharts from 'highcharts'
 import { serverUrl } from "src/configs/server.config";
 import { PROFIL_NULL } from "src/mocks/profil.mock";
@@ -64,10 +64,20 @@ export class StatsPatientComponent implements OnInit {
     ngOnInit(): void {
         this.fillSeries();
         this.listePatient = this.statsService.retrievePatients();
+        if (this.nomPatient != "") {
+            this.selectedPatientWithName(this.nomPatient);
+        }
     }
+
+    @Input()
+    nomPatient: string = "";
 
     selectedPatient(event: any) {
         let nomPatient: string = event.target.value;
+        this.selectedPatientWithName(nomPatient);
+    }
+
+    selectedPatientWithName(nomPatient: string) {
         this.http.get<Profil[]>(this.profilURL).subscribe((profilList) => {
             const listeProfils = profilList;
             for (let i=0; i<listeProfils.length; i++) {
@@ -95,7 +105,7 @@ export class StatsPatientComponent implements OnInit {
         }*/
         console.log("Patient selectionné : ", nomPatient);
         console.log("nbQuizDone : ", this.actualPatientSelfStats.nbQuizDone);
-        if (nomPatient.length == 0) {
+        if (nomPatient == undefined || nomPatient.length == 0) {
             this.actualPatient = PROFIL_NULL;
         }
     }
