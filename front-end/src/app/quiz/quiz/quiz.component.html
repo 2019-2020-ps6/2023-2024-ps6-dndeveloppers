@@ -38,8 +38,8 @@
             <div class="zoneIndice" *ngIf="infoQuiz.nbHintAskedForActualQuestion>2">
                 <p>{{choosenQuiz.questions[infoQuiz.actualQuestionNumber].indice[2].value}}</p>
             </div>
-            
         </div>
+        
         <app-list-reponses  class="listreponse"></app-list-reponses>
         <app-comeBack class="returnButton" [destination]="'quizList'"></app-comeBack>
     </div>
