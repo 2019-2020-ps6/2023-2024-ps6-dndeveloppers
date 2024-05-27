@@ -105,6 +105,8 @@ export class ProfilService {
     updateProfil(profil: Profil) {
         console.log("Le profil : " ,profil.id, " a été mise à jour");
         const urlWithId = this.profilUrl + '/:' + profil.id;
+        const urlWithIdStats = serverUrl + '/stats' + '/:' + profil.id;
+        this.http.put<Profil>(urlWithIdStats, profil ,this.httpOptions);
         this.http.put<Profil>(urlWithId, profil ,this.httpOptions).subscribe(() => this.retrievesProfils());
     }
 }

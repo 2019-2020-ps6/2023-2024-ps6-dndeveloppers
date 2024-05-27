@@ -57,7 +57,7 @@ export class ListReponsesComponent implements OnInit {
                 this.couleur = ["#6958cf","#6958cf","#6958cf","#6958cf"];
                 this.quizService.updatedisableAnswerButton(true);
                 this.quizService.responseSelected(this.choosenQuiz, responseNumber);
-            }, 5000);
+            }, 1000);
         }
         else if(this.quizService.getCanClickButtonAnswer()){
             
@@ -73,7 +73,7 @@ export class ListReponsesComponent implements OnInit {
                     this.couleur = ["#6958cf","#6958cf","#6958cf","#6958cf"];
                     this.quizService.updatedisableAnswerButton(true);
                     this.quizService.responseSelected(this.choosenQuiz, responseNumber);
-                }, 5000);
+                }, 1000);
             }
             else {
                 this.quizService.responseSelected(this.choosenQuiz, responseNumber);

@@ -74,6 +74,13 @@ export class StatsPatientComponent implements OnInit {
                 if (listeProfils[i].nom == nomPatient) {
                     this.actualPatient = listeProfils[i];
                     this.actualPatientSelfStats = listeProfils[i].selfStats;
+                    console.log("stats : ",this.actualPatient)
+
+                    this.options.xAxis.categories = this.categoriesChart();
+                    for (let i=0; i<QUIZ_LIST.length; i++) {
+                        this.options.series[i].data = this.dataChart(QUIZ_LIST[i].name);
+                    }
+                    Highcharts.chart('patientChart', this.options);
                     break;
                 }
             }
@@ -91,11 +98,6 @@ export class StatsPatientComponent implements OnInit {
         if (nomPatient.length == 0) {
             this.actualPatient = PROFIL_NULL;
         }
-        this.options.xAxis.categories = this.categoriesChart();
-        for (let i=0; i<QUIZ_LIST.length; i++) {
-            this.options.series[i].data = this.dataChart(QUIZ_LIST[i].name);
-        }
-        Highcharts.chart('patientChart', this.options);
     }
 
     fillSeries() {

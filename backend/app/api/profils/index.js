@@ -35,12 +35,14 @@ router.post('/', (req, res) => {
 
 router.put('/:profilId', (req, res) => {
   try {
+    //console.log("selfStats : ",req.body.selfStats);
     
     const idProfil = req.params.profilId.substring(1); // on retire les ":" de :profilId
     const profil = ProfilModel.getById(idProfil);
     const idSelfStats = ProfilModel.getById(idProfil).selfStats
+    console.log("stats profil : ",statsPatientModel.getById(idSelfStats))
     req.body.selfStats = idSelfStats;
-    console.log("requête : ",req.body);
+    //console.log("requête : ",req.body);
     console.log("profil ancien : ",profil);
     res.status(200).json(ProfilModel.update(idProfil, req.body))
   } catch (err) {

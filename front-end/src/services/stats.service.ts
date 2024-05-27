@@ -84,10 +84,9 @@ export class StatsService {
 
     updatePatientStats(profil: Profil) {
       console.log("Les stats du profil : ", profil.id, " ont été mise à jour");
-      const urlWithId = this.profilURL + '/:' + profil.id;
-      // LE CALL HTTP NE FONCTIONNE PAS
-      this.http.put<Profil>(urlWithId, profil, this.httpOptions).subscribe(() => this.retrievePatients());
-      console.log("quizDone : ", profil.selfStats.quizDone);
+      //const urlWithId =  serverUrl + '/profils' + '/:' + profil.id;
+      const urlWithIdStats = serverUrl + '/stats' + '/:' + profil.selfStats.id;
+      this.http.put<Profil>(urlWithIdStats, profil.selfStats ,this.httpOptions).subscribe(() => this.retrievePatients());
     }
 
     /*
