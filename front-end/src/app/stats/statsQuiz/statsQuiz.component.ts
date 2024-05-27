@@ -53,13 +53,25 @@ export class StatsQuizComponent implements OnInit {
         })
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        if (this.nomQuiz != "") {
+            this.selectedQuizWithName(this.nomQuiz);
+        }
+    }
 
     @Input()
     currentQuiz: Quiz = this.actualQuiz;
 
+    @Input()
+    nomQuiz: string = "";
+
     selectedQuiz(event: any) {
         let nomQuiz: string = event.target.value;
+        document.getElementById("selector")
+        this.selectedQuizWithName(nomQuiz);            
+    }
+
+    selectedQuizWithName(nomQuiz: string) {
         if (nomQuiz.length == 0) {
             this.actualQuiz = QUIZ_NULL;
             this.options.xAxis.categories = [];

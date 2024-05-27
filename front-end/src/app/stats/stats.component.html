@@ -1,7 +1,7 @@
 <div class="stats">
     <app-header></app-header>
     <app-stats-globales></app-stats-globales>
-    <app-stats-patient></app-stats-patient>
-    <app-stats-quiz></app-stats-quiz>
+    <app-stats-patient [nomPatient]="nomPatient"></app-stats-patient>
+    <app-stats-quiz [nomQuiz]="nomQuiz"></app-stats-quiz>
     <app-comeBack class="returnButton" [destination]="'home'"></app-comeBack>
 </div>
