@@ -20,5 +20,7 @@ export interface Profil {
 
     tutoriel: boolean; // Pour savoir s'il faut afficher le tutoriel
 
+    optionTempsReponse: number, // temps d'affichage de la bonne réponse
+
     selfStats: statsPatient
 }

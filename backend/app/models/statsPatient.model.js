@@ -7,4 +7,5 @@ module.exports = new BaseModel('StatsPatient', {
     meanScore: Joi.number().required(),
     quizRes: Joi.array().required(), 
     quizDone: Joi.array().required(),     
+    idStatsPatient: Joi.number(),
 })

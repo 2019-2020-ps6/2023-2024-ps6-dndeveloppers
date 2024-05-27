@@ -19,6 +19,8 @@ module.exports = new BaseModel('Profil', {
 
     tutoriel: Joi.boolean().required(), // Pour savoir s'il faut afficher le tutoriel
 
+    optionTempsReponse: Joi.number().required(),
+
     idProfil: Joi.number(),
     selfStats: Joi.number() // selfStats: statsPatient
 })

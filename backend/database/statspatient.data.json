@@ -14,19 +14,53 @@
     "options": [
       true
     ],
-    "nbQuizDone": 3,
-    "meanScore": 91.66666666666667,
+    "nbQuizDone": 0,
+    "meanScore": 0,
+    "quizRes": [],
+    "quizDone": [],
+    "id": 1716797109903
+  },
+  {
+    "options": [
+      true
+    ],
+    "nbQuizDone": 7,
+    "meanScore": 98.21428571428571,
     "quizRes": [
       100,
       100,
-      75
+      100,
+      100,
+      87.5,
+      100,
+      100
     ],
     "quizDone": [
       "Acteurs",
+      "Acteurs",
+      "Acteurs",
       "Sports",
-      "Sports"
+      "Sports",
+      "Acteurs",
+      "Acteurs"
     ],
-    "id": 1716139318253
+    "id": 1716797400654,
+    "idStatsPatient": 1716797400657
+  },
+  {
+    "options": [
+      true
+    ],
+    "nbQuizDone": 1,
+    "meanScore": 100,
+    "quizRes": [
+      100
+    ],
+    "quizDone": [
+      "Acteurs"
+    ],
+    "id": 1716797564748,
+    "idStatsPatient": 1716797564751
   },
   {
     "options": [
@@ -36,6 +70,17 @@
     "meanScore": 0,
     "quizRes": [],
     "quizDone": [],
-    "id": 1716540188363
+    "id": 1716797670085,
+    "idStatsPatient": 1716797670087
+  },
+  {
+    "options": [
+      true
+    ],
+    "nbQuizDone": 0,
+    "meanScore": 0,
+    "quizRes": [],
+    "quizDone": [],
+    "id": 1716797749008
   }
 ]

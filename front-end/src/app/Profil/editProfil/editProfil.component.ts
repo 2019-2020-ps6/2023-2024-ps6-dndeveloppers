@@ -53,6 +53,7 @@ export class EditProfilComponent implements OnInit {
             optionSupprimerMauvaisesReponses: [this.profilEditing?.optionSupprimerMauvaisesReponses],
             optionReposerQuestionApres: [this.profilEditing?.optionReposerQuestionApres],
 
+            optionTimeReponse: [this.profilEditing?.optionTempsReponse],
             optionTailleTexte: [this.profilEditing?.optionTailleTexte],
             
         });
@@ -98,6 +99,8 @@ export class EditProfilComponent implements OnInit {
         profilToCreate.optionTailleTexte = this.profilForm.getRawValue().optionTailleTexte,
         profilToCreate.optionIndice = this.profilForm.getRawValue().optionIndice,
         profilToCreate.optionPhoto = this.profilForm.getRawValue().optionPhoto,
+        profilToCreate.optionTempsReponse = this.profilForm.getRawValue().optionTimeReponse,
+
         profilToCreate.optionSupprimerMauvaisesReponses = this.profilForm.getRawValue().optionSupprimerMauvaisesReponses,
         profilToCreate.optionReposerQuestionApres = this.profilForm.getRawValue().optionReposerQuestionApres,
         
