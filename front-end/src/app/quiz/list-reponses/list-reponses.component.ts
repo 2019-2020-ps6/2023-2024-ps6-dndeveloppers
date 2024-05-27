@@ -30,6 +30,8 @@ export class ListReponsesComponent implements OnInit {
     public infoQuiz: InfoQuiz = infoQuiz_INIT;
     public canClickButton: boolean = true;
 
+    public tempsAffichage: number = 3;
+
     constructor(public quizService: QuizService, public profilService: ProfilService){     
         this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
             this.choosenQuiz = choosenQuiz;
@@ -42,6 +44,7 @@ export class ListReponsesComponent implements OnInit {
 
         this.profilService.actualProfil$.subscribe((actualProfil)=>{
             this.profil = actualProfil;
+            this.tempsAffichage = actualProfil.optionTempsReponse;
         })
     }
 
@@ -57,7 +60,7 @@ export class ListReponsesComponent implements OnInit {
                 this.couleur = ["#6958cf","#6958cf","#6958cf","#6958cf"];
                 this.quizService.updatedisableAnswerButton(true);
                 this.quizService.responseSelected(this.choosenQuiz, responseNumber);
-            }, 1000);
+            }, this.tempsAffichage*1000);
         }
         else if(this.quizService.getCanClickButtonAnswer()){
             
@@ -73,7 +76,7 @@ export class ListReponsesComponent implements OnInit {
                     this.couleur = ["#6958cf","#6958cf","#6958cf","#6958cf"];
                     this.quizService.updatedisableAnswerButton(true);
                     this.quizService.responseSelected(this.choosenQuiz, responseNumber);
-                }, 1000);
+                }, this.tempsAffichage*1000);
             }
             else {
                 this.quizService.responseSelected(this.choosenQuiz, responseNumber);

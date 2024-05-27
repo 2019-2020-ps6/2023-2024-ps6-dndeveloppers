@@ -42,6 +42,7 @@ export class CreateProfilComponent implements OnInit {
             optionReposerQuestionApres: [false],
 
             optionTailleTexte: ['Moyen'],
+            optionTimeReponse: [3],
         });
     }
 
@@ -77,7 +78,7 @@ export class CreateProfilComponent implements OnInit {
         }
 
         profilToCreate.selfStats = JSON.parse(JSON.stringify(STATS_PATIENT_INIT));
-
+        profilToCreate.optionTempsReponse = this.profilForm.getRawValue().optionTimeReponse,
         profilToCreate.optionTailleTexte = this.profilForm.getRawValue().optionTailleTexte,
 
         profilToCreate.optionIndice = this.profilForm.getRawValue().optionIndice,
