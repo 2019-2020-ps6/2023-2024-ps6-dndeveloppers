@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: auto;
+    height: 100%;
     width: auto;
 }
 
@@ -11,32 +11,37 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    height: 100%;
+    flex-wrap: nowrap;
 }
 
 .profil {
-    margin-bottom: 20px;
     width: 100%;
 }
 
 
 .listreponse{
-    width: 100%; 
-    margin-top: -30px;   
+    width: 100%;   
 }
 
 
 .question{
     position: center;
     justify-self: stretch;
-    align-self: stretch;
+
     grid-column: 4/5;
     text-align: center;
+    width: auto;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
 .indice{
     justify-self: stretch;
     align-self: center;
     grid-column: 2/3;
+    width: auto;
+    height:auto;
 }
 
 
@@ -57,9 +62,9 @@
 
 .side-by-side {
     display: grid;
-    grid-template-columns: 10% 10% 10% auto 10% 10% 10%;
+    grid-template-columns: 10% 10% 5% auto 5% 10% 10%;
     width: 100%;
-    
+    height: fit-content;
 }
 
 .returnButton {
@@ -125,7 +130,6 @@ button:hover {
     font-family: "OpenDyslexic", sans-serif;
     font-weight: bold;
     color: black;
-
 }
 
 .reponse-texte {
@@ -162,7 +166,6 @@ button:hover {
     padding-right: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
-    margin-bottom: 2%;
     border-radius: 10px;
 }
 
@@ -177,5 +180,11 @@ button:hover {
 
     border-radius: 10px;
     cursor: pointer;
+}
 
+.listIndices {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
 }

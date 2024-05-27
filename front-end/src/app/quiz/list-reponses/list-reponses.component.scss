@@ -1,5 +1,4 @@
 .listreponse {
-    margin-top: 5%;
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: 50% 50%;
@@ -57,9 +56,6 @@
     background-color: rgb(113, 159, 117);
 }
 
-#third {
-    margin-top: 10%;
-}
 
 #endPopup {
     position: fixed;
