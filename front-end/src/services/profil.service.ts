@@ -3,10 +3,8 @@ import { Profil } from '../models/profil.model';
 import { Injectable } from '@angular/core';
 import { QuizService } from './quiz.service';
 import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
-import { StatsService } from './stats.service';
 import { HttpClient } from '@angular/common/http';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
-import { statsPatient } from 'src/models/stats/statsPatient.model';
 
 @Injectable({
     providedIn: 'root'
@@ -23,7 +21,7 @@ export class ProfilService {
     public actualProfil$: BehaviorSubject<Profil> = new BehaviorSubject(this.actualProfil);
     public actualEditingProfil$: BehaviorSubject<Profil> = new BehaviorSubject(this.actualEditingProfil);
 
-    constructor(public quizService: QuizService, public statsService: StatsService, private http: HttpClient) {
+    constructor(public quizService: QuizService, private http: HttpClient) {
         this.retrievesProfils();
         
     }
@@ -48,7 +46,6 @@ export class ProfilService {
 
     addProfil(profil: Profil): void {
         this.http.post<Profil>(this.profilUrl, profil, this.httpOptions).subscribe(() => this.retrievesProfils());
-        this.statsService.retrievePatients();
     }
 
     /*
@@ -68,7 +65,6 @@ export class ProfilService {
         console.log("Le profil : " ,profil.id, " a été supprimé");
         const urlWithId = this.profilUrl + '/:' + profil.id;
         this.http.delete<Profil>(urlWithId, this.httpOptions).subscribe(() => this.retrievesProfils());
-        this.statsService.retrievePatients();
       }
 
     selectProfil(profil: Profil) {

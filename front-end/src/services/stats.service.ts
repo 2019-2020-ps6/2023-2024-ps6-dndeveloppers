@@ -5,6 +5,7 @@ import { httpOptionsBase, serverUrl } from 'src/configs/server.config';
 import { QUIZ_LIST, QUIZ_NULL } from 'src/mocks/quiz-list.mock';
 import { Profil } from 'src/models/profil.model';
 import { Quiz } from 'src/models/quiz.model';
+import { ProfilService } from './profil.service';
 
 @Injectable({
     providedIn: 'root'
@@ -86,6 +87,7 @@ export class StatsService {
       const urlWithId = this.profilURL + '/:' + profil.id;
       // LE CALL HTTP NE FONCTIONNE PAS
       this.http.put<Profil>(urlWithId, profil, this.httpOptions).subscribe(() => this.retrievePatients());
+      console.log("quizDone : ", profil.selfStats.quizDone);
     }
 
     /*

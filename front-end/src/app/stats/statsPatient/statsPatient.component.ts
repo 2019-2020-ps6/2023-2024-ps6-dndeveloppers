@@ -63,7 +63,6 @@ export class StatsPatientComponent implements OnInit {
 
     ngOnInit(): void {
         this.fillSeries();
-        // forcing pour contrer le problème du subscribe
         this.listePatient = this.statsService.retrievePatients();
     }
 
