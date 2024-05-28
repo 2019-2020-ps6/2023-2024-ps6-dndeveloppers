@@ -10,8 +10,12 @@ import { StatsService } from "src/services/stats.service";
 
 export class IndiceComponent implements OnInit {
 
+    public notDisabled: boolean = true;
 
     constructor(public quizService: QuizService){
+        this.quizService.disableHintHelp$.subscribe((disability) => {
+            this.notDisabled = disability;
+        })
     }
 
     @Input()
@@ -19,6 +23,8 @@ export class IndiceComponent implements OnInit {
     ngOnInit(): void {}
 
     hintAsked() {
-        this.quizService.hintAsked();
+        if (this.notDisabled) {
+            this.quizService.hintAsked();
+        }
     }
 }

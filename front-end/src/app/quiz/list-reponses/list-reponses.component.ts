@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { QUIZ_LIST } from "src/mocks/quiz-list.mock";
 import { Answer } from "src/models/question.models";
 import { Quiz } from "src/models/quiz.model";
@@ -31,6 +31,7 @@ export class ListReponsesComponent implements OnInit {
     public canClickButton: boolean = true;
 
     public tempsAffichage: number = 3;
+    public buttonActivation: boolean = true;
 
     constructor(public quizService: QuizService, public profilService: ProfilService){     
         this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
@@ -52,38 +53,37 @@ export class ListReponsesComponent implements OnInit {
 
     responseSelected(responseNumber: number) {
         if(this.actualResponses[responseNumber].isCorrect){
-            this.quizService.updatedisableAnswerButton(false);
+            this.quizService.disablingHintAndHelp(false);
+            this.buttonActivation = false;
             this.couleur = ["#939393","#939393","#939393","#939393"];
             this.couleur[responseNumber] = "lightgreen";
 
             setTimeout(() => {
                 this.couleur = ["#6958cf","#6958cf","#6958cf","#6958cf"];
-                this.quizService.updatedisableAnswerButton(true);
+                this.quizService.disablingHintAndHelp(true);
+                this.buttonActivation = true;
                 this.quizService.responseSelected(this.choosenQuiz, responseNumber);
             }, this.tempsAffichage*1000);
-        }
-        else if(this.quizService.getCanClickButtonAnswer()){
-            
-            if(!this.profil.optionSupprimerMauvaisesReponses){
-                this.quizService.updatedisableAnswerButton(false);
+        } else {
+            if (!this.profil.optionSupprimerMauvaisesReponses) {
+                this.quizService.disablingHintAndHelp(false);
+                this.buttonActivation = false;
                 this.couleur = ["#939393","#939393","#939393","#939393"];
-                let goodAnswer = 0;
-                for(let i=0;i<4;i++){
-                    if(this.actualResponses[i].isCorrect) goodAnswer=i;
+                for (let i=0; i<4; i++) {
+                    if (this.actualResponses[i].isCorrect) {
+                        this.couleur[i] = "lightgreen";
+                    }
                 }
-                this.couleur[goodAnswer] = "lightgreen"
                 setTimeout(() => {
                     this.couleur = ["#6958cf","#6958cf","#6958cf","#6958cf"];
-                    this.quizService.updatedisableAnswerButton(true);
+                    this.quizService.disablingHintAndHelp(true);
+                    this.buttonActivation = true;
                     this.quizService.responseSelected(this.choosenQuiz, responseNumber);
                 }, this.tempsAffichage*1000);
-            }
-            else {
+            } else {
                 this.quizService.responseSelected(this.choosenQuiz, responseNumber);
             }
-
-        
-        }  
+        }
     }
 
     loadQuestion(nbQuestion: number) {
