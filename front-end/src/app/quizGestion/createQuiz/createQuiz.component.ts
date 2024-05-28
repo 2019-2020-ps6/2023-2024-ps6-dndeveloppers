@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
+import { Router } from '@angular/router';
 import { QuizService } from '../../../services/quiz.service';
 import { Quiz } from '../../../models/quiz.model';
 import { STATS_INIT } from 'src/mocks/statsMocks/stats-quiz.mock';
@@ -14,7 +14,7 @@ export class CreateQuizComponent implements OnInit {
   public quizForm: FormGroup;
   public themeList: String[] = []
 
-  constructor(public formBuilder: FormBuilder, public quizService: QuizService) {
+  constructor(private router: Router, public formBuilder: FormBuilder, public quizService: QuizService) {
     this.quizForm = this.formBuilder.group({
       name: [''],
       theme: [''],
@@ -34,6 +34,9 @@ export class CreateQuizComponent implements OnInit {
     quizToCreate.questions = [];
     quizToCreate.selfStats = STATS_INIT;
     console.log('Add quiz: ', quizToCreate);
+    console.log('Editing new quiz');
     this.quizService.addQuiz(quizToCreate);
+    this.quizService.editingQuiz(quizToCreate);
+    this.router.navigate(['home/gestionQuiz/editQuiz/' + quizToCreate.name]); 
   }
 }
