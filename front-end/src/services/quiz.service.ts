@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Quiz } from '../models/quiz.model';
 import { QUIZ_LIST } from '../mocks/quiz-list.mock';
-import { Answer, Indice, Question } from 'src/models/question.models';
+import { Question } from 'src/models/question.models';
 import { StatsService } from './stats.service';
 import { Profil } from 'src/models/profil.model';
 import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
-import { QUESTION_ACTOR0 } from 'src/mocks/quizQuestion/question-acteur.mock';
 import { InfoQuiz } from 'src/models/infoQuiz.model';
 import { infoQuiz_INIT } from 'src/mocks/infoQuiz.mock';
 
@@ -22,7 +21,7 @@ export class QuizService {
   private editedQuiz: Quiz = this.quizzes[0]; // quiz en cours d'édition
 
   private infoQuiz: InfoQuiz = JSON.parse(JSON.stringify(infoQuiz_INIT)); // contient les info du quiz joué en cours
-  private canClickButtonAnswer: boolean = true;
+  public disableHintHelp: boolean = true;
 
   /**
    * Observable which contains the list of the quiz.
@@ -34,6 +33,7 @@ export class QuizService {
 
   public themeList$: BehaviorSubject<String[]> = new BehaviorSubject(this.themeList);
   public editedQuiz$ : BehaviorSubject<Quiz> = new BehaviorSubject(this.editedQuiz);
+  public disableHintHelp$: BehaviorSubject<boolean> = new BehaviorSubject(this.disableHintHelp);
 
   public infoQuiz$: BehaviorSubject<InfoQuiz> = new BehaviorSubject(this.infoQuiz);
 
@@ -139,13 +139,10 @@ export class QuizService {
     return choice
   }
 
-  // si canClickButtonAnswer = false, les boutons sont désactivés
-  updatedisableAnswerButton(bool: boolean){
-    this.canClickButtonAnswer = bool;
-  }
-
-  getCanClickButtonAnswer(){
-    return this.canClickButtonAnswer;
+  disablingHintAndHelp(bool: boolean) {
+    console.log("disability called");
+    this.disableHintHelp = bool;
+    this.disableHintHelp$.next(this.disableHintHelp);
   }
 
   hintAsked(){
@@ -192,19 +189,13 @@ export class QuizService {
   }
 
   responseSelected(quiz: Quiz, responseNumber: number) {
-    if(this.canClickButtonAnswer){
-      console.log("Response selected (service POV) : ",responseNumber);
-      if(this.actualProfil.optionReposerQuestionApres){
-        this.responsesSelectedWithAskedAgain(quiz,responseNumber);
-      }
-      else {
-        this.responsesSelectedNormal(quiz,responseNumber);
-      }
+    console.log("Response selected (service POV) : ",responseNumber);
+    if(this.actualProfil.optionReposerQuestionApres){
+      this.responsesSelectedWithAskedAgain(quiz,responseNumber);
     }
     else {
-      console.log("wait ...");
+      this.responsesSelectedNormal(quiz,responseNumber);
     }
-    
   }
   
   // si l'on a l'option reposer la question plus tard
