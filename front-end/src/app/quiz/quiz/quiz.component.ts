@@ -47,6 +47,7 @@ export class QuizComponent implements OnInit {
         })
 
         for (let i=0; i<this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber].indice.length; i++) {
+            console.log("indice: ", this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber].indice)
             if (this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber].indice[i].value == "") {
                 this.indicesToDisplay.push(false);
             } else {
