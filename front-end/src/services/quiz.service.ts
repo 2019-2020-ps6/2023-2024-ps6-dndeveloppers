@@ -21,7 +21,6 @@ export class QuizService {
   private editedQuiz: Quiz = this.quizzes[0]; // quiz en cours d'édition
 
   private infoQuiz: InfoQuiz = JSON.parse(JSON.stringify(infoQuiz_INIT)); // contient les info du quiz joué en cours
-  private canClickButtonAnswer: boolean = true;
   public disableHintHelp: boolean = true;
 
   /**
@@ -140,19 +139,10 @@ export class QuizService {
     return choice
   }
 
-  // si canClickButtonAnswer = false, les boutons sont désactivés
-  updatedisableAnswerButton(bool: boolean){
-    this.canClickButtonAnswer = bool;
-  }
-
   disablingHintAndHelp(bool: boolean) {
     console.log("disability called");
     this.disableHintHelp = bool;
     this.disableHintHelp$.next(this.disableHintHelp);
-  }
-
-  getCanClickButtonAnswer(){
-    return this.canClickButtonAnswer;
   }
 
   hintAsked(){
@@ -199,19 +189,13 @@ export class QuizService {
   }
 
   responseSelected(quiz: Quiz, responseNumber: number) {
-    if(this.canClickButtonAnswer){
-      console.log("Response selected (service POV) : ",responseNumber);
-      if(this.actualProfil.optionReposerQuestionApres){
-        this.responsesSelectedWithAskedAgain(quiz,responseNumber);
-      }
-      else {
-        this.responsesSelectedNormal(quiz,responseNumber);
-      }
+    console.log("Response selected (service POV) : ",responseNumber);
+    if(this.actualProfil.optionReposerQuestionApres){
+      this.responsesSelectedWithAskedAgain(quiz,responseNumber);
     }
     else {
-      console.log("wait ...");
+      this.responsesSelectedNormal(quiz,responseNumber);
     }
-    
   }
   
   // si l'on a l'option reposer la question plus tard
