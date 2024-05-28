@@ -179,9 +179,16 @@ export class EditQuestionComponent implements OnInit {
         if (event.target instanceof HTMLInputElement) {
             if (event.target.checked) {
                 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-                checkboxes.forEach((checkbox: Element) => {
-                    if (checkbox != event.target) {
-                        (checkbox as HTMLInputElement).checked = false;
+                const editCheckboxes = [];
+                for (let i=0; i<checkboxes.length; i++) {
+                    if (checkboxes[i].classList.contains("rr")) {
+                        editCheckboxes.push(checkboxes[i]);
+                    }
+                }
+                console.log("There is ", editCheckboxes.length, " checkboxes");
+                editCheckboxes.forEach((editCheckboxes: Element) => {
+                    if (editCheckboxes != event.target) {
+                        (editCheckboxes as HTMLInputElement).checked = false;
                     }
                 })
             } else {
