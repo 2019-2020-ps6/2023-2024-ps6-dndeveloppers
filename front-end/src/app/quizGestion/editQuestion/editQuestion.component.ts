@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { Question_Model, Indice_Model1, Indice_Model2, Indice_Model3 } from "src/mocks/quiz-list.mock";
+import { Question_Model, Indice_Model1, Indice_Model2, Indice_Model3, QUIZ_LIST } from "src/mocks/quiz-list.mock";
 import { Indice } from "src/models/question.models";
 import { Answer_Model } from "src/mocks/quiz-list.mock";
 import { Answer, Question } from "src/models/question.models";
@@ -21,6 +21,9 @@ export class EditQuestionComponent implements OnInit {
     public indicesNum: boolean[] = [true, true, true];
     public numberGoodAnswer = 0;
     public texteImage: String = '';
+    public targetIndex: number = 0;
+    public url: string = window.location.href;
+    public quizName: string = "";
 
     constructor(public formBuilder: FormBuilder, public quizService: QuizService){
         this.questionForm = this.formBuilder.group({
@@ -38,6 +41,11 @@ export class EditQuestionComponent implements OnInit {
 
             goodAnswer: [this.findGoodAnswer()]
         });
+
+        let URL = this.url.split('/');
+        console.log("url : ", URL);
+        this.quizName = URL[URL.length-1];
+        console.log("url courante : ", this.quizName);
     }
 
     ngOnInit(): void {
@@ -66,6 +74,29 @@ export class EditQuestionComponent implements OnInit {
             photoLien: [],
             photoTexte: [this.texteImage],
         });
+
+        let actualQuiz;
+        for (let i=0; i<QUIZ_LIST.length; i++) {
+            if (QUIZ_LIST[i].name == this.quizName) {
+                actualQuiz = QUIZ_LIST[i];
+                break;
+            }
+        }
+        let veracity = [];
+        if (actualQuiz != undefined) {
+            for (let i=0; i<actualQuiz?.questions.length; i++) {
+                for (let j=0; j<actualQuiz.questions[i].answers.length; j++) {
+                    veracity.push(actualQuiz.questions[i].answers[j].isCorrect);
+                }
+            }
+        }
+
+        const checkboxes = document.querySelectorAll('.rr');
+        for (let i=0; i<checkboxes.length; i++) {
+            if (veracity[i]) {
+                (checkboxes[i] as HTMLInputElement).checked = true;
+            }
+        }
     }
 
     @Input()
@@ -108,7 +139,7 @@ export class EditQuestionComponent implements OnInit {
 
         let oneChecked = 0;
         const checkboxes = document.getElementsByClassName("rr");
-        for (let i=0; i<checkboxes.length; i++) {
+        for (let i=Math.floor(this.targetIndex/4)*4; i<Math.floor(this.targetIndex/4)*4 +4; i++) {
             if ((checkboxes[i] as HTMLInputElement).checked) {
                 oneChecked++;
             }
@@ -171,8 +202,33 @@ export class EditQuestionComponent implements OnInit {
         }
     }
 
-    selectResponseNumber(responseNumber: number) {
-        console.log("responseNumber: " + responseNumber);
+    selectResponseNumber(event: any, responseNumber: number) {
+        if (event.target instanceof HTMLInputElement) {
+            if (event.target.checked) {
+                const checkboxes = document.querySelectorAll('.rr');
+                let indiceTarget = 0;
+                for (let i=0; i<checkboxes.length; i++) {
+                    if (checkboxes[i] == event.target) {
+                        indiceTarget = i;
+                        this.targetIndex = i;
+                        break;
+                    }
+                }
+                let range = [];
+                for (let i=Math.floor(indiceTarget/4)*4; i<Math.floor(indiceTarget/4)*4 +4; i++) {
+                    console.log("range : ", i);
+                    range.push(checkboxes[i]);
+                }
+                console.log("There is ", range.length, " checkboxes");
+                range.forEach((checkbox: Element) => {
+                    if (checkbox != event.target) {
+                        (checkbox as HTMLInputElement).checked = false;
+                    }
+                })
+            } else {
+                event.target.checked = true;
+            }
+        }
         this.questionForm.patchValue({
             goodAnswer: responseNumber
         })
