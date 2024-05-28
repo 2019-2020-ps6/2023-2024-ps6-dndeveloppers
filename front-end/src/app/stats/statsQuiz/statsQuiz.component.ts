@@ -72,6 +72,9 @@ export class StatsQuizComponent implements OnInit {
     }
 
     selectedQuizWithName(nomQuiz: string) {
+        if (nomQuiz == undefined) {
+            return;
+        }
         if (nomQuiz.length == 0) {
             this.actualQuiz = QUIZ_NULL;
             this.options.xAxis.categories = [];
