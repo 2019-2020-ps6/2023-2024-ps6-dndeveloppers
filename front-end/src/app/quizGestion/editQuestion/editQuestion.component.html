@@ -5,28 +5,28 @@
     </label><br/>
     <label> Réponse 1 <br>
         <input class="input-custom" type="text" id="q1" [formControlName]="'q1'" required>
-        <input class="rr" type="checkbox" id="rr1" (change)="selectResponseNumber(0)">
+        <input class="rr" type="checkbox" id="rr1" (change)="selectResponseNumber($event, 0)">
         <label>Juste</label>
         <p class="indent">{{this.answers[0]}}</p>
     </label><br/>
 
     <label> Réponse 2 <br>
         <input class="input-custom" type="text" id="q2" [formControlName]="'q2'" required>
-        <input class="rr" type="checkbox" id="rr2" (change)="selectResponseNumber(1)">
+        <input class="rr" type="checkbox" id="rr2" (change)="selectResponseNumber($event, 1)">
         <label>Juste</label> 
         <p class="indent">{{this.answers[1]}}</p>
     </label><br/>
 
     <label> Réponse 3 <br>
         <input class="input-custom" type="text" id="q3" [formControlName]="'q3'" required>
-        <input class="rr" type="checkbox" id="rr3" (change)="selectResponseNumber(2)">
+        <input class="rr" type="checkbox" id="rr3" (change)="selectResponseNumber($event, 2)">
         <label>Juste</label>
         <p class="indent">{{this.answers[2]}}</p>
     </label><br/>
 
     <label> Réponse 4 <br>
         <input class="input-custom" type="text" id="q4" [formControlName]="'q4'" required>
-        <input class="rr" type="checkbox" id="rr4" (change)="selectResponseNumber(3)">
+        <input class="rr" type="checkbox" id="rr4" (change)="selectResponseNumber($event, 3)">
         <label>Juste</label>
         <p class="indent">{{this.answers[3]}}</p>
     </label><br/>

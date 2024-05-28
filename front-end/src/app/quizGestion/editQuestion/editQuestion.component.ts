@@ -66,6 +66,10 @@ export class EditQuestionComponent implements OnInit {
             photoLien: [],
             photoTexte: [this.texteImage],
         });
+
+        const str = "rr" + this.numberGoodAnswer;
+        const rightCheckbox = document.getElementById(str);
+        (rightCheckbox as HTMLInputElement).checked = true;
     }
 
     @Input()
@@ -171,8 +175,19 @@ export class EditQuestionComponent implements OnInit {
         }
     }
 
-    selectResponseNumber(responseNumber: number) {
-        console.log("responseNumber: " + responseNumber);
+    selectResponseNumber(event: any, responseNumber: number) {
+        if (event.target instanceof HTMLInputElement) {
+            if (event.target.checked) {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach((checkbox: Element) => {
+                    if (checkbox != event.target) {
+                        (checkbox as HTMLInputElement).checked = false;
+                    }
+                })
+            } else {
+                event.target.checked = true;
+            }
+        }
         this.questionForm.patchValue({
             goodAnswer: responseNumber
         })
