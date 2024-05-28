@@ -29,6 +29,20 @@ export class ProfilService {
     retrievesProfils(): void {
         this.http.get<Profil[]>(this.profilUrl).subscribe((profilList) => {
             this.profilList = profilList;
+            for (let i=0; i<this.profilList.length-1; i++) {
+                let minIndex = i;
+                for (let j=i; j<this.profilList.length; j++) {
+                    if (this.profilList[j].nom.localeCompare(this.profilList[minIndex].nom) < 0) {
+                        minIndex = j;
+                    }
+                }
+    
+                if (minIndex != i) {
+                    const tmp = this.profilList[i];
+                    this.profilList[i] = this.profilList[minIndex];
+                    this.profilList[minIndex] = tmp;
+                }
+            }
             this.profilList$.next(this.profilList);
             console.log(this.profilList);
         })

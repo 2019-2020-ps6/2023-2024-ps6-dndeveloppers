@@ -54,6 +54,20 @@ export class StatsPatientComponent implements OnInit {
         // Pour une raison obscure, ce subscribe ne fonctionne pas lorsqu'un profil est supprimé
         this.statsService.listePatient$.subscribe((listePatient) => {
             this.listePatient = listePatient;
+            for (let i=0; i<this.listePatient.length-1; i++) {
+                let minIndex = i;
+                for (let j=i; j<this.listePatient.length; j++) {
+                    if (this.listePatient[j].nom.localeCompare(this.listePatient[minIndex].nom) < 0) {
+                        minIndex = j;
+                    }
+                }
+    
+                if (minIndex != i) {
+                    const tmp = this.listePatient[i];
+                    this.listePatient[i] = this.listePatient[minIndex];
+                    this.listePatient[minIndex] = tmp;
+                }
+            }
         })
         
         this.statsService.series$.subscribe((actualSeries) => {
