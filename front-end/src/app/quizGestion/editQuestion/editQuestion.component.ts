@@ -21,6 +21,7 @@ export class EditQuestionComponent implements OnInit {
     public indicesNum: boolean[] = [true, true, true];
     public numberGoodAnswer = 0;
     public texteImage: String = '';
+    public targetIndex: number = 0;
 
     constructor(public formBuilder: FormBuilder, public quizService: QuizService){
         this.questionForm = this.formBuilder.group({
@@ -112,7 +113,7 @@ export class EditQuestionComponent implements OnInit {
 
         let oneChecked = 0;
         const checkboxes = document.getElementsByClassName("rr");
-        for (let i=0; i<checkboxes.length; i++) {
+        for (let i=Math.floor(this.targetIndex/4)*4; i<Math.floor(this.targetIndex/4)*4 +4; i++) {
             if ((checkboxes[i] as HTMLInputElement).checked) {
                 oneChecked++;
             }
@@ -178,17 +179,24 @@ export class EditQuestionComponent implements OnInit {
     selectResponseNumber(event: any, responseNumber: number) {
         if (event.target instanceof HTMLInputElement) {
             if (event.target.checked) {
-                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-                const editCheckboxes = [];
+                const checkboxes = document.querySelectorAll('.rr');
+                let indiceTarget = 0;
                 for (let i=0; i<checkboxes.length; i++) {
-                    if (checkboxes[i].classList.contains("rr")) {
-                        editCheckboxes.push(checkboxes[i]);
+                    if (checkboxes[i] == event.target) {
+                        indiceTarget = i;
+                        this.targetIndex = i;
+                        break;
                     }
                 }
-                console.log("There is ", editCheckboxes.length, " checkboxes");
-                editCheckboxes.forEach((editCheckboxes: Element) => {
-                    if (editCheckboxes != event.target) {
-                        (editCheckboxes as HTMLInputElement).checked = false;
+                let range = [];
+                for (let i=Math.floor(indiceTarget/4)*4; i<Math.floor(indiceTarget/4)*4 +4; i++) {
+                    console.log("range : ", i);
+                    range.push(checkboxes[i]);
+                }
+                console.log("There is ", range.length, " checkboxes");
+                range.forEach((checkbox: Element) => {
+                    if (checkbox != event.target) {
+                        (checkbox as HTMLInputElement).checked = false;
                     }
                 })
             } else {
