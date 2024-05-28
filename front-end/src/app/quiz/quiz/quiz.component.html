@@ -29,13 +29,13 @@
             
         </div> 
         <div class="listIndices">
-            <div class="zoneIndice" *ngIf="infoQuiz.nbHintAskedForActualQuestion>0">
+            <div class="zoneIndice" *ngIf="infoQuiz.nbHintAskedForActualQuestion>0 && indicesToDisplay[0]">
                 <p>{{choosenQuiz.questions[infoQuiz.actualQuestionNumber].indice[0].value}}</p>
             </div>
-            <div class="zoneIndice" *ngIf="infoQuiz.nbHintAskedForActualQuestion>1">
+            <div class="zoneIndice" *ngIf="infoQuiz.nbHintAskedForActualQuestion>1 && indicesToDisplay[1]">
                 <p>{{choosenQuiz.questions[infoQuiz.actualQuestionNumber].indice[1].value}}</p>
             </div>
-            <div class="zoneIndice" *ngIf="infoQuiz.nbHintAskedForActualQuestion>2">
+            <div class="zoneIndice" *ngIf="infoQuiz.nbHintAskedForActualQuestion>2 && indicesToDisplay[2]">
                 <p>{{choosenQuiz.questions[infoQuiz.actualQuestionNumber].indice[2].value}}</p>
             </div>
         </div>
