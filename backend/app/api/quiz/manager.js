@@ -1,14 +1,16 @@
-const { QuestionModel, QuizModel } = require('../../models')
+const { QuestionModel, QuizModel, statsQuizModel } = require('../../models')
 
 /**
- * Function buildQuizz.
- * This function aggregates the questions and answers from the database to build a quizz with all the data needed by the clients.
+ * Function buildQuiz.
+ * This function aggregates the questions and answers from the database to build a quiz with all the data needed by the clients.
  * @param quizId
  */
 const buildQuiz = (quizId) => {
   const quiz = QuizModel.getById(quizId)
-  const question = QuestionModel.getById(quiz.question)
-  return { ...quiz, question}
+  const questions = quiz.questions.map(questionId => QuestionModel.getById(questionId))
+  const selfStats = statsQuizModel.getById(quiz.selfStats)
+
+  return { ...quiz, questions, selfStats }
 }
 
 /**

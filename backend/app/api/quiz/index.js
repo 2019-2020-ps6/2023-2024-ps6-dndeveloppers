@@ -1,5 +1,6 @@
 const { Router } = require('express')
-const { QuizModel, QuestionModel } = require('../../models')
+
+const { QuizModel, statsQuizModel, AnswerModel, QuestionModel, IndiceModel } = require('../../models')
 const manageAllErrors = require('../../utils/routes/error-management')
 const { buildQuizzes } = require('./manager')
 
@@ -10,9 +11,11 @@ router.get('/', (req, res) => {
     const quizzes = buildQuizzes()
     res.status(200).json(quizzes)
   } catch (err) {
-    manageAllErrors(res, err)
+    console.error(err); // Affiche l'erreur dans la console du serveur
+    res.status(500).json({ error: err.message }); // Renvoie l'erreur dans la réponse HTTP
   }
 })
+
 
 router.post('/', (req, res) => {
   try {

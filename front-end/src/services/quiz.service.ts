@@ -9,14 +9,19 @@ import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
 import { QUESTION_ACTOR0 } from 'src/mocks/quizQuestion/question-acteur.mock';
 import { InfoQuiz } from 'src/models/infoQuiz.model';
 import { infoQuiz_INIT } from 'src/mocks/infoQuiz.mock';
+import { HttpClient } from '@angular/common/http';
+import { serverUrl, httpOptionsBase } from '../configs/server.config';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class QuizService {
   private actualProfil: Profil = LISTE_PROFILS[0];
   private quizzes: Quiz[] = QUIZ_LIST;
   private choosenQuiz: Quiz = this.quizzes[0];
+  private quizUrl: string = serverUrl + '/quiz';
+  private httpOptions = httpOptionsBase;
 
   private themeList: String[] = []; // liste des thèmes de quiz
   private editedQuiz: Quiz = this.quizzes[0]; // quiz en cours d'édition
@@ -39,7 +44,8 @@ export class QuizService {
 
   public url: string = "";
 
-  constructor(public statsService: StatsService) {
+  constructor(public statsService: StatsService, private http: HttpClient) {
+    this.fetchQuizzes();
     this.setUpTheme();
   }
 
@@ -52,43 +58,50 @@ export class QuizService {
 
   // ---------- Méthodes Appel Back ----------
 
-  addQuiz(quiz: Quiz) {
-    this.statsService.addQuiz(quiz);
-    this.quizzes.push(quiz);
-    this.setUpQuiz();
-    this.quizzes$.next(this.quizzes);
+  fetchQuizzes() {
+    this.http.get<Quiz[]>(this.quizUrl).subscribe(quizzes => {
+      this.quizzes = quizzes;
+      this.quizzes$.next(this.quizzes);
+      this.setUpTheme();
+    }, error => {
+      console.error('Error fetching quizzes:', error);
+    });
   }
+
+
+  addQuiz(quiz: Quiz) {
+    this.http.post<Quiz>(this.quizUrl, quiz).subscribe(newQuiz => {
+      this.quizzes.push(newQuiz);
+      this.quizzes$.next(this.quizzes);
+      this.setUpTheme();
+    }, error => {
+      console.error('Error adding quiz:', error);
+    });
+  }
+
 
   deleteQuiz(quiz: Quiz) {
-    let newQuizzes: Quiz[] = [];
-    for(let i=0;i<this.quizzes.length;i++){
-      if(this.quizzes[i].name!=quiz.name){
-        newQuizzes.push(this.quizzes[i]);        
-      }
-    }
-    this.quizzes = newQuizzes;
-    this.quizzes$.next(this.quizzes);
-    this.setUpTheme();
+    const url = `${this.quizUrl}/${quiz.id}`;
+    this.http.delete(url).subscribe(() => {
+      this.quizzes = this.quizzes.filter(q => q.id !== quiz.id);
+      this.quizzes$.next(this.quizzes);
+      this.setUpTheme();
+    }, error => {
+      console.error('Error deleting quiz:', error);
+    });
   }
+
 
   selectQuiz(quiz: Quiz) {
-    this.statsService.selectQuiz(quiz);
-
-    let quizEnCours: Quiz = this.quizzes[0];
-    for(let i=0;i<this.quizzes.length;i++){
-      if(this.quizzes[i]==quiz){
-        quizEnCours = this.quizzes[i];
-        this.choosenQuiz = this.quizzes[i];
-        this.choosenQuiz$.next(this.choosenQuiz);
-        console.log("Quiz choisit : ",this.choosenQuiz);
-      }
-    }
-    if (quizEnCours.questions === undefined) {
-      console.log("Ce quiz n'a pas de quesiton!");
-    } else {
-      console.log("Quiz valide");
-    }
+    this.http.get<Quiz>(`${this.quizUrl}/${quiz.id}`).subscribe(selectedQuiz => {
+      this.choosenQuiz = selectedQuiz;
+      this.choosenQuiz$.next(this.choosenQuiz);
+      this.statsService.selectQuiz(selectedQuiz);
+    }, error => {
+      console.error('Error selecting quiz:', error);
+    });
   }
+
 
   getQuizzes(quiz: Quiz){
     for(let i=0;i<this.quizzes.length;i++){
