@@ -21,7 +21,6 @@ export class QuizComponent implements OnInit {
     public infoQuiz: InfoQuiz = infoQuiz_INIT;
     public choosenQuiz: Quiz = QUIZ_LIST[0];
     public optionIndice: boolean | undefined;
-    public indicesToDisplay: boolean[] = [];
 
     public actualProfil: Profil = ADMIN;
     public pathImage: String = '';
@@ -45,15 +44,6 @@ export class QuizComponent implements OnInit {
         this.quizService.actualProfil$.subscribe((actualProfil) => {
             this.actualProfil = actualProfil;
         })
-
-        for (let i=0; i<this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber].indice.length; i++) {
-            console.log("indice: ", this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber].indice)
-            if (this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber].indice[i].value == "") {
-                this.indicesToDisplay.push(false);
-            } else {
-                this.indicesToDisplay.push(true);
-            }
-        }
     }
 
     @Input()

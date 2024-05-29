@@ -3,13 +3,14 @@
         <h2>Ajouter une question</h2>
         <form [formGroup]="questionForm">
 
-        <label> Question <br>
-            <input class="input-custom" type="text" id="label" [formControlName]="'label'" required>
-        </label><br/>
+        <label>Question<br/>
+            <input class="input-custom" type="text" placeholder="Question" id="label" [formControlName]="'label'" required>
+        </label>
+        <br/>
 
         <section  class="indent">
             <label> Réponse 1 <br>
-                <input class="input-custom" type="text" id="q1" [formControlName]="'q1'" required>
+                <input class="input-custom" type="text" placeholder="Réponse 1" id="q1" [formControlName]="'q1'" required>
                 <input type="checkbox" id="r1" (change)="selectResponseNumber($event, 0)">
                 <label>Juste</label>
             </label><br/>
@@ -17,7 +18,7 @@
         
         <section  class="indent">
             <label> Réponse 2 <br>
-                <input class="input-custom" type="text" id="q2" [formControlName]="'q2'" required>
+                <input class="input-custom" type="text" placeholder="Réponse 2" id="q2" [formControlName]="'q2'" required>
                 <input type="checkbox" id="r2" (change)="selectResponseNumber($event, 1)">
                 <label>Juste</label>
             </label><br/>
@@ -25,7 +26,7 @@
 
         <section  class="indent">
             <label> Réponse 3 <br>
-                <input class="input-custom" type="text" id="q3" [formControlName]="'q3'" required>
+                <input class="input-custom" type="text" placeholder="Réponse 3" id="q3" [formControlName]="'q3'" required>
                 <input type="checkbox" id="r3" (change)="selectResponseNumber($event, 2)">
                 <label>Juste</label>
             </label><br/>
@@ -33,7 +34,7 @@
         
         <section  class="indent">
             <label> Réponse 4 <br>
-                <input class="input-custom" type="text" id="q4" [formControlName]="'q4'" required>
+                <input class="input-custom" type="text" placeholder="Réponse 4" id="q4" [formControlName]="'q4'" required>
                 <input type="checkbox" id="r4" (change)="selectResponseNumber($event, 3)">
                 <label>Juste</label>
             </label><br/>
@@ -43,15 +44,15 @@
             <label> Indices:<br>
                 <div class="DAindice" *ngIf="nbIndice[0]===true">
                     <p>1.</p>
-                    <input class="input-custom" type="text" id="i1" [formControlName]="'i1'">
+                    <input class="input-custom" type="text" placeholder="Indice 1" id="i1" [formControlName]="'i1'">
                 </div>
                 <div class="DAindice" *ngIf="nbIndice[1]===true">
                     <p>2.</p>
-                    <input class="input-custom" type="text" id="i2" [formControlName]="'i2'">
+                    <input class="input-custom" type="text" placeholder="Indice 2" id="i2" [formControlName]="'i2'">
                 </div>
                 <div class="DAindice" *ngIf="nbIndice[2]===true">
                     <p>3.</p>
-                    <input class="input-custom" type="text" id="i3" [formControlName]="'i3'">
+                    <input class="input-custom" type="text" placeholder="Indice 3" id="i3" [formControlName]="'i3'">
                 </div>
 
             </label><br/>

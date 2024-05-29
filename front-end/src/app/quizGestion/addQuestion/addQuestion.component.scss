@@ -29,3 +29,9 @@
     display: flex;
     align-items: center;
 }
+
+.input-custom::placeholder {
+    color: #999;
+    font-style: italic;
+    background: linear-gradient(to bottom, transparent 50%, #f9f9f9 50%);
+}
