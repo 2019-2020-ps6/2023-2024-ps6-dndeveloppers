@@ -8,6 +8,8 @@ import { Profil } from 'src/models/profil.model';
 import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
 import { InfoQuiz } from 'src/models/infoQuiz.model';
 import { infoQuiz_INIT } from 'src/mocks/infoQuiz.mock';
+import { httpOptionsBase, serverUrl } from 'src/configs/server.config';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +25,9 @@ export class QuizService {
   private infoQuiz: InfoQuiz = JSON.parse(JSON.stringify(infoQuiz_INIT)); // contient les info du quiz joué en cours
   public disableHintHelp: boolean = true;
 
+  private quizURL: string = serverUrl + '/quiz';
+  private httpOptions = httpOptionsBase;
+
   /**
    * Observable which contains the list of the quiz.
    * Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
@@ -37,13 +42,18 @@ export class QuizService {
 
   public infoQuiz$: BehaviorSubject<InfoQuiz> = new BehaviorSubject(this.infoQuiz);
 
-  public url: string = "";
-
-  constructor(public statsService: StatsService) {
+  constructor(public statsService: StatsService, private http: HttpClient) {
+    this.retrievesQuiz();
     this.setUpTheme();
   }
 
-  
+  retrievesQuiz(){
+    this.http.get<Quiz[]>(this.quizURL).subscribe((quizList) => {
+      this.quizzes = quizList;
+      this.quizzes$.next(this.quizzes);
+      console.log(this.quizzes);
+    });
+  }
 
   selectProfil(profil: Profil) {
     this.actualProfil = profil;

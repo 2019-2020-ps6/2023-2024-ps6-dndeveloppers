@@ -34,7 +34,6 @@ export const QUESTION_SPORT0: Question = {
     ],
    optionImageLien: "./assets/quiz/foot.jpg",
    optionImageQuestion: 'Quel pays a gagné la coupe du monde de foot 2022',
-   nbIndiceUtiliseQuestion: 0
 };
 
 export const QUESTION_SPORT1: Question = {
@@ -70,5 +69,4 @@ export const QUESTION_SPORT1: Question = {
     ],
    optionImageLien: "./assets/quiz/france1998.jpg",
    optionImageQuestion: 'Quel pays a gagné la coupe du monde de foot 1998 .....',
-   nbIndiceUtiliseQuestion: 0
 };

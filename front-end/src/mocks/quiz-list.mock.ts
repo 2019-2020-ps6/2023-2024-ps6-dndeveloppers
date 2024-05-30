@@ -25,7 +25,6 @@ export const Question_Model: Question = {
     label:'',
     answers: [],
     indice: [],
-    nbIndiceUtiliseQuestion: 0
 }
 
 export const QUIZ_NULL: Quiz = {
