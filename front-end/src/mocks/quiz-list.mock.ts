@@ -33,6 +33,7 @@ export const QUIZ_NULL: Quiz = {
     questions: [],
     id: -1,
     selfStats: STATS_INIT,
+    photo: ""
 }
 
 export const QUIZ_LIST: Quiz[] = [

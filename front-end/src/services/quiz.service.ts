@@ -44,14 +44,14 @@ export class QuizService {
 
   constructor(public statsService: StatsService, private http: HttpClient) {
     this.retrievesQuiz();
-    this.setUpTheme();
   }
 
   retrievesQuiz(){
     this.http.get<Quiz[]>(this.quizURL).subscribe((quizList) => {
       this.quizzes = quizList;
       this.quizzes$.next(this.quizzes);
-      console.log(this.quizzes);
+      console.log("quiz : ",this.quizzes);
+      this.setUpTheme();
     });
   }
 
@@ -62,13 +62,19 @@ export class QuizService {
 
   // ---------- Méthodes Appel Back ----------
 
+  /*
   addQuiz(quiz: Quiz) {
     this.statsService.addQuizToSeries(quiz);
     this.quizzes.push(quiz);
     this.setUpQuiz();
     this.quizzes$.next(this.quizzes);
+  }*/
+
+  addQuiz(quiz: Quiz){
+    this.http.post<Quiz>(this.quizURL, quiz, this.httpOptions).subscribe(() => this.retrievesQuiz());
   }
 
+  /*
   deleteQuiz(quiz: Quiz) {
     let newQuizzes: Quiz[] = [];
     for(let i=0;i<this.quizzes.length;i++){
@@ -79,6 +85,12 @@ export class QuizService {
     this.quizzes = newQuizzes;
     this.quizzes$.next(this.quizzes);
     this.setUpTheme();
+  }*/
+
+  deleteQuiz(quiz : Quiz){
+    console.log("Le quiz : " ,quiz.name, " a été supprimé");
+    const urlWithId = this.quizURL + '/:' + quiz.id;
+    this.http.delete<Quiz>(urlWithId, this.httpOptions).subscribe(() => this.retrievesQuiz());
   }
 
   selectQuiz(quiz: Quiz) {
@@ -118,7 +130,6 @@ export class QuizService {
   updateInfoQuiz(){
     this.infoQuiz$.next(this.infoQuiz);
   }
-
 
   dontShowTutoriel() {
     this.actualProfil.tutoriel = false;
@@ -416,10 +427,17 @@ export class QuizService {
     this.quizzes = sortedQuizList;
   }
 
+  /*
   addQuestion(question: Question){
     this.editedQuiz.questions.push(question);
     console.log("Question ", question, " ajoutée.");
     console.log(this.editedQuiz);
+  }*/
+
+  addQuestion(question: Question){
+    question.idQuiz = this.editedQuiz.id;
+    console.log("qestion : ",question)
+    this.http.post<Question>(serverUrl + '/question', question, this.httpOptions).subscribe(() => {this.retrievesQuiz(); this.updateEditedQuiz()});
   }
 
   deleteQuestion(question: Question){
@@ -459,4 +477,15 @@ export class QuizService {
     this.deleteQuiz(quiz);
     this.addQuiz(quiz);
   }
+
+  updateEditedQuiz(){
+    for(let i=0; i< this.quizzes.length; i++){
+      if(this.quizzes[i].id == this.editedQuiz.id){
+        this.editedQuiz = this.quizzes[i]
+        this.editedQuiz$.next(this.editedQuiz)
+        console.log("okok")
+      }
+    }
+  }
 }
+

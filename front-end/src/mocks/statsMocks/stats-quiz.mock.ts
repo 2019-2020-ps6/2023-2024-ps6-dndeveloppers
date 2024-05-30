@@ -7,7 +7,7 @@ export const STATS_INIT: statsQuiz = {
     meanHintUsed: 0,
     resTab: [],
     nbHintUsed: [],
-    successPercentageByQuestion: []
+    successPercentageByQuestion: [],
 }
 
 export const STATS_ACTORS: statsQuiz = {

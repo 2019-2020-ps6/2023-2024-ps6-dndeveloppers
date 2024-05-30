@@ -2,7 +2,7 @@
     <h2>
         <span><app-texteAdaptatif texte="Nom : {{quiz.name}}"></app-texteAdaptatif></span>
         <span><app-texteAdaptatif texte="Thème: {{quiz.theme}}"></app-texteAdaptatif></span>
-        <img *ngIf="quiz.photo!==undefined && optionPhoto" id="imageQuiz" [src]=quiz.photo /><br/>
+        <img *ngIf="quiz.photo!==undefined && optionPhoto && quiz.photo!=='none'" id="imageQuiz" [src]=quiz.photo /><br/>
         <span><app-texteAdaptatif texte="Nombre de questions : {{quiz.questions.length}}"></app-texteAdaptatif></span>
     </h2>
 </div>

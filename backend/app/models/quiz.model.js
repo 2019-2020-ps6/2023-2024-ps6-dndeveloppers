@@ -7,7 +7,7 @@ module.exports = new BaseModel('Quiz', {
 
     questions: Joi.array(),
     id: Joi.number(),
-    idSelfStats: Joi.number(),
+    selfStats: Joi.number(),
 
-    photo: Joi.string().required(),
+    photo: Joi.string(),
 })
