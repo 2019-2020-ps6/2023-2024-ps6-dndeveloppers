@@ -11,8 +11,22 @@ const buildQuestion = (questionId) => {
   for(let i=0; i<4 ;i++){
     answer.push(IndiceModel.getById(question.indice[i].id))
   }
+  console.log("question x : ",{ ...question, answer, indices })
   return { ...question, answer, indices }
 }
+
+const buildQuestions = (idQuiz) => {
+    const questions = QuestionModel.get()
+    const GoodQuestions = []
+    for(let i=0;i<questions.length;i++){
+        if(questions[i].idQuiz==idQuiz){
+            GoodQuestions.push(questions[i]);
+        }
+    }
+    console.log("goodQuestions :",GoodQuestions)
+    return GoodQuestions.map((question) => buildQuestion(question.id))
+}
+
 
 const QuestionDELETE = (questionsId) => {
     try {
@@ -35,16 +49,10 @@ const QuestionsDELETE = (quizId) => {
     }
 }
 
-const filterQuestionsFromQuizz = (quizId) => {
-    const questions = QuestionModel.get()
-    const parsedId = parseInt(quizId, 10)
-    return questions.filter((question) => question.idQuiz === parsedId)
-  }
-
 
 module.exports = {
     buildQuestion,
+    buildQuestions,
     QuestionDELETE,
     QuestionsDELETE,
-    filterQuestionsFromQuizz
 }

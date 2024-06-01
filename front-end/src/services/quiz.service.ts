@@ -71,7 +71,7 @@ export class QuizService {
   }*/
 
   addQuiz(quiz: Quiz){
-    this.http.post<Quiz>(this.quizURL, quiz, this.httpOptions).subscribe(() => this.retrievesQuiz());
+    this.http.post<Quiz>(this.quizURL, quiz, this.httpOptions).subscribe(() => {this.retrievesQuiz(); this.editingQuiz(quiz)});
   }
 
   /*
@@ -397,7 +397,7 @@ export class QuizService {
     }
     this.themeList = newThemeList;
     this.themeList$.next(this.themeList);
-    console.log("Liste des thèmes actuellement présents : ",this.themeList);
+    //console.log("Liste des thèmes actuellement présents : ",this.themeList);
     this.setUpQuiz();
   }
 
@@ -411,6 +411,7 @@ export class QuizService {
 
   editingQuiz(quiz: Quiz){
     this.editedQuiz = quiz;
+    this.editedQuiz.id = this.quizzes[this.quizzes.length-1].id
     this.editedQuiz$.next(this.editedQuiz);
     console.log("edition : ",quiz);
   }
@@ -435,11 +436,21 @@ export class QuizService {
   }*/
 
   addQuestion(question: Question){
+    console.log("question add : ",this.editedQuiz)
     question.idQuiz = this.editedQuiz.id;
-    console.log("qestion : ",question)
-    this.http.post<Question>(serverUrl + '/question', question, this.httpOptions).subscribe(() => {this.retrievesQuiz(); this.updateEditedQuiz()});
+    this.http.post<Question>(serverUrl + '/question', question, this.httpOptions).subscribe(() => {
+      this.retrievesQuiz(); 
+      for(let i=0; i< this.quizzes.length; i++){
+        if(this.quizzes[i].id == this.editedQuiz.id){
+          this.editedQuiz = this.quizzes[i];
+          this.editedQuiz$.next(this.editedQuiz);
+          console.log("okok");
+        }
+      }
+    });
   }
 
+  /*
   deleteQuestion(question: Question){
     let questions: Question[] = [];
     for(let i=0;i<this.editedQuiz.questions.length;i++){
@@ -450,8 +461,12 @@ export class QuizService {
     this.editedQuiz.questions = questions;
     this.editedQuiz$.next(this.editedQuiz);
     console.log("Question supprimée");
+  }*/
+  deleteQuestion(question: Question){
+    console.log("Le question : " ,question.label, " a été supprimé");
+    const urlWithId = serverUrl + '/question' + '/:' + question.id;
+    this.http.delete<Question>(urlWithId, this.httpOptions).subscribe(() => this.retrievesQuiz());
   }
-
   editQuestion(question: Question){
     for(let i=0;i<this.editedQuiz.questions.length;i++){
       if(this.editedQuiz.questions[i].label == question.label){
@@ -476,16 +491,6 @@ export class QuizService {
     let quiz : Quiz = this.editedQuiz;
     this.deleteQuiz(quiz);
     this.addQuiz(quiz);
-  }
-
-  updateEditedQuiz(){
-    for(let i=0; i< this.quizzes.length; i++){
-      if(this.quizzes[i].id == this.editedQuiz.id){
-        this.editedQuiz = this.quizzes[i]
-        this.editedQuiz$.next(this.editedQuiz)
-        console.log("okok")
-      }
-    }
   }
 }
 

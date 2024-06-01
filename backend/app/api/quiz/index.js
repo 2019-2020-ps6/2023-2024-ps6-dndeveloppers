@@ -10,6 +10,7 @@ const router = new Router()
 router.get('/', (req, res) => {
     try {
       const quizzes = buildQuizzes()
+      //console.log("quizzes : ",quizzes)
       res.status(200).json(quizzes)
     } catch (err) {
       console.log(err)
@@ -19,28 +20,24 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   try {
-    console.log("body : ",req.body)
     const stats = statsQuizModel.create({...req.body.selfStats});
     const idStats = stats.id
     
     req.body.selfStats = idStats;
-    console.log("quiz : ",req.body)
     const quiz = QuizModel.create({...req.body})
-    res.status(200).json(quiz)
+    res.status(201).json(quiz)
   } catch (err) {
     console.log(err)
     manageAllErrors(res, err)
   }
 })
 
-router.put('/', (req, res) => {
+router.put('/:idQuiz', (req, res) => {
   try {
-    console.log("body : ",req.body)
     const stats = statsQuizModel.create({...req.body.selfStats});
     const idStats = stats.id
     
     req.body.selfStats = idStats;
-    console.log("quiz : ",req.body)
     const quiz = QuizModel.create({...req.body})
     res.status(200).json(quiz)
   } catch (err) {

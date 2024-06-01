@@ -9,6 +9,6 @@ module.exports = new BaseModel('Question', {
     optionImageLien: Joi.string(),
     optionImageQuestion: Joi.string(),
 
+    idQuiz: Joi.number().required(),
     id: Joi.number().required(),
-    idQuiz: Joi.number().required()
 })

@@ -1,10 +1,12 @@
 export interface Answer {
     value: string,
-    isCorrect: boolean
+    isCorrect: boolean,
+    id?: number
 }
 
 export interface Indice {
     value: string,
+    id?: number
 }
 
 export interface Question {
