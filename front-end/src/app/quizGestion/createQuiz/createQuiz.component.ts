@@ -37,6 +37,6 @@ export class CreateQuizComponent implements OnInit {
     console.log('Add quiz: ', quizToCreate);
     console.log('Editing new quiz');
     this.quizService.addQuiz(quizToCreate);
-    this.router.navigate(['home/gestionQuiz/editQuiz/' + quizToCreate.name]);
+    //this.router.navigate(['home/gestionQuiz/editQuiz/' + quizToCreate.name]);
   }
 }

@@ -50,8 +50,6 @@ export class EditQuestionComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log("question : ",this.question)
-        console.log("exemple q : ",QUESTION_ACTOR0)
         if (this.question != undefined){
             this.answers = [this.question.answers[0].value,this.question.answers[1].value,this.question.answers[2].value,this.question.answers[3].value];
             this.numberGoodAnswer = this.findGoodAnswer()+1;

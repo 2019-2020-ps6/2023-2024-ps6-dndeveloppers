@@ -46,12 +46,22 @@ export class QuizService {
     this.retrievesQuiz();
   }
 
-  retrievesQuiz(){
+  retrievesQuiz(idQuiz = -1){
     this.http.get<Quiz[]>(this.quizURL).subscribe((quizList) => {
       this.quizzes = quizList;
       this.quizzes$.next(this.quizzes);
       console.log("quiz : ",this.quizzes);
       this.setUpTheme();
+
+      if(idQuiz != -1){
+        for(let i=0; i< this.quizzes.length; i++){
+          if(this.quizzes[i].id == this.editedQuiz.id){
+            this.editedQuiz = this.quizzes[i];
+            this.editedQuiz$.next(this.editedQuiz);
+            console.log("okok");
+          }
+        }
+      }
     });
   }
 
@@ -71,7 +81,9 @@ export class QuizService {
   }*/
 
   addQuiz(quiz: Quiz){
-    this.http.post<Quiz>(this.quizURL, quiz, this.httpOptions).subscribe(() => {this.retrievesQuiz(); this.editingQuiz(quiz)});
+    this.http.post<Quiz>(this.quizURL, quiz, this.httpOptions).subscribe(() => {this.retrievesQuiz(); //this.editingQuiz(quiz)
+
+    });
   }
 
   /*
@@ -411,7 +423,7 @@ export class QuizService {
 
   editingQuiz(quiz: Quiz){
     this.editedQuiz = quiz;
-    this.editedQuiz.id = this.quizzes[this.quizzes.length-1].id
+    this.editedQuiz.id = quiz.id
     this.editedQuiz$.next(this.editedQuiz);
     console.log("edition : ",quiz);
   }
@@ -439,14 +451,8 @@ export class QuizService {
     console.log("question add : ",this.editedQuiz)
     question.idQuiz = this.editedQuiz.id;
     this.http.post<Question>(serverUrl + '/question', question, this.httpOptions).subscribe(() => {
-      this.retrievesQuiz(); 
-      for(let i=0; i< this.quizzes.length; i++){
-        if(this.quizzes[i].id == this.editedQuiz.id){
-          this.editedQuiz = this.quizzes[i];
-          this.editedQuiz$.next(this.editedQuiz);
-          console.log("okok");
-        }
-      }
+      this.retrievesQuiz(question.idQuiz);
+      console.log("okokok");
     });
   }
 
@@ -465,7 +471,7 @@ export class QuizService {
   deleteQuestion(question: Question){
     console.log("Le question : " ,question.label, " a été supprimé");
     const urlWithId = serverUrl + '/question' + '/:' + question.id;
-    this.http.delete<Question>(urlWithId, this.httpOptions).subscribe(() => this.retrievesQuiz());
+    this.http.delete<Question>(urlWithId, this.httpOptions).subscribe(() => this.retrievesQuiz(question.idQuiz));
   }
   editQuestion(question: Question){
     for(let i=0;i<this.editedQuiz.questions.length;i++){
