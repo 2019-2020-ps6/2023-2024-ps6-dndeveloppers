@@ -28,7 +28,6 @@ export class EditQuizComponent implements OnInit {
         this.quizService.editedQuiz$.subscribe( (quiz) => {
             this.quiz = quiz;
             this.questionListe = this.quiz.questions;
-            console.log("maj")
         });
     }
 

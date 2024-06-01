@@ -473,23 +473,14 @@ export class QuizService {
     const urlWithId = serverUrl + '/question' + '/:' + question.id;
     this.http.delete<Question>(urlWithId, this.httpOptions).subscribe(() => this.retrievesQuiz(question.idQuiz));
   }
+
   editQuestion(question: Question){
-    for(let i=0;i<this.editedQuiz.questions.length;i++){
-      if(this.editedQuiz.questions[i].label == question.label){
-        this.editedQuiz.questions[i] = question;
-        console.log("Question éditée");
-        return;
-      }
-    }
+    console.log("Question éditée");
+    this.http.put<Question>(serverUrl + '/question', question ,this.httpOptions).subscribe(() => this.retrievesQuiz());
   }
 
   editGlobalQuiz(valeurs: string[]){
-    this.editedQuiz.name = valeurs[0];
-    this.editedQuiz.theme = valeurs[1];
-    if(valeurs.length == 3 ){
-      this.editedQuiz.photo = valeurs[2];
-    }
-    this.editedQuiz$.next(this.editedQuiz);
+    this.http.put<Question>(serverUrl + '/quiz/:' + this.editedQuiz.id , valeurs ,this.httpOptions).subscribe(() => this.retrievesQuiz());
     console.log("Quiz édité");
   }
 

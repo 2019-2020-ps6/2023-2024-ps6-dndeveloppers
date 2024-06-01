@@ -55,10 +55,33 @@ router.post('/', (req, res) => {
     }
   })
 
-router.put('/:id', (req, res) => {
+router.put('/', (req, res) => {
     try {
-        const question = QuestionModel.update(req.params.id.substring(1),req.body)
-        res.status(200).json(answer)
+        const question = QuestionModel.getById(req.body.id);
+        question.label = req.body.label;
+
+        // update réponses
+        for(let i=0;i<4;i++){
+            const answer = AnswerModel.getById(question.answers[i]);
+            answer.value = req.body.answers[i].value;
+            answer.isCorrect = req.body.answers[i].isCorrect;
+            AnswerModel.update(answer.id,answer);
+        }
+
+        // update indices
+        const indices = []
+        for(let i=0; i< 3 ; i++){
+            const value = req.body.indice[i].value;
+            if(value != ""){
+                const indice = IndiceModel.create({value})
+                indices.push(indice.id)
+            }          
+        }
+        for(let i=0;i<question.indice.length;i++){
+            IndiceModel.delete(question.indice[i])
+        }
+        question.indice = indices;
+        res.status(200).json(QuestionModel.update(question.id, question))
     } catch (err) {
         console.log(err)
         manageAllErrors(res, err)
@@ -74,7 +97,7 @@ router.delete('/:id', (req, res) => {
         //       -- dans le manager --
         // on supprime la question du quiz
         const numQuestion = 0;
-        for(let i=0;i<quiz.questions.lenght;i++){
+        for(let i=0;i<quiz.questions.length;i++){
             if(quiz.questions[i].id == idQuestion){
                 numQuestion = i;
             }

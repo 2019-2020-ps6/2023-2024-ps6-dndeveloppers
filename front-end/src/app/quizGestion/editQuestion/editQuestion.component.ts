@@ -199,6 +199,9 @@ export class EditQuestionComponent implements OnInit {
             question.optionImageLien = bon_path,
             question.optionImageQuestion = this.questionForm.value.photoTexte;
         }
+
+        question.id = this.question?.id;
+        question.idQuiz = this.question?.idQuiz;
         if (oneChecked == 1) {
             this.quizService.editQuestion(question);
         } else {
