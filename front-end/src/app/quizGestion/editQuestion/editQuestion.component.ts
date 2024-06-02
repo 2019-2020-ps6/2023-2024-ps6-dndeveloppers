@@ -79,28 +79,23 @@ export class EditQuestionComponent implements OnInit {
             photoTexte: [this.texteImage],
         });
 
-        let actualQuiz;
-        for (let i=0; i<QUIZ_LIST.length; i++) {
-            if (QUIZ_LIST[i].name == this.quizName) {
-                actualQuiz = QUIZ_LIST[i];
-                break;
-            }
-        }
-        let veracity = [];
-        if (actualQuiz != undefined) {
-            for (let i=0; i<actualQuiz?.questions.length; i++) {
-                for (let j=0; j<actualQuiz.questions[i].answers.length; j++) {
-                    veracity.push(actualQuiz.questions[i].answers[j].isCorrect);
+        this.quizService.editedQuiz$.subscribe((editedQuiz) => {
+            let veracity = [];
+            if (editedQuiz != undefined) {
+                for (let i=0; i<editedQuiz?.questions.length; i++) {
+                    for (let j=0; j<editedQuiz.questions[i].answers.length; j++) {
+                        veracity.push(editedQuiz.questions[i].answers[j].isCorrect);
+                    }
                 }
             }
-        }
 
-        const checkboxes = document.querySelectorAll('.rr');
-        for (let i=0; i<checkboxes.length; i++) {
-            if (veracity[i]) {
-                (checkboxes[i] as HTMLInputElement).checked = true;
+            const checkboxes = document.querySelectorAll('.rr');
+            for (let i=0; i<checkboxes.length; i++) {
+                if (veracity[i]) {
+                    (checkboxes[i] as HTMLInputElement).checked = true;
+                }
             }
-        }
+        })  
     }
 
     @Input()
