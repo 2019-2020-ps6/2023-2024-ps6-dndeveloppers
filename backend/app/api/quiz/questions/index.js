@@ -19,43 +19,20 @@ router.post('/', (req, res) => {
         console.log("body : ",req.body)
         // on ajoute les réponses
         let answers = []
-        let idInit = -1;
         for(let i=0; i<4;i++){
-            
             let value = req.body.answers[i].value;
             let isCorrect = req.body.answers[i].isCorrect
-            if(idInit != -1){
-                idInit++;
-                let answer = AnswerModel.create( {value,isCorrect})
-                answer.id = idInit
-                answers.push(answer.id)
-            }
-            else{
-                let answer = AnswerModel.create( {value,isCorrect})
-                idInit = answer.id
-                answers.push(answer.id)
-            }
-
+            let answer = AnswerModel.create( {value,isCorrect})
+            answers.push(answer.id)
         }
         
         // on ajoute les indice
         let indices = []
-        idInit = -1;
         for(let i=0; i< 3 ; i++){
             let value = req.body.indice[i].value;
             if(value != ""){
-                if(idInit == -1){
-                    let indice = IndiceModel.create({value})
-                    indices.push(indice.id)
-                    idInit = indice.id
-                }
-                else {
-                    idInit++;
-                    let indice = IndiceModel.create({value})
-                    indice.id = idInit
-                    indices.push(indice.id)
-                }
-                
+                let indice = IndiceModel.create({value})
+                indices.push(indice.id)
             }          
         }
 

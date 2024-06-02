@@ -20,6 +20,7 @@ export class StatsService {
      */
 
     private listePatient: Profil[] = [];
+    
     private series = [];
     private profilURL: string = serverUrl + '/profils';
     private httpOptions = httpOptionsBase;
@@ -29,6 +30,9 @@ export class StatsService {
 
     constructor(private http: HttpClient) {
       this.retrievePatients();
+      this.http.get<Quiz[]>(serverUrl + '/quiz').subscribe((quizzes) => {
+        this.fillSeries(quizzes)
+      })
     }
 
     retrievePatients() {
@@ -43,14 +47,6 @@ export class StatsService {
         this.listePatient$.next(this.listePatient);
       })
       return this.listePatient;
-    }
-/*
-    addQuizToSeries(quiz: Quiz) {
-      let newElement = {
-        name: quiz.name,
-        data: []
-      }
-      this.series.push(newElement);
     }
 
     fillSeries(quizzes : Quiz[]) {
@@ -67,7 +63,7 @@ export class StatsService {
       }
       return res;
     }
-*/
+
     patientScoreNewData(profil: Profil, score: number) {
       profil.selfStats.nbQuizDone++;
       profil.selfStats.quizRes.push(score*100);

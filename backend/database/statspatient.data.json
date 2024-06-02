@@ -24,8 +24,8 @@
     "options": [
       true
     ],
-    "nbQuizDone": 38,
-    "meanScore": 83.36988304093569,
+    "nbQuizDone": 40,
+    "meanScore": 83.5763888888889,
     "quizRes": [
       100,
       100,
@@ -64,7 +64,9 @@
       100,
       75,
       100,
-      25
+      25,
+      100,
+      75
     ],
     "quizDone": [
       "Acteurs",
@@ -94,6 +96,8 @@
       "test",
       "test",
       "test",
+      "a",
+      "a",
       "a",
       "a",
       "a",
