@@ -108,7 +108,7 @@ export class StatsService {
 
       // update moyenne pour chaque question
       for(let i=0; i< infoQuiz.scoreForEachQuestion.length;i++){
-        let score = infoQuiz.scoreForEachQuestion.at(0);
+        let score = infoQuiz.scoreForEachQuestion.at(i);
         if(score != undefined){
           if(chosenQuizStats.successPercentageByQuestion.length <= i){ // cas stats pour question nouvelle
             chosenQuizStats.successPercentageByQuestion.push(score)
