@@ -5,9 +5,12 @@
     <section class="Topbox">
         <h2> Liste des patients : </h2>
     </section>
-
+    
+    <div class="recherchePatient">
+        <input class="search-barPatient" type="text" placeholder="Rechercher un patient" [(ngModel)]="searchTermPatient" />
+    </div>
     <div class="profil-list">
-        <div *ngFor="let profil of profilList">
+        <div *ngFor="let profil of filterProfilsPatient()">
             <app-viewProfil *ngIf="profil.role === 'patient'" [profil]="profil"></app-viewProfil>
         </div>
     </div>
@@ -15,8 +18,12 @@
     <section class="Topbox">
         <h2> Liste du personnel : </h2>
     </section>
+
+    <div class="recherchePersonnel">
+        <input class="search-barPersonnel" type="text" placeholder="Rechercher un soignant" [(ngModel)]="searchTermPersonnel" />
+    </div>
     <div class="profil-list">
-        <div *ngFor="let profil of profilList">
+        <div *ngFor="let profil of filterProfilsPersonnel()">
             <app-viewProfil *ngIf="profil.role === 'personnel'" [profil]="profil"></app-viewProfil>
         </div>
     </div>

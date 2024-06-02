@@ -68,5 +68,5 @@ export class ListQuizComponent implements OnInit {
     } else {
         return this.quizList;
     }
-}
+  }
 }
