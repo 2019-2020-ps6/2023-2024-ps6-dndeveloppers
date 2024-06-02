@@ -3,10 +3,16 @@
 <section class="homePage">
     <button class="boutonHome" (click)="choixProfil()">JOUER A UN QUIZ
     </button><br/>
-    <div *ngIf="showProfil" class="profil-list">
-        <div *ngFor="let profil of profilList">
-            <app-viewProfil *ngIf="profil.role !== 'admin'" [typeView]="'play'" [profil]="profil"></app-viewProfil>
+    <div class="listProfilHome" *ngIf="showProfil">
+        <div class="recherche">
+            <input class="search-bar" type="text" placeholder="Rechercher un profil" [(ngModel)]="searchTerm" />
         </div>
+        <div  class="profil-list">
+            <div *ngFor="let profil of filterProfils()">
+                <app-viewProfil *ngIf="profil.role !== 'admin'" [typeView]="'play'" [profil]="profil"></app-viewProfil>
+            </div>
+        </div>
+        
     </div>
     <button class="boutonHome" [routerLink]="['gestionQuiz']" >GESTION DES QUIZ</button><br/>
     <button class="boutonHome" [routerLink]="['listProfil']" >GESTION DES PROFILS</button><br/>

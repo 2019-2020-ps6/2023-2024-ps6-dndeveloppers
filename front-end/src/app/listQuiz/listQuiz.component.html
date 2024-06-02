@@ -1,7 +1,10 @@
 <app-header></app-header>
 
+<div class="recherche">
+    <input class="search-bar" type="text" placeholder="Rechercher un quiz" [(ngModel)]="searchTerm" />
+</div>
 <div class="quiz-list">
-    <div class="quiz" *ngFor="let quiz of quizList">
+    <div class="quiz" *ngFor="let quiz of filterQuizs()">
         <choixQuiz [quiz]="quiz" (quizSelected)="quizSelected(quiz)" (deleteQuiz)="deleteQuiz(quiz)"></choixQuiz>
     </div>
 </div>

@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
 
     public profilList: Profil[] = [];
     public showProfil: boolean = false;
+    public searchTerm: string = '';
 
     constructor(public profilService: ProfilService){
         this.profilService.profilList$.subscribe((profilList) => {
@@ -23,6 +24,17 @@ export class HomeComponent implements OnInit {
 
     choixProfil(){
         this.showProfil = !this.showProfil;
+    }
+
+    filterProfils() {
+        if (this.searchTerm) {
+            return this.profilList.filter(profil => 
+                profil.nom.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+                profil.prenom.toLowerCase().includes(this.searchTerm.toLowerCase())
+            );
+        } else {
+            return this.profilList;
+        }
     }
     
 }
