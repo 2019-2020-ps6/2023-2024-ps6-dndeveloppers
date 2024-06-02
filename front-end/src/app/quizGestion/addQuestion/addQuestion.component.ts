@@ -21,14 +21,14 @@ export class AddQuestionComponent implements OnInit {
 
     constructor(public formBuilder: FormBuilder, public quizService: QuizService){
         this.questionForm = this.formBuilder.group({
-            label: ['q1'],
-            q1: ['r1'],
-            q2: ['r2'],
-            q3: ['r3'],
-            q4: ['r4'],
-            i1: ['i1'],
-            i2: ['i2'],
-            i3: ['i3'],
+            label: [''],
+            q1: [''],
+            q2: [''],
+            q3: [''],
+            q4: [''],
+            i1: [''],
+            i2: [''],
+            i3: [''],
             goodAnswer: [0]
         });
     }

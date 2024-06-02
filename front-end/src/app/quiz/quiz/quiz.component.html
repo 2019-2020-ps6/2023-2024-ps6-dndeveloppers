@@ -15,7 +15,7 @@
 
                 <!-- Option Photo désactivée -->
                 <ng-template #elsePasOptionPhoto> 
-                    <span *ngIf="choosenQuiz.questions[infoQuiz.actualQuestionNumber]?.optionImageLien!==undefined; else elsePasOptionPhoto2">
+                    <span *ngIf="choosenQuiz.questions[infoQuiz.actualQuestionNumber]?.optionImageLien!==undefined && choosenQuiz.questions[infoQuiz.actualQuestionNumber]?.optionImageLien!= '' && choosenQuiz.questions[infoQuiz.actualQuestionNumber]?.optionImageLien!= 'none'; else elsePasOptionPhoto2">
                         <app-question [question]="choosenQuiz.questions[infoQuiz.actualQuestionNumber].optionImageQuestion" class="question"></app-question>
                     </span>
                     <ng-template #elsePasOptionPhoto2> 

@@ -77,6 +77,13 @@ router.put('/', (req, res) => {
         for(let i=0;i<question.indice.length;i++){
             IndiceModel.delete(question.indice[i])
         }
+
+        if(req.body.optionImageLien != "none"){
+            question.optionImageLien = req.body.optionImageLien
+        }
+        if(req.body.optionImageQuestion != "none"){
+            question.optionImageQuestion = req.body.optionImageQuestion
+        }
         question.indice = indices;
         res.status(200).json(QuestionModel.update(question.id, question))
     } catch (err) {
