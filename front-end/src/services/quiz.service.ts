@@ -433,7 +433,7 @@ export class QuizService {
   }
 
   editQuestion(question: Question){
-    console.log("Question éditée");
+    console.log("Question éditée : ",question);
     this.http.put<Question>(serverUrl + '/question', question ,this.httpOptions).subscribe(() => this.retrievesQuiz());
   }
 

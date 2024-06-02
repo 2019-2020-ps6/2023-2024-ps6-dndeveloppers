@@ -75,7 +75,7 @@ export class EditQuestionComponent implements OnInit {
             i2: [this.indice[1]],
             i3: [this.indice[2]],
 
-            photoLien: [],
+            photoLien: [this.question?.optionImageLien],
             photoTexte: [this.texteImage],
         });
 
@@ -187,13 +187,22 @@ export class EditQuestionComponent implements OnInit {
         console.log("question : ",question)
 
         // photo
-        if(this.questionForm.value.photoLien !== null && this.questionForm.value.photoTexte != null){
+        if(this.questionForm.value.photoLien != null && this.questionForm.value.photoTexte != null && this.questionForm.value.photoLien != "" && this.questionForm.value.photoTexte != ""){
+            console.log("photo")
             let path : String = this.questionForm.value.photoLien;
             var spliter = path.split('\\');
             let bon_path : string = "./assets/quiz/"+spliter[spliter.length-1];
             question.optionImageLien = bon_path,
             question.optionImageQuestion = this.questionForm.value.photoTexte;
         }
+        else {
+            question.optionImageLien = "none"
+            question.optionImageQuestion = "none"
+        }
+
+        console.log(question.optionImageLien)
+        console.log(question.optionImageQuestion)
+
 
         question.id = this.question?.id;
         question.idQuiz = this.question?.idQuiz;

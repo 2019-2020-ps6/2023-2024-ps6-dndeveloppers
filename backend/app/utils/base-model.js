@@ -53,7 +53,7 @@ module.exports = class BaseModel {
   }
 
   update(id, obj) {
-    if (typeof id === 'string') id = parseInt(id, 10)
+    if (typeof id === 'string') id = parseFloat(id, 10)
     const prevObjIndex = this.items.findIndex((item) => item.id === id)
     if (prevObjIndex === -1) throw new NotFoundError(`Cannot update ${this.name} id=${id} : not found`)
     const updatedItem = { ...this.items[prevObjIndex], ...obj }
@@ -65,7 +65,7 @@ module.exports = class BaseModel {
   }
 
   delete(id) {
-    if (typeof id === 'string') id = parseInt(id, 10)
+    if (typeof id === 'string') id = parseFloat(id, 10)
     const objIndex = this.items.findIndex((item) => item.id === id)
     if (objIndex === -1) throw new NotFoundError(`Cannot delete ${this.name} id=${id} : not found`)
     this.items = this.items.filter((item) => item.id !== id)

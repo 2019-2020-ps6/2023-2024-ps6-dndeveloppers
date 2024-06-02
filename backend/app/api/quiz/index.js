@@ -37,6 +37,7 @@ router.put('/:id', (req, res) => {
     console.log("body : ",req.body)
     
     if(req.body.selfStats == undefined){ // cas valeurs globales
+      console.log("id : ",req.params.id.substring(1))
       const quiz = QuizModel.getById(req.params.id.substring(1));
       quiz.name = req.body[0]
       quiz.theme = req.body[1]
