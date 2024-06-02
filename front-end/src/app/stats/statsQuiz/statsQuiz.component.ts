@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { Router } from '@angular/router';
 import * as Highcharts from 'highcharts'
 import { QUIZ_NULL } from "src/mocks/quiz-list.mock";
 import { Quiz } from "src/models/quiz.model";
@@ -15,6 +16,7 @@ export class StatsQuizComponent implements OnInit {
 
     public listeQuiz: Quiz[] = [];
     public actualQuiz: Quiz = QUIZ_NULL;
+    public actualQuizName: string = this.actualQuiz.name;
     public actualQuizMeanScore: number = Math.round(this.actualQuiz.selfStats.meanScore*100)/100;
     public actualCategories: string[] = [];
     public actualData: number[] = [];
@@ -48,7 +50,7 @@ export class StatsQuizComponent implements OnInit {
         }]
     }
 
-    constructor(public statsService: StatsService, public quizService: QuizService){
+    constructor(private router: Router, public statsService: StatsService, public quizService: QuizService){
         this.quizService.choosenQuiz$.subscribe((actualQuiz) => {
             this.actualQuiz = actualQuiz;
         })
@@ -72,6 +74,7 @@ export class StatsQuizComponent implements OnInit {
 
     selectedQuiz(event: any) {
         let nomQuiz: string = event.target.value;
+        this.actualQuizName = nomQuiz;
         document.getElementById("selector")
         this.selectedQuizWithName(nomQuiz);            
     }
@@ -116,5 +119,16 @@ export class StatsQuizComponent implements OnInit {
         }
         console.log(data);
         return data
+    }
+
+    goToEdit() {
+        let quiz: Quiz = QUIZ_NULL;
+        for (let i=0; i<this.listeQuiz.length; i++) {
+            if (this.listeQuiz[i].name == this.actualQuizName) {
+                quiz = this.listeQuiz[i];
+            }
+        }
+        this.quizService.editingQuiz(quiz);
+        this.router.navigate(['home/gestionQuiz/editQuiz/' + this.actualQuizName])
     }
 }
