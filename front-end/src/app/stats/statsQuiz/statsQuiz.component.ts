@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
 import * as Highcharts from 'highcharts'
-import { QUIZ_LIST, QUIZ_NULL } from "src/mocks/quiz-list.mock";
+import { QUIZ_NULL } from "src/mocks/quiz-list.mock";
 import { Quiz } from "src/models/quiz.model";
+import { QuizService } from "src/services/quiz.service";
 import { StatsService } from "src/services/stats.service";
 
 @Component({
@@ -12,7 +13,7 @@ import { StatsService } from "src/services/stats.service";
 
 export class StatsQuizComponent implements OnInit {
 
-    public listeQuiz: Quiz[] = QUIZ_LIST;
+    public listeQuiz: Quiz[] = [];
     public actualQuiz: Quiz = QUIZ_NULL;
     public actualQuizMeanScore: number = Math.round(this.actualQuiz.selfStats.meanScore*100)/100;
     public actualCategories: string[] = [];
@@ -47,9 +48,13 @@ export class StatsQuizComponent implements OnInit {
         }]
     }
 
-    constructor(public statsService: StatsService){
-        this.statsService.actualQuiz$.subscribe((actualQuiz) => {
+    constructor(public statsService: StatsService, public quizService: QuizService){
+        this.quizService.choosenQuiz$.subscribe((actualQuiz) => {
             this.actualQuiz = actualQuiz;
+        })
+
+        this.quizService.quizzes$.subscribe( (quizzes) => {
+            this.listeQuiz = quizzes
         })
     }
 
@@ -80,9 +85,9 @@ export class StatsQuizComponent implements OnInit {
             this.options.xAxis.categories = [];
             this.options.series[0].data = [];
         } else {
-            for (let i=0; i<QUIZ_LIST.length; i++) {
-                if (QUIZ_LIST[i].name == nomQuiz) {
-                    this.actualQuiz = QUIZ_LIST[i];
+            for (let i=0; i<this.listeQuiz.length; i++) {
+                if (this.listeQuiz[i].name == nomQuiz) {
+                    this.actualQuiz = this.listeQuiz[i];
                     this.actualQuizMeanScore = Math.round(this.actualQuiz.selfStats.meanScore*100)/100;
                     break;
                 }

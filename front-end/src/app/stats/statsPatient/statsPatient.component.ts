@@ -3,9 +3,10 @@ import { Component, Input, OnInit } from "@angular/core";
 import * as Highcharts from 'highcharts'
 import { serverUrl } from "src/configs/server.config";
 import { PROFIL_NULL } from "src/mocks/profil.mock";
-import { QUIZ_LIST } from "src/mocks/quiz-list.mock";
 import { Profil } from "src/models/profil.model";
+import { Quiz } from "src/models/quiz.model";
 import { statsPatient } from "src/models/stats/statsPatient.model";
+import { QuizService } from "src/services/quiz.service";
 import { StatsService } from "src/services/stats.service";
 
 @Component({
@@ -21,6 +22,7 @@ export class StatsPatientComponent implements OnInit {
     public listePatient: Profil[] = [];
     public actualPatient: Profil  = PROFIL_NULL;
     public actualPatientSelfStats: statsPatient = this.actualPatient.selfStats;
+    public quizzes: Quiz[] = [];
 
     public actualSeries: any[] = [];
 
@@ -50,7 +52,7 @@ export class StatsPatientComponent implements OnInit {
         series: []
     }
 
-    constructor(private http: HttpClient, public statsService: StatsService){
+    constructor(private http: HttpClient, public statsService: StatsService, public quizService: QuizService){
         // Pour une raison obscure, ce subscribe ne fonctionne pas lorsqu'un profil est supprimé
         this.statsService.listePatient$.subscribe((listePatient) => {
             this.listePatient = listePatient;
@@ -72,6 +74,10 @@ export class StatsPatientComponent implements OnInit {
         
         this.statsService.series$.subscribe((actualSeries) => {
             this.actualSeries = actualSeries;
+        })
+
+        this.quizService.quizzes$.subscribe( (quizzes) => {
+            this.quizzes = quizzes;
         })
     }
 
@@ -101,8 +107,8 @@ export class StatsPatientComponent implements OnInit {
                     console.log("stats : ",this.actualPatient)
 
                     this.options.xAxis.categories = this.categoriesChart();
-                    for (let i=0; i<QUIZ_LIST.length; i++) {
-                        this.options.series[i].data = this.dataChart(QUIZ_LIST[i].name);
+                    for (let i=0; i<this.quizzes.length; i++) {
+                        this.options.series[i].data = this.dataChart(this.quizzes[i].name);
                     }
                     Highcharts.chart('patientChart', this.options);
                     break;
@@ -128,8 +134,8 @@ export class StatsPatientComponent implements OnInit {
         console.log(this.options.series);
         this.options.series.splice(0, this.options.series.length);
         console.log(this.options.series);
-        for (let i=0; i<QUIZ_LIST.length; i++) {
-            let name = QUIZ_LIST[i].name;
+        for (let i=0; i<this.quizzes.length; i++) {
+            let name = this.quizzes[i].name;
             let data: number[] = [];
             let tab = {
                 name: name,

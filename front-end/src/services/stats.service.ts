@@ -90,14 +90,6 @@ export class StatsService {
      * Pour les statistiques par quiz
      */
 
-    private actualQuiz: Quiz = QUIZ_NULL;
-    private actualScore: number = 0;
-    private usedHint: number = 0;
-
-    public actualQuiz$: BehaviorSubject<Quiz> = new BehaviorSubject(this.actualQuiz);
-    public actualScore$: BehaviorSubject<number> = new BehaviorSubject(this.actualScore);
-    public usedHint$: BehaviorSubject<number> = new BehaviorSubject(this.usedHint);
-
     // à la fin d'un quiz on met ses stats à jour 
     updateQuizStats(infoQuiz : InfoQuiz, chosenQuizStats : statsQuiz){
       chosenQuizStats.playedTime++;
