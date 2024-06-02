@@ -37,12 +37,25 @@ router.put('/:id', (req, res) => {
     console.log("body : ",req.body)
     
     if(req.body.selfStats == undefined){ // cas valeurs globales
-      console.log("id : ",req.params.id)
       const quiz = QuizModel.getById(req.params.id.substring(1));
       quiz.name = req.body[0]
       quiz.theme = req.body[1]
       if(req.body[2] != undefined) quiz.photo = req.body[2]
       res.status(200).json(QuizModel.update(req.params.id.substring(1), quiz))
+    }
+    else {
+      console.log("id : ",req.params.id.substring(1))
+      const quiz = QuizModel.getById(req.params.id.substring(1))
+      const selfStats = statsQuizModel.getById(quiz.selfStats)
+      selfStats.playedTime = req.body.selfStats.playedTime
+      selfStats.meanScore = req.body.selfStats.meanScore
+      selfStats.meanHintUsed = req.body.selfStats.meanHintUsed
+      selfStats.resTab = req.body.selfStats.resTab
+      selfStats.nbHintUsed = req.body.selfStats.nbHintUsed
+      selfStats.successPercentageByQuestion = req.body.selfStats.successPercentageByQuestion
+
+      console.log("self : ",selfStats)
+      res.status(200).json(statsQuizModel.update(selfStats.id,selfStats))
     }
   } catch (err) {
     console.log(err)

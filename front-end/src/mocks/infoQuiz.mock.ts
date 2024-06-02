@@ -15,5 +15,6 @@ export const infoQuiz_INIT: InfoQuiz = {
     showGoodAnswer: false,
     endOfQuiz: false,
     actualQuestion: Question_Model,
-    actualResponses: []
+    actualResponses: [],
+    scoreForEachQuestion: []
 }
