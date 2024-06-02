@@ -25,7 +25,6 @@ export const Question_Model: Question = {
     label:'',
     answers: [],
     indice: [],
-    nbIndiceUtiliseQuestion: 0
 }
 
 export const QUIZ_NULL: Quiz = {
@@ -34,6 +33,7 @@ export const QUIZ_NULL: Quiz = {
     questions: [],
     id: -1,
     selfStats: STATS_INIT,
+    photo: ""
 }
 
 export const QUIZ_LIST: Quiz[] = [

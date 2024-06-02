@@ -33,10 +33,10 @@ export class CreateQuizComponent implements OnInit {
     const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
     quizToCreate.questions = [];
     quizToCreate.selfStats = STATS_INIT;
+    quizToCreate.photo = "none";
     console.log('Add quiz: ', quizToCreate);
     console.log('Editing new quiz');
     this.quizService.addQuiz(quizToCreate);
-    this.quizService.editingQuiz(quizToCreate);
-    this.router.navigate(['home/gestionQuiz/editQuiz/' + quizToCreate.name]); 
+    //this.router.navigate(['home/gestionQuiz/editQuiz/' + quizToCreate.name]);
   }
 }

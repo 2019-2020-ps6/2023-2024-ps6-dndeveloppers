@@ -33,7 +33,6 @@ export const QUESTION_VOITURE0: Question = {
    ],
    optionImageLien: "./assets/quiz/imageQuizMecaniqueRoue.png",//to change
    optionImageQuestion: "Combien y a-t-il de roues motrices au minimum sur une voiture ?",
-   nbIndiceUtiliseQuestion: 0
 };
 
 export const QUESTION_VOITURE1: Question = {
@@ -69,5 +68,4 @@ export const QUESTION_VOITURE1: Question = {
    ],
    optionImageLien: "./assets/quiz/imageQuizMecaniqueCarburant.png",//to change
    optionImageQuestion: "Laquelle de ces réponses est un carburant auto ?",
-   nbIndiceUtiliseQuestion: 0
 }

@@ -5,6 +5,7 @@ import { Indice } from "src/models/question.models";
 import { Answer_Model } from "src/mocks/quiz-list.mock";
 import { Answer, Question } from "src/models/question.models";
 import { QuizService } from "src/services/quiz.service";
+import { QUESTION_ACTOR0 } from "src/mocks/quizQuestion/question-acteur.mock";
 
 @Component({
     selector: 'app-editQuestion',
@@ -43,16 +44,19 @@ export class EditQuestionComponent implements OnInit {
         });
 
         let URL = this.url.split('/');
-        console.log("url : ", URL);
+        //console.log("url : ", URL);
         this.quizName = URL[URL.length-1];
-        console.log("url courante : ", this.quizName);
+        //console.log("url courante : ", this.quizName);
     }
 
     ngOnInit(): void {
         if (this.question != undefined){
             this.answers = [this.question.answers[0].value,this.question.answers[1].value,this.question.answers[2].value,this.question.answers[3].value];
             this.numberGoodAnswer = this.findGoodAnswer()+1;
-            this.indice = [this.question?.indice[0].value, this.question?.indice[1].value, this.question?.indice[2].value];
+            for(let i=0; i<this.question.indice.length;i++){
+                this.indice[i] = this.question.indice[i].value
+            }
+
         }
 
         if(this.question != undefined && this.question.optionImageLien != undefined && this.question.optionImageQuestion != undefined){
@@ -67,36 +71,31 @@ export class EditQuestionComponent implements OnInit {
             q3: [this.question?.answers[2].value],
             q4: [this.question?.answers[3].value],
             goodAnswer: [this.findGoodAnswer()],
-            i1: [this.question?.indice[0].value],
-            i2: [this.question?.indice[1].value],
-            i3: [this.question?.indice[2].value],
+            i1: [this.indice[0]],
+            i2: [this.indice[1]],
+            i3: [this.indice[2]],
 
             photoLien: [],
             photoTexte: [this.texteImage],
         });
 
-        let actualQuiz;
-        for (let i=0; i<QUIZ_LIST.length; i++) {
-            if (QUIZ_LIST[i].name == this.quizName) {
-                actualQuiz = QUIZ_LIST[i];
-                break;
-            }
-        }
-        let veracity = [];
-        if (actualQuiz != undefined) {
-            for (let i=0; i<actualQuiz?.questions.length; i++) {
-                for (let j=0; j<actualQuiz.questions[i].answers.length; j++) {
-                    veracity.push(actualQuiz.questions[i].answers[j].isCorrect);
+        this.quizService.editedQuiz$.subscribe((editedQuiz) => {
+            let veracity = [];
+            if (editedQuiz != undefined) {
+                for (let i=0; i<editedQuiz?.questions.length; i++) {
+                    for (let j=0; j<editedQuiz.questions[i].answers.length; j++) {
+                        veracity.push(editedQuiz.questions[i].answers[j].isCorrect);
+                    }
                 }
             }
-        }
 
-        const checkboxes = document.querySelectorAll('.rr');
-        for (let i=0; i<checkboxes.length; i++) {
-            if (veracity[i]) {
-                (checkboxes[i] as HTMLInputElement).checked = true;
+            const checkboxes = document.querySelectorAll('.rr');
+            for (let i=0; i<checkboxes.length; i++) {
+                if (veracity[i]) {
+                    (checkboxes[i] as HTMLInputElement).checked = true;
+                }
             }
-        }
+        })  
     }
 
     @Input()
@@ -195,6 +194,9 @@ export class EditQuestionComponent implements OnInit {
             question.optionImageLien = bon_path,
             question.optionImageQuestion = this.questionForm.value.photoTexte;
         }
+
+        question.id = this.question?.id;
+        question.idQuiz = this.question?.idQuiz;
         if (oneChecked == 1) {
             this.quizService.editQuestion(question);
         } else {

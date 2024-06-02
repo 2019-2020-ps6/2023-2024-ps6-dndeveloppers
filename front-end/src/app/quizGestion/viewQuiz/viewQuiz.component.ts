@@ -21,8 +21,9 @@ export class ViewQuizComponent implements OnInit {
     ngOnInit(): void {}
 
     editQuiz(quiz: Quiz){
-        this.router.navigate(['home/gestionQuiz/editQuiz/' + quiz.name]);
         this.quizService.editingQuiz(quiz);
+        this.router.navigate(['home/gestionQuiz/editQuiz/' + quiz.name]);
+        
     }
 
     deleteQuiz(quiz: Quiz){

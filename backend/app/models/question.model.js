@@ -3,15 +3,12 @@ const BaseModel = require('../utils/base-model.js')
 
 module.exports = new BaseModel('Question', {
     label: Joi.string().required(),
-    answers: Joi.array().required(),
-    questionTexte: Joi.boolean().required(),
-    questionImage: Joi.boolean().required(), 
-    indice: Joi.array().required(),
-
-    dejaPosee: Joi.boolean(),
+    answers: Joi.array(), 
+    indice: Joi.array(),
 
     optionImageLien: Joi.string(),
     optionImageQuestion: Joi.string(),
 
-    idQuestion: Joi.number().required()
+    idQuiz: Joi.number().required(),
+    id: Joi.number().required(),
 })

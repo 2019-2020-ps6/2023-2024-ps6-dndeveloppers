@@ -21,12 +21,15 @@ export class EditQuizComponent implements OnInit {
         this.quizService.editedQuiz$.subscribe( (quiz) => {
             this.quiz = quiz;
             this.questionListe = this.quiz.questions;
-            console.log(this.questionListe)
-            console.log(this.questionListe[0])
         });
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.quizService.editedQuiz$.subscribe( (quiz) => {
+            this.quiz = quiz;
+            this.questionListe = this.quiz.questions;
+        });
+    }
 
     return(){
         this.router.navigate(['home/gestionQuiz/']);

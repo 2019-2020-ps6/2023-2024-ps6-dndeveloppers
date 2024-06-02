@@ -21,14 +21,14 @@ export class AddQuestionComponent implements OnInit {
 
     constructor(public formBuilder: FormBuilder, public quizService: QuizService){
         this.questionForm = this.formBuilder.group({
-            label: [''],
-            q1: [''],
-            q2: [''],
-            q3: [''],
-            q4: [''],
-            i1: [''],
-            i2: [''],
-            i3: [''],
+            label: ['q1'],
+            q1: ['r1'],
+            q2: ['r2'],
+            q3: ['r3'],
+            q4: ['r4'],
+            i1: ['i1'],
+            i2: ['i2'],
+            i3: ['i3'],
             goodAnswer: [0]
         });
     }
@@ -70,21 +70,21 @@ export class AddQuestionComponent implements OnInit {
         question.answers[this.questionForm.value.goodAnswer].isCorrect = true;
 
         let indice1 : Indice = Indice_Model1;
-        if (this.questionForm.value.i1 == "indice 1") {
+        if (this.questionForm.value.i1 == "") {
             indice1.value = "";
         } else {
             indice1.value = this.questionForm.value.i1;
         }
 
         let indice2 : Indice = Indice_Model2;
-        if (this.questionForm.value.i2 == "indice 2") {
+        if (this.questionForm.value.i2 == "") {
             indice2.value = "";
         } else {
             indice2.value = this.questionForm.value.i2;
         }
 
         let indice3 : Indice = Indice_Model3;
-        if (this.questionForm.value.i3 == "indice 3") {
+        if (this.questionForm.value.i3 == "") {
             indice3.value = "";
         } else {
             indice3.value = this.questionForm.value.i3;
@@ -106,7 +106,9 @@ export class AddQuestionComponent implements OnInit {
             indice2.value = indice3.value;
             indice3.value = "";
         }
-
+        
+        question.optionImageLien = "none";
+        question.optionImageQuestion = "none";
         console.log("question : ",question)
         this.quizService.addQuestion(question);
     }

@@ -8,6 +8,8 @@ import { Profil } from 'src/models/profil.model';
 import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
 import { InfoQuiz } from 'src/models/infoQuiz.model';
 import { infoQuiz_INIT } from 'src/mocks/infoQuiz.mock';
+import { httpOptionsBase, serverUrl } from 'src/configs/server.config';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +25,9 @@ export class QuizService {
   private infoQuiz: InfoQuiz = JSON.parse(JSON.stringify(infoQuiz_INIT)); // contient les info du quiz joué en cours
   public disableHintHelp: boolean = true;
 
+  private quizURL: string = serverUrl + '/quiz';
+  private httpOptions = httpOptionsBase;
+
   /**
    * Observable which contains the list of the quiz.
    * Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
@@ -37,13 +42,28 @@ export class QuizService {
 
   public infoQuiz$: BehaviorSubject<InfoQuiz> = new BehaviorSubject(this.infoQuiz);
 
-  public url: string = "";
-
-  constructor(public statsService: StatsService) {
-    this.setUpTheme();
+  constructor(public statsService: StatsService, private http: HttpClient) {
+    this.retrievesQuiz();
   }
 
-  
+  retrievesQuiz(idQuiz = -1){
+    this.http.get<Quiz[]>(this.quizURL).subscribe((quizList) => {
+      this.quizzes = quizList;
+      this.quizzes$.next(this.quizzes);
+      console.log("quiz : ",this.quizzes);
+      this.setUpTheme();
+
+      if(idQuiz != -1){
+        for(let i=0; i< this.quizzes.length; i++){
+          if(this.quizzes[i].id == this.editedQuiz.id){
+            this.editedQuiz = this.quizzes[i];
+            this.editedQuiz$.next(this.editedQuiz);
+            console.log("okok");
+          }
+        }
+      }
+    });
+  }
 
   selectProfil(profil: Profil) {
     this.actualProfil = profil;
@@ -52,28 +72,19 @@ export class QuizService {
 
   // ---------- Méthodes Appel Back ----------
 
-  addQuiz(quiz: Quiz) {
-    this.statsService.addQuizToSeries(quiz);
-    this.quizzes.push(quiz);
-    this.setUpQuiz();
-    this.quizzes$.next(this.quizzes);
+  addQuiz(quiz: Quiz){
+    this.http.post<Quiz>(this.quizURL, quiz, this.httpOptions).subscribe(() => {this.retrievesQuiz(); //this.editingQuiz(quiz)
+
+    });
   }
 
-  deleteQuiz(quiz: Quiz) {
-    let newQuizzes: Quiz[] = [];
-    for(let i=0;i<this.quizzes.length;i++){
-      if(this.quizzes[i].name!=quiz.name){
-        newQuizzes.push(this.quizzes[i]);        
-      }
-    }
-    this.quizzes = newQuizzes;
-    this.quizzes$.next(this.quizzes);
-    this.setUpTheme();
+  deleteQuiz(quiz : Quiz){
+    console.log("Le quiz : " ,quiz.name, " a été supprimé");
+    const urlWithId = this.quizURL + '/:' + quiz.id;
+    this.http.delete<Quiz>(urlWithId, this.httpOptions).subscribe(() => this.retrievesQuiz());
   }
 
   selectQuiz(quiz: Quiz) {
-    this.statsService.selectQuiz(quiz);
-
     let quizEnCours: Quiz = this.quizzes[0];
     for(let i=0;i<this.quizzes.length;i++){
       if(this.quizzes[i]==quiz){
@@ -82,11 +93,6 @@ export class QuizService {
         this.choosenQuiz$.next(this.choosenQuiz);
         console.log("Quiz choisit : ",this.choosenQuiz);
       }
-    }
-    if (quizEnCours.questions === undefined) {
-      console.log("Ce quiz n'a pas de quesiton!");
-    } else {
-      console.log("Quiz valide");
     }
   }
 
@@ -108,7 +114,6 @@ export class QuizService {
   updateInfoQuiz(){
     this.infoQuiz$.next(this.infoQuiz);
   }
-
 
   dontShowTutoriel() {
     this.actualProfil.tutoriel = false;
@@ -189,7 +194,6 @@ export class QuizService {
   }
 
   responseSelected(quiz: Quiz, responseNumber: number) {
-    console.log("Response selected (service POV) : ",responseNumber);
     if(this.actualProfil.optionReposerQuestionApres){
       this.responsesSelectedWithAskedAgain(quiz,responseNumber);
     }
@@ -205,13 +209,17 @@ export class QuizService {
   // pas l'option reposer la question plus tard
   responsesSelectedNormal(quiz: Quiz, responseNumber: number) {
     if (this.getActualQuestion().answers[responseNumber].isCorrect) {
+      // on ajoute le score
       console.log("Bonne réponse félicitation!");
-      this.statsService.successRateNewData(100, this.infoQuiz.actualQuestionNumber);
       let score = 1 - (this.infoQuiz.nbHintAskedForActualQuestion/(this.getActualQuestionNumberHint() + 3));
       console.log("score à cette question : ",score-(this.infoQuiz.nbErrors/4));
 
       if(score-(this.infoQuiz.nbErrors/4) > 0){
         this.infoQuiz.actualScore += score-(this.infoQuiz.nbErrors/4); // on ajoute le score s'il est positif
+        this.infoQuiz.scoreForEachQuestion.push(score-(this.infoQuiz.nbErrors/4));
+      }
+      else {
+        this.infoQuiz.scoreForEachQuestion.push(0);
       }
       
       if(this.infoQuiz.nbErrors==0){
@@ -228,17 +236,15 @@ export class QuizService {
       // si le quiz est finit
       if (this.infoQuiz.actualQuestionNumber == quiz.questions.length-1) {
         console.log("C'était la dernière question");
-        console.log("score final : ",this.infoQuiz.actualScore);
         this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
-        this.statsService.meanScoreNewData(this.infoQuiz.actualScore);
-        this.statsService.usedHintNewData(this.infoQuiz.nbHintUsed);
-                                          
+        this.choosenQuiz.selfStats = this.statsService.updateQuizStats(this.infoQuiz,this.choosenQuiz.selfStats);
         if (this.infoQuiz.bestStreak < this.infoQuiz.actualStreak) {
           this.infoQuiz.bestStreak = this.infoQuiz.actualStreak;
         }
 
         this.statsService.patientScoreNewData(this.actualProfil, this.infoQuiz.actualScore/quiz.questions.length);
         this.infoQuiz.endOfQuiz = true;
+        this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => this.retrievesQuiz());
       } 
       else { // sinon on continue le quiz
         this.infoQuiz.actualQuestionNumber++;
@@ -251,7 +257,6 @@ export class QuizService {
         this.infoQuiz.bestStreak = this.infoQuiz.actualStreak;
       }
       this.infoQuiz.actualStreak = 0;
-      this.statsService.successRateNewData(0, this.infoQuiz.actualQuestionNumber);
 
       // disjonction de cas : on supprime la mauvaise réponse
       if(this.actualProfil.optionSupprimerMauvaisesReponses){
@@ -260,19 +265,22 @@ export class QuizService {
       }
       // sinon on passe à la question suivante
       else {
-        if(this.infoQuiz.actualQuestionNumber == quiz.questions.length-1){
+        if(this.infoQuiz.actualQuestionNumber == quiz.questions.length-1){ // cas fin quiz
           console.log("C'était la dernière question");
           console.log("score final : ",this.infoQuiz.actualScore);
           this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
-          this.statsService.meanScoreNewData(this.infoQuiz.actualScore);
-          this.statsService.usedHintNewData(this.infoQuiz.nbHintUsed);
+          this.infoQuiz.scoreForEachQuestion.push(0)
           this.statsService.patientScoreNewData(this.actualProfil, this.infoQuiz.actualScore/quiz.questions.length);
+          this.choosenQuiz.selfStats = this.statsService.updateQuizStats(this.infoQuiz,this.choosenQuiz.selfStats);
+
           this.infoQuiz.endOfQuiz = true;
+          this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => this.retrievesQuiz());
         }
         else {
           this.infoQuiz.actualQuestionNumber++;
           this.infoQuiz.nbHintUsed += this.infoQuiz.nbHintAskedForActualQuestion;
           this.infoQuiz.nbHintAskedForActualQuestion = 0;
+          this.infoQuiz.scoreForEachQuestion.push(0);
         }
       }
     }
@@ -376,7 +384,7 @@ export class QuizService {
     }
     this.themeList = newThemeList;
     this.themeList$.next(this.themeList);
-    console.log("Liste des thèmes actuellement présents : ",this.themeList);
+    //console.log("Liste des thèmes actuellement présents : ",this.themeList);
     this.setUpQuiz();
   }
 
@@ -390,10 +398,12 @@ export class QuizService {
 
   editingQuiz(quiz: Quiz){
     this.editedQuiz = quiz;
+    this.editedQuiz.id = quiz.id
     this.editedQuiz$.next(this.editedQuiz);
     console.log("edition : ",quiz);
   }
 
+  // trier les quiz par thème
   setUpQuiz() {
     let sortedQuizList: Quiz[] = [];
     for (let i=0; i<this.themeList.length; i++) {
@@ -406,41 +416,29 @@ export class QuizService {
     this.quizzes = sortedQuizList;
   }
 
+
   addQuestion(question: Question){
-    this.editedQuiz.questions.push(question);
-    console.log("Question ", question, " ajoutée.");
-    console.log(this.editedQuiz);
+    console.log("question add : ",this.editedQuiz)
+    question.idQuiz = this.editedQuiz.id;
+    this.http.post<Question>(serverUrl + '/question', question, this.httpOptions).subscribe(() => {
+      this.retrievesQuiz(question.idQuiz);
+      console.log("okokok");
+    });
   }
 
   deleteQuestion(question: Question){
-    let questions: Question[] = [];
-    for(let i=0;i<this.editedQuiz.questions.length;i++){
-      if(this.editedQuiz.questions[i] != question){
-        questions.push(this.editedQuiz.questions[i]);
-      }
-    }
-    this.editedQuiz.questions = questions;
-    this.editedQuiz$.next(this.editedQuiz);
-    console.log("Question supprimée");
+    console.log("Le question : " ,question.label, " a été supprimé");
+    const urlWithId = serverUrl + '/question' + '/:' + question.id;
+    this.http.delete<Question>(urlWithId, this.httpOptions).subscribe(() => this.retrievesQuiz(question.idQuiz));
   }
 
   editQuestion(question: Question){
-    for(let i=0;i<this.editedQuiz.questions.length;i++){
-      if(this.editedQuiz.questions[i].label == question.label){
-        this.editedQuiz.questions[i] = question;
-        console.log("Question éditée");
-        return;
-      }
-    }
+    console.log("Question éditée");
+    this.http.put<Question>(serverUrl + '/question', question ,this.httpOptions).subscribe(() => this.retrievesQuiz());
   }
 
   editGlobalQuiz(valeurs: string[]){
-    this.editedQuiz.name = valeurs[0];
-    this.editedQuiz.theme = valeurs[1];
-    if(valeurs.length == 3 ){
-      this.editedQuiz.photo = valeurs[2];
-    }
-    this.editedQuiz$.next(this.editedQuiz);
+    this.http.put<Question>(serverUrl + '/quiz/:' + this.editedQuiz.id , valeurs ,this.httpOptions).subscribe(() => this.retrievesQuiz());
     console.log("Quiz édité");
   }
 
@@ -450,3 +448,4 @@ export class QuizService {
     this.addQuiz(quiz);
   }
 }
+

@@ -33,7 +33,6 @@ export const QUESTION_ACTOR0: Question = {
    ],
    optionImageLien: "./assets/quiz/JeanGabin.jpg",
    optionImageQuestion: 'Jean Gabin a joué dans...',
-   nbIndiceUtiliseQuestion: 0
 };
 
 export const QUESTION_ACTOR1: Question = {
@@ -67,5 +66,4 @@ export const QUESTION_ACTOR1: Question = {
            value: 'Le film est americain',
        }
    ],
-   nbIndiceUtiliseQuestion: 0
 }

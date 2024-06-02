@@ -6,9 +6,7 @@ module.exports = new BaseModel('StatsQuiz', {
     meanScore: Joi.number().required(),
     meanHintUsed: Joi.number().required(),
     resTab: Joi.array().required(), 
-    playedBy: Joi.array().required(), 
     nbHintUsed: Joi.array().required(), 
     successPercentageByQuestion: Joi.array().required(), 
-    
-    idStatsQuiz: Joi.number().required()
+    id: Joi.number().required()
 })

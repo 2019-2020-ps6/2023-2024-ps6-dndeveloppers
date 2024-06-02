@@ -5,7 +5,9 @@ import { httpOptionsBase, serverUrl } from 'src/configs/server.config';
 import { QUIZ_LIST, QUIZ_NULL } from 'src/mocks/quiz-list.mock';
 import { Profil } from 'src/models/profil.model';
 import { Quiz } from 'src/models/quiz.model';
-import { ProfilService } from './profil.service';
+import { QuizService } from './quiz.service';
+import { InfoQuiz } from 'src/models/infoQuiz.model';
+import { statsQuiz } from 'src/models/stats/statsQuiz.model';
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +20,7 @@ export class StatsService {
      */
 
     private listePatient: Profil[] = [];
-    private series = this.fillSeries();
+    private series = [];
     private profilURL: string = serverUrl + '/profils';
     private httpOptions = httpOptionsBase;
 
@@ -42,12 +44,7 @@ export class StatsService {
       })
       return this.listePatient;
     }
-
-    /* Cette fonction n'est plus utile car listePatient subscribe au back actualisé par profilService
-    addPatient(patient: Profil) {
-      this.listePatient.push(patient);
-    }*/
-
+/*
     addQuizToSeries(quiz: Quiz) {
       let newElement = {
         name: quiz.name,
@@ -56,10 +53,11 @@ export class StatsService {
       this.series.push(newElement);
     }
 
-    fillSeries() {
+    fillSeries(quizzes : Quiz[]) {
       let res = [];
-      for (let i=0; i<QUIZ_LIST.length; i++) {
-          let name = QUIZ_LIST[i].name;
+      
+      for (let i=0; i<quizzes.length; i++) {
+          let name = quizzes[i].name;
           let data: number[] = [];
           let tab = {
               name: name,
@@ -69,7 +67,7 @@ export class StatsService {
       }
       return res;
     }
-
+*/
     patientScoreNewData(profil: Profil, score: number) {
       profil.selfStats.nbQuizDone++;
       profil.selfStats.quizRes.push(score*100);
@@ -84,7 +82,6 @@ export class StatsService {
 
     updatePatientStats(profil: Profil) {
       console.log("Les stats du profil : ", profil.id, " ont été mise à jour");
-      //const urlWithId =  serverUrl + '/profils' + '/:' + profil.id;
       const urlWithIdStats = serverUrl + '/stats' + '/:' + profil.selfStats.id;
       this.http.put<Profil>(urlWithIdStats, profil.selfStats ,this.httpOptions).subscribe(() => this.retrievePatients());
     }
@@ -93,54 +90,39 @@ export class StatsService {
      * Pour les statistiques par quiz
      */
 
-    private actualQuiz: Quiz = QUIZ_NULL;
-    private actualScore: number = 0;
-    private usedHint: number = 0;
+    // à la fin d'un quiz on met ses stats à jour 
+    updateQuizStats(infoQuiz : InfoQuiz, chosenQuizStats : statsQuiz){
+      chosenQuizStats.playedTime++;
 
-    public actualQuiz$: BehaviorSubject<Quiz> = new BehaviorSubject(this.actualQuiz);
-    public actualScore$: BehaviorSubject<number> = new BehaviorSubject(this.actualScore);
-    public usedHint$: BehaviorSubject<number> = new BehaviorSubject(this.usedHint);
-
-    selectQuiz(quiz: Quiz) {
-      this.actualQuiz = quiz;
-      this.actualQuiz.selfStats.playedTime++;
-      this.actualScore = 0;
-      this.usedHint = 0;
-
-      this.actualQuiz$.next(this.actualQuiz);
-      this.actualScore$.next(this.actualScore);
-      this.usedHint$.next(this.usedHint);
-    }
-
-    meanScoreNewData(score: number) {
-      this.actualQuiz.selfStats.resTab.push(score);
-
-      let num = 0;
-      for (let i=0; i<this.actualQuiz.selfStats.resTab.length; i++) {
-        num += this.actualQuiz.selfStats.resTab[i];
+      // update nb indice et moyenne d'indices : 
+      chosenQuizStats.nbHintUsed.push(infoQuiz.nbHintUsed)
+      let nbHint = 0;
+      for (let i=0; i<chosenQuizStats.nbHintUsed.length; i++) {
+        nbHint += chosenQuizStats.nbHintUsed[i];
       }
-      this.actualQuiz.selfStats.meanScore = num/this.actualQuiz.selfStats.resTab.length;
-    }
+      chosenQuizStats.meanHintUsed = nbHint / chosenQuizStats.nbHintUsed.length;
 
-    usedHintNewData(usedHint: number) {
-      this.actualQuiz.selfStats.nbHintUsed.push(usedHint);
-
-      let num = 0;
-      for (let i=0; i<this.actualQuiz.selfStats.nbHintUsed.length; i++) {
-        num += this.actualQuiz.selfStats.nbHintUsed[i];
+      // update score moyen 
+      chosenQuizStats.resTab.push(infoQuiz.actualScore / infoQuiz.scoreForEachQuestion.length)
+      let nbScore = 0;
+      for (let i=0; i<chosenQuizStats.resTab.length; i++) {
+        nbScore += chosenQuizStats.resTab[i];
       }
-      this.actualQuiz.selfStats.meanHintUsed = num/this.actualQuiz.selfStats.nbHintUsed.length;
-    }
+      chosenQuizStats.meanScore = nbScore / chosenQuizStats.resTab.length;
 
-    successRateNewData(responseVeracity: number, actualQuestionNumber: number) {
-      if (this.actualQuiz.selfStats.successPercentageByQuestion[actualQuestionNumber] == undefined) {
-        this.actualQuiz.selfStats.successPercentageByQuestion[actualQuestionNumber] = responseVeracity;
-      } else {
-        let rate = this.actualQuiz.selfStats.successPercentageByQuestion[actualQuestionNumber];
-        rate *= this.actualQuiz.selfStats.playedTime-1;
-        rate += responseVeracity;
-        rate /= this.actualQuiz.selfStats.playedTime;
-        this.actualQuiz.selfStats.successPercentageByQuestion[actualQuestionNumber] = rate;
+      // update moyenne pour chaque question
+      for(let i=0; i< infoQuiz.scoreForEachQuestion.length;i++){
+        let score = infoQuiz.scoreForEachQuestion.at(0);
+        if(score != undefined){
+          if(chosenQuizStats.successPercentageByQuestion.length <= i){ // cas stats pour question nouvelle
+            chosenQuizStats.successPercentageByQuestion.push(score)
+          }
+          else{ // cas normal
+            chosenQuizStats.successPercentageByQuestion[i] = (score*(chosenQuizStats.playedTime-1) + score)/ chosenQuizStats.playedTime;
+          }
+        }
+        
       }
+      return chosenQuizStats
     }
 }
