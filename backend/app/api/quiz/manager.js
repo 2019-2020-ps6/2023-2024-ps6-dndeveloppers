@@ -33,13 +33,13 @@ const buildQuiz = (quizId) => {
             if(question.optionImageQuestion=="none"){
               question.optionImageQuestion="";
             }
-            console.log("question : ",question)
+            //console.log("question : ",question)
             GoodQuestions.push(question)
             
         }
     }
     const selfStats = statsQuizModel.getById(quiz.selfStats)
-    console.log("quiz construit : ",{ ...quiz, questions : GoodQuestions , selfStats })
+    //console.log("quiz construit : ",{ ...quiz, questions : GoodQuestions , selfStats })
     return { ...quiz, questions : GoodQuestions , selfStats }
   } catch (err) {
     console.log(err)

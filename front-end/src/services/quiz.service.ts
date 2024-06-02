@@ -72,32 +72,11 @@ export class QuizService {
 
   // ---------- Méthodes Appel Back ----------
 
-  /*
-  addQuiz(quiz: Quiz) {
-    this.statsService.addQuizToSeries(quiz);
-    this.quizzes.push(quiz);
-    this.setUpQuiz();
-    this.quizzes$.next(this.quizzes);
-  }*/
-
   addQuiz(quiz: Quiz){
     this.http.post<Quiz>(this.quizURL, quiz, this.httpOptions).subscribe(() => {this.retrievesQuiz(); //this.editingQuiz(quiz)
 
     });
   }
-
-  /*
-  deleteQuiz(quiz: Quiz) {
-    let newQuizzes: Quiz[] = [];
-    for(let i=0;i<this.quizzes.length;i++){
-      if(this.quizzes[i].name!=quiz.name){
-        newQuizzes.push(this.quizzes[i]);        
-      }
-    }
-    this.quizzes = newQuizzes;
-    this.quizzes$.next(this.quizzes);
-    this.setUpTheme();
-  }*/
 
   deleteQuiz(quiz : Quiz){
     console.log("Le quiz : " ,quiz.name, " a été supprimé");
@@ -428,6 +407,7 @@ export class QuizService {
     console.log("edition : ",quiz);
   }
 
+  // trier les quiz par thème
   setUpQuiz() {
     let sortedQuizList: Quiz[] = [];
     for (let i=0; i<this.themeList.length; i++) {
@@ -440,12 +420,6 @@ export class QuizService {
     this.quizzes = sortedQuizList;
   }
 
-  /*
-  addQuestion(question: Question){
-    this.editedQuiz.questions.push(question);
-    console.log("Question ", question, " ajoutée.");
-    console.log(this.editedQuiz);
-  }*/
 
   addQuestion(question: Question){
     console.log("question add : ",this.editedQuiz)
@@ -456,18 +430,6 @@ export class QuizService {
     });
   }
 
-  /*
-  deleteQuestion(question: Question){
-    let questions: Question[] = [];
-    for(let i=0;i<this.editedQuiz.questions.length;i++){
-      if(this.editedQuiz.questions[i] != question){
-        questions.push(this.editedQuiz.questions[i]);
-      }
-    }
-    this.editedQuiz.questions = questions;
-    this.editedQuiz$.next(this.editedQuiz);
-    console.log("Question supprimée");
-  }*/
   deleteQuestion(question: Question){
     console.log("Le question : " ,question.label, " a été supprimé");
     const urlWithId = serverUrl + '/question' + '/:' + question.id;

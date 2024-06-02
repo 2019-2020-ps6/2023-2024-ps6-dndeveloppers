@@ -11,7 +11,7 @@ const buildQuestion = (questionId) => {
   for(let i=0; i<4 ;i++){
     answer.push(IndiceModel.getById(question.indice[i].id))
   }
-  console.log("question x : ",{ ...question, answer, indices })
+  //console.log("question x : ",{ ...question, answer, indices })
   return { ...question, answer, indices }
 }
 
@@ -23,7 +23,7 @@ const buildQuestions = (idQuiz) => {
             GoodQuestions.push(questions[i]);
         }
     }
-    console.log("goodQuestions :",GoodQuestions)
+    //console.log("goodQuestions :",GoodQuestions)
     return GoodQuestions.map((question) => buildQuestion(question.id))
 }
 

@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { AnswerModel,IndiceModel,QuestionModel,QuizModel } = require('../../../models')
+const { AnswerModel,IndiceModel,QuestionModel,QuizModel, statsQuizModel } = require('../../../models')
 const manageAllErrors = require('../../../utils/routes/error-management')
 const quizModel = require('../../../models/quiz.model')
 const router = new Router()
@@ -21,20 +21,18 @@ router.post('/', (req, res) => {
         const body = req.body;
         const answers = []
         for(let i=0; i<4;i++){
-            const value = req.body.answers[i].value;
-            const isCorrect = req.body.answers[i].isCorrect
-            const answer = AnswerModel.create( {value,isCorrect})
+            let value = req.body.answers[i].value;
+            let isCorrect = req.body.answers[i].isCorrect
+            let answer = AnswerModel.create( {value,isCorrect})
             answers.push(answer.id)
         }
         
         // on ajoute les indice
         const indices = []
-        console.log("indices : ",req.body.indice)
-        console.log("indices : ",req.body.indice[1].value)
         for(let i=0; i< 3 ; i++){
-            const value = req.body.indice[i].value;
+            let value = req.body.indice[i].value;
             if(value != ""){
-                const indice = IndiceModel.create({value})
+                let indice = IndiceModel.create({value})
                 indices.push(indice.id)
             }          
         }
@@ -91,10 +89,9 @@ router.put('/', (req, res) => {
 router.delete('/:id', (req, res) => {
     try {
         const idQuestion = req.params.id.substring(1);
-        //console.log(idQuestion)
         const question = QuestionModel.getById(idQuestion)
         const quiz = QuizModel.getById(question.idQuiz)
-        //       -- dans le manager --
+
         // on supprime la question du quiz
         const numQuestion = 0;
         for(let i=0;i<quiz.questions.length;i++){
@@ -102,8 +99,15 @@ router.delete('/:id', (req, res) => {
                 numQuestion = i;
             }
         }
+
+        // on update quiz et quizStats
         quiz.questions.pop(numQuestion)
         QuizModel.update(quiz.id,quiz)
+        const quizStats = statsQuizModel.getById(quiz.selfStats)
+        if(quizStats.successPercentageByQuestion.length > 0){
+            quizStats.successPercentageByQuestion.pop(numQuestion);
+            statsQuizModel.update(quizStats.id,quizStats)
+        }
 
         // on supprime les indices
         for(let i=0; i<question.indice.length;i++){
@@ -112,8 +116,10 @@ router.delete('/:id', (req, res) => {
         
         // on supprime les réponses
         const answerToDelete = question.answers
+        console.log(answerToDelete)
         for(let i=0;i<4;i++){
             AnswerModel.delete(answerToDelete[i])
+            console.log(answerToDelete)
         }
         console.log("taille : ",AnswerModel.get().length)
         //       -- dans le manager --

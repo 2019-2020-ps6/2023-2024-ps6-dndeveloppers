@@ -5,7 +5,6 @@ import { httpOptionsBase, serverUrl } from 'src/configs/server.config';
 import { QUIZ_LIST, QUIZ_NULL } from 'src/mocks/quiz-list.mock';
 import { Profil } from 'src/models/profil.model';
 import { Quiz } from 'src/models/quiz.model';
-import { ProfilService } from './profil.service';
 
 @Injectable({
     providedIn: 'root'
@@ -43,11 +42,6 @@ export class StatsService {
       return this.listePatient;
     }
 
-    /* Cette fonction n'est plus utile car listePatient subscribe au back actualisé par profilService
-    addPatient(patient: Profil) {
-      this.listePatient.push(patient);
-    }*/
-
     addQuizToSeries(quiz: Quiz) {
       let newElement = {
         name: quiz.name,
@@ -84,7 +78,6 @@ export class StatsService {
 
     updatePatientStats(profil: Profil) {
       console.log("Les stats du profil : ", profil.id, " ont été mise à jour");
-      //const urlWithId =  serverUrl + '/profils' + '/:' + profil.id;
       const urlWithIdStats = serverUrl + '/stats' + '/:' + profil.selfStats.id;
       this.http.put<Profil>(urlWithIdStats, profil.selfStats ,this.httpOptions).subscribe(() => this.retrievePatients());
     }

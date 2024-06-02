@@ -10,7 +10,7 @@ const router = new Router()
 router.get('/', (req, res) => {
     try {
       const quizzes = buildQuizzes()
-      console.log("quizzes : ",quizzes)
+      //console.log("quizzes : ",quizzes)
       res.status(200).json(quizzes)
     } catch (err) {
       console.log(err)
@@ -44,13 +44,6 @@ router.put('/:id', (req, res) => {
       if(req.body[2] != undefined) quiz.photo = req.body[2]
       res.status(200).json(QuizModel.update(req.params.id.substring(1), quiz))
     }
-    /*
-    const quiz = QuizModel.getById(req.body.id);
-    const stats = statsQuizModel.create({...req.body.selfStats});
-    const idStats = stats.id
-    
-    req.body.selfStats = idStats;*/
-    
   } catch (err) {
     console.log(err)
     manageAllErrors(res, err)
