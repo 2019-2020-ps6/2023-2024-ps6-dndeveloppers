@@ -5,8 +5,12 @@
 
 
 <!-- Affichage de tout les quiz -->
+
+<div class="recherche">
+    <input class="search-bar" type="text" placeholder="Rechercher un quiz" [(ngModel)]="searchTerm" />
+</div>
 <div class="quiz-list">
-    <div *ngFor="let quiz of quizList">
+    <div *ngFor="let quiz of filterQuizs()">
         <app-viewQuiz [quiz]="quiz"></app-viewQuiz>
     </div>
 </div>

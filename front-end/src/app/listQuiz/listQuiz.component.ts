@@ -12,6 +12,8 @@ export class ListQuizComponent implements OnInit {
   public quizList: Quiz[] = [];
   public themeList: String[] = [];
   public afficher: boolean = false;
+  public searchTerm: string = '';
+
 
   public messageEcrit: String = '';
   public motDePasse: String = 'admin';
@@ -53,6 +55,18 @@ export class ListQuizComponent implements OnInit {
         this.messageEcrit = '';
         return;
       }
+    }
+  }
+
+  
+  filterQuizs() {
+    if (this.searchTerm) {
+        return this.quizList.filter(quiz => 
+            quiz.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+            quiz.theme.toLowerCase().includes(this.searchTerm.toLowerCase())
+        );
+    } else {
+        return this.quizList;
     }
   }
 }
