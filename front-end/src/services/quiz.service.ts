@@ -389,9 +389,20 @@ export class QuizService {
   }
 
   addTheme(theme: String){
-    this.themeList.push(theme);
-    this.themeList$.next(this.themeList);
-    console.log("Le thème : ",theme," a été rajouté (temporairement)")
+    let add = true;
+    for (let i=0; i<this.themeList.length; i++) {
+      if (this.themeList[i] == theme) {
+        add = false;
+        break;
+      }
+    }
+    if (add) {
+      this.themeList.push(theme);
+      this.themeList$.next(this.themeList);
+      console.log("Le thème : ",theme," a été rajouté (temporairement)");
+    } else {
+      alert("Ce thème existe déjà !");
+    }
   }
 
   // ------------------------------------------------------------ édition quiz/questions ------------------------------------------------------------------------------
