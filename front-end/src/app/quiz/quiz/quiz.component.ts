@@ -19,6 +19,7 @@ import { infoQuiz_INIT } from "src/mocks/infoQuiz.mock";
 
 export class QuizComponent implements OnInit {
     public infoQuiz: InfoQuiz = infoQuiz_INIT;
+    public showHint: boolean[] = [false, false, false];
     public choosenQuiz: Quiz = QUIZ_LIST[0];
     public optionIndice: boolean | undefined;
 
@@ -33,6 +34,10 @@ export class QuizComponent implements OnInit {
 
         this.quizService.infoQuiz$.subscribe((infoQuiz)=>{
             this.infoQuiz = infoQuiz;
+        })
+
+        this.quizService.showHint$.subscribe((showHint) => {
+            this.showHint = showHint;
         })
 
         this.profilService.actualProfil$.subscribe((profil) => {
