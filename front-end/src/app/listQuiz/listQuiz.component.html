@@ -2,7 +2,12 @@
 
 <div class="recherche">
     <input class="search-bar" type="text" placeholder="Rechercher un quiz" [(ngModel)]="searchTerm" />
-</div>
+    <select class="selectTheme" name="theme-field" id="theme" [(ngModel)]="selectedTheme" required>
+      <option value="">Sélectionner un thème</option>
+      <option *ngFor="let currentTheme of themeList" [value]="currentTheme">{{currentTheme}}</option>
+    </select>
+    <br>
+  </div>
 <div class="quiz-list">
     <div class="quiz" *ngFor="let quiz of filterQuizs()">
         <choixQuiz [quiz]="quiz" (quizSelected)="quizSelected(quiz)" (deleteQuiz)="deleteQuiz(quiz)"></choixQuiz>
