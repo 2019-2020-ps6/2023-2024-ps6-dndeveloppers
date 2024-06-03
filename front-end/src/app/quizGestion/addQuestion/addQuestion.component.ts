@@ -111,6 +111,7 @@ export class AddQuestionComponent implements OnInit {
         question.optionImageQuestion = "none";
         console.log("question : ",question)
         this.quizService.addQuestion(question);
+        this.questionForm.reset();
     }
 
     selectResponseNumber(event: Event, responseNumber: number) {

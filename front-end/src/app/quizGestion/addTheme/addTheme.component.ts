@@ -21,6 +21,7 @@ export class AddThemeComponent implements OnInit {
     ngOnInit(): void {}
 
     addTheme(){
+        this.themeForm.reset();
         this.quizService.addTheme(this.themeForm.value.theme);
       }
 }
