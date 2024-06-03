@@ -24,6 +24,7 @@ export class QuizService {
 
   private infoQuiz: InfoQuiz = JSON.parse(JSON.stringify(infoQuiz_INIT)); // contient les info du quiz joué en cours
   public disableHintHelp: boolean = true;
+  public showHint: boolean[] = [false, false, false];
 
   private quizURL: string = serverUrl + '/quiz';
   private httpOptions = httpOptionsBase;
@@ -39,6 +40,7 @@ export class QuizService {
   public themeList$: BehaviorSubject<String[]> = new BehaviorSubject(this.themeList);
   public editedQuiz$ : BehaviorSubject<Quiz> = new BehaviorSubject(this.editedQuiz);
   public disableHintHelp$: BehaviorSubject<boolean> = new BehaviorSubject(this.disableHintHelp);
+  public showHint$: BehaviorSubject<boolean[]> = new BehaviorSubject(this.showHint);
 
   public infoQuiz$: BehaviorSubject<InfoQuiz> = new BehaviorSubject(this.infoQuiz);
 
@@ -85,15 +87,20 @@ export class QuizService {
   }
 
   selectQuiz(quiz: Quiz) {
-    let quizEnCours: Quiz = this.quizzes[0];
     for(let i=0;i<this.quizzes.length;i++){
       if(this.quizzes[i]==quiz){
-        quizEnCours = this.quizzes[i];
         this.choosenQuiz = this.quizzes[i];
         this.choosenQuiz$.next(this.choosenQuiz);
         console.log("Quiz choisit : ",this.choosenQuiz);
       }
     }
+    this.showHint = [false, false, false];
+    for (let i=0; i<this.choosenQuiz.questions[0].indice.length; i++) {
+      if (this.choosenQuiz.questions[0].indice[i].value != "") {
+        this.showHint[i] = true;
+      }
+    }
+    this.showHint$.next(this.showHint);
   }
 
   getQuizzes(quiz: Quiz){
@@ -171,6 +178,7 @@ export class QuizService {
   }
 
   hideResponse() {
+    console.log("hide");
     let nbOfTrue = 0;
     for (let i=0; i<this.infoQuiz.displayResponses.length; i++) {
       if (this.infoQuiz.displayResponses[i]) {
@@ -186,11 +194,13 @@ export class QuizService {
     }
     // une réponse aléatoire fausse n'apparaîtra plus  
     let randomNumber = Math.trunc(Math.random()*(4-0) + 0);
-    while (randomNumber == rightResponse || this.infoQuiz.displayResponses[randomNumber] == false) {
-      randomNumber = Math.trunc(Math.random()*(4-0) + 0);
+    if (nbOfTrue > 2) {
+      while (randomNumber == rightResponse || this.infoQuiz.displayResponses[randomNumber] == false) {
+        randomNumber = Math.trunc(Math.random()*(4-0) + 0);
+      }
+      this.infoQuiz.displayResponses[randomNumber] = false;
+      this.updateInfoQuiz();
     }
-    this.infoQuiz.displayResponses[randomNumber] = false;
-    this.updateInfoQuiz();
   }
 
   responseSelected(quiz: Quiz, responseNumber: number) {
@@ -248,6 +258,14 @@ export class QuizService {
       } 
       else { // sinon on continue le quiz
         this.infoQuiz.actualQuestionNumber++;
+        this.showHint = [false, false, false];
+        for (let i=0; i<this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber].indice.length; i++) {
+          console.log("indice : ", this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber].indice[i].value);
+          if (this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber].indice[i].value != "") {
+            this.showHint[i] = true;
+          }
+        }
+        this.showHint$.next(this.showHint);
         this.infoQuiz.nbHintAskedForActualQuestion = 0
       }
     } 
