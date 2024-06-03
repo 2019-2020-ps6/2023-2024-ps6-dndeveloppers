@@ -12,5 +12,8 @@
         <li>Nombre moyen d'indices utilisés : {{actualQuiz.selfStats.meanHintUsed}}</li>
         <li>Nombre de questions : {{actualQuiz.questions.length}}</li>
     </ul>
-    <div id="quizChart"></div>
+    <div id="quizChart"></div><br/>
+    <div class="routing">
+        <button *ngIf="actualQuizName.length > 0" (click)="goToEdit()">Aller modifier le quiz</button>
+    </div>
 </div>
