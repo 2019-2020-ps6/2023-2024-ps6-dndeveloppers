@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Quiz } from '../models/quiz.model';
-import { QUIZ_LIST } from '../mocks/quiz-list.mock';
+import { QUIZ_LIST, QUIZ_NULL } from '../mocks/quiz-list.mock';
 import { Question } from 'src/models/question.models';
 import { StatsService } from './stats.service';
 import { Profil } from 'src/models/profil.model';
@@ -17,10 +17,10 @@ import { HttpClient } from '@angular/common/http';
 export class QuizService {
   private actualProfil: Profil = LISTE_PROFILS[0];
   private quizzes: Quiz[] = QUIZ_LIST;
-  private choosenQuiz: Quiz = this.quizzes[0];
+  private choosenQuiz: Quiz = QUIZ_NULL;
 
   private themeList: String[] = []; // liste des thèmes de quiz
-  private editedQuiz: Quiz = this.quizzes[0]; // quiz en cours d'édition
+  private editedQuiz: Quiz = QUIZ_NULL; // quiz en cours d'édition
 
   private infoQuiz: InfoQuiz = JSON.parse(JSON.stringify(infoQuiz_INIT)); // contient les info du quiz joué en cours
   public disableHintHelp: boolean = true;
@@ -34,7 +34,7 @@ export class QuizService {
    */
   public actualProfil$: BehaviorSubject<Profil> = new BehaviorSubject(this.actualProfil);
   public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(QUIZ_LIST);
-  public choosenQuiz$: BehaviorSubject<Quiz> = new BehaviorSubject(QUIZ_LIST[0]);
+  public choosenQuiz$: BehaviorSubject<Quiz> = new BehaviorSubject(QUIZ_NULL);
 
   public themeList$: BehaviorSubject<String[]> = new BehaviorSubject(this.themeList);
   public editedQuiz$ : BehaviorSubject<Quiz> = new BehaviorSubject(this.editedQuiz);
