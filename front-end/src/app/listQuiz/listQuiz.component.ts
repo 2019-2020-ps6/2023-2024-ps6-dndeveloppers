@@ -13,6 +13,8 @@ export class ListQuizComponent implements OnInit {
   public themeList: String[] = [];
   public afficher: boolean = false;
   public searchTerm: string = '';
+  public selectedTheme: string = '';
+
 
 
   public messageEcrit: String = '';
@@ -60,13 +62,13 @@ export class ListQuizComponent implements OnInit {
 
   
   filterQuizs() {
-    if (this.searchTerm) {
-        return this.quizList.filter(quiz => 
-            quiz.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-            quiz.theme.toLowerCase().includes(this.searchTerm.toLowerCase())
-        );
-    } else {
-        return this.quizList;
-    }
+    return this.quizList.filter(quiz => {
+      const matchesSearchTerm = this.searchTerm ? 
+        quiz.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        quiz.theme.toLowerCase().includes(this.searchTerm.toLowerCase()) : true;
+      const matchesTheme = this.selectedTheme ? 
+        quiz.theme === this.selectedTheme : true;
+      return matchesSearchTerm && matchesTheme;
+    });
   }
 }
