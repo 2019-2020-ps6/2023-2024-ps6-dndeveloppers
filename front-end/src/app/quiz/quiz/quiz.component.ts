@@ -53,24 +53,13 @@ export class QuizComponent implements OnInit {
 
     @Input()
     tutorielView: boolean = true;
-    helpWanted: boolean = false;
 
     tutoriel(){
         this.tutorielView = true;
     }
 
-    tutorielWanted() {
-        this.helpWanted = true;
-    }
-
-    stopShowTutoriel(){
-        this.tutorielView = false;
-        this.helpWanted = false;
-    }
-
     dontShowTutoriel() {
         this.tutorielView = false;
-        this.helpWanted = false;
         this.quizService.dontShowTutoriel();
     }
 }
