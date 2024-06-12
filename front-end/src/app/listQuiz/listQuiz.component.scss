@@ -1,20 +1,119 @@
 .quiz-list {
-    display: flex;
-  }
+  display: flex;
+}
 
-  .returnButton{
-    display: flex;
-    padding-top: 10px;
-    justify-content: center;
+.returnButton{
+  display: flex;
+  padding-top: 10px;
+  justify-content: center;
 }
 
 .boutonClavier{
   display: none;
 }
 
+.searchHelp {
+  display: flex;
+  justify-content: space-around;
+}
+
+.boutonAide {
+  margin-top: 10px;
+  width: auto;
+  height:auto;
+  text-align: center;
+  font-size: 30px;
+  background-color: lightgrey;
+  border: solid black 3px;
+  border-radius: 1rem;
+  cursor:pointer;
+  font-family: "OpenDyslexic", sans-serif;
+  justify-self: stretch;
+  align-self: center;
+  grid-column: 6/7;
+}
+
+.popup {
+  position:fixed;
+  left: 50%;
+  width: 1000px;
+  top: 45%;
+  transform: translate(-50%,-42%);
+  border: solid black 2px;
+  background-color: rgb(207, 244, 249);
+  font-size: 25px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  font-family: "OpenDyslexic", sans-serif;   
+}
+
+.Question-tuto{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+}
+
+
+.Question-texte{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  height: auto;  
+  width: fit-content;
+  border-radius: 0.5rem;
+  background-color: #a0a023;
+  padding: 15px;
+  border: solid black 2px;
+  font-family: "OpenDyslexic", sans-serif;
+  font-weight: bold;
+  color: black;
+}
+
+.reponse-texte {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  height: 70px;
+  font-weight: bold;
+  color: rgb(196, 196, 196);
+  cursor: pointer;
+  border-radius: 0.5rem;
+  border: outset #322386 4px;
+  background-color: #6958cf;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  font-family: "OpenDyslexic", sans-serif;
+
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.button-classique{
+  text-align: justify;
+
+  background-color: lightgray;
+  border: 2px solid black;
+  height: 80px;
+
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 40px;
+
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.gras{
+  font-weight: bold;
+}
+
 .search-bar {
   justify-self: center;
-  width: 30%;
+  width: 40%;
   padding: 10px 10px 10px 10px;
   margin-bottom: 20px;
   border: 2px solid #6958cf;
@@ -32,7 +131,8 @@
 }
 
 .recherche{
-  margin-top: 20px;
+  margin-top: 3%;
+  margin-right: 30%;
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -40,7 +140,7 @@
 }
 
 .selectTheme {
-  width: 10%;
+  width: 40%;
   height: 40px;
   padding: 10px;
   border-radius: 4px;

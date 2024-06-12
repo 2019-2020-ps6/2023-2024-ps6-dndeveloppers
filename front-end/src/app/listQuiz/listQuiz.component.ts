@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { QuizService } from '../../services/quiz.service';
 import { Quiz } from '../../models/quiz.model';
 
@@ -14,8 +14,7 @@ export class ListQuizComponent implements OnInit {
   public afficher: boolean = false;
   public searchTerm: string = '';
   public selectedTheme: string = '';
-
-
+  public helpWanted: boolean = false;
 
   public messageEcrit: String = '';
   public motDePasse: String = 'admin';
@@ -70,5 +69,13 @@ export class ListQuizComponent implements OnInit {
         quiz.theme === this.selectedTheme : true;
       return matchesSearchTerm && matchesTheme;
     });
+  }
+
+  tutorielWanted() {
+    this.helpWanted = true;
+  }
+
+  stopShowTutoriel(){
+    this.helpWanted = false;
   }
 }
