@@ -25,7 +25,6 @@
             </span>
 
 
-            <button class="boutonAide" (click)="tutorielWanted()"><app-texteAdaptatif texte="Aide ?"></app-texteAdaptatif></button>
             
         </div> 
         <div class="listIndices">
@@ -44,25 +43,3 @@
         <app-comeBack class="returnButton" [destination]="'quizList'"></app-comeBack>
     </div>
 </section>
-
-
-<div class="popup" *ngIf="(tutorielView && actualProfil.tutoriel) || helpWanted">
-    <p class="gras">Aide ?</p>
-    <p>Vous êtes actuellement en train de jouer à un quiz.</p>
-    <div class="Question-tuto">
-        <p class="Question-texte">
-            Ceci est une question.
-        </p>
-        <button class="reponse-texte" name="button">
-            Ceci est une réponse.
-        </button>
-    </div>
-    <p>Cliquer sur <button class="button-classique">Aide ?</button> ouvre cette page</p>
-    
-    <p>Cliquer sur <button class="button-classique">Indice</button> affiche un indice textuel. Une question peut avoir plusieurs indice, et quand il n'y en a plus, une mauvaise réponse disparait.</p>
-
-    <label for="showTutoriel">J'ai compris le tutoriel</label>
-    <input id="showTutoriel" type="checkbox" (change)="dontShowTutoriel()" value="show"><br/><br/>
-
-    <button class="button-classique" (click)="stopShowTutoriel()">Clic gauche ici pour fermer l'aide</button>
-</div>
