@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from '../../services/quiz.service';
 import { Quiz } from '../../models/quiz.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'listQuiz',
@@ -11,7 +12,6 @@ export class ListQuizComponent implements OnInit {
 
   public quizList: Quiz[] = [];
   public themeList: String[] = [];
-  public afficher: boolean = false;
   public searchTerm: string = '';
   public selectedTheme: string = '';
 
@@ -20,7 +20,7 @@ export class ListQuizComponent implements OnInit {
   public messageEcrit: String = '';
   public motDePasse: String = 'admin';
 
-  constructor(public quizService: QuizService) {
+  constructor(public quizService: QuizService, private router: Router) {
     this.quizService.quizzes$.subscribe((quizList) => {
       this.quizList = quizList;
     });
@@ -49,7 +49,7 @@ export class ListQuizComponent implements OnInit {
     this.messageEcrit += String.fromCharCode(event.keyCode);
     console.log(this.messageEcrit);
     if(this.messageEcrit === this.motDePasse){
-      this.afficher = true;
+      this.router.navigate(['home']);
       return;
     }
     for(let i=0;i<this.messageEcrit.length;i++){
