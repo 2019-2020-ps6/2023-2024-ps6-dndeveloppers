@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { QuizService } from '../../services/quiz.service';
 import { Quiz } from '../../models/quiz.model';
 import { Router } from '@angular/router';
+import { ProfilService } from 'src/services/profil.service';
+import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
 
 @Component({
   selector: 'listQuiz',
@@ -20,7 +22,7 @@ export class ListQuizComponent implements OnInit {
   public messageEcrit: String = '';
   public motDePasse: String = 'admin';
 
-  constructor(public quizService: QuizService, private router: Router) {
+  constructor(public profilService: ProfilService, public quizService: QuizService, private router: Router) {
     this.quizService.quizzes$.subscribe((quizList) => {
       this.quizList = quizList;
     });
@@ -49,6 +51,7 @@ export class ListQuizComponent implements OnInit {
     this.messageEcrit += String.fromCharCode(event.keyCode);
     console.log(this.messageEcrit);
     if(this.messageEcrit === this.motDePasse){
+      this.profilService.selectProfil(LISTE_PROFILS[0]);
       this.router.navigate(['home']);
       return;
     }

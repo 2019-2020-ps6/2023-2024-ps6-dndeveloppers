@@ -10,7 +10,7 @@ import { ProfilService } from "src/services/profil.service";
 })
 
 export class HeaderComponent implements OnInit {
-    profil: Profil = ADMIN;;
+    profil: Profil = ADMIN;
 
     constructor(public profilService: ProfilService){
         this.profilService.actualProfil$.subscribe((profil) => {

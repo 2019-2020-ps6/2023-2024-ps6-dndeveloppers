@@ -85,6 +85,13 @@ export class ProfilService {
         this.quizService.selectProfil(profil);
         this.quizService.resetInfoQuiz();
 
+        if (profil.role == 'admin') {
+            this.actualProfil = LISTE_PROFILS[0];
+            this.actualProfil$.next(this.actualProfil);
+            console.log("Administrateur authentifié");
+            return;
+        }
+
         for (let i = 0; i < this.profilList.length; i++) {
             if (this.profilList[i] == profil) {
                 this.actualProfil = this.profilList[i];
