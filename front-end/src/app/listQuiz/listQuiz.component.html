@@ -1,18 +1,37 @@
 <app-header></app-header>
 
-<div class="recherche">
+<div class="searchHelp">
+  <button class="boutonAide" (click)="tutorielWanted()"><app-texteAdaptatif texte="Tutoriel"></app-texteAdaptatif></button>
+  <div class="recherche">
     <input class="search-bar" type="text" placeholder="Rechercher un quiz" [(ngModel)]="searchTerm" />
     <select class="selectTheme" name="theme-field" id="theme" [(ngModel)]="selectedTheme" required>
       <option value="">Sélectionner un thème</option>
       <option *ngFor="let currentTheme of themeList" [value]="currentTheme">{{currentTheme}}</option>
     </select>
-    <br>
   </div>
+</div>
+
 <div class="quiz-list">
-    <div class="quiz" *ngFor="let quiz of filterQuizs()">
-        <choixQuiz [quiz]="quiz" (quizSelected)="quizSelected(quiz)" (deleteQuiz)="deleteQuiz(quiz)"></choixQuiz>
-    </div>
+  <div class="quiz" *ngFor="let quiz of filterQuizs()">
+    <choixQuiz [quiz]="quiz" (quizSelected)="quizSelected(quiz)" (deleteQuiz)="deleteQuiz(quiz)"></choixQuiz>
+  </div>
 </div>
 
 <button class="boutonClavier" (window:keypress)="onSomeAction($event)"></button> <!-- bouton pour prendre en compte le clavier, il est invisible -->
 <app-comeBack *ngIf="afficher" class="returnButton" [destination]="'home'"></app-comeBack>
+
+<div class="popup" *ngIf="helpWanted">
+  <p class="gras">Tutoriel</p>
+  <p>Vous êtes actuellement en train de jouer à un quiz.</p>
+  <div class="Question-tuto">
+    <p class="Question-texte">
+      Ceci est une question.
+    </p>
+    <button class="reponse-texte" name="button">
+      Ceci est une réponse.
+    </button>
+  </div>
+
+  <p>Cliquer sur <button class="button-classique"><app-texteAdaptatif texte="Indice"></app-texteAdaptatif></button> affiche un indice textuel. Une question peut avoir plusieurs indice, et quand il n'y en a plus, une mauvaise réponse disparait.</p>
+  <button class="button-classique" (click)="stopShowTutoriel()"><app-texteAdaptatif texte="Clic gauche ici pour fermer l'aide"></app-texteAdaptatif></button>
+</div>
