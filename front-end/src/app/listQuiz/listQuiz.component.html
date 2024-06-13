@@ -11,26 +11,36 @@
   </div>
 </div>
 
-<div class="quiz-list">
-  <div class="quiz" *ngFor="let quiz of filterQuizs()">
-    <choixQuiz [quiz]="quiz" (quizSelected)="quizSelected(quiz)" (deleteQuiz)="deleteQuiz(quiz)"></choixQuiz>
+<br>
+<br>
+
+<div class="liste" *ngFor="let theme of themeList">
+  <div class="block">
+    <div class="actualTheme" *ngIf="theme===this.selectedTheme || this.selectedTheme===''">
+      <p><app-texteAdaptatif texte="{{theme}}"></app-texteAdaptatif></p>
+    </div>
+    <div class="quizzes" *ngFor="let quiz of filterQuizsByTheme(theme)">
+      <choixQuiz *ngIf="theme===this.selectedTheme || this.selectedTheme===''" [quiz]="quiz" (quizSelected)="quizSelected(quiz)"></choixQuiz>
+    </div>
   </div>
 </div>
 
 <button class="boutonClavier" (window:keypress)="onSomeAction($event)"></button> <!-- bouton pour prendre en compte le clavier, il est invisible -->
 
 <div class="popup" *ngIf="helpWanted">
-  <p class="gras">Tutoriel</p>
-  <p>Vous êtes actuellement en train de jouer à un quiz.</p>
+  <p class="gras"><app-texteAdaptatif texte="Tutoriel"></app-texteAdaptatif></p>
+  <p><app-texteAdaptatif texte="Comment jouer à un quiz ?"></app-texteAdaptatif></p>
   <div class="Question-tuto">
     <p class="Question-texte">
-      Ceci est une question.
+      <app-texteAdaptatif texte="Ceci est une question."></app-texteAdaptatif>
     </p>
     <button class="reponse-texte" name="button">
-      Ceci est une réponse.
+      <app-texteAdaptatif texte="Ceci est une réponse."></app-texteAdaptatif>
     </button>
   </div>
-
-  <p>Cliquer sur <button class="button-classique"><app-texteAdaptatif texte="Indice"></app-texteAdaptatif></button> affiche un indice textuel. Une question peut avoir plusieurs indice, et quand il n'y en a plus, une mauvaise réponse disparait.</p>
-  <button class="button-classique" (click)="stopShowTutoriel()"><app-texteAdaptatif texte="Clic gauche ici pour fermer l'aide"></app-texteAdaptatif></button>
+  
+  <p><app-texteAdaptatif texte="Cliquer sur"></app-texteAdaptatif><button class="button-classique"><app-texteAdaptatif texte="indice"></app-texteAdaptatif></button><app-texteAdaptatif texte=" affiche un indice textuel."></app-texteAdaptatif></p>
+  <p><app-texteAdaptatif texte="Une question peut avoir plusieurs indice."></app-texteAdaptatif></p>
+  <p><app-texteAdaptatif texte="Quand il n'y en a plus, une mauvaise réponse disparait."></app-texteAdaptatif></p>
+  <button class="button-classique" (click)="stopShowTutoriel()"><app-texteAdaptatif texte="Fermer le tutoriel"></app-texteAdaptatif></button>
 </div>

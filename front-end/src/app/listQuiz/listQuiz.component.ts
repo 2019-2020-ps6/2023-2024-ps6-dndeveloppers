@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { QuizService } from '../../services/quiz.service';
 import { Quiz } from '../../models/quiz.model';
 import { Router } from '@angular/router';
@@ -61,7 +61,6 @@ export class ListQuizComponent implements OnInit {
       }
     }
   }
-
   
   filterQuizs() {
     return this.quizList.filter(quiz => {
@@ -72,6 +71,19 @@ export class ListQuizComponent implements OnInit {
         quiz.theme === this.selectedTheme : true;
       return matchesSearchTerm && matchesTheme;
     });
+  }
+
+  filterQuizsByTheme(theme: String) {
+    let res = [];
+    for (let i=0; i<this.quizList.length; i++) {
+      if (this.quizList[i].name.toLowerCase().includes(this.searchTerm.toLowerCase())
+        || this.quizList[i].theme.toLowerCase().includes(this.searchTerm.toLowerCase())) {
+        if (this.quizList[i].theme == theme) {
+          res.push(this.quizList[i]);
+        }
+      }
+    }
+    return res;
   }
 
   tutorielWanted() {

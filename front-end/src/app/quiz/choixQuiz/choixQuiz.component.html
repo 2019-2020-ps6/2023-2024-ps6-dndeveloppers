@@ -3,12 +3,11 @@
         <div id="theme">
             <app-texteAdaptatif texte="{{quiz.theme}}"></app-texteAdaptatif>
         </div>
-        <div id="imageQuiz"  *ngIf="quiz.photo!==undefined && optionPhoto && quiz.photo!=='none'">
+        <div id="imageQuiz" *ngIf="quiz.photo!==undefined && optionPhoto && quiz.photo!=='none'">
             <img [src]=quiz.photo /><br/>
         </div>
         <div id="nom">
             <app-texteAdaptatif texte="{{quiz.name}}"></app-texteAdaptatif>
         </div>
-        <!--<span id="nbQuestions"><app-texteAdaptatif texte="Nombre de questions : {{quiz.questions.length}}"></app-texteAdaptatif></span>-->
     </h2>
 </div>
