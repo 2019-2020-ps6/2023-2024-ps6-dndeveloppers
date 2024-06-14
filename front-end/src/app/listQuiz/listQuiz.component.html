@@ -4,7 +4,7 @@
   <button class="boutonAide" (click)="tutorielWanted()"><app-texteAdaptatif texte="Tutoriel"></app-texteAdaptatif></button>
   <div class="recherche">
     <input class="search-bar" type="text" placeholder="Rechercher un quiz" [(ngModel)]="searchTerm" />
-    <select class="selectTheme" name="theme-field" id="theme" [(ngModel)]="selectedTheme" required>
+    <select class="selectTheme" name="theme-field" id="theme" (change)="themeShow($event)" [(ngModel)]="selectedTheme" required>
       <option value="">Sélectionner un thème</option>
       <option *ngFor="let currentTheme of themeList" [value]="currentTheme">{{currentTheme}}</option>
     </select>
@@ -14,7 +14,7 @@
 <br>
 <br>
 
-<div class="liste" *ngFor="let theme of themeList">
+<div class="liste" *ngFor="let theme of themeListShow">
   <div class="block">
     <div class="actualTheme" *ngIf="theme===this.selectedTheme || this.selectedTheme===''">
       <p><app-texteAdaptatif texte="{{theme}}"></app-texteAdaptatif></p>

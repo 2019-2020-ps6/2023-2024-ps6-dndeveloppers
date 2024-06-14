@@ -14,6 +14,7 @@ export class ListQuizComponent implements OnInit {
 
   public quizList: Quiz[] = [];
   public themeList: String[] = [];
+  public themeListShow: String[] = this.themeList;
   public searchTerm: string = '';
   public selectedTheme: string = '';
   public helpWanted: boolean = false;
@@ -28,6 +29,7 @@ export class ListQuizComponent implements OnInit {
 
     this.quizService.themeList$.subscribe((themeList) => {
       this.themeList = themeList;
+      this.themeListShow = this.themeList;
     })
   }
 
@@ -62,7 +64,7 @@ export class ListQuizComponent implements OnInit {
     }
   }
   
-  filterQuizs() {
+  /* filterQuizs() {
     return this.quizList.filter(quiz => {
       const matchesSearchTerm = this.searchTerm ? 
         quiz.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
@@ -71,7 +73,7 @@ export class ListQuizComponent implements OnInit {
         quiz.theme === this.selectedTheme : true;
       return matchesSearchTerm && matchesTheme;
     });
-  }
+  } */
 
   filterQuizsByTheme(theme: String) {
     let res = [];
@@ -84,6 +86,15 @@ export class ListQuizComponent implements OnInit {
       }
     }
     return res;
+  }
+
+  themeShow(event: any) {
+    if (event.target.value == "") {
+      this.themeListShow = this.themeList;
+    } else {
+      this.themeListShow = [];
+      this.themeListShow.push(event.target.value);
+    }
   }
 
   tutorielWanted() {
