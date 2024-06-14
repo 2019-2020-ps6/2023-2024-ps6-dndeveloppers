@@ -14,8 +14,7 @@ export class QuizGestionComponent implements OnInit {
     public themeList: String[] = [];
     public themeListShow: String[] = this.themeList;
     public searchTerm: string = '';
-
-
+    public selectedTheme: string = '';
 
     constructor(public quizService: QuizService) {
         this.quizService.quizzes$.subscribe((quizList) => {
@@ -53,7 +52,16 @@ export class QuizGestionComponent implements OnInit {
           }
         }
         return res;
-      }
+    }
+
+    themeShow(event: any) {
+        if (event.target.value == "") {
+            this.themeListShow = this.themeList;
+        } else {
+            this.themeListShow = [];
+            this.themeListShow.push(event.target.value);
+        }
+    }
 
     quizShow(event: any) {
         console.log("okok");

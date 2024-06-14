@@ -10,7 +10,7 @@
 .search-bar {
   margin-top: 20px;
   justify-self: center;
-  width: 10%;
+  width: 30%;
   padding: 10px 10px 10px 10px;
   margin-bottom: 20px;
   border: 2px solid #6958cf;
@@ -25,6 +25,27 @@
 .search-bar:focus {
   border-color: #a69fd1;
   box-shadow: 0 0 8px rgba(105, 88, 207, 0.5);
+}
+
+.selectTheme {
+  width: 30%;
+  height: 40px;
+  padding: 10px;
+  margin-left: 20px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  appearance: none;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 5px;
+}
+
+.selectTheme:focus {
+  border-color: #66afe9;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 175, 233, 0.6);
 }
 
 .actualTheme {
