@@ -97,6 +97,18 @@ export class ListQuizComponent implements OnInit {
     }
   }
 
+  quizShow(event: any) {
+    let themes: String[] = [];
+    for (let i=0; i<this.quizList.length; i++) {
+      if (this.quizList[i].name.toLowerCase().includes(event.target.value.toLowerCase()) || this.quizList[i].theme.toLowerCase().includes(event.target.value.toLowerCase())) {
+        if (!themes.includes(this.quizList[i].theme)) {
+          themes.push(this.quizList[i].theme);
+        }
+      }
+    }
+    this.themeListShow = themes;
+  }
+
   tutorielWanted() {
     this.helpWanted = true;
   }
