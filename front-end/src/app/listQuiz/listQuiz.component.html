@@ -16,7 +16,7 @@
 
 <div class="liste" *ngFor="let theme of themeListShow">
   <div class="block">
-    <div class="actualTheme" *ngIf="theme===this.selectedTheme || this.selectedTheme===''">
+    <div class="actualTheme">
       <p><app-texteAdaptatif texte="{{theme}}"></app-texteAdaptatif></p>
     </div>
     <div class="quizzes" *ngFor="let quiz of filterQuizsByTheme(theme)">

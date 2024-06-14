@@ -26,3 +26,20 @@
   border-color: #a69fd1;
   box-shadow: 0 0 8px rgba(105, 88, 207, 0.5);
 }
+
+.actualTheme {
+  width: 30%;
+  height: 40px;
+  border-radius: 4px;
+  border: solid black 1px;
+  background-color: lightgray;
+  font-weight: bold;
+  font-family: "OpenDyslexic", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quizzes {
+  display: inline-block;
+}
