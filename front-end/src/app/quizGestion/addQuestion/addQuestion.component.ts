@@ -18,6 +18,8 @@ export class AddQuestionComponent implements OnInit {
     public questionForm : FormGroup;
 
     public indicesNum: boolean[] = [true, true, true];
+    photo : string = "";
+
 
     constructor(public formBuilder: FormBuilder, public quizService: QuizService){
         this.questionForm = this.formBuilder.group({
@@ -29,7 +31,8 @@ export class AddQuestionComponent implements OnInit {
             i1: [''],
             i2: [''],
             i3: [''],
-            goodAnswer: [0]
+            goodAnswer: [0],
+            photoTexte: [],
         });
     }
 
@@ -107,8 +110,18 @@ export class AddQuestionComponent implements OnInit {
             indice3.value = "";
         }
         
-        question.optionImageLien = "none";
+        
+        
         question.optionImageQuestion = "none";
+        if(this.questionForm.value.photoTexte != undefined){
+            question.optionImageQuestion = this.questionForm.value.photoTexte;
+        }
+
+        question.optionImageLien = "none";
+        if(this.photo != ""){
+            question.optionImageLien = this.photo;
+        }
+
         console.log("question : ",question)
         this.quizService.addQuestion(question);
         this.questionForm.reset();
@@ -131,22 +144,10 @@ export class AddQuestionComponent implements OnInit {
             goodAnswer: responseNumber
         })
     }
-      
-    addIndice() {
-        for (let i=0; i<this.indicesNum.length; i++) {
-            if (this.indicesNum[i] == false) {
-                this.indicesNum[i] = true;
-                break;
-            }
-        }
-    }
 
-    deleteIndice() {
-        for (let i=this.indicesNum.length-1; i>=0; i--) {
-            if (this.indicesNum[i] == true) {
-                this.indicesNum[i] = false;
-                break;
-            }
-        }
+    handleEvent(event: string) {
+        this.photo = event;
+        console.log(event.length)
+        console.log(this.photo.length)
     }
 }
