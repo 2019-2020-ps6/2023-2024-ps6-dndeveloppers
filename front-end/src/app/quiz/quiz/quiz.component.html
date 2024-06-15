@@ -29,13 +29,13 @@
         </div> 
         <div class="listIndices">
             <div class="zoneIndice" *ngIf="infoQuiz.nbHintAskedForActualQuestion>0 && showHint[0]">
-                <p>{{choosenQuiz.questions[infoQuiz.actualQuestionNumber].indice[0].value}}</p>
+                <p><app-texteAdaptatif [texte]=choosenQuiz.questions[infoQuiz.actualQuestionNumber].indice[0].value></app-texteAdaptatif></p>
             </div>
             <div class="zoneIndice" *ngIf="infoQuiz.nbHintAskedForActualQuestion>1 && showHint[1]">
-                <p>{{choosenQuiz.questions[infoQuiz.actualQuestionNumber].indice[1].value}}</p>
+                <p><app-texteAdaptatif [texte]=choosenQuiz.questions[infoQuiz.actualQuestionNumber].indice[1].value></app-texteAdaptatif></p>
             </div>
             <div class="zoneIndice" *ngIf="infoQuiz.nbHintAskedForActualQuestion>2 && showHint[2]">
-                <p>{{choosenQuiz.questions[infoQuiz.actualQuestionNumber].indice[2].value}}</p>
+                <p><app-texteAdaptatif [texte]=choosenQuiz.questions[infoQuiz.actualQuestionNumber].indice[2].value></app-texteAdaptatif></p>
             </div>
         </div>
         

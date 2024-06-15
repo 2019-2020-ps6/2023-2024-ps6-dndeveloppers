@@ -32,6 +32,8 @@ export class ListReponsesComponent implements OnInit {
 
     public tempsAffichage: number = 3;
     public buttonActivation: boolean = true;
+    public optionIndice: boolean | undefined;
+
 
     constructor(public quizService: QuizService, public profilService: ProfilService){     
         this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
@@ -47,6 +49,10 @@ export class ListReponsesComponent implements OnInit {
             this.profil = actualProfil;
             this.tempsAffichage = actualProfil.optionTempsReponse;
         })
+
+        this.profilService.actualProfil$.subscribe((profil) => {
+            this.optionIndice = profil.optionIndice;
+          })
     }
 
     ngOnInit(): void {}

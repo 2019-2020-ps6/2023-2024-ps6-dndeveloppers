@@ -9,6 +9,7 @@
         <p><app-texteAdaptatif texte="Vous avez répondu à {{choosenQuiz.questions.length}} questions lors de ce quiz"></app-texteAdaptatif></p>
         <p *ngIf="infoQuiz.nbGoodAnswer > choosenQuiz.questions.length/2"><app-texteAdaptatif texte="Vouz avez eu {{infoQuiz.nbGoodAnswer}} bonnes réponses."></app-texteAdaptatif></p>
         <p *ngIf="infoQuiz.bestStreak > 2"><app-texteAdaptatif texte="Vous avez répondu correctement {{infoQuiz.bestStreak}} fois de suite"></app-texteAdaptatif></p>
+        <div *ngIf="optionIndice===true">
         <p *ngIf="choosenQuiz.questions.length/2 > infoQuiz.nbHintUsed && infoQuiz.nbHintUsed>1">
             <app-texteAdaptatif texte="Bravo : Vous n'avez utilisé que {{infoQuiz.nbHintUsed}} indices"></app-texteAdaptatif>
         </p>
@@ -18,6 +19,7 @@
         <p *ngIf="infoQuiz.nbHintUsed==0">
             <app-texteAdaptatif texte="Incroyable : vous n'avez eu besoin d'aucun indice"></app-texteAdaptatif>
         </p>
+        </div>
         
         <app-comeBack class="PopupreturnButton" [destination]="'quizList'"></app-comeBack>
         

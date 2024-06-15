@@ -18,6 +18,8 @@ export class ListQuizComponent implements OnInit {
   public searchTerm: string = '';
   public selectedTheme: string = '';
   public helpWanted: boolean = false;
+  public optionIndice: boolean | undefined;
+
 
   public messageEcrit: String = '';
   public motDePasse: String = 'admin';
@@ -30,6 +32,10 @@ export class ListQuizComponent implements OnInit {
     this.quizService.themeList$.subscribe((themeList) => {
       this.themeList = themeList;
       this.themeListShow = this.themeList;
+    });
+
+    this.profilService.actualProfil$.subscribe((profil) => {
+      this.optionIndice = profil.optionIndice;
     })
   }
 

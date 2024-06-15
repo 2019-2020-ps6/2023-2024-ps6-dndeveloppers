@@ -38,9 +38,11 @@
       <app-texteAdaptatif texte="Ceci est une réponse."></app-texteAdaptatif>
     </button>
   </div>
-  
-  <p><app-texteAdaptatif texte="Cliquer sur"></app-texteAdaptatif><button class="button-classique"><app-texteAdaptatif texte="indice"></app-texteAdaptatif></button><app-texteAdaptatif texte=" affiche un indice textuel."></app-texteAdaptatif></p>
-  <p><app-texteAdaptatif texte="Une question peut avoir plusieurs indice."></app-texteAdaptatif></p>
-  <p><app-texteAdaptatif texte="Quand il n'y en a plus, une mauvaise réponse disparait."></app-texteAdaptatif></p>
+  <div *ngIf="optionIndice===true">
+    <p><app-texteAdaptatif texte="Cliquer sur"></app-texteAdaptatif><button class="button-classique"><app-texteAdaptatif texte="indice"></app-texteAdaptatif></button><app-texteAdaptatif texte=" affiche un indice textuel."></app-texteAdaptatif></p>
+    <p><app-texteAdaptatif texte="Une question peut avoir plusieurs indice."></app-texteAdaptatif></p>
+    <p><app-texteAdaptatif texte="Quand il n'y en a plus, une mauvaise réponse disparait."></app-texteAdaptatif></p>
+  </div>
   <button class="button-classique" (click)="stopShowTutoriel()"><app-texteAdaptatif texte="Fermer le tutoriel"></app-texteAdaptatif></button>
-</div>
+
+  </div>
