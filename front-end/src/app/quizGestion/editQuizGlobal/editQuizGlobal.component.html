@@ -4,7 +4,7 @@
     <section class="indent">
         <label> Nom <br>
             <input class="input-custom" type="text" id="nom" [formControlName]="'nom'" required>
-        </label><p class="valeurActuel">{{this.nom}}</p>
+        </label><p class="valeurActuel">{{this.editQuiz?.name}}</p>
     </section>
 
     <section class="indent">
@@ -12,13 +12,12 @@
             <select name="input-custom" id="theme" [formControlName]="'theme'" required>
                 <option *ngFor="let currentTheme of themeList" [value]="currentTheme">{{currentTheme}}</option>
             </select> 
-        </label><p class="valeurActuel">{{this.theme}}</p>
+        </label><p class="valeurActuel">{{this.editQuiz?.theme}}</p>
     </section>
 
     <section class="indent">
-        <label for="annee"> Photo de Quiz :
-            <input class="input-custom" type="file" id="photo" [formControlName]="'photo'">    
-        </label>
+        <app-submitPicture (customEvent)="handleEvent($event)"></app-submitPicture>
+        <img *ngIf="photo !== ''" class="photo" [src]=photo /><br/>
     </section>
     
     <button class="boutonValeurGlobal" type="submit" [disabled]="!quizGlobalForm.valid" (click)="editGlobalQuiz()">Modifier</button>

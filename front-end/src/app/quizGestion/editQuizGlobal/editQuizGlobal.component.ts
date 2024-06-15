@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
+import { Quiz } from "src/models/quiz.model";
 import { QuizService } from "src/services/quiz.service";
 
 @Component({
@@ -11,14 +12,21 @@ import { QuizService } from "src/services/quiz.service";
 export class EditQuizGlobalComponent implements OnInit {
 
     public quizGlobalForm : FormGroup;
-
+    public editQuiz: Quiz | undefined;
     public themeList : String[] = [];
+    photo : string = "";
 
     constructor(public quizService: QuizService, public formBuilder: FormBuilder,){
+        this.quizService.editedQuiz$.subscribe( (editQuiz) => {
+            this.editQuiz = editQuiz;
+            if(this.editQuiz.photo != undefined && this.editQuiz.photo != "none"){
+                this.photo = this.editQuiz.photo;
+            }
+        })
+
         this.quizGlobalForm = this.formBuilder.group({
-            nom: [''],
-            theme: [''],
-            photo: []
+            nom: [this.editQuiz?.name],
+            theme: [this.editQuiz?.theme],
         });
 
         this.quizService.themeList$.subscribe( (themeList) => {
@@ -26,23 +34,23 @@ export class EditQuizGlobalComponent implements OnInit {
         })
     }
 
-    @Input()
-    nom: String = '';
-
-    @Input()
-    theme: String = '';
-
     ngOnInit(): void {}
 
     editGlobalQuiz(){
         let valeurs: string[] = [this.quizGlobalForm.value.nom,this.quizGlobalForm.value.theme];
-        if(this.quizGlobalForm.value.photo !== null){
-            let path : String = this.quizGlobalForm.value.photo;
-            var spliter = path.split('\\');
-            let bon_path : string = spliter[spliter.length-1];
-            valeurs.push("./assets/quiz/"+bon_path); 
+        if(this.photo != ""){
+            valeurs.push(this.photo);
+        }
+        else {
+            valeurs.push("none");
         }
         console.log("valeurs : ",valeurs)
         this.quizService.editGlobalQuiz(valeurs);
+    }
+
+    handleEvent(event: string) {
+        this.photo = event;
+        console.log(event.length)
+        console.log(this.photo.length)
     }
 }

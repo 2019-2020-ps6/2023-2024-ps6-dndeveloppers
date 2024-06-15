@@ -48,14 +48,10 @@
             </div>
 
         </label><br/>
-
-        <button (click)="addIndice()">Ajouter indice</button>
-        <button (click)="deleteIndice()">Supprimer indice</button>
     </section>
+    <app-submitPicture (customEvent)="handleEvent($event)"></app-submitPicture>
+    <img *ngIf="photo !== ''" class="photo" [src]=photo /><br/>
     
-    <label> Photo de la Question (optionel) :
-        <input class="input-custom" type="file" id="photoLien" [formControlName]="'photoLien'">    
-    </label><br><br>
     <label> Question si la photo n'est pas affichée (uniquement si photo ajoutée):
         <input class="input-custom" type="text" id="photoTexte" [formControlName]="'photoTexte'"><p class="indent">{{this.texteImage}}</p>    
     </label>

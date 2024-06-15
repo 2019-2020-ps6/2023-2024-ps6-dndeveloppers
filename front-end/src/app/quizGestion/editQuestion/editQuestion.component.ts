@@ -5,7 +5,6 @@ import { Indice } from "src/models/question.models";
 import { Answer_Model } from "src/mocks/quiz-list.mock";
 import { Answer, Question } from "src/models/question.models";
 import { QuizService } from "src/services/quiz.service";
-import { QUESTION_ACTOR0 } from "src/mocks/quizQuestion/question-acteur.mock";
 
 @Component({
     selector: 'app-editQuestion',
@@ -25,6 +24,7 @@ export class EditQuestionComponent implements OnInit {
     public targetIndex: number = 0;
     public url: string = window.location.href;
     public quizName: string = "";
+    photo : string = "";
 
     constructor(public formBuilder: FormBuilder, public quizService: QuizService){
         this.questionForm = this.formBuilder.group({
@@ -37,7 +37,6 @@ export class EditQuestionComponent implements OnInit {
             i2: [this.question?.indice[1].value],
             i3: [this.question?.indice[2].value],
 
-            photoLien: [],
             photoTexte: [],
 
             goodAnswer: [this.findGoodAnswer()]
@@ -60,7 +59,13 @@ export class EditQuestionComponent implements OnInit {
         }
 
         if(this.question != undefined && this.question.optionImageLien != undefined && this.question.optionImageQuestion != undefined){
-            this.texteImage = this.question.optionImageQuestion;
+            if(this.question.optionImageLien != "none"){ 
+                this.photo = this.question.optionImageLien;
+            }
+            if(this.question.optionImageQuestion != "none"){ 
+                this.texteImage = this.question.optionImageQuestion;
+            }
+           
         }
         
 
@@ -74,8 +79,6 @@ export class EditQuestionComponent implements OnInit {
             i1: [this.indice[0]],
             i2: [this.indice[1]],
             i3: [this.indice[2]],
-
-            photoLien: [this.question?.optionImageLien],
             photoTexte: [this.texteImage],
         });
 
@@ -184,26 +187,15 @@ export class EditQuestionComponent implements OnInit {
 
         question.indice = [indice1, indice2, indice3];
 
-        console.log("question : ",question)
-
         // photo
-        if(this.questionForm.value.photoLien != null && this.questionForm.value.photoTexte != null && this.questionForm.value.photoLien != "" && this.questionForm.value.photoTexte != ""){
-            console.log("photo")
-            let path : String = this.questionForm.value.photoLien;
-            var spliter = path.split('\\');
-            let bon_path : string = "./assets/quiz/"+spliter[spliter.length-1];
-            question.optionImageLien = bon_path,
+        if(this.photo != "" && this.questionForm.value.photoTexte != null && this.questionForm.value.photoTexte != "none"){
+            question.optionImageLien = this.photo,
             question.optionImageQuestion = this.questionForm.value.photoTexte;
         }
         else {
             question.optionImageLien = "none"
             question.optionImageQuestion = "none"
         }
-
-        console.log(question.optionImageLien)
-        console.log(question.optionImageQuestion)
-
-
         question.id = this.question?.id;
         question.idQuiz = this.question?.idQuiz;
         if (oneChecked == 1) {
@@ -251,36 +243,9 @@ export class EditQuestionComponent implements OnInit {
         }
     }
 
-    addIndice(){
-        for (let i=0; i<this.indicesNum.length; i++) {
-            if (this.indicesNum[i] == false) {
-                this.indicesNum[i] = true;
-                break;
-            }
-        }
-    }
-
-    deleteIndice(){
-        let indice = -1;
-        for (let i=this.indicesNum.length-1; i>=0; i--) {
-            if (this.indicesNum[i] == true) {
-                this.indicesNum[i] = false;
-                indice = i;
-                break;
-            }
-        }
-        if (indice == 0) {
-            this.questionForm.patchValue({
-                i1: '',
-            })
-        } else if (indice == 1) {
-            this.questionForm.patchValue({
-                i2: '',
-            })
-        } else {
-            this.questionForm.patchValue({
-                i3: '',
-            })
-        }
+    handleEvent(event: string) {
+        this.photo = event;
+        console.log(event.length)
+        console.log(this.photo.length)
     }
 }
