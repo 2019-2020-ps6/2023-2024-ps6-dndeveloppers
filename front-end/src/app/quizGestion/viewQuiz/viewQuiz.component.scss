@@ -10,9 +10,21 @@
     padding-right: 10px;
     padding-bottom: 10px;
     text-align: center;
+    font-size: medium;
 }
 
 #imageQuiz {
-    max-height: 150px;
-    max-width: 150px;
+    height: 150px;
+    max-width: 350px;
+    margin-top: 10px;
+}
+
+button {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.bt {
+    display: flex;
+    justify-content: space-evenly;
 }

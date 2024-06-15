@@ -1,10 +1,11 @@
 <div class="card" *ngIf="quiz">
     <h2>
-        <span> Nom : {{quiz.name}}   </span><br/>
-        <span> Thème: {{quiz.theme}} </span><br/>
-        <span> Nb questions : {{quiz.questions.length}}</span><br/>
+        <span> {{quiz.name}} </span><br/>
         <img *ngIf="quiz.photo!==undefined && quiz.photo!=='none'" id="imageQuiz" [src]=quiz.photo /><br/>
-        <button (click)="editQuiz(quiz)">Modifier</button>
-        <button (click)="deleteQuiz(quiz)">Supprimer</button>
+        <span>{{quiz.questions.length}} questions</span><br/>
+        <div class="bt">
+            <button (click)="editQuiz(quiz)">Modifier</button>
+            <button (click)="deleteQuiz(quiz)">Supprimer</button>
+        </div>
     </h2>
 </div>
