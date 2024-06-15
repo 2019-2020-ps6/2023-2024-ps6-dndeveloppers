@@ -38,7 +38,9 @@
                 </label>
 
                 <label for="annee"> Photo de profil :
-                    <input class="input-custom" type="file" id="photo" [formControlName]="'photo'">    
+                    <app-submitPicture (customEvent)="handleEvent($event)"></app-submitPicture>
+                    <!--<input class="input-custom" type="file" id="photo" [formControlName]="'photo'">    -->
+                    <img *ngIf="photo !== ''" class="photo" [src]=photo /><br/>
                 </label>
         </section>
     </section>

@@ -21,7 +21,7 @@ export class CreateProfilComponent implements OnInit {
     public MonthList: String[] = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
     public FontSizeList: String[] = ['Petit', 'Moyen', 'Grand'];
     
-    
+    photo : string = "";
 
     constructor(public formBuilder: FormBuilder, public profilService: ProfilService, private router: Router){
         this.profilForm = this.formBuilder.group({
@@ -32,8 +32,6 @@ export class CreateProfilComponent implements OnInit {
             jour: [],
             mois:[],
             annee:[],
-
-            photo: [],
 
             optionPhoto: [false],
             optionIndice: [true],
@@ -48,7 +46,7 @@ export class CreateProfilComponent implements OnInit {
 
     ngOnInit(): void {}
 
-    addProfil(){
+    async addProfil(){
         const profilToCreate: Profil = JSON.parse(JSON.stringify(PROFIL_NULL));
         
         profilToCreate.nom = this.profilForm.getRawValue().nom;
@@ -66,29 +64,34 @@ export class CreateProfilComponent implements OnInit {
             profilToCreate.dateNaissance = [0,0,0]
         }
 
-        if(this.profilForm.value.photo != undefined){
-            let path : String = this.profilForm.value.photo;
-            var spliter = path.split('\\');
-            let bon_path : string = spliter[spliter.length-1];
-            console.log(bon_path);
-            profilToCreate.photo = "./assets/imageProfil/"+bon_path; 
+        profilToCreate.selfStats = JSON.parse(JSON.stringify(STATS_PATIENT_INIT));
+        profilToCreate.optionTempsReponse = this.profilForm.getRawValue().optionTimeReponse;
+        profilToCreate.optionTailleTexte = this.profilForm.getRawValue().optionTailleTexte;
+
+        profilToCreate.optionIndice = this.profilForm.getRawValue().optionIndice;
+        profilToCreate.optionPhoto = this.profilForm.getRawValue().optionPhoto;
+        profilToCreate.optionSupprimerMauvaisesReponses = this.profilForm.getRawValue().optionSupprimerMauvaisesReponses;
+        profilToCreate.optionReposerQuestionApres = this.profilForm.getRawValue().optionReposerQuestionApres;
+
+        if(this.photo != ""){
+            profilToCreate.photo = this.photo; 
+            console.log("add profil ", profilToCreate);
+            this.profilService.addProfil(profilToCreate);
+            this.router.navigate(['home/listProfil/']); 
         }
         else {
-            profilToCreate.photo = "./assets/imageProfil/default.png"
+            const reader = new FileReader();
+
+            reader.readAsDataURL(await this.createFile());
+            reader.onload = () => {
+                profilToCreate.photo = reader.result as string;
+                console.log("add profil ", profilToCreate);
+                this.profilService.addProfil(profilToCreate);
+                this.router.navigate(['home/listProfil/']); 
+            };
         }
 
-        profilToCreate.selfStats = JSON.parse(JSON.stringify(STATS_PATIENT_INIT));
-        profilToCreate.optionTempsReponse = this.profilForm.getRawValue().optionTimeReponse,
-        profilToCreate.optionTailleTexte = this.profilForm.getRawValue().optionTailleTexte,
 
-        profilToCreate.optionIndice = this.profilForm.getRawValue().optionIndice,
-        profilToCreate.optionPhoto = this.profilForm.getRawValue().optionPhoto,
-        profilToCreate.optionSupprimerMauvaisesReponses = this.profilForm.getRawValue().optionSupprimerMauvaisesReponses,
-        profilToCreate.optionReposerQuestionApres = this.profilForm.getRawValue().optionReposerQuestionApres,
-
-        console.log("add profil ", profilToCreate);
-        this.profilService.addProfil(profilToCreate);
-        this.router.navigate(['home/listProfil/']); 
     }
 
     getFontSizeValue(): number {
@@ -104,6 +107,23 @@ export class CreateProfilComponent implements OnInit {
 
     return(){
         this.router.navigate(['home/listProfil/']);
+    }
+
+    handleEvent(event: string) {
+        console.log("ok");
+        this.photo = event;
+        console.log(event.length)
+        console.log(this.photo.length)
+    }
+
+    async createFile(){
+        let response = await fetch("./assets/imageProfil/default.png");
+        let data = await response.blob();
+        let metadata = {
+          type: 'image/png'
+        };
+        let file = new File([data], "test.jpg", metadata);
+        return file
     }
 
     

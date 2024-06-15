@@ -25,6 +25,8 @@ export class EditProfilComponent implements OnInit {
 
     public initialMonth: String = 'janvier';
 
+    photo : string = "";
+
     constructor(public formBuilder: FormBuilder,public profilService: ProfilService, public router: Router){
         this.profilService.actualEditingProfil$.subscribe((profilEditing) => {
             this.profilEditing = profilEditing;
@@ -45,8 +47,6 @@ export class EditProfilComponent implements OnInit {
             mois:[this.setMonth()],
             annee:[this.profilEditing?.dateNaissance?.[2]],
 
-            photo: [],
-
             optionPhoto: [this.profilEditing?.optionPhoto],
             optionIndice: [this.profilEditing?.optionIndice],
 
@@ -59,7 +59,9 @@ export class EditProfilComponent implements OnInit {
         });
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.photo = this.profilInital.photo;
+    }
 
     setMonth(): String{
         if(this.profilEditing?.dateNaissance?.[1] != undefined){
@@ -92,9 +94,6 @@ export class EditProfilComponent implements OnInit {
             console.log(bon_path);
             profilToCreate.photo = "./assets/imageProfil/"+bon_path; 
         }
-        else {
-            profilToCreate.photo = "./assets/imageProfil/default.png"
-        }
 
         profilToCreate.optionTailleTexte = this.profilForm.getRawValue().optionTailleTexte,
         profilToCreate.optionIndice = this.profilForm.getRawValue().optionIndice,
@@ -107,8 +106,20 @@ export class EditProfilComponent implements OnInit {
         profilToCreate.selfStats = JSON.parse(JSON.stringify(STATS_PATIENT_INIT));
         profilToCreate.id = this.profilEditing?.id;
 
+        if(this.photo != ""){
+            profilToCreate.photo = this.photo; 
+        }
+        
+
         console.log("add profil ", profilToCreate);
         this.profilService.updateProfil(profilToCreate);
         this.router.navigate(['home/listProfil/']); 
     }
+
+    handleEvent(event: string) {
+        console.log("ok");
+        this.photo = event;
+        console.log(event.length)
+        console.log(this.photo.length)
+      }
 }

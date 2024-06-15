@@ -38,6 +38,8 @@ import { ViewQuizComponent } from './quizGestion/viewQuiz/viewQuiz.component';
 import { AddThemeComponent } from './quizGestion/addTheme/addTheme.component';
 import { TexteAdaptatifComponent } from './texteAdaptatif/texteAdaptatif.component';
 
+import { SubMitPhoto } from './photo/photo.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,6 +78,9 @@ import { TexteAdaptatifComponent } from './texteAdaptatif/texteAdaptatif.compone
     StatsGlobalesComponent,
     StatsPatientComponent,
     StatsQuizComponent,
+
+    // Photo
+    SubMitPhoto
   ],
   imports: [
     BrowserModule,

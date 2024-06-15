@@ -111,7 +111,14 @@
     align-items: center;
   }
   
-  #optionTailleTexte,
-  .exempleTailleTexte {
-    margin-left: 10px;
-  }
+#optionTailleTexte,
+.exempleTailleTexte {
+margin-left: 10px;
+}
+
+.photo {
+    width: 200px;
+    margin-top: -175px;
+    margin-right: 200px;
+    float: right;
+}  
