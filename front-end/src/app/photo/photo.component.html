@@ -1,0 +1,8 @@
+<div class="display-input">
+  <label for="image">Photo :</label>
+  <input #inputField type="file" accept="image/*" (change)="valueChanged($any($event.target).files)"/>
+  <div (click)="inputField.click()">
+      <ng-content />
+  </div>
+  <!--<img *ngIf="ok" class="photo" [src]=src /><br/>-->
+</div>

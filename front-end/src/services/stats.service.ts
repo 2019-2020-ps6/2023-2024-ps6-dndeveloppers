@@ -2,10 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { httpOptionsBase, serverUrl } from 'src/configs/server.config';
-import { QUIZ_LIST, QUIZ_NULL } from 'src/mocks/quiz-list.mock';
 import { Profil } from 'src/models/profil.model';
 import { Quiz } from 'src/models/quiz.model';
-import { QuizService } from './quiz.service';
 import { InfoQuiz } from 'src/models/infoQuiz.model';
 import { statsQuiz } from 'src/models/stats/statsQuiz.model';
 
