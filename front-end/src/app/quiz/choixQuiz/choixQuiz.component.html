@@ -1,8 +1,13 @@
 <div class="card" *ngIf="quiz" (click)="selectQuiz(this.quiz)">
     <h2>
-        <span><app-texteAdaptatif texte="Nom : {{quiz.name}}"></app-texteAdaptatif></span>
-        <span><app-texteAdaptatif texte="Thème: {{quiz.theme}}"></app-texteAdaptatif></span>
-        <img *ngIf="quiz.photo!==undefined && optionPhoto && quiz.photo!=='none'" id="imageQuiz" [src]=quiz.photo /><br/>
-        <span><app-texteAdaptatif texte="Nombre de questions : {{quiz.questions.length}}"></app-texteAdaptatif></span>
+        <div id="theme">
+            <app-texteAdaptatif texte="{{quiz.theme}}"></app-texteAdaptatif>
+        </div>
+        <div id="imageQuiz" *ngIf="quiz.photo!==undefined && optionPhoto && quiz.photo!=='none'">
+            <img [src]=quiz.photo /><br/>
+        </div>
+        <div id="nom">
+            <app-texteAdaptatif texte="{{quiz.name}}"></app-texteAdaptatif>
+        </div>
     </h2>
 </div>

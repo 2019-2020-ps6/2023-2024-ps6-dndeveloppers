@@ -11,15 +11,21 @@ import { QuizService } from "src/services/quiz.service";
 export class QuizGestionComponent implements OnInit {
 
     public quizList: Quiz[] = [];
+    public themeList: String[] = [];
+    public themeListShow: String[] = this.themeList;
     public searchTerm: string = '';
-
-
+    public selectedTheme: string = '';
 
     constructor(public quizService: QuizService) {
         this.quizService.quizzes$.subscribe((quizList) => {
           this.quizList = quizList;
         });
         this.quizService.setUpTheme();
+
+        this.quizService.themeList$.subscribe((themeList) => {
+            this.themeList = themeList;
+            this.themeListShow = this.themeList;
+        })
     }
 
     ngOnInit(): void {}
@@ -33,5 +39,31 @@ export class QuizGestionComponent implements OnInit {
         } else {
             return this.quizList;
         }
+    }
+
+    filterQuizsByTheme(theme: String) {
+        let res = [];
+        for (let i=0; i<this.quizList.length; i++) {
+          if (this.quizList[i].name.toLowerCase().includes(this.searchTerm.toLowerCase())
+            || this.quizList[i].theme.toLowerCase().includes(this.searchTerm.toLowerCase())) {
+            if (this.quizList[i].theme == theme) {
+              res.push(this.quizList[i]);
+            }
+          }
+        }
+        return res;
+    }
+
+    themeShow(event: any) {
+        if (event.target.value == "") {
+            this.themeListShow = this.themeList;
+        } else {
+            this.themeListShow = [];
+            this.themeListShow.push(event.target.value);
+        }
+    }
+
+    quizShow(event: any) {
+        console.log("okok");
     }
 }

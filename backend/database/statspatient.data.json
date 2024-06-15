@@ -35,16 +35,14 @@
     "options": [
       true
     ],
-    "nbQuizDone": 4,
-    "meanScore": 71.875,
+    "nbQuizDone": 3,
+    "meanScore": 75,
     "quizRes": [
-      62.5,
       100,
       37.5,
       87.5
     ],
     "quizDone": [
-      "Politiciens durant la Guerre Froide",
       "Politiciens en Guerre Froide",
       "Politiciens en Guerre Froide",
       "Politiciens en Guerre Froide"
