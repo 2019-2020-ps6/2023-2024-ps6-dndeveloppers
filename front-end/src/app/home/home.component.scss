@@ -20,11 +20,13 @@
     -1px 1px 0 #000,
     1px 1px 0 #000;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s ease;
 }
 
 .boutonHome:hover {
     background-color: #a69fd1;
     border: inset #322386 4px;
+    transform: scale(1.05);
 }
 
 .homePage{
@@ -68,4 +70,13 @@
 .search-bar:focus {
     border-color: #a69fd1;
     box-shadow: 0 0 8px rgba(105, 88, 207, 0.5);
+}
+
+#profil {
+    transition: transform 0.5s ease;
+}
+
+#profil:hover {
+    transform: scale(1.05);
+    cursor: pointer;
 }

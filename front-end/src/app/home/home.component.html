@@ -7,8 +7,8 @@
         <div class="recherche">
             <input class="search-bar" type="text" placeholder="Rechercher un profil" [(ngModel)]="searchTerm" />
         </div>
-        <div  class="profil-list">
-            <div *ngFor="let profil of filterProfils()">
+        <div class="profil-list">
+            <div id="profil" *ngFor="let profil of filterProfils()">
                 <app-viewProfil *ngIf="profil.role !== 'admin'" [typeView]="'play'" [profil]="profil"></app-viewProfil>
             </div>
         </div>

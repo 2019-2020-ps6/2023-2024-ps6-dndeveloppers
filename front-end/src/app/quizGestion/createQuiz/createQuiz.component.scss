@@ -27,3 +27,16 @@
 .createQuiz{
     margin-right: 2%;
 }
+
+#theme:hover {
+    cursor: pointer;
+}
+
+button {
+    transition: transform 0.5s ease;
+}
+
+button:not([disabled]):hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}

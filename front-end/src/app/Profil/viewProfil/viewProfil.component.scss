@@ -13,6 +13,14 @@
     margin-bottom: 10px;
 }
 
+button {
+    transition: transform 0.5s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
 .popup {
     position:absolute;
     left: 50%;

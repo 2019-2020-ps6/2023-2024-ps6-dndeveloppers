@@ -9,4 +9,10 @@
 
 .BoutonAddTheme{
     margin-top: 2%;
+    transition: transform 0.5s ease;
+}
+
+.BoutonAddTheme:not([disabled]):hover {
+    cursor: pointer;
+    transform: scale(1.05);
 }
