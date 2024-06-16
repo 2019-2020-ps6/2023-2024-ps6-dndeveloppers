@@ -2,7 +2,6 @@ import { InfoQuiz } from "src/models/infoQuiz.model";
 import { Question_Model } from "./quiz-list.mock";
 
 export const infoQuiz_INIT: InfoQuiz = {
-    questionsToAskAgain: [],
     actualQuestionNumber: 0,
     nbGoodAnswer: 0,
     actualScore: 0,
@@ -10,11 +9,13 @@ export const infoQuiz_INIT: InfoQuiz = {
     nbHintAskedForActualQuestion: 0,
     bestStreak: 0,
     actualStreak: 0,
-    displayResponses: [true,true,true,true],
+    displayResponses: [true, true, true, true],
     nbErrors: 0,
     showGoodAnswer: false,
     endOfQuiz: false,
     actualQuestion: Question_Model,
     actualResponses: [],
-    scoreForEachQuestion: []
+    scoreForEachQuestion: [],
+    replayQuestion: false,
+    questionToReplay: []
 }

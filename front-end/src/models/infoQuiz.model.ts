@@ -1,8 +1,6 @@
 import { Answer, Question } from "./question.models"
 
 export interface InfoQuiz {
-    questionsToAskAgain: Array<number>, // contient tout les numéros des questions à reposer  => pour l'option de reposer les questions
-
     actualQuestionNumber: number, // numéro de la question actuelle 
 
     nbGoodAnswer: number, // nombre de bonnes réponses
@@ -23,7 +21,10 @@ export interface InfoQuiz {
     actualQuestion: Question, 
     actualResponses: Answer[],
 
-    scoreForEachQuestion : number[]
+    scoreForEachQuestion : number[],
+
+    replayQuestion : Boolean, // si true cela veut dire qu'on est dans la phase où on repose les questions 
+    questionToReplay : number[] // contient les numéros des questions a reposer
 }
 
 
