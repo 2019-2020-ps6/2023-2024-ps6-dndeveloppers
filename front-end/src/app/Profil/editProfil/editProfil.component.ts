@@ -122,4 +122,13 @@ export class EditProfilComponent implements OnInit {
         console.log(event.length)
         console.log(this.photo.length)
       }
+
+    unicity(event: any) {
+        const options = document.getElementsByClassName("unparalleled");
+        for (let i=0; i<options.length; i++) {
+            if ((options[i] as HTMLInputElement) != event.target) {
+                (options[i] as HTMLInputElement).checked = false;
+            }
+        }
+    }  
 }
