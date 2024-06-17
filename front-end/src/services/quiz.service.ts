@@ -434,6 +434,32 @@ export class QuizService {
     this.updateInfoQuiz();
   }
 
+  // quand un joueur skip une question
+  skipQuestion(quiz: Quiz){
+    if (this.infoQuiz.bestStreak < this.infoQuiz.actualStreak) {
+      this.infoQuiz.bestStreak = this.infoQuiz.actualStreak;
+    }
+    this.infoQuiz.actualStreak = 0;
+    this.infoQuiz.scoreForEachQuestion.push(0);
+    this.infoQuiz.nbHintAskedForActualQuestion = 0;
+    this.infoQuiz.displayResponses = [true, true, true, true];
+    this.infoQuiz.nbErrors = 0;
+    this.infoQuiz.showGoodAnswer = true;
+
+    if(this.infoQuiz.actualQuestionNumber == quiz.questions.length-1){ // si on est à la fin du quiz
+      console.log("C'était la dernière question");
+      this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
+      this.choosenQuiz.selfStats = this.statsService.updateQuizStats(this.infoQuiz,this.choosenQuiz.selfStats);
+      this.statsService.patientScoreNewData(this.actualProfil, this.infoQuiz.actualScore/quiz.questions.length);
+      this.infoQuiz.endOfQuiz = true;
+      this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => this.retrievesQuiz());
+    }
+    else {
+      this.infoQuiz.actualQuestionNumber++;      
+    }
+    this.updateInfoQuiz();
+  }
+
   // ------------------------------------------------------------ thèmes ---------------------------------------------------------------------------------
 
   setUpTheme(){ // mettre à jour la liste des thèmes

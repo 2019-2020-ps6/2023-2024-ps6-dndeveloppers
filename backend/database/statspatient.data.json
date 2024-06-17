@@ -85,17 +85,6 @@
     "meanScore": 0,
     "quizRes": [],
     "quizDone": [],
-    "id": 1718447270708.6418,
-    "idStatsPatient": 1718447270712.077
-  },
-  {
-    "options": [
-      true
-    ],
-    "nbQuizDone": 0,
-    "meanScore": 0,
-    "quizRes": [],
-    "quizDone": [],
     "id": 1718457702453.754
   },
   {
@@ -117,15 +106,5 @@
     "quizRes": [],
     "quizDone": [],
     "id": 1718458829779.055
-  },
-  {
-    "options": [
-      true
-    ],
-    "nbQuizDone": 0,
-    "meanScore": 0,
-    "quizRes": [],
-    "quizDone": [],
-    "id": 1718458948211.226
   }
 ]
