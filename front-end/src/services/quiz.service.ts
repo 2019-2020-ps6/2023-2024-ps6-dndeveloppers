@@ -159,22 +159,24 @@ export class QuizService {
   }
 
   hintAsked(){
-    // premier cas : on affiche l'indice
-    if(this.infoQuiz.nbHintAskedForActualQuestion < this.getActualQuestionNumberHint()){
-      this.infoQuiz.nbHintAskedForActualQuestion++;
-      console.log("Indice demandé");
-      this.updateInfoQuiz();  
-    }
-    // deuxième cas : on enlève une réponse (car on a déjà utilisé tout les indices textuels)
-    else if (this.infoQuiz.nbHintAskedForActualQuestion-2 < this.getActualQuestionNumberHint()) {
-      this.infoQuiz.nbHintAskedForActualQuestion++;
-      this.updateInfoQuiz(); 
-      this.hideResponse();
-      console.log("cache une réponse");
-    } 
-    // troisième cas : rien
-    else {
-      console.log("Plus d'indice");
+    if (!this.infoQuiz.endOfQuiz) {
+      // premier cas : on affiche l'indice
+      if(this.infoQuiz.nbHintAskedForActualQuestion < this.getActualQuestionNumberHint()){
+        this.infoQuiz.nbHintAskedForActualQuestion++;
+        console.log("Indice demandé");
+        this.updateInfoQuiz();  
+      }
+      // deuxième cas : on enlève une réponse (car on a déjà utilisé tout les indices textuels)
+      else if (this.infoQuiz.nbHintAskedForActualQuestion-2 < this.getActualQuestionNumberHint()) {
+        this.infoQuiz.nbHintAskedForActualQuestion++;
+        this.updateInfoQuiz(); 
+        this.hideResponse();
+        console.log("cache une réponse");
+      } 
+      // troisième cas : rien
+      else {
+        console.log("Plus d'indice");
+      }
     }
   }
 
