@@ -1,8 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, Input, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import * as Highcharts from 'highcharts'
 import { serverUrl } from "src/configs/server.config";
-import { PROFIL_NULL } from "src/mocks/profil.mock";
+import { ADMIN } from "src/mocks/profil.mock";
 import { Profil } from "src/models/profil.model";
 import { Quiz } from "src/models/quiz.model";
 import { statsPatient } from "src/models/stats/statsPatient.model";
@@ -20,7 +21,7 @@ export class StatsPatientComponent implements OnInit {
     private profilURL: string = serverUrl + '/profils';
 
     public listePatient: Profil[] = [];
-    public actualPatient: Profil  = PROFIL_NULL;
+    public actualPatient: Profil  = ADMIN;
     public actualPatientSelfStats: statsPatient = this.actualPatient.selfStats;
     public quizzes: Quiz[] = [];
 
@@ -52,7 +53,7 @@ export class StatsPatientComponent implements OnInit {
         series: []
     }
 
-    constructor(private http: HttpClient, public statsService: StatsService, public quizService: QuizService){
+    constructor(private router: Router, private http: HttpClient, public statsService: StatsService, public quizService: QuizService){
         // Pour une raison obscure, ce subscribe ne fonctionne pas lorsqu'un profil est supprimé
         this.statsService.listePatient$.subscribe((listePatient) => {
             this.listePatient = listePatient;
@@ -126,7 +127,7 @@ export class StatsPatientComponent implements OnInit {
         console.log("Patient selectionné : ", nomPatient);
         console.log("nbQuizDone : ", this.actualPatientSelfStats.nbQuizDone);
         if (nomPatient == undefined || nomPatient.length == 0) {
-            this.actualPatient = PROFIL_NULL;
+            this.actualPatient = ADMIN;
         }
     }
 
@@ -162,6 +163,10 @@ export class StatsPatientComponent implements OnInit {
                 data.push(Math.round(this.actualPatient.selfStats.quizRes[i]*100)/100);
             }
         }
-        return data
+        return data;
+    }
+
+    seePatient() {
+        this.router.navigate(['/home/listProfil']);
     }
 }

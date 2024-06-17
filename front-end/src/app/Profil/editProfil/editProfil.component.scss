@@ -106,3 +106,31 @@
     float: right;
 }  
 
+#infomationGenerales {
+    display: flex;
+}
+
+#infos {
+    flex: 10;
+    padding: 10px;
+}
+
+#photo {
+    flex: 1;
+    padding: 10px;
+    display: grid;
+    grid-template-rows: 80% 20%;
+}
+
+img {
+    grid-row: 1;
+}
+
+app-submitPicture {
+    grid-row: 2;
+}
+
+#photoBalise {
+    max-height: 150px;
+    margin-top: 1rem;
+}
