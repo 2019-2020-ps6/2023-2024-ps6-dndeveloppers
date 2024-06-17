@@ -36,7 +36,7 @@ export class ListReponsesComponent implements OnInit {
     public optionIndice: boolean | undefined;
 
 
-    constructor(public quizService: QuizService, public profilService: ProfilService){     
+    constructor(public quizService: QuizService, public profilService: ProfilService){
         this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
             this.choosenQuiz = choosenQuiz;
         })
@@ -72,28 +72,13 @@ export class ListReponsesComponent implements OnInit {
     ngOnInit(): void {}
 
     responseSelected(responseNumber: number) {
-        if(this.actualResponses[responseNumber].isCorrect){
-            this.quizService.disablingHintAndHelp(false);
-            this.buttonActivation = false;
-            this.couleur = ["#939393","#939393","#939393","#939393"];
-            this.couleur[responseNumber] = "lightgreen";
-
-            setTimeout(() => {
-                this.couleur = ["#6958cf","#6958cf","#6958cf","#6958cf"];
-                this.quizService.disablingHintAndHelp(true);
-                this.buttonActivation = true;
-                this.quizService.responseSelected(this.choosenQuiz, responseNumber);
-            }, this.tempsAffichage*1000);
-        } else {
-            if (!this.profil.optionSupprimerMauvaisesReponses) {
+        if (!this.infoQuiz.endOfQuiz) {
+            if(this.actualResponses[responseNumber].isCorrect){
                 this.quizService.disablingHintAndHelp(false);
                 this.buttonActivation = false;
                 this.couleur = ["#939393","#939393","#939393","#939393"];
-                for (let i=0; i<4; i++) {
-                    if (this.actualResponses[i].isCorrect) {
-                        this.couleur[i] = "lightgreen";
-                    }
-                }
+                this.couleur[responseNumber] = "lightgreen";
+
                 setTimeout(() => {
                     this.couleur = ["#6958cf","#6958cf","#6958cf","#6958cf"];
                     this.quizService.disablingHintAndHelp(true);
@@ -101,7 +86,24 @@ export class ListReponsesComponent implements OnInit {
                     this.quizService.responseSelected(this.choosenQuiz, responseNumber);
                 }, this.tempsAffichage*1000);
             } else {
-                this.quizService.responseSelected(this.choosenQuiz, responseNumber);
+                if (!this.profil.optionSupprimerMauvaisesReponses) {
+                    this.quizService.disablingHintAndHelp(false);
+                    this.buttonActivation = false;
+                    this.couleur = ["#939393","#939393","#939393","#939393"];
+                    for (let i=0; i<4; i++) {
+                        if (this.actualResponses[i].isCorrect) {
+                            this.couleur[i] = "lightgreen";
+                        }
+                    }
+                    setTimeout(() => {
+                        this.couleur = ["#6958cf","#6958cf","#6958cf","#6958cf"];
+                        this.quizService.disablingHintAndHelp(true);
+                        this.buttonActivation = true;
+                        this.quizService.responseSelected(this.choosenQuiz, responseNumber);
+                    }, this.tempsAffichage*1000);
+                } else {
+                    this.quizService.responseSelected(this.choosenQuiz, responseNumber);
+                }
             }
         }
     }
