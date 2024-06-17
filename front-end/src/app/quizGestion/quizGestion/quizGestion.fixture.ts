@@ -1,6 +1,7 @@
 import { E2EComponentFixture } from "e2e/e2e-component.fixture";
 
-export class CreateQuizFixture extends E2EComponentFixture {
+export class QuizGestionFixture extends E2EComponentFixture {
+  // Create Quiz + Add Theme
    getAjoutQuizButton() {
     return this.page.getByRole('button', { name: 'Ajouter le Quiz' });
    }
@@ -28,4 +29,20 @@ export class CreateQuizFixture extends E2EComponentFixture {
   clickAjoutThemeButton() {
     return this.getAjoutThemeButton().click();
   }
+
+  // Search Quiz 
+  getSearchBar() {
+    return this.page.getByTestId('searchBar');
+  }
+
+  getSearchButton() {
+    return this.page.getByTestId('searchBarTheme');
+  }
+
+  getNumberListQuiz(){
+    const selector = `app-viewQuiz`;
+    return this.page.locator(selector).count();
+  }
+
+
 }
