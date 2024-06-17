@@ -48,32 +48,9 @@ export class ProfilService {
         })
     }
 
-    /*
-    addProfil(profil: Profil) {
-        this.profilList.push(profil);
-        this.profilList$.next(this.profilList);
-        if (profil.role == "patient") {
-            this.statsService.addPatient(profil);
-        }
-        console.log("Le profil ", profil.nom, " ", profil.prenom, " a été ajouté.");
-    }*/
-
     addProfil(profil: Profil): void {
         this.http.post<Profil>(this.profilUrl, profil, this.httpOptions).subscribe(() => this.retrievesProfils());
     }
-
-    /*
-    deleteProfil(profil: Profil) {
-        let newProfilList: Profil[] = [];
-        for (let i = 0; i < this.profilList.length; i++) {
-            if (this.profilList[i] != profil) {
-                newProfilList.push(this.profilList[i]);
-            }
-        }
-        this.profilList = newProfilList;
-        this.profilList$.next(this.profilList);
-        console.log("Le profil ", profil.nom, " ", profil.prenom, " a été supprimé.");
-    }*/
 
     deleteProfil(profil: Profil): void {
         console.log("Le profil : " ,profil.id, " a été supprimé");
@@ -109,20 +86,6 @@ export class ProfilService {
         this.actualEditingProfil$.next(this.actualEditingProfil);
         console.log("Profil : ", profil, " en cours d'édition.");
     }
-
-    /*
-    updateProfil(profilAncien: Profil, profilNouveau: Profil) {
-        for (let i = 0; i < this.profilList.length; i++) {
-            if (this.profilList[i].nom == profilAncien.nom && this.profilList[i].prenom == profilAncien.prenom) {
-                let anciennes = profilAncien.selfStats;
-                this.profilList[i] = profilNouveau;
-                this.profilList[i].selfStats = anciennes;
-                console.log("Profil : ", this.profilList[i], " mis à jour");
-                return;
-            }
-        }
-
-    }*/
 
     updateProfil(profil: Profil) {
         console.log("Le profil : " ,profil.id, " a été mise à jour");

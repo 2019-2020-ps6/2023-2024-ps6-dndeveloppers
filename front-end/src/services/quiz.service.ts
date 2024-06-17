@@ -120,6 +120,7 @@ export class QuizService {
 
   updateInfoQuiz(){
     this.infoQuiz$.next(this.infoQuiz);
+    console.log("stats : ",this.infoQuiz.scoreForEachQuestion)
   }
 
   dontShowTutoriel() {
@@ -152,7 +153,7 @@ export class QuizService {
   }
 
   disablingHintAndHelp(bool: boolean) {
-    console.log("disability called");
+    //console.log("disability called");
     this.disableHintHelp = bool;
     this.disableHintHelp$.next(this.disableHintHelp);
   }
@@ -205,15 +206,142 @@ export class QuizService {
 
   responseSelected(quiz: Quiz, responseNumber: number) {
     if(this.actualProfil.optionReposerQuestionApres){
-      this.responsesSelectedWithAskedAgain(quiz,responseNumber);
+      if(this.infoQuiz.replayQuestion){ // on est dans la phase où on repose les questions
+        this.responsesSelectedPlayAskedAgain(quiz, responseNumber);
+      }
+      else{ // on n'est pas encore dans la phase où on repose les questions
+        this.responsesSelectedWithAskedAgain(quiz,responseNumber);
+      }
     }
     else {
       this.responsesSelectedNormal(quiz,responseNumber);
     }
+      
   }
   
   // si l'on a l'option reposer la question plus tard
   responsesSelectedWithAskedAgain(quiz: Quiz, responseNumber: number) {
+    if (this.getActualQuestion().answers[responseNumber].isCorrect) { // on passe à la suivante
+      console.log("Bonne réponse félicitation!");
+      let score = 1 - (this.infoQuiz.nbHintAskedForActualQuestion/(this.getActualQuestionNumberHint() + 3));
+      console.log("score à cette question : ",score);
+
+      this.infoQuiz.actualScore += score;
+      this.infoQuiz.scoreForEachQuestion.push(score);
+      this.infoQuiz.nbGoodAnswer ++;
+      this.infoQuiz.actualStreak ++;
+      this.infoQuiz.nbHintUsed += this.infoQuiz.nbHintAskedForActualQuestion;
+      this.infoQuiz.displayResponses = [true, true, true, true];
+      this.infoQuiz.showGoodAnswer = true;
+
+      if(this.infoQuiz.actualQuestionNumber == quiz.questions.length-1){ // si le quiz est finit
+        console.log("quiz finit");
+        if (this.infoQuiz.bestStreak < this.infoQuiz.actualStreak) {
+          this.infoQuiz.bestStreak = this.infoQuiz.actualStreak;
+        }
+
+        if(this.infoQuiz.questionToReplay.length == 0){ // il n'y a pas de question a reposer donc le quiz est vraiment finit
+          this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
+          this.choosenQuiz.selfStats = this.statsService.updateQuizStats(this.infoQuiz,this.choosenQuiz.selfStats);
+          this.statsService.patientScoreNewData(this.actualProfil, this.infoQuiz.actualScore/quiz.questions.length);
+          this.infoQuiz.endOfQuiz = true;
+          this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => this.retrievesQuiz());
+        }
+        else { // sinon on repose les questions à reposer
+          this.infoQuiz.replayQuestion = true;
+          console.log("on passe aux questions à rejouer",this.infoQuiz.questionToReplay)
+          this.infoQuiz.questionToReplay.reverse();
+          let numQuestion = this.infoQuiz.questionToReplay.pop();
+          this.infoQuiz.questionToReplay.reverse();
+          if(numQuestion != undefined){
+            this.infoQuiz.actualQuestionNumber = numQuestion;
+          }
+          
+        }
+      }
+      else { // sinon on continue le quiz
+        this.infoQuiz.actualQuestionNumber++;
+        this.showHint = [false, false, false];
+        for (let i=0; i<this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber].indice.length; i++) {
+          console.log("indice : ", this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber].indice[i].value);
+          if (this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber].indice[i].value != "") {
+            this.showHint[i] = true;
+          }
+        }
+        this.showHint$.next(this.showHint);
+        this.infoQuiz.nbHintAskedForActualQuestion = 0
+      }  
+
+    }
+    else { // on enregistre la question a reposer et on passe à la suivante
+      console.log("faux");
+      this.infoQuiz.scoreForEachQuestion.push(0);
+      this.infoQuiz.questionToReplay.push(this.infoQuiz.actualQuestionNumber)
+      this.infoQuiz.displayResponses = [true, true, true, true];
+      this.infoQuiz.showGoodAnswer = true;
+      this.infoQuiz.nbHintAskedForActualQuestion = 0; // on ne compte pas les indices sur les questions à reposer
+
+      if (this.infoQuiz.bestStreak < this.infoQuiz.actualStreak) {
+        this.infoQuiz.bestStreak = this.infoQuiz.actualStreak;
+      }
+      this.infoQuiz.actualStreak = 0;
+
+      if(this.infoQuiz.actualQuestionNumber == quiz.questions.length-1){ // si on est à la fin du quiz on lance les questions à reposer
+        this.infoQuiz.replayQuestion = true;
+        this.infoQuiz.questionToReplay.reverse();
+        let numQuestion = this.infoQuiz.questionToReplay.pop();
+        this.infoQuiz.questionToReplay.reverse();
+        console.log("nb Question : ",numQuestion);
+        if(numQuestion != undefined){
+          this.infoQuiz.actualQuestionNumber = numQuestion;
+          console.log("on passe aux questions à rejouer ",this.infoQuiz.questionToReplay)
+        }
+      }
+      else{ // sinon on continue le quiz
+        this.infoQuiz.actualQuestionNumber++;
+      }
+    }
+    this.updateInfoQuiz();
+  }
+
+   // si l'on a l'option reposer la question plus tard et qu'on est au moment où on repose les questions
+   responsesSelectedPlayAskedAgain(quiz: Quiz, responseNumber: number) {
+    this.infoQuiz.nbHintUsed += this.infoQuiz.nbHintAskedForActualQuestion;
+    if (this.getActualQuestion().answers[responseNumber].isCorrect) {
+      let score = 1 - (this.infoQuiz.nbHintAskedForActualQuestion/(this.getActualQuestionNumberHint() + 3));
+      console.log("score à cette question : ",score);
+      this.infoQuiz.actualScore += score;
+
+      let nbQuestion = this.infoQuiz.actualQuestionNumber
+      
+      if(nbQuestion != undefined){
+        this.infoQuiz.scoreForEachQuestion[nbQuestion] = score;
+        console.log("nb Question ::: ", nbQuestion)
+      }
+      this.infoQuiz.nbGoodAnswer ++;
+      this.infoQuiz.displayResponses = [true, true, true, true];
+      this.infoQuiz.showGoodAnswer = true;
+    }
+
+    console.log("question qu'il reste : ",this.infoQuiz.questionToReplay)
+    // s'il ne reste pas de question à reposer
+    if(this.infoQuiz.questionToReplay.length == 0){
+      this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
+      this.choosenQuiz.selfStats = this.statsService.updateQuizStats(this.infoQuiz,this.choosenQuiz.selfStats);
+      this.statsService.patientScoreNewData(this.actualProfil, this.infoQuiz.actualScore/quiz.questions.length);
+      this.infoQuiz.endOfQuiz = true;
+      this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => this.retrievesQuiz());
+    }
+    else {
+      this.infoQuiz.questionToReplay.reverse();
+      let nbNewQuestion = this.infoQuiz.questionToReplay.pop();
+      this.infoQuiz.questionToReplay.reverse();
+      if(nbNewQuestion != undefined){
+        this.infoQuiz.actualQuestionNumber = nbNewQuestion;
+      }
+      
+    }
+    this.updateInfoQuiz();
   }
 
   // pas l'option reposer la question plus tard
@@ -260,7 +388,6 @@ export class QuizService {
         this.infoQuiz.actualQuestionNumber++;
         this.showHint = [false, false, false];
         for (let i=0; i<this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber].indice.length; i++) {
-          console.log("indice : ", this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber].indice[i].value);
           if (this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber].indice[i].value != "") {
             this.showHint[i] = true;
           }
@@ -304,92 +431,6 @@ export class QuizService {
     }
     this.updateInfoQuiz();
   }
-
-  /*
-  responseSelectedWithAskAgainOption(quiz: Quiz, responseNumber: number){
-    console.log("lancement ok");
-    if (this.actualResponses[responseNumber].isCorrect) {
-      console.log("Bonne réponse félicitation!");
-      this.actualQuestion.dejaPosee = false;
-      this.statsService.successRateNewData(100, this.choosenQuiz.actualQuestionNumber);
-      this.choosenQuiz.actualScore++;
-      this.choosenQuiz.nbBonnesReponses++;
-      this.choosenQuiz.streakActuel++;
-
-    } else {
-      console.log("Mauvaise Réponse!");
-      this.actualQuestion.dejaPosee = true;
-
-      if(this.choosenQuiz.MeilleurStreak < this.choosenQuiz.streakActuel){
-        this.choosenQuiz.MeilleurStreak = this.choosenQuiz.streakActuel;
-      }
-      this.choosenQuiz.streakActuel = 0;
-
-      this.statsService.successRateNewData(0, this.choosenQuiz.actualQuestionNumber);
-    }
-    this.hintAskedForQuestion = 0;
-    this.usedIndice = [];
-    this.usedIndice$.next(this.usedIndice);
-
-    this.displayResponses = [true, true, true, true];
-    this.displayResponses$.next(this.displayResponses);
-
-    if (this.choosenQuiz.actualQuestionNumber == quiz.questions.length-1 || this.askQuestionsAgain) {
-      console.log("repose")
-      this.askQuestionsAgain = true;
-      quiz.questions[this.choosenQuiz.actualQuestionNumber].dejaPosee = false;
-      let toAskAgain = -1;
-      for(let i=0;i<quiz.questions.length;i++){
-        if(quiz.questions[i].dejaPosee){
-          toAskAgain = i;
-        }
-      }
-      if (toAskAgain == -1) {
-        console.log("C'était la dernière question");
-        console.log("score: ",this.choosenQuiz.actualScore);
-        this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
-        this.statsService.addQuizDone();
-        this.statsService.meanScoreNewData(this.choosenQuiz.actualScore);
-        this.statsService.usedHintNewData(this.usedHint);
-                                        
-        if(this.choosenQuiz.MeilleurStreak < this.choosenQuiz.streakActuel){
-          this.choosenQuiz.MeilleurStreak = this.choosenQuiz.streakActuel;
-        }
-
-        this.statsService.patientScoreNewData(this.actualProfil, this.choosenQuiz.actualScore/quiz.questions.length);
-
-        this.askQuestionsAgain = false;
-        this.endOfQuiz = true;
-        this.endOfQuiz$.next(this.endOfQuiz);
-      }
-      else{
-        this.choosenQuiz.nbBonnesReponses--;
-        this.choosenQuiz.actualQuestionNumber = toAskAgain;
-        this.actualIndices = this.choosenQuiz.questions[this.choosenQuiz.actualQuestionNumber].indice;
-        this.actualIndices$.next(this.actualIndices);
-
-        this.actualQuestion = this.choosenQuiz.questions[this.choosenQuiz.actualQuestionNumber];
-        this.actualQuestion$.next(this.actualQuestion);
-
-        this.actualResponses = this.actualQuestion.answers;
-        this.actualResponses$.next(this.actualResponses);
-      }
-    }
-    else {
-      this.choosenQuiz.actualQuestionNumber++;
-      this.actualIndices = this.choosenQuiz.questions[this.choosenQuiz.actualQuestionNumber].indice;
-      this.actualIndices$.next(this.actualIndices);
-
-      this.actualQuestion = this.choosenQuiz.questions[this.choosenQuiz.actualQuestionNumber];
-      this.actualQuestion$.next(this.actualQuestion);
-
-      this.actualResponses = this.actualQuestion.answers;
-      this.actualResponses$.next(this.actualResponses);
-    }
-
-    this.choosenQuiz$.next(this.choosenQuiz);
-  }*/
-
 
   // ------------------------------------------------------------ thèmes ---------------------------------------------------------------------------------
 

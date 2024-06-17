@@ -54,10 +54,16 @@
     "options": [
       true
     ],
-    "nbQuizDone": 0,
-    "meanScore": 0,
-    "quizRes": [],
-    "quizDone": [],
+    "nbQuizDone": 2,
+    "meanScore": 83.33333333333333,
+    "quizRes": [
+      100,
+      66.66666666666666
+    ],
+    "quizDone": [
+      "Calcul mental",
+      "Calcul mental"
+    ],
     "id": 1716797670085,
     "idStatsPatient": 1716797670087
   },

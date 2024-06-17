@@ -107,21 +107,21 @@ export class StatsService {
       // update moyenne pour chaque question
       for(let i=0; i< infoQuiz.scoreForEachQuestion.length;i++){
         let score = infoQuiz.scoreForEachQuestion[i];
-        console.log("played Time : ", chosenQuizStats.playedTime);
-        console.log("score question ", i, " = ", score);
+        //console.log("played Time : ", chosenQuizStats.playedTime);
+        //console.log("score question ", i, " = ", score);
         if (score != undefined) {
-          console.log("longueur tab : ", chosenQuizStats.successPercentageByQuestion.length);
+          //console.log("longueur tab : ", chosenQuizStats.successPercentageByQuestion.length);
           if (chosenQuizStats.successPercentageByQuestion[i] == undefined) {
             chosenQuizStats.successPercentageByQuestion.push(score)
           } else {
             let newRate = chosenQuizStats.successPercentageByQuestion[i];
-            console.log(newRate);
+            //console.log(newRate);
             newRate *= (chosenQuizStats.playedTime-1);
-            console.log(newRate);
+            //console.log(newRate);
             newRate += score;
-            console.log(newRate);
+            //console.log(newRate);
             newRate /= chosenQuizStats.playedTime;
-            console.log(newRate);
+            //console.log(newRate);
             chosenQuizStats.successPercentageByQuestion[i] = newRate;
           }
         }

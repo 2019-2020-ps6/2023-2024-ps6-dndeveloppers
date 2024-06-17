@@ -68,7 +68,7 @@
     "optionPhoto": false,
     "optionIndice": true,
     "photo": "./assets/imageProfil/imageProfilMaurice.png",
-    "optionTempsReponse": 5,
+    "optionTempsReponse": 1,
     "dateNaissance": [
       16,
       5,
