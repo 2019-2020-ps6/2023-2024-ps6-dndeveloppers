@@ -12,7 +12,7 @@ test.describe('Home page display', () => {
     // Se déplacer dans la page stats et vérifier l'URL
     const buttonStats = await homeFixture.getStatsButton();
     await buttonStats.click();
-    expect(page.url()).toBe("http://localhost:4200/home/stats");
+    expect(page.url()).toBe(testUrl + "/home/stats");
 
     // Vérifier la présence du header
     const title = await page.getByText('Décrypter & Découvrir');
