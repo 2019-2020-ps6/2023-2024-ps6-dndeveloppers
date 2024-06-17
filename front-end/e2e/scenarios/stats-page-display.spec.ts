@@ -16,15 +16,15 @@ test.describe('Home page display', () => {
 
     // Vérifier la présence du header
     const title = await page.getByText('Décrypter & Découvrir');
-    const profilLastName = await page.getByText('Nom :');
+    const profilLastName = await page.getByText('Nom :', { exact: true })
     const profilFirstName = await page.getByText('Prénom :');
     const profilRole = await page.getByText('Rôle :');
 
     expect(title).toBeVisible();
-    /* Pour une raison obscure je ne parviens pas à récupérer les éléments du profil
+    /* Pour une raison obscure je ne parviens pas à récupérer les éléments du profil*/
     expect(profilLastName).toBeVisible();
     expect(profilFirstName).toBeVisible();
-    expect(profilRole).toBeVisible(); */
+    expect(profilRole).toBeVisible();
 
     // Vérifier la présence du bouton de retour
     const statsFixture = new StatsFixture(page);
