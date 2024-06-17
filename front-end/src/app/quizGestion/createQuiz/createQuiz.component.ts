@@ -38,6 +38,7 @@ export class CreateQuizComponent implements OnInit {
     console.log('Editing new quiz');
     this.quizService.addQuiz(quizToCreate);
     this.quizForm.reset();
-    //this.router.navigate(['home/gestionQuiz/editQuiz/' + quizToCreate.name]);
+    this.quizService.editingQuiz(quizToCreate);
+    this.router.navigate(['home/gestionQuiz/editQuiz/' + quizToCreate.name]);
   }
 }
