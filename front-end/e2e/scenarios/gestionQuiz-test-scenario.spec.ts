@@ -8,38 +8,40 @@ test.describe('Home page display', () => {
   test('Basic test', async ({ page }) => {
     await page.goto(testUrl + "/home/gestionQuiz");
     const createQuizFixture = new CreateQuizFixture(page);
-    // Using locators functions:
-    // Using page element role: see the function declaration
     
-    // Search by text content. Partial and exact text.
-    const buttonAddQuiz = await createQuizFixture.getAjoutQuizButton();
-    const buttonAddTheme = await createQuizFixture.getAjoutThemeButton();
+    await test.step("Récupération des boutons", async () =>{
+        const buttonAddQuiz = await createQuizFixture.getAjoutQuizButton();
+        const buttonAddTheme = await createQuizFixture.getAjoutThemeButton();
 
-    expect(buttonAddQuiz).toBeVisible();
-    expect(buttonAddTheme).toBeVisible();
+        expect(buttonAddQuiz).toBeVisible();
+        expect(buttonAddTheme).toBeVisible();
+    });
 
-    //On recupère le champ d'ajout de thème et on y écrit le thème b
-    const inputTheme = await createQuizFixture.getInputTheme();
-    await inputTheme.fill('b');
-    expect(inputTheme).toHaveValue('b');
+    await test.step("Ajout d'un thème", async () =>{
+        //On recupère le champ d'ajout de thème et on y écrit le thème b
+        const inputTheme = await createQuizFixture.getInputTheme();
+        await inputTheme.fill('Politique');
+        expect(inputTheme).toHaveValue('Politique');
 
-    //On ajout le thème b
-    await createQuizFixture.clickAjoutThemeButton();
+        //On ajout le thème b
+        await createQuizFixture.clickAjoutThemeButton();
+    });
 
-    //On récupère le champ d'ajout de nom de quiz et on y écrit le titre a
-    const inputTitle = await createQuizFixture.getInputTitle();
-    await inputTitle.fill('a');
-    expect(inputTitle).toHaveValue('a');
+    await test.step("Ajout du quiz", async () => {
+        //On récupère le champ d'ajout de nom de quiz et on y écrit le titre a
+        const inputTitle = await createQuizFixture.getInputTitle();
+        await inputTitle.fill('Politiciens durant la Guerre Froide');
+        expect(inputTitle).toHaveValue('Politiciens durant la Guerre Froide');
 
-    //On récupère le champ de selection des thème et on choisi le thème b
-    const selectTheme = await createQuizFixture.getSelectTheme();
-    await selectTheme.click
-    await selectTheme.selectOption('b');
+        //On récupère le champ de selection des thème et on choisi le thème b
+        const selectTheme = await createQuizFixture.getSelectTheme();
+        await selectTheme.click
+        await selectTheme.selectOption('Politique');
 
-    //On ajoute le nouveau quiz
-    await createQuizFixture.clickAjoutQuizButton();
+        //On ajoute le nouveau quiz
+        await createQuizFixture.clickAjoutQuizButton();
+    });
 
-    //await homeFixture.clickPlayButton();
   });
 
   // TO GO FURTHER :
