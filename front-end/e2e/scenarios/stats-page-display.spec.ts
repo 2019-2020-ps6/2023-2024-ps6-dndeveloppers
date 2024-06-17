@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { HomeFixture } from 'src/app/home/home.fixture';
 import { testUrl } from 'e2e/e2e.config';
 import { StatsFixture } from 'src/app/stats/stats.fixture';
+import { StatsQuizFixture } from 'src/app/stats/statsQuiz/statsQuiz.fixture';
 
 // https://playwright.dev/docs/locators
 test.describe('Home page display', () => {
@@ -62,6 +63,8 @@ test.describe('Home page display', () => {
     expect(pChart).not.toBeVisible();
 
     // Statistiques quiz
+    const statsQuizFixture = new StatsQuizFixture(page);
+
     const statsQuiz = page.locator('app-stats-quiz');
     const qStatsQuizTitle = statsQuiz.getByText("Statistiques par quiz : ");
     const qSelector = statsFixture.getSelectQuiz();
@@ -70,7 +73,7 @@ test.describe('Home page display', () => {
     const qMeanHintUsed = statsQuiz.getByText("Nombre moyen d'indices utilisés : ");
     const qNbQuestions = statsQuiz.getByText("Nombre de questions : ");
     const qChart = page.locator('#quizChart');
-    const qRouteQuiz = statsFixture.getRouteToQuiz();
+    const qRouteQuiz = statsQuizFixture.getRouteToQuiz();
 
     expect(qStatsQuizTitle).toBeVisible();
     expect(qSelector).toBeVisible();

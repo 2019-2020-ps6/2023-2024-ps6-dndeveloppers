@@ -110,8 +110,8 @@ export const ADMIN: Profil = {
 }
 
 export const PROFIL_NULL: Profil = {
-    nom: "a",
-    prenom: "a",
+    nom: "",
+    prenom: "",
     role: "patient",
 
     selfStats: STATS_PATIENT_NULL,

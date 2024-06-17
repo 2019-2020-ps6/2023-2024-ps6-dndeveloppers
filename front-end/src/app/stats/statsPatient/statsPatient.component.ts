@@ -22,6 +22,7 @@ export class StatsPatientComponent implements OnInit {
     public listePatient: Profil[] = [];
     public actualPatient: Profil  = PROFIL_NULL;
     public actualPatientSelfStats: statsPatient = this.actualPatient.selfStats;
+    public actualPatientMeanScore: number = Math.round(this.actualPatientSelfStats.meanScore*100)/100;
     public quizzes: Quiz[] = [];
 
     public actualSeries: any[] = [];
@@ -104,6 +105,7 @@ export class StatsPatientComponent implements OnInit {
                 if (listeProfils[i].nom == nomPatient) {
                     this.actualPatient = listeProfils[i];
                     this.actualPatientSelfStats = listeProfils[i].selfStats;
+                    this.actualPatientMeanScore = Math.round(this.actualPatientSelfStats.meanScore*100)/100;
                     console.log("stats : ",this.actualPatient)
 
                     this.options.xAxis.categories = this.categoriesChart();
