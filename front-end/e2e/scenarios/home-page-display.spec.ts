@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { HomeFixture } from 'src/app/home/home.fixture';
 import { testUrl } from 'e2e/e2e.config';
 import { AppFixture } from 'src/app/app.fixture';
 
@@ -6,50 +7,29 @@ import { AppFixture } from 'src/app/app.fixture';
 test.describe('Home page display', () => {
   test('Basic test', async ({ page }) => {
     await page.goto(testUrl);
-    const appComponentFixture = new AppFixture(page);
+    const homeFixture = new HomeFixture(page);
     // Using locators functions:
     // Using page element role: see the function declaration
-    const title = await appComponentFixture.getTitle();
-
+    
     // Search by text content. Partial and exact text.
-    const description1 = await page.getByText('Start your');
+    const buttonPlay = await homeFixture.getPlayButton();
+    const buttonQuiz = await homeFixture.getQuizButton();
+    const buttonProfil = await homeFixture.getProfilButton();
+    const buttonStats = await homeFixture.getStatsButton();
 
-    // For exact text: see the function declaration
-    const description2 = await appComponentFixture.getDescription();
+    expect(buttonPlay).toBeVisible();
+    expect(buttonQuiz).toBeVisible();
+    expect(buttonProfil).toBeVisible();
+    expect(buttonStats).toBeVisible();
 
-    // Using page.locator
-    const description3 = await page.locator(
-      'div.description:has-text("Start your first app!")'
-    );
+    await homeFixture.clickPlayButton();
+    
 
-    expect(title).toBeVisible();
-    expect(description1).toBeVisible();
-    expect(description2).toBeVisible();
-    expect(description3).toBeVisible();
-
-    // Error case : uncomment the two lines below : "Starting" does not exist
-    // const description4 = await page.getByText('Starting your first app');
-    // expect(description4).toBeVisible();
-
-    // Success not visible
-    let success = await appComponentFixture.getSuccessMessage();
-
-    // Success message should not be visible - we haven't clicked yet.
-    expect(success).not.toBeVisible();
-
-    // Triggers events
-    const showSuccessButton = await appComponentFixture.getShowButton();
-    await showSuccessButton.click();
-    success = await appComponentFixture.getSuccessMessage();
-
-    // Success message should be visible now!
-    expect(success).toBeVisible();
-
-    // Another way to click on a button is to expose a function doing the click directly and avoid the two lines 35 and 36.
-    await appComponentFixture.clickOnShowButton();
-    success = await appComponentFixture.getSuccessMessage();
-    // Success message shouldn't be visible again.
-    expect(success).not.toBeVisible();
+    const inputQuiz = await homeFixture.getSearchBar();
+    expect(inputQuiz).toBeEmpty();
+    //inputQuiz.focus();
+    await inputQuiz.fill('a');
+    expect(inputQuiz).toHaveValue('a');
   });
 
   // TO GO FURTHER :
