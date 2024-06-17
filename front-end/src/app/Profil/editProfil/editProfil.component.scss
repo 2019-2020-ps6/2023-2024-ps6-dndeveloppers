@@ -48,9 +48,8 @@
     margin-right: 8px;
 }
 
-.returnButton{
+.CentrerBouton{
     display: flex;
-    padding-top: 10px;
     justify-content: center;
 }
 
@@ -74,12 +73,6 @@
     border: solid black 2px;
     border-radius: 1rem;
     cursor:pointer;
-    margin-top: 1%;
-    margin-left: 45%;
-    padding-left: 1%;
-    padding-right: 1%;
-    padding-top: 1%;
-    padding-bottom: 1%;
 }
 
 .retourBouton:hover {
