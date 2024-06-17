@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { QuizGestionFixture } from 'src/app/quizGestion/quizGestion/quizGestion.fixture';
 
 import { testUrl } from 'e2e/e2e.config';
+import { EditQuizFixture } from 'src/app/quizGestion/editQuiz/editQuiz.fixture';
 
 test.describe('Home page display', () => {
   test('Basic test', async ({ page }) => {
@@ -22,7 +23,7 @@ test.describe('Home page display', () => {
         await inputTheme.fill('Politique');
         expect(inputTheme).toHaveValue('Politique');
 
-        //On ajout le thème b
+        //On ajout le thème
         await quizGestionFixture.clickAjoutThemeButton();
     });
 
@@ -32,13 +33,16 @@ test.describe('Home page display', () => {
         await inputTitle.fill('Politiciens durant la Guerre Froide');
         expect(inputTitle).toHaveValue('Politiciens durant la Guerre Froide');
 
-        //On récupère le champ de selection des thème et on choisi le thème b
+        //On récupère le champ de selection des thème et on choisi le thème
         const selectTheme = await quizGestionFixture.getSelectTheme();
-        await selectTheme.click
+        await selectTheme.click();
         await selectTheme.selectOption('Politique');
 
         //On ajoute le nouveau quiz
         await quizGestionFixture.clickAjoutQuizButton();
+
+        const editQuizFixture = new EditQuizFixture(page);
+        editQuizFixture.clickReturnButton();
     });
 
     await test.step("Recherche d'un quiz par nom", async () => {
