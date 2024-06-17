@@ -1,4 +1,7 @@
 <app-header></app-header><br/><br/>
+<p class="CentrerBouton">
+    <app-comeBack [destination]="'profilList'"></app-comeBack>
+</p>
 <section class="Topbox">
     <p> Chaque ligne contenant un * est obligatoire.</p>
 </section>
@@ -74,4 +77,3 @@
     </section>
     <button class="valider" type="submit" (click)="updateProfil()" [disabled]="!profilForm.valid">Modifier le profil </button>
 </form>
-<app-comeBack [destination]="'profilList'"></app-comeBack>

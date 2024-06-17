@@ -68,23 +68,20 @@
 
 
 .retourBouton {
-    display: inline-block;
-    text-align: center;
     font-size: 15px;
     background-color: lightgrey;
     border: solid black 2px;
     border-radius: 1rem;
-    cursor:pointer;
-    margin-top: 1%;
-    margin-left: 45%;
-    padding-left: 1%;
-    padding-right: 1%;
-    padding-top: 1%;
-    padding-bottom: 1%;
+    cursor:pointer; 
 }
 
 .retourBouton:hover {
     background-color: darkgrey;
+}
+
+.CentrerBouton{
+    display: flex;
+    justify-content: center;
 }
 
 .valider {
