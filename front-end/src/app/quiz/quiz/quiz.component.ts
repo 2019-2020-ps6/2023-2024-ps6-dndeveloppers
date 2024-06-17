@@ -25,6 +25,7 @@ export class QuizComponent implements OnInit {
 
     public actualProfil: Profil = ADMIN;
     public pathImage: String = '';
+    public skip: String = "Passer la question";
 
     constructor(public quizService: QuizService, public router: Router, public profilService: ProfilService){
         this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
@@ -61,5 +62,9 @@ export class QuizComponent implements OnInit {
     dontShowTutoriel() {
         this.tutorielView = false;
         this.quizService.dontShowTutoriel();
+    }
+
+    skipQuestion(){
+        this.quizService.skipQuestion(this.choosenQuiz);
     }
 }

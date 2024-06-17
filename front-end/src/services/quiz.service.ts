@@ -159,24 +159,22 @@ export class QuizService {
   }
 
   hintAsked(){
-    if (!this.infoQuiz.endOfQuiz) {
-      // premier cas : on affiche l'indice
-      if(this.infoQuiz.nbHintAskedForActualQuestion < this.getActualQuestionNumberHint()){
-        this.infoQuiz.nbHintAskedForActualQuestion++;
-        console.log("Indice demandé");
-        this.updateInfoQuiz();  
-      }
-      // deuxième cas : on enlève une réponse (car on a déjà utilisé tout les indices textuels)
-      else if (this.infoQuiz.nbHintAskedForActualQuestion-2 < this.getActualQuestionNumberHint()) {
-        this.infoQuiz.nbHintAskedForActualQuestion++;
-        this.updateInfoQuiz(); 
-        this.hideResponse();
-        console.log("cache une réponse");
-      } 
-      // troisième cas : rien
-      else {
-        console.log("Plus d'indice");
-      }
+    // premier cas : on affiche l'indice
+    if(this.infoQuiz.nbHintAskedForActualQuestion < this.getActualQuestionNumberHint()){
+      this.infoQuiz.nbHintAskedForActualQuestion++;
+      console.log("Indice demandé");
+      this.updateInfoQuiz();  
+    }
+    // deuxième cas : on enlève une réponse (car on a déjà utilisé tout les indices textuels)
+    else if (this.infoQuiz.nbHintAskedForActualQuestion-2 < this.getActualQuestionNumberHint()) {
+      this.infoQuiz.nbHintAskedForActualQuestion++;
+      this.updateInfoQuiz(); 
+      this.hideResponse();
+      console.log("cache une réponse");
+    } 
+    // troisième cas : rien
+    else {
+      console.log("Plus d'indice");
     }
   }
 
@@ -430,6 +428,32 @@ export class QuizService {
           this.infoQuiz.scoreForEachQuestion.push(0);
         }
       }
+    }
+    this.updateInfoQuiz();
+  }
+
+  // quand un joueur skip une question
+  skipQuestion(quiz: Quiz){
+    if (this.infoQuiz.bestStreak < this.infoQuiz.actualStreak) {
+      this.infoQuiz.bestStreak = this.infoQuiz.actualStreak;
+    }
+    this.infoQuiz.actualStreak = 0;
+    this.infoQuiz.scoreForEachQuestion.push(0);
+    this.infoQuiz.nbHintAskedForActualQuestion = 0;
+    this.infoQuiz.displayResponses = [true, true, true, true];
+    this.infoQuiz.nbErrors = 0;
+    this.infoQuiz.showGoodAnswer = true;
+
+    if(this.infoQuiz.actualQuestionNumber == quiz.questions.length-1){ // si on est à la fin du quiz
+      console.log("C'était la dernière question");
+      this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
+      this.choosenQuiz.selfStats = this.statsService.updateQuizStats(this.infoQuiz,this.choosenQuiz.selfStats);
+      this.statsService.patientScoreNewData(this.actualProfil, this.infoQuiz.actualScore/quiz.questions.length);
+      this.infoQuiz.endOfQuiz = true;
+      this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => this.retrievesQuiz());
+    }
+    else {
+      this.infoQuiz.actualQuestionNumber++;      
     }
     this.updateInfoQuiz();
   }
