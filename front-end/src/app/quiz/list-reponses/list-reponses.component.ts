@@ -23,7 +23,8 @@ export class ListReponsesComponent implements OnInit {
     public choosenQuiz: Quiz = QUIZ_LIST[0];
 
     public listePatient: Profil[] = LISTE_PROFILS;
-    public profil: Profil  = this.listePatient[0];
+    public profil: Profil = this.listePatient[0];
+    public fontSize: string = this.profil.optionTailleTexte; 
 
     public couleur: string[] = ["#6958cf","#6958cf","#6958cf","#6958cf"];
 
@@ -48,11 +49,24 @@ export class ListReponsesComponent implements OnInit {
         this.profilService.actualProfil$.subscribe((actualProfil)=>{
             this.profil = actualProfil;
             this.tempsAffichage = actualProfil.optionTempsReponse;
+            this.fontSize = this.profil.optionTailleTexte;
         })
 
         this.profilService.actualProfil$.subscribe((profil) => {
             this.optionIndice = profil.optionIndice;
-          })
+        })
+
+        switch (this.fontSize) {
+            case "Petit":
+                this.fontSize = 1 + "em";
+                break;
+            case "Moyen":
+                this.fontSize = 1.2 + "em";
+                break;
+            case "Grand":
+                this.fontSize = 1.5 + "em";
+                break;
+        }
     }
 
     ngOnInit(): void {}

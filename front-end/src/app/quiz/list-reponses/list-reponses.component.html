@@ -5,30 +5,15 @@
     <button [disabled]="!buttonActivation" [ngStyle]="{'background-color': couleur[3]}" class="reponse-texte" id="fourth" *ngIf="infoQuiz.displayResponses[3]" name="button" (click)="responseSelected(3)"><app-texteAdaptatif [texte]=actualResponses[3].value></app-texteAdaptatif></button>
 
     <div id="endPopup" *ngIf="infoQuiz.endOfQuiz">
-        <p ><app-texteAdaptatif class="felicitation" texte="Félicitation, vous avez terminé le quiz !"></app-texteAdaptatif></p>
-        <p><app-texteAdaptatif texte="Vous avez répondu à {{choosenQuiz.questions.length}} questions lors de ce quiz"></app-texteAdaptatif></p>
-        <p *ngIf="infoQuiz.nbGoodAnswer > choosenQuiz.questions.length/2"><app-texteAdaptatif texte="Vouz avez eu {{infoQuiz.nbGoodAnswer}} bonnes réponses."></app-texteAdaptatif></p>
+        <p ><app-texteAdaptatif class="felicitation" [ngStyle]="{'font-size': fontSize}" texte="Félicitation, vous avez terminé le quiz !"></app-texteAdaptatif></p>
+        <p><app-texteAdaptatif [ngStyle]="{'font-size': fontSize}" texte="Vous avez répondu à {{choosenQuiz.questions.length}} questions lors de ce quiz"></app-texteAdaptatif></p>
+        <p *ngIf="infoQuiz.nbGoodAnswer > choosenQuiz.questions.length/2"><app-texteAdaptatif [ngStyle]="{'font-size': fontSize}" texte="Vouz avez eu {{infoQuiz.nbGoodAnswer}} bonnes réponses."></app-texteAdaptatif></p>
         <p *ngIf="infoQuiz.bestStreak > 2"><app-texteAdaptatif texte="Vous avez répondu correctement {{infoQuiz.bestStreak}} fois de suite"></app-texteAdaptatif></p>
         <div *ngIf="optionIndice===true">
-        <p *ngIf="choosenQuiz.questions.length/2 > infoQuiz.nbHintUsed && infoQuiz.nbHintUsed>1">
-            <app-texteAdaptatif texte="Bravo : Vous n'avez utilisé que {{infoQuiz.nbHintUsed}} indices"></app-texteAdaptatif>
-        </p>
-        <p *ngIf="infoQuiz.nbHintUsed==1">
-            <app-texteAdaptatif texte="Magnifique : vous n'avez eu besoin que d'un seul indice"></app-texteAdaptatif>
-        </p>
-        <p *ngIf="infoQuiz.nbHintUsed==0">
-            <app-texteAdaptatif texte="Incroyable : vous n'avez eu besoin d'aucun indice"></app-texteAdaptatif>
-        </p>
+            <app-texteAdaptatif *ngIf="choosenQuiz.questions.length/2 > infoQuiz.nbHintUsed && infoQuiz.nbHintUsed>1" [ngStyle]="{'font-size': fontSize}" texte="Bravo : Vous n'avez utilisé que {{infoQuiz.nbHintUsed}} indices"></app-texteAdaptatif>
+            <app-texteAdaptatif *ngIf="infoQuiz.nbHintUsed==1" [ngStyle]="{'font-size': fontSize}" texte="Magnifique : vous n'avez eu besoin que d'un seul indice"></app-texteAdaptatif>
+            <app-texteAdaptatif *ngIf="infoQuiz.nbHintUsed==0" [ngStyle]="{'font-size': fontSize}" texte="Incroyable : vous n'avez eu besoin d'aucun indice"></app-texteAdaptatif>
         </div>
-        
         <app-comeBack class="PopupreturnButton" [destination]="'quizList'"></app-comeBack>
-        
     </div>
-
 </div>
-
-
-
-
-
-
