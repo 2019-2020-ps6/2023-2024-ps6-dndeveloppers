@@ -1,6 +1,6 @@
 import { E2EComponentFixture } from "e2e/e2e-component.fixture";
 
-export class CreateProfilFixture extends E2EComponentFixture {
+export class EditProfilFixture extends E2EComponentFixture {
     getNomInput() {
         return this.page.locator('#infomationGenerales #nom')
     }
@@ -49,12 +49,12 @@ export class CreateProfilFixture extends E2EComponentFixture {
         return this.page.getByRole('combobox', { name: 'Taille du texte : Exemple' })
     }
 
-    getAjouterLeProfil() {
-        return this.page.getByRole('button', { name: 'Ajouter le profil' });
+    getModifierLeProfil() {
+        return this.page.getByRole('button', { name: 'Modifier le profil' });
     }
 
-    async clickAjouterLeProfil() {
-        const button = await this.getAjouterLeProfil();
+    async clickModifierLeProfil() {
+        const button = await this.getModifierLeProfil();
         await button.scrollIntoViewIfNeeded();
         await button.click({ force: true });
     }

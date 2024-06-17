@@ -20,13 +20,38 @@ export class ListProfilFixture extends E2EComponentFixture {
         return this.page.getByPlaceholder('Rechercher un soignant');
     }
 
-    getSupprimerLeProfil() {
-        return this.page.getByRole('button', { name: 'Supprimer' }).nth(1)
+    supprimerLeProfil( nom: string, prenom: string) {
+        return this.page.getByRole('button', { name: 'Supprimer' }).first();
     }
 
-    async clickSupprimerLeProfil() {
-        const button = await this.getSupprimerLeProfil();
+    async clickSupprimerLeProfil( nom: string, prenom: string) {
+        return this.supprimerLeProfil(nom, prenom).click();
+    }
+
+    editerLeProfil( nom: string, prenom: string) {
+        return this.page.getByRole('button', { name: 'Modifier' }).first();
+    }
+
+    async clickEditerLeProfil( nom: string, prenom: string) {
+        return this.editerLeProfil(nom, prenom).click();
+    }
+
+    afficherLeProfil( nom: string, prenom: string) {
+        return this.page.getByRole('button', { name: 'Afficher' }).first();
+    }
+
+    async clickAfficherLeProfil( nom: string, prenom: string) {
+        return this.afficherLeProfil(nom, prenom).click();
+    }
+
+    getFermerProfilButton() {
+        return this.page.getByRole('button', { name: 'Fermer' });
+    }
+
+    async clickFermerProfilButton() {
+        const button = await this.getFermerProfilButton();
         await button.scrollIntoViewIfNeeded();
         await button.click({ force: true });
     }
+
 }
