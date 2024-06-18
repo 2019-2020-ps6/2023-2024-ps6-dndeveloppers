@@ -3,9 +3,8 @@
     <form [formGroup]="quizGlobalForm">
     <section class="indent">
         <label> Nom <br>
-            <input class="input-custom" type="text" id="nom" [formControlName]="'nom'" required>
-        </label>
-        <br/>
+            <input class="input-custom" type="text" data-testid="nom" id="nom" [formControlName]="'nom'" required>
+        </label><br/>
     </section>
 
     <section class="indent">
@@ -22,6 +21,6 @@
         <img *ngIf="photo !== ''" class="photo" [src]=photo /><br/>
     </section>
     
-    <button class="boutonValeurGlobal" type="submit" [disabled]="!quizGlobalForm.valid" (click)="editGlobalQuiz()">Modifier</button>
+    <button class="boutonValeurGlobal" type="submit" data-testid="editGlobal" [disabled]="!quizGlobalForm.valid" (click)="editGlobalQuiz()">Modifier</button>
     </form>
 </div>

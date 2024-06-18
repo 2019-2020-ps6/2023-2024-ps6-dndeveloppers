@@ -11,7 +11,7 @@
         <section  class="indent">
             <label> Réponse 1 <br>
                 <input class="input-custom" type="text" placeholder="Réponse 1" id="q1" [formControlName]="'q1'" required>
-                <input class="r" type="checkbox" id="r1" (change)="selectResponseNumber($event, 0)">
+                <input class="r" type="checkbox" data-testid="r1" id="r1" (change)="selectResponseNumber($event, 0)">
                 <label>Juste</label>
             </label><br/>
         </section>
@@ -19,7 +19,7 @@
         <section  class="indent">
             <label> Réponse 2 <br>
                 <input class="input-custom" type="text" placeholder="Réponse 2" id="q2" [formControlName]="'q2'" required>
-                <input class="r" type="checkbox" id="r2" (change)="selectResponseNumber($event, 1)">
+                <input class="r" type="checkbox" data-testid="r2" id="r2" (change)="selectResponseNumber($event, 1)">
                 <label>Juste</label>
             </label><br/>
         </section>
@@ -27,7 +27,7 @@
         <section  class="indent">
             <label> Réponse 3 <br>
                 <input class="input-custom" type="text" placeholder="Réponse 3" id="q3" [formControlName]="'q3'" required>
-                <input class="r" type="checkbox" id="r3" (change)="selectResponseNumber($event, 2)">
+                <input class="r" type="checkbox" data-testid="r3" id="r3" (change)="selectResponseNumber($event, 2)">
                 <label>Juste</label>
             </label><br/>
         </section>
@@ -35,7 +35,7 @@
         <section  class="indent">
             <label> Réponse 4 <br>
                 <input class="input-custom" type="text" placeholder="Réponse 4" id="q4" [formControlName]="'q4'" required>
-                <input class="r" type="checkbox" id="r4" (change)="selectResponseNumber($event, 3)">
+                <input class="r" type="checkbox" data-testid="r4" id="r4" (change)="selectResponseNumber($event, 3)">
                 <label>Juste</label>
             </label><br/>
         </section>
@@ -62,7 +62,7 @@
         <img *ngIf="photo !== ''" class="photo" [src]=photo /><br/>
 
         <label> Question si la photo n'est pas affichée (uniquement si photo ajoutée):
-            <input class="input-custom" type="text" id="photoTexte" [formControlName]="'photoTexte'"><p class="indent"></p>    
+            <input class="input-custom" type="text" data-testid="photoTexte" id="photoTexte" [formControlName]="'photoTexte'"><p class="indent"></p>    
         </label>
 
         <button class="boutonAddQuestion" type="submit" [disabled]="!questionForm.valid" (click)="addQuestion()">Ajouter la Question</button>

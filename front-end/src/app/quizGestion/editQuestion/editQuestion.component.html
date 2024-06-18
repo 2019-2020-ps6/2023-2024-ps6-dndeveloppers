@@ -1,32 +1,32 @@
 <div class="card">
     <form [formGroup]="questionForm">
     <label> Question <br>
-        <input class="input-custom" type="text" id="label" [formControlName]="'label'" required> <br> <p class="indent">{{this?.question?.label}}</p>
+        <input class="input-custom" type="text" data-testid="label" id="label" [formControlName]="'label'" required> <br> <p class="indent">{{this?.question?.label}}</p>
     </label><br/>
     <label> Réponse 1 <br>
-        <input class="input-custom" type="text" id="q1" [formControlName]="'q1'" required>
-        <input class="rr" type="checkbox" id="rr1" (change)="selectResponseNumber($event, 0)">
+        <input class="input-custom" type="text" data-testid="q1" id="q1" [formControlName]="'q1'" required>
+        <input class="rr" type="checkbox" data-testid="rr1" id="rr1" (change)="selectResponseNumber($event, 0)">
         <label>Juste</label>
         <p class="indent">{{this.answers[0]}}</p>
     </label><br/>
 
     <label> Réponse 2 <br>
-        <input class="input-custom" type="text" id="q2" [formControlName]="'q2'" required>
-        <input class="rr" type="checkbox" id="rr2" (change)="selectResponseNumber($event, 1)">
+        <input class="input-custom" type="text" data-testid="q2" id="q2" [formControlName]="'q2'" required>
+        <input class="rr" type="checkbox" data-testid="rr2" id="rr2" (change)="selectResponseNumber($event, 1)">
         <label>Juste</label> 
         <p class="indent">{{this.answers[1]}}</p>
     </label><br/>
 
     <label> Réponse 3 <br>
-        <input class="input-custom" type="text" id="q3" [formControlName]="'q3'" required>
-        <input class="rr" type="checkbox" id="rr3" (change)="selectResponseNumber($event, 2)">
+        <input class="input-custom" type="text" data-testid="q3" id="q3" [formControlName]="'q3'" required>
+        <input class="rr" type="checkbox" data-testid="rr3" id="rr3" (change)="selectResponseNumber($event, 2)">
         <label>Juste</label>
         <p class="indent">{{this.answers[2]}}</p>
     </label><br/>
 
     <label> Réponse 4 <br>
-        <input class="input-custom" type="text" id="q4" [formControlName]="'q4'" required>
-        <input class="rr" type="checkbox" id="rr4" (change)="selectResponseNumber($event, 3)">
+        <input class="input-custom" type="text" data-testid="q4" id="q4" [formControlName]="'q4'" required>
+        <input class="rr" type="checkbox" data-testid="rr4" id="rr4" (change)="selectResponseNumber($event, 3)">
         <label>Juste</label>
         <p class="indent">{{this.answers[3]}}</p>
     </label><br/>
@@ -36,15 +36,15 @@
             
             <div class="DAindice" *ngIf="nbIndice[0]===true">
                 <p>1.</p>
-                <input class="input-custom" type="text" id="i1" [formControlName]="'i1'"> <br>
+                <input class="input-custom" type="text" data-testid="i1" id="i1" [formControlName]="'i1'"> <br>
             </div>
             <div class="DAindice" *ngIf="nbIndice[1]===true">
                 <p>2.</p>
-                <input class="input-custom" type="text" id="i2" [formControlName]="'i2'"> <br>
+                <input class="input-custom" type="text" data-testid="i2" id="i2" [formControlName]="'i2'"> <br>
             </div>
             <div class="DAindice" *ngIf="nbIndice[2]===true">
                 <p>3.</p>
-                <input class="input-custom" type="text" id="i3" [formControlName]="'i3'"> <br>
+                <input class="input-custom" type="text" data-testid="i3" id="i3" [formControlName]="'i3'"> <br>
             </div>
 
         </label><br/>
@@ -58,8 +58,8 @@
 
 
     <div class="espace">
-        <button type="submit" [disabled]="!questionForm.valid" (click)="editQuestion()">Modifier</button>
-        <button type="submit" (click)="deleteQuestion()">Supprimer</button>
+        <button type="submit" data-testid="editQuestion" [disabled]="!questionForm.valid" (click)="editQuestion()">Modifier</button>
+        <button type="submit" data-testid="deleteQuestion" (click)="deleteQuestion()">Supprimer</button>
     </div>
     
     </form>
