@@ -20,6 +20,8 @@ export const PATIENT_MAURICE: Profil = {
 
     optionTempsReponse: 5,
 
+    optionSkipQuestion: true,
+
     photo: './assets/imageProfil/imageProfilMaurice.png'
 }
 
@@ -41,6 +43,8 @@ export const PATIENT_JOSEPH: Profil = {
     selfStats: STATS_PATIENT_JOSEPH,
 
     optionTempsReponse: 5,
+
+    optionSkipQuestion: true,
 
     photo: './assets/imageProfil/imageProfilJoseph.png'
 }
@@ -64,6 +68,8 @@ export const PATIENT_HUGUETTE: Profil = {
 
     optionTempsReponse: 5,
 
+    optionSkipQuestion: true,
+
     photo: './assets/imageProfil/imageProfilHuguette.png'
 }
 
@@ -86,6 +92,8 @@ export const PERSONNEL_MATHILDE: Profil = {
 
     optionTempsReponse: 5,
 
+    optionSkipQuestion: true,
+
     photo: './assets/imageProfil/imageProfilMathilde.png'
 }
 
@@ -106,6 +114,8 @@ export const ADMIN: Profil = {
 
     optionTempsReponse: 5,
 
+    optionSkipQuestion: true,
+
     photo: './assets/imageProfil/default.png'
 }
 
@@ -122,6 +132,8 @@ export const PROFIL_NULL: Profil = {
     optionPhoto: false,
     optionIndice: false,
     photo: "",
+
+    optionSkipQuestion: true,
 
     optionTempsReponse: 5,
 }

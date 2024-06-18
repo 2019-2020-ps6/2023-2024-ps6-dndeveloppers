@@ -76,7 +76,8 @@
     ],
     "optionSupprimerMauvaisesReponses": false,
     "optionReposerQuestionApres": true,
-    "id": 1716797670087
+    "id": 1716797670087,
+    "optionSkipQuestion": true
   },
   {
     "nom": "Roques",
