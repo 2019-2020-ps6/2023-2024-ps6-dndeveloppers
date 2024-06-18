@@ -59,4 +59,18 @@ export class CreateProfilFixture extends E2EComponentFixture {
         await button.click({ force: true });
     }
     
+    getAjouterImage() {
+        return this.page.locator('input[type="file"]')
+    }
+
+    getRetourButton() {
+        return this.page.getByRole('button', { name: 'Retour page des profils' });
+    }
+
+    async clickRetourButton() {
+        const button = await this.getRetourButton();
+        await button.scrollIntoViewIfNeeded();
+        await button.click({ force: true });
+    }
+
 }
