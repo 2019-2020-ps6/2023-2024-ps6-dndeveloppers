@@ -42,8 +42,8 @@
         <span *ngIf="profil.optionSupprimerMauvaisesReponses!==true">Pas de suppression des mauvaises réponses<br/></span>
         <span *ngIf="profil.optionReposerQuestionApres!==true">Ne pas reposer plus tard les questions ratées<br/></span>
         <br/><br/>Taille du texte : {{profil.optionTailleTexte}}<br/>
-        Temps d'affichage des bonnes réponses : {{profil.optionTempsReponse}}<br/><br/>
-        Quiz avec le plus mauvais score : {{worstQuiz}}
+        Temps d'affichage des bonnes réponses : <br/> {{profil.optionTempsReponse}} seconde(s)<br/><br/>
+        Quiz avec le plus mauvais score : <br/>{{worstQuiz}}
         <br/><button (click)="seeStats(profil,worstQuiz)">Aller voir les stats</button><br/>
         <button id="playButton" (click)="selectProfil(profil)">Jouer</button>
         <button id="closeButton" (click)="profilShow('list')">Fermer</button>

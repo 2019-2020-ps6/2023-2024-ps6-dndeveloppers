@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Question_Model, Indice_Model1, Indice_Model2, Indice_Model3, QUIZ_LIST } from "src/mocks/quiz-list.mock";
 import { Indice } from "src/models/question.models";
 import { Answer_Model } from "src/mocks/quiz-list.mock";

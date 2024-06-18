@@ -3,3 +3,16 @@
     padding-top: 10px;
     justify-content: center;
 }
+
+.statsPrecises {
+    display: grid;
+    grid-template-columns: 49.5% 1% 49.5%;
+}
+
+.statsPatient {
+    grid-column: 1;
+}
+
+.statsQuiz {
+    grid-column: 3;
+}

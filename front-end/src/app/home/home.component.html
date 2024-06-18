@@ -1,7 +1,7 @@
 
 <app-header class="header"></app-header>
 <section class="homePage">
-    <button class="boutonHome" (click)="choixProfil()">JOUER A UN QUIZ
+    <button id="playButton" class="boutonHome" (click)="choixProfil()">JOUER A UN QUIZ
     </button><br/>
     <div class="listProfilHome" *ngIf="showProfil">
         <div class="recherche">
@@ -14,7 +14,7 @@
         </div>
         
     </div>
-    <button class="boutonHome" [routerLink]="['gestionQuiz']" >GESTION DES QUIZ</button><br/>
-    <button class="boutonHome" [routerLink]="['listProfil']" >GESTION DES PROFILS</button><br/>
-    <button class="boutonHome" [routerLink]="['stats']" >STATISTIQUES</button><br/>
+    <button id="quizButton" class="boutonHome" [routerLink]="['gestionQuiz']" >GESTION DES QUIZ</button><br/>
+    <button id="profilButton" class="boutonHome" [routerLink]="['listProfil']" >GESTION DES PROFILS</button><br/>
+    <button id="statsButton" class="boutonHome" [routerLink]="['stats']" >STATISTIQUES</button><br/>
 </section>

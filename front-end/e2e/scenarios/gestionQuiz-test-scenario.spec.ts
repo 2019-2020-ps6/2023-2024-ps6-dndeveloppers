@@ -21,8 +21,6 @@ test.describe('Home page display', () => {
         const inputTheme = await quizGestionFixture.getInputTheme();
         await inputTheme.fill('Politique');
         expect(inputTheme).toHaveValue('Politique');
-
-        //On ajout le thème b
         await quizGestionFixture.clickAddThemeButton();
     });
 
@@ -32,9 +30,9 @@ test.describe('Home page display', () => {
         await inputTitle.fill('Politiciens durant la Guerre Froide');
         expect(inputTitle).toHaveValue('Politiciens durant la Guerre Froide');
 
-        //On récupère le champ de selection des thème et on choisi le thème b
+        //On récupère le champ de selection des thème et on choisi le thème
         const selectTheme = await quizGestionFixture.getSelectTheme();
-        await selectTheme.click
+        await selectTheme.click();
         await selectTheme.selectOption('Politique');
 
         //On ajoute le nouveau quiz
