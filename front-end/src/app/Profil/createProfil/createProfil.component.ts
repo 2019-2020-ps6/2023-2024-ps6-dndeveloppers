@@ -40,6 +40,7 @@ export class CreateProfilComponent implements OnInit {
             optionReposerQuestionApres: [false],
 
             optionTailleTexte: ['Moyen'],
+            optionSkip: [true],
             optionTimeReponse: [3],
         });
     }
@@ -72,6 +73,7 @@ export class CreateProfilComponent implements OnInit {
         profilToCreate.optionPhoto = this.profilForm.getRawValue().optionPhoto;
         profilToCreate.optionSupprimerMauvaisesReponses = this.profilForm.getRawValue().optionSupprimerMauvaisesReponses;
         profilToCreate.optionReposerQuestionApres = this.profilForm.getRawValue().optionReposerQuestionApres;
+        profilToCreate.optionSkipQuestion = this.profilForm.getRawValue().optionSkip;
 
         if(this.photo != ""){
             profilToCreate.photo = this.photo; 
