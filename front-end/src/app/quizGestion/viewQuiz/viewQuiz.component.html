@@ -1,4 +1,4 @@
-<div class="card" *ngIf="quiz">
+<div class="card" data-testid="quiz" *ngIf="quiz">
     <h2>
         <span> {{quiz.name}} </span><br/>
         <img *ngIf="quiz.photo!==undefined && quiz.photo!=='none'" id="imageQuiz" [src]=quiz.photo /><br/>

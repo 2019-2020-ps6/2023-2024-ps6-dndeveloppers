@@ -41,15 +41,15 @@ export class QuizGestionFixture extends E2EComponentFixture {
 
   getNumberListQuiz(){
     const selector = `app-viewQuiz`;
-    return this.page.locator(selector).count();
+    return this.page.getByTestId('quiz').count();
   }
 
   getEditButton(quizName: string){
-    return this.page.getByRole('button', {name: 'Modifier'});
+    return this.page.getByRole('heading', {name: quizName}).getByRole('button', { name: 'Modifier' });
   }
 
   getSuppressButton(quizName: string) {
-    return this.page.getByRole('button', {name: 'Supprimer'});
+    return this.page.getByRole('heading', {name: quizName}).getByRole('button', {name: 'Supprimer'});
   }
 
   clickEditButton(quizName: string) {
