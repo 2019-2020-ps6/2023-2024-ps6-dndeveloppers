@@ -85,6 +85,7 @@ export class StatsQuizComponent implements OnInit {
         }
         if (nomQuiz.length == 0) {
             this.actualQuiz = QUIZ_NULL;
+            this.actualQuizMeanScore = 0;
             this.options.xAxis.categories = [];
             this.options.series[0].data = [];
         } else {

@@ -22,8 +22,10 @@ export class StatsPatientComponent implements OnInit {
 
     public listePatient: Profil[] = [];
     public actualPatient: Profil  = ADMIN;
+    public optionPatient: string = "";
     public actualPatientSelfStats: statsPatient = this.actualPatient.selfStats;
     public quizzes: Quiz[] = [];
+    public displayPatientChart = true;
 
     public actualSeries: any[] = [];
 
@@ -95,6 +97,39 @@ export class StatsPatientComponent implements OnInit {
 
     selectedPatient(event: any) {
         let nomPatient: string = event.target.value;
+        if (nomPatient.length == 0) {
+            this.displayPatientChart = false;
+            this.optionPatient = "";
+        } else {
+            this.displayPatientChart = true;
+            for (let i=0; i<this.listePatient.length; i++) {
+                if (this.listePatient[i].nom == nomPatient) {
+                    let patient = this.listePatient[i];
+                    this.optionPatient = "";
+                    if (patient.optionIndice) {
+                        this.optionPatient += "Indice"
+                    }
+                    if (patient.optionPhoto) {
+                        if (this.optionPatient.length != 0) {
+                            this.optionPatient += ", ";
+                        }
+                        this.optionPatient += "Photo";
+                    }
+                    if (patient.optionReposerQuestionApres) {
+                        if (this.optionPatient.length != 0) {
+                            this.optionPatient += ", ";
+                        }
+                        this.optionPatient += "Reposer";
+                    }
+                    if (patient.optionSupprimerMauvaisesReponses) {
+                        if (this.optionPatient.length != 0) {
+                            this.optionPatient += ", ";
+                        }
+                        this.optionPatient += "Supprimer";
+                    }
+                }
+            }
+        }
         this.selectedPatientWithName(nomPatient);
     }
 
