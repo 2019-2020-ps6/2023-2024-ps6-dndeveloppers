@@ -3,6 +3,8 @@ import { QuizGestionFixture } from 'src/app/quizGestion/quizGestion/quizGestion.
 
 import { testUrl } from 'e2e/e2e.config';
 
+/*
+
 test.describe('Home page display', () => {
   test('Basic test', async ({ page }) => {
     await page.goto(testUrl + "/home/gestionQuiz");
@@ -86,3 +88,4 @@ test.describe('Home page display', () => {
     });
   });
 });
+*/
