@@ -2,6 +2,8 @@ import { E2EComponentFixture } from "e2e/e2e-component.fixture";
 
 export class QuizEditionFixture extends E2EComponentFixture {
 
+    //Éléments relatifs à l'ajout de question
+
     getQuestion() {
         return this.page.getByPlaceholder('Question');
     }
@@ -70,6 +72,12 @@ export class QuizEditionFixture extends E2EComponentFixture {
         return this.getAddQuestionButton().click();
     }
 
+    //Éléments relatifs aux valeurs globales du quiz
+
+    getQuizTitle() {
+        return this.page.getByTestId('nom');
+    }
+
     getThemeSelector() {
         return this.page.getByRole('combobox');
     }
@@ -82,6 +90,8 @@ export class QuizEditionFixture extends E2EComponentFixture {
         return this.getEditGlobalButton().click();
     }
 
+    //Ajouteur de thème
+
     getTheme() {
         return this.page.getByTestId('theme')
     }
@@ -93,6 +103,8 @@ export class QuizEditionFixture extends E2EComponentFixture {
     clickAddThemeButton() {
         return this.getAddThemeButton().click();
     }
+
+    //Éléments relatifs aux question déjà existantes
 
     getNumberListQuestion() {
         const selector = `app-editQuestion`;

@@ -12,21 +12,26 @@ test.describe('Home page display', () => {
         const buttonAddQuiz = await quizGestionFixture.getAddQuizButton();
         const buttonAddTheme = await quizGestionFixture.getAddThemeButton();
 
+        //On vérifie que les éléments sont visibles
         expect(buttonAddQuiz).toBeVisible();
         expect(buttonAddTheme).toBeVisible();
     });
 
     await test.step("Ajout d'un thème", async () =>{
-        //On recupère le champ d'ajout de thème et on y écrit le thème b
         const inputTheme = await quizGestionFixture.getInputTheme();
+
+        //On recupère le champ d'ajout de thème et on y écrit le thème Jeux de cartes
         await inputTheme.fill('Jeux de cartes');
         expect(inputTheme).toHaveValue('Jeux de cartes');
+
+        //On ajoute le thème
         await quizGestionFixture.clickAddThemeButton();
     });
 
     await test.step("Ajout du quiz", async () => {
-        //On récupère le champ d'ajout de nom de quiz et on y écrit le titre a
         const inputTitle = await quizGestionFixture.getInputTitle();
+
+        //On récupère le champ d'ajout de nom de quiz et on y écrit le titre Rami
         await inputTitle.fill('Rami');
         expect(inputTitle).toHaveValue('Rami');
 
@@ -54,8 +59,9 @@ test.describe('Home page display', () => {
     });
 
     await test.step("Recherche d'un quiz par thème", async () => {
-      // on ajoute un thème random
       const inputTheme = await quizGestionFixture.getInputTheme();
+
+      // on ajoute un thème random
       await inputTheme.fill('Random');
       await quizGestionFixture.clickAddThemeButton();
 
@@ -77,12 +83,10 @@ test.describe('Home page display', () => {
       const inputSelect = await quizGestionFixture.getSearchBar();
       //expect(numberListQuiz).toEqual(1);
 
-      //await inputSelect.fill('Guerre'); On cherche un quiz qui existe
+      //On supprime le quiz
       await quizGestionFixture.clickSuppressButton('Rami');
       numberListQuiz = await quizGestionFixture.getNumberListQuiz();
       //expect(numberListQuiz).toEqual(0);
-
-      await inputSelect.fill('');
     });
   });
 });
