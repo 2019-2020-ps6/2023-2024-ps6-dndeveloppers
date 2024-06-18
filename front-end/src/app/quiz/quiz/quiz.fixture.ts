@@ -8,5 +8,9 @@ export class QuizFixture extends E2EComponentFixture {
         return this.page.getByTestId('boutonReponse').count();
     }
 
+    getSkipButton() {
+        return this.page.getByRole('button', { name: 'Passer la question' });
+    }
+
 }
 
