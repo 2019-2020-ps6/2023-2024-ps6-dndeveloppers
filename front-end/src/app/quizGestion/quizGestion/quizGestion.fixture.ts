@@ -2,11 +2,11 @@ import { E2EComponentFixture } from "e2e/e2e-component.fixture";
 
 export class QuizGestionFixture extends E2EComponentFixture {
   // Create Quiz + Add Theme
-   getAjoutQuizButton() {
+   getAddQuizButton() {
     return this.page.getByRole('button', { name: 'Ajouter le Quiz' });
    }
 
-   getAjoutThemeButton() {
+   getAddThemeButton() {
     return this.page.getByRole('button', { name: 'Ajouter le thème' });
    }
 
@@ -22,12 +22,12 @@ export class QuizGestionFixture extends E2EComponentFixture {
     return this.page.getByTestId('theme'); 
    }
 
-  clickAjoutQuizButton() {
-    return this.getAjoutQuizButton().click();
+  clickAddQuizButton() {
+    return this.getAddQuizButton().click();
   }
 
-  clickAjoutThemeButton() {
-    return this.getAjoutThemeButton().click();
+  clickAddThemeButton() {
+    return this.getAddThemeButton().click();
   }
 
   // Search Quiz 
@@ -44,5 +44,28 @@ export class QuizGestionFixture extends E2EComponentFixture {
     return this.page.locator(selector).count();
   }
 
+  getEditButton(quizName: string){
+    return this.page.getByRole('button', {name: 'Modifier'});
+  }
+
+  getSuppressButton(quizName: string) {
+    return this.page.getByRole('button', {name: 'Supprimer'});
+  }
+
+  clickEditButton(quizName: string) {
+    return this.getEditButton(quizName).click();
+  }
+
+  clickSuppressButton(quizName: string){
+    return this.getSuppressButton(quizName).click();
+  }
+
+  getReturnButton() {
+    return this.page.getByText('Retour');
+  }
+
+  clickReturnButton() {
+    return this.getReturnButton().click();
+  }
 
 }

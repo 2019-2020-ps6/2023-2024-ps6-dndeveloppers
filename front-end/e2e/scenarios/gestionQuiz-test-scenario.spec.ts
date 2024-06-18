@@ -9,8 +9,8 @@ test.describe('Home page display', () => {
     const quizGestionFixture = new QuizGestionFixture(page);
     
     await test.step("Récupération des boutons", async () =>{
-        const buttonAddQuiz = await quizGestionFixture.getAjoutQuizButton();
-        const buttonAddTheme = await quizGestionFixture.getAjoutThemeButton();
+        const buttonAddQuiz = await quizGestionFixture.getAddQuizButton();
+        const buttonAddTheme = await quizGestionFixture.getAddThemeButton();
 
         expect(buttonAddQuiz).toBeVisible();
         expect(buttonAddTheme).toBeVisible();
@@ -21,9 +21,7 @@ test.describe('Home page display', () => {
         const inputTheme = await quizGestionFixture.getInputTheme();
         await inputTheme.fill('Politique');
         expect(inputTheme).toHaveValue('Politique');
-
-        //On ajout le thème
-        await quizGestionFixture.clickAjoutThemeButton();
+        await quizGestionFixture.clickAddThemeButton();
     });
 
     await test.step("Ajout du quiz", async () => {
@@ -36,6 +34,11 @@ test.describe('Home page display', () => {
         const selectTheme = await quizGestionFixture.getSelectTheme();
         await selectTheme.click();
         await selectTheme.selectOption('Politique');
+
+        //On ajoute le nouveau quiz
+        await quizGestionFixture.clickAddQuizButton();
+
+        await quizGestionFixture.clickReturnButton();
     });
 
     await test.step("Recherche d'un quiz par nom", async () => {
@@ -54,7 +57,7 @@ test.describe('Home page display', () => {
       // on ajoute un thème random
       const inputTheme = await quizGestionFixture.getInputTheme();
       await inputTheme.fill('Random');
-      await quizGestionFixture.clickAjoutThemeButton();
+      await quizGestionFixture.clickAddThemeButton();
 
       const searchSelectTheme = await quizGestionFixture.getSearchButton();
       await searchSelectTheme.click
@@ -66,7 +69,20 @@ test.describe('Home page display', () => {
       await searchSelectTheme.selectOption('Random'); // On cherche un quiz qui n'existe pas pour ce thème
       numberListQuiz = await quizGestionFixture.getNumberListQuiz();
       expect(numberListQuiz).toEqual(0);
+      await searchSelectTheme.selectOption('Sélectionner un thème'); 
     });
 
+    await test.step("Suppression d'un quiz", async () => {
+      let numberListQuiz = await quizGestionFixture.getNumberListQuiz();
+      const inputSelect = await quizGestionFixture.getSearchBar();
+      expect(numberListQuiz).toEqual(1);
+
+      await inputSelect.fill('Guerre'); // On cherche un quiz qui existe
+      await quizGestionFixture.clickSuppressButton('Politiciens durant la Guerre Froide');
+      numberListQuiz = await quizGestionFixture.getNumberListQuiz();
+      expect(numberListQuiz).toEqual(0);
+
+      await inputSelect.fill('');
+    });
   });
 });
