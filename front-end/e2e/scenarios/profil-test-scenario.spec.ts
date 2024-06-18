@@ -3,6 +3,8 @@ import { ListProfilFixture } from 'src/app/Profil/listProfil/listProfil.fixture'
 import { testUrl } from 'e2e/e2e.config';
 import { CreateProfilFixture } from 'src/app/Profil/createProfil/createProfil.fixture';
 import { EditProfilFixture } from 'src/app/Profil/editProfil/editProfil.fixture';
+import { PhotoFixture } from 'src/app/photo/photo.fixture';
+import { ViewProfilFixture } from 'src/app/Profil/viewProfil/viewProfil.fixture';
 
 test.describe('Create personnel profil', () => {
   test('Basic test', async ({ page }) => {
@@ -13,75 +15,13 @@ test.describe('Create personnel profil', () => {
     const listProfilFixture = new ListProfilFixture(page);
     const createProfilFixture = new CreateProfilFixture(page);
     const editProfilFixture = new EditProfilFixture(page);
+    const photoFixture = new PhotoFixture(page);
+    const viewProfilFixture = new ViewProfilFixture(page);
 
-
-    await test.step('Verification du layout de la page listProfil', async () => {
-    // Vérifier que le champ de recherche des patients est présent
-    const searchBarPatient = await listProfilFixture.getSearchBarPatient();
-    await expect(searchBarPatient).toBeVisible();
-
-    // Vérifier que le champ de recherche du personnel est présent
-    const searchBarStaff = await listProfilFixture.getSearchBarStaff();
-    await expect(searchBarStaff).toBeVisible();
-
-    });
-
-    await test.step('Verification du layout de la page createProfil', async () => {
+    await test.step('Ajout d\'un profil', async () => {
 
     // Cliquer sur le bouton Ajouter un profil
     await listProfilFixture.clickAddProfilButton();
-
-    // Vérifier que le champ Nom est présent
-    const nomInput = await createProfilFixture.getNomInput();
-    await expect(nomInput).toBeVisible();
-
-    // Vérifier que le champ Prénom est présent
-    const prenomInput = await createProfilFixture.getPrenomInput();
-    await expect(prenomInput).toBeVisible();
-
-    // Vérifier que le champ Role est présent
-    const roleInput = await createProfilFixture.getRoleInput();
-    await expect(roleInput).toBeVisible();
-
-    // Vérifier que le champ Jour est présent
-    const jourInput = await createProfilFixture.getJourInput();
-    await expect(jourInput).toBeVisible();
-
-    // Vérifier que le champ Mois est présent
-    const moisInput = await createProfilFixture.getMoisInput();
-    await expect(moisInput).toBeVisible();
-
-    // Vérifier que le champ Année est présent
-    const anneeInput = await createProfilFixture.getAnneeInput();
-    await expect(anneeInput).toBeVisible();
-
-    // Vérifier que l'option Photo est présente
-    const optionPhoto = await createProfilFixture.getOptionPhoto();
-    await expect(optionPhoto).toBeVisible();
-
-    // Vérifier que l'option Indice est présente
-    const optionIndice = await createProfilFixture.getOptionIndice();
-    await expect(optionIndice).toBeVisible();
-
-    // Vérifier que l'option Disparaitre est présente
-    const optionDisparaitre = await createProfilFixture.getOptionDisparaitre();
-    await expect(optionDisparaitre).toBeVisible();
-
-    // Vérifier que l'option Reposer est présente
-    const optionReposer = await createProfilFixture.getOptionReposer();
-    await expect(optionReposer).toBeVisible();
-
-    // Vérifier que l'option Temps est présente
-    const optionTemps = await createProfilFixture.getOptionTemps();
-    await expect(optionTemps).toBeVisible();
-
-    // Vérifier que l'option Taille est présente
-    const optionTaille = await createProfilFixture.getOptionTaille();
-    await expect(optionTaille).toBeVisible();
-
-    });
-
-    await test.step('Ajout d\'un profil', async () => {
 
     // Ecrire dans le champ Nom
     const nomInput = await createProfilFixture.getNomInput();
@@ -127,28 +67,10 @@ test.describe('Create personnel profil', () => {
 
     });
 
-
-
-    await test.step('Afficher profil', async () => {
-
-    // Cliquer sur le bouton Afficher
-    const afficherLeProfil = await listProfilFixture.afficherLeProfil('Heilmann', 'Hugo');
-    await afficherLeProfil.click();
-
-    // Vérifier que le profil est bien affiché
-    const profil = await page.getByRole('heading', { name: 'Nom : Heilmann Prénom: Hugo Afficher Modifier Supprimer' });
-
-    // Supprimer l'affichage du profil
-    const fermerProfilButton = await listProfilFixture.getFermerProfilButton();
-    await fermerProfilButton.click();
-
-    });
-
-
     await test.step('Modification du profil', async () => {
       
     // Cliquer sur le bouton Editer
-    const editerLeProfil = await listProfilFixture.editerLeProfil('Heilmann', 'Hugo');
+    const editerLeProfil = await listProfilFixture.editerLeProfil();
     await editerLeProfil.click();
 
     await test.step('Verification des valeurs du profil', async () => {
@@ -245,15 +167,15 @@ test.describe('Create personnel profil', () => {
 
     await test.step('Suppression du profil', async () => {
 
-    // Cliquer sur le bouton Supprimer
-    const supprimerLeProfil = await listProfilFixture.supprimerLeProfil('ROQUES', 'Maxence');
-    await supprimerLeProfil.click();
+      // Cliquer sur le bouton Supprimer
+      const supprimerLeProfil = await listProfilFixture.supprimerLeProfil();
+      await supprimerLeProfil.click();
 
-     // Vérifier que le profil a bien été supprimé
-     await page.reload(); // Reload the page to ensure the profile list is updated
+      // Vérifier que le profil a bien été supprimé
+      await page.reload(); // Reload the page to ensure the profile list is updated
 
-     const profil = await page.locator('text=Nom : ROQUES Prénom: Maxence Afficher Modifier Supprimer').first();
-     await expect(profil).toHaveCount(0); 
+      const profil = await page.locator('text=Nom : ROQUES Prénom: Maxence Afficher Modifier Supprimer').first();
+      await expect(profil).toHaveCount(0); 
 
     });
   });

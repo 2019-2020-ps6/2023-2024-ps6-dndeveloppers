@@ -1,6 +1,6 @@
 const { Router } = require('express')
 
-const { QuizModel, statsQuizModel } = require('../../models')
+const { QuizModel, statsQuizModel, ProfilModel, statsPatientModel } = require('../../models')
 const manageAllErrors = require('../../utils/routes/error-management')
 const { buildQuizzes } = require('./manager')
 const { QuestionsDELETE } = require('./questions/manager')
@@ -69,19 +69,68 @@ router.delete('/:quizId', (req, res) => {
     const idQuiz = req.params.quizId.substring(1); 
     const quiz = QuizModel.getById(idQuiz)
     const idSelfStats = statsQuizModel.getById(quiz.selfStats).id
+
+    // on supprime dans les stats profils le quiz s'il a été joué
+    const profilsSelfStats = statsPatientModel.get();
+    for(let i=0; i<profilsSelfStats.length;i++){
+      console.log("avant : ",profilsSelfStats[i].quizDone);
+      let indexToDelete = [];
+      for(let j=0; j<profilsSelfStats[i].quizDone.length;j++){
+        if(profilsSelfStats[i].quizDone[j] == quiz.name){
+          indexToDelete.push(j);        
+        }
+      }
+      console.log("truc à delete : ",indexToDelete)
+      if(indexToDelete.length >= 1) {
+        let quizDone = profilsSelfStats[i].quizDone;
+        let newQuizDone = [];
+        let quizRes = profilsSelfStats[i].quizRes;
+        let newQuizRes = [];
+        console.log("quizDone : ",quizDone);
+
+        for(let j=0; j>=quizDone;j++){
+          if(indexToDelete.findIndex(j) == -1){
+            newQuizDone.push(quizDone[j]);
+            newQuizRes.push(quizRes[j]);
+          }
+          console.log("newQuizDone : ",newQuizDone);  
+        }
+
+        let profilsStats = statsPatientModel.getById(profilsSelfStats[i].id);
+        profilsStats.quizDone = newQuizDone;
+        profilsStats.quizRes = newQuizRes;
+
+        // on update les autres stats
+        profilsStats.nbQuizDone = profilsStats.quizDone.length;
+        let meanScore = 0;
+        for(let j=0;j<profilsStats.quizRes.length;j++){
+          console.log("moyenne (boucle) : ",meanScore);
+          meanScore += profilsStats.quizRes[j];
+        }
+        if(profilsStats.quizRes.length != 0){
+          meanScore = meanScore/profilsStats.quizRes.length;
+        }
+        console.log("moyenne : ",meanScore);
+        profilsStats.meanScore = meanScore;
+
+        statsPatientModel.update(profilsStats.id,profilsStats);
+        console.log("après : ",profilsSelfStats[i].quizDone);
+      }
+      
+    }
+
+    // on supprime les questions
     const idQuestions = []
     for(let i=0; i< quiz.questions.length;i++){
       idQuestions.push(quiz.questions[i]);
     }
 
-    console.log("quiz : ",quiz)
-    console.log("stats : ",statsQuizModel.getById(quiz.selfStats))
     QuestionsDELETE(idQuiz);
     QuizModel.delete(idQuiz);
-    console.log("ok")
+
+    // on supprime les stats
     statsQuizModel.delete(idSelfStats);
     
-
     res.status(204).end()
   } catch (err) {
     console.log(err);
