@@ -7,10 +7,7 @@
 
     <ul>
         <li>Nom du patient : {{actualPatient.prenom}}</li>
-        <li *ngIf="!actualPatient.optionPhoto && !actualPatient.optionIndice">Option du patient : </li>
-        <li *ngIf="actualPatient.optionPhoto && !actualPatient.optionIndice">Option du patient : Photo</li>
-        <li *ngIf="!actualPatient.optionPhoto && actualPatient.optionIndice">Option du patient : Indice</li>
-        <li *ngIf="actualPatient.optionPhoto && actualPatient.optionIndice">Options du patient : Photo, Indice</li>
+        <li>Option du patient : {{optionPatient}}</li>
         <li>Nombre de quiz réalisés : {{actualPatientSelfStats.nbQuizDone}}</li>
         <li>Score moyen : {{actualPatientMeanScore}}</li>
     </ul>

@@ -109,8 +109,8 @@ export const ADMIN: Profil = {
 
     optionReposerQuestionApres: false,
     optionSupprimerMauvaisesReponses: false,
-    optionPhoto: true,
-    optionIndice: true,
+    optionPhoto: false,
+    optionIndice: false,
 
     optionTempsReponse: 5,
 

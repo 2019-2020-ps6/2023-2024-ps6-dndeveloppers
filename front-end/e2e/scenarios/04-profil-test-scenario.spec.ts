@@ -5,6 +5,7 @@ import { CreateProfilFixture } from 'src/app/Profil/createProfil/createProfil.fi
 import { EditProfilFixture } from 'src/app/Profil/editProfil/editProfil.fixture';
 import { PhotoFixture } from 'src/app/photo/photo.fixture';
 import { ViewProfilFixture } from 'src/app/Profil/viewProfil/viewProfil.fixture';
+import { HomeFixture } from 'src/app/home/home.fixture';
 
 test.describe('Create personnel profil', () => {
   test('Basic test', async ({ page }) => {
@@ -17,6 +18,7 @@ test.describe('Create personnel profil', () => {
     const editProfilFixture = new EditProfilFixture(page);
     const photoFixture = new PhotoFixture(page);
     const viewProfilFixture = new ViewProfilFixture(page);
+    const homeFixture = new HomeFixture(page);
 
     await test.step('Ajout d\'un profil', async () => {
 
@@ -320,7 +322,11 @@ test.describe('Create personnel profil', () => {
 
     });
 
-
+    await test.step('Supprimer profil', async () => {
+      await page.keyboard.type('admin');
+      homeFixture.clickProfilButton();
+      await page.getByRole('heading', { name: 'Nom : Heilmann Prénom: Hugo Afficher Modifier Supprimer' }).getByRole('button', { name: 'Supprimer' }).click();
+    });
 
 
   });
