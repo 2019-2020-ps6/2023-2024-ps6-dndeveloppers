@@ -51,10 +51,11 @@ test.describe('Home page display', () => {
       let numberListQuiz = await quizGestionFixture.getNumberListQuiz();
       
       await inputSelect.fill('Guerre'); // On cherche un quiz qui existe
-      //expect(numberListQuiz).toEqual(1);
+      numberListQuiz = await quizGestionFixture.getNumberListQuiz();
+      expect(numberListQuiz).toEqual(1);
       await inputSelect.fill('Guerreeeee'); // On cherche un quiz qui n'existe pas
       numberListQuiz = await quizGestionFixture.getNumberListQuiz();
-      //expect(numberListQuiz).toEqual(0);
+      expect(numberListQuiz).toEqual(0);
       await inputSelect.fill('');
     });
 
@@ -66,27 +67,23 @@ test.describe('Home page display', () => {
       await quizGestionFixture.clickAddThemeButton();
 
       const searchSelectTheme = await quizGestionFixture.getSearchButton();
-      await searchSelectTheme.click
-      await searchSelectTheme.selectOption('Musique'); // On cherche un quiz qui existe avec ce thème
-
-      let numberListQuiz = await quizGestionFixture.getNumberListQuiz();
-      //expect(numberListQuiz).toEqual(1);
-      await searchSelectTheme.click
+      await searchSelectTheme.click()
       await searchSelectTheme.selectOption('Random'); // On cherche un quiz qui n'existe pas pour ce thème
-      numberListQuiz = await quizGestionFixture.getNumberListQuiz();
-      //expect(numberListQuiz).toEqual(0);
+      let numberListQuiz = await quizGestionFixture.getNumberListQuiz();
+      expect(numberListQuiz).toEqual(0);
       await searchSelectTheme.selectOption('Sélectionner un thème'); 
     });
 
     await test.step("Suppression d'un quiz", async () => {
-      let numberListQuiz = await quizGestionFixture.getNumberListQuiz();
       const inputSelect = await quizGestionFixture.getSearchBar();
-      //expect(numberListQuiz).toEqual(1);
+      await inputSelect.fill('Rami');
+      let numberListQuiz = await quizGestionFixture.getNumberListQuiz();
+      expect(numberListQuiz).toEqual(1);
 
       //On supprime le quiz
       await quizGestionFixture.clickSuppressButton('Rami');
       numberListQuiz = await quizGestionFixture.getNumberListQuiz();
-      //expect(numberListQuiz).toEqual(0);
+      expect(numberListQuiz).toEqual(0);
     });
   });
 });

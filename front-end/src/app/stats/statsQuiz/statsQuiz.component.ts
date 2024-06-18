@@ -18,6 +18,7 @@ export class StatsQuizComponent implements OnInit {
     public actualQuiz: Quiz = QUIZ_NULL;
     public actualQuizName: string = this.actualQuiz.name;
     public actualQuizMeanScore: number = Math.round(this.actualQuiz.selfStats.meanScore*100)/100;
+    public actualQuizMeanHintUsed: number = Math.round(this.actualQuiz.selfStats.meanHintUsed*100)/100;
     public actualCategories: string[] = [];
     public actualData: number[] = [];
 
@@ -84,9 +85,9 @@ export class StatsQuizComponent implements OnInit {
             return;
         }
         if (nomQuiz.length == 0) {
-            this.actualQuizMeanScore = 0;
             this.actualQuiz = QUIZ_NULL;
             this.actualQuizMeanScore = 0;
+            this.actualQuizMeanHintUsed = 0;
             this.options.xAxis.categories = [];
             this.options.series[0].data = [];
         } else {
@@ -94,6 +95,7 @@ export class StatsQuizComponent implements OnInit {
                 if (this.listeQuiz[i].name == nomQuiz) {
                     this.actualQuiz = this.listeQuiz[i];
                     this.actualQuizMeanScore = Math.round(this.actualQuiz.selfStats.meanScore*100)/100;
+                    this.actualQuizMeanHintUsed = Math.round(this.actualQuiz.selfStats.meanHintUsed*100)/100;
                     break;
                 }
             }
