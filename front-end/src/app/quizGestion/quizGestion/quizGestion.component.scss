@@ -3,10 +3,12 @@
     flex-wrap: wrap;
 }
 
-.returnButton{
-    display: flex;
-    padding-top: 10px;
-    justify-content: center;
+.functions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 .search-bar {
@@ -21,7 +23,6 @@
   text-align: center;
   outline: none;
   transition: all 0.3s ease;
-
 }
 
 .search-bar:focus {
@@ -67,4 +68,10 @@
 
 .quizzes {
   display: inline-block;
+}
+
+.recherche {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }

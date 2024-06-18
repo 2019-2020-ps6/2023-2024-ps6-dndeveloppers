@@ -1,18 +1,17 @@
 <app-header></app-header>
-
-<section class="returnButton">
+<br/>
+<section class="functions">
+  <!-- Création de quiz -->
+  <app-create-quiz></app-create-quiz>
   <app-comeBack [destination]="'home'"></app-comeBack>
 </section>
-
-<!-- Création de quiz -->
-<app-create-quiz></app-create-quiz>
 
 
 <!-- Affichage de tout les quiz -->
 
 <div class="recherche">
-    <input class="search-bar" type="text" placeholder="Rechercher un quiz" (input)="quizShow($event)" [(ngModel)]="searchTerm" />
-    <select class="selectTheme" name="theme-field" id="theme" (change)="themeShow($event)" [(ngModel)]="selectedTheme" required>
+    <input class="search-bar" type="text" placeholder="Rechercher un quiz" data-testid="searchBar" id="searchBar" (input)="quizShow($event)" [(ngModel)]="searchTerm" />
+    <select class="selectTheme" name="theme-field" data-testid="searchBarTheme" id="theme" (change)="themeShow($event)" [(ngModel)]="selectedTheme" required>
         <option value="">Sélectionner un thème</option>
         <option *ngFor="let currentTheme of themeList" [value]="currentTheme">{{currentTheme}}</option>
     </select>
@@ -23,8 +22,8 @@
       <div class="actualTheme">
         <p><app-texteAdaptatif texte="{{theme}}"></app-texteAdaptatif></p>
       </div>
-      <div class="quizzes" *ngFor="let quiz of filterQuizsByTheme(theme)">
-        <app-viewQuiz [quiz]="quiz"></app-viewQuiz>
+      <div class="quizzes" id="listQuiz" *ngFor="let quiz of filterQuizsByTheme(theme)">
+        <app-viewQuiz id="quiz" [quiz]="quiz"></app-viewQuiz>
       </div>
     </div>
 </div>

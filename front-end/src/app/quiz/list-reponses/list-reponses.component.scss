@@ -56,7 +56,6 @@
     background-color: rgb(113, 159, 117);
 }
 
-
 #endPopup {
     position: fixed;
     left: 50%;
@@ -64,7 +63,7 @@
     transform: translate(-50%,-50%);
     box-shadow: 0 0 500rem 0 rgb(0, 0, 0);
     width: 500px;
-    height: 500px;
+    height: auto;
     border: 2px black solid;
     border-radius: 1rem;
     background-color: rgb(169, 166, 166);
@@ -73,8 +72,11 @@
     text-align: center;
 }
 
-
 .felicitation{
     font-family: "OpenDyslexic", sans-serif;
     font-weight: bold;
+}
+
+.PopupreturnButton {
+    margin: 200px;
 }

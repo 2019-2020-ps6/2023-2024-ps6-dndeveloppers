@@ -1,5 +1,6 @@
 .card {
-    width: 300px;
+    width: 320px;
+    height: 980px;
     border: solid black 2px;
     background-color: lightgray;
     padding-left: 20px;
@@ -28,4 +29,5 @@
 
 .photo {
     width: 150px;
+    max-height: 250px;
 }  

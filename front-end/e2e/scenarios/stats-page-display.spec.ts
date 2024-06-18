@@ -5,7 +5,7 @@ import { StatsFixture } from 'src/app/stats/stats.fixture';
 import { StatsQuizFixture } from 'src/app/stats/statsQuiz/statsQuiz.fixture';
 
 // https://playwright.dev/docs/locators
-test.describe('Home page display', () => {
+test.describe('Stats page display', () => {
   test('Basic test', async ({ page }) => {
     await page.goto(testUrl);
     const homeFixture = new HomeFixture(page);
@@ -49,7 +49,7 @@ test.describe('Home page display', () => {
     const pStatsPatientTitle = statsPatient.getByText("Statistiques du patient");
     const pSelector = statsFixture.getSelectPatient();
     const pName = statsPatient.getByText("Nom du patient : ")
-    const pOption = statsPatient.getByText("Option du patient : ");
+    const pOption = statsPatient.getByText("Options du patient : ");
     const pNbQuizDone = statsPatient.getByText("Nombre de quiz réalisés : ");
     const pMeanScore = statsPatient.getByText("Score moyen : ");
     const pChart = page.locator('#patientChart'); 

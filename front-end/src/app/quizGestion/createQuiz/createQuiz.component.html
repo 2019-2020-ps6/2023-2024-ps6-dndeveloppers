@@ -5,10 +5,10 @@
         <h2>Créer un nouveau Quiz</h2>
         <form [formGroup]="quizForm">
           <label for="title"> Titre <br>
-            <input class="input-custom" type="text" id="name" [formControlName]="'name'" required>
+            <input class="input-custom" type="text" data-testid="name" id="name" [formControlName]="'name'" required>
           </label><br/>
           <label for="theme">Thème <br>
-            <select name="theme-field" id="theme" [formControlName]="'theme'" required>
+            <select name="theme-field" data-testid="themeSelector" id="theme" [formControlName]="'theme'" required>
               <option *ngFor="let currentTheme of themeList" [value]="currentTheme">{{currentTheme}}</option>
             </select>
           </label><br>
