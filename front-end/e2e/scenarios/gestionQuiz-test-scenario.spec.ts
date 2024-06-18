@@ -19,21 +19,21 @@ test.describe('Home page display', () => {
     await test.step("Ajout d'un thème", async () =>{
         //On recupère le champ d'ajout de thème et on y écrit le thème b
         const inputTheme = await quizGestionFixture.getInputTheme();
-        await inputTheme.fill('Musique');
-        expect(inputTheme).toHaveValue('Musique');
+        await inputTheme.fill('Jeux de cartes');
+        expect(inputTheme).toHaveValue('Jeux de cartes');
         await quizGestionFixture.clickAddThemeButton();
     });
 
     await test.step("Ajout du quiz", async () => {
         //On récupère le champ d'ajout de nom de quiz et on y écrit le titre a
         const inputTitle = await quizGestionFixture.getInputTitle();
-        await inputTitle.fill('Instruments');
-        expect(inputTitle).toHaveValue('Instruments');
+        await inputTitle.fill('Rami');
+        expect(inputTitle).toHaveValue('Rami');
 
         //On récupère le champ de selection des thème et on choisi le thème
         const selectTheme = await quizGestionFixture.getSelectTheme();
         await selectTheme.click();
-        await selectTheme.selectOption('Musique');
+        await selectTheme.selectOption('Jeux de cartes');
 
         //On ajoute le nouveau quiz
         await quizGestionFixture.clickAddQuizButton();
@@ -78,7 +78,7 @@ test.describe('Home page display', () => {
       //expect(numberListQuiz).toEqual(1);
 
       //await inputSelect.fill('Guerre'); On cherche un quiz qui existe
-      await quizGestionFixture.clickSuppressButton('Instruments');
+      await quizGestionFixture.clickSuppressButton('Rami');
       numberListQuiz = await quizGestionFixture.getNumberListQuiz();
       //expect(numberListQuiz).toEqual(0);
 
