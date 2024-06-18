@@ -40,7 +40,7 @@
         </div>
         
         <app-list-reponses  class="listreponse"></app-list-reponses>
-        <button (click)="skipQuestion()" id="skipQuestion"><app-texteAdaptatif [texte]=skip></app-texteAdaptatif></button>
+        <button *ngIf="actualProfil.optionSkipQuestion===true && infoQuiz.replayQuestion===false" (click)="skipQuestion()" id="skipQuestion"><app-texteAdaptatif [texte]=skip></app-texteAdaptatif></button>
         <app-comeBack class="returnButton" [destination]="'quizList'"></app-comeBack>
     </div>
 </section>

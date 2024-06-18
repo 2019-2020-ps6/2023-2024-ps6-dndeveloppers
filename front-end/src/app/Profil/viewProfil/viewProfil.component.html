@@ -33,6 +33,7 @@
         <span *ngIf="profil.optionIndice===true">Utilisation d'indices<br/></span>
         <span *ngIf="profil.optionSupprimerMauvaisesReponses===true">Suppression des mauvaises réponses<br/></span>
         <span *ngIf="profil.optionReposerQuestionApres===true">Reposer plus tard les questions ratées<br/></span>
+        <span *ngIf="profil.optionSkipQuestion===true">Peut passer une question<br/></span>
     </div>
     
     <br/><br/>Restriction(s) : <br/>
@@ -41,6 +42,7 @@
         <span *ngIf="profil.optionIndice!==true">Pas d'utilisation d'indices<br/></span>
         <span *ngIf="profil.optionSupprimerMauvaisesReponses!==true">Pas de suppression des mauvaises réponses<br/></span>
         <span *ngIf="profil.optionReposerQuestionApres!==true">Ne pas reposer plus tard les questions ratées<br/></span>
+        <span *ngIf="profil.optionSkipQuestion!==true">Ne peut pas passer une question<br/></span>
         <br/><br/>Taille du texte : {{profil.optionTailleTexte}}<br/>
         Temps d'affichage des bonnes réponses : <br/> {{profil.optionTempsReponse}} seconde(s)<br/><br/>
         Quiz avec le plus mauvais score : <br/>{{worstQuiz}}

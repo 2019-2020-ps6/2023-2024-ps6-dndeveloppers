@@ -22,5 +22,7 @@ export interface Profil {
 
     optionTempsReponse: number, // temps d'affichage de la bonne réponse
 
+    optionSkipQuestion: boolean, // avoir le droit de passer une question
+
     selfStats: statsPatient
 }

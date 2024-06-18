@@ -1,0 +1,142 @@
+[
+  {
+    "value": "Bill Clinton",
+    "isCorrect": false,
+    "id": 1717364676388.2363
+  },
+  {
+    "value": "John F. Kennedy",
+    "isCorrect": true,
+    "id": 1717364676389.821
+  },
+  {
+    "value": "Harry Truman",
+    "isCorrect": false,
+    "id": 1717364676390.1865
+  },
+  {
+    "value": "Henry Kissinger",
+    "isCorrect": false,
+    "id": 1717364676391.885
+  },
+  {
+    "value": "Valéry Giscard d'Estaing",
+    "isCorrect": false,
+    "id": 1717364739669.245
+  },
+  {
+    "value": "Georges Pompidou",
+    "isCorrect": false,
+    "id": 1717364739671.5354
+  },
+  {
+    "value": "François Mitterrand",
+    "isCorrect": true,
+    "id": 1717364739671.4993
+  },
+  {
+    "value": "Jacques Chirac",
+    "isCorrect": false,
+    "id": 1717364739673.7026
+  },
+  {
+    "value": "75",
+    "isCorrect": false,
+    "id": 1717364874792.3606
+  },
+  {
+    "value": "35",
+    "isCorrect": true,
+    "id": 1717364874793.3428
+  },
+  {
+    "value": "15",
+    "isCorrect": false,
+    "id": 1717364874794.9678
+  },
+  {
+    "value": "12",
+    "isCorrect": false,
+    "id": 1717364874795.423
+  },
+  {
+    "value": "111",
+    "isCorrect": false,
+    "id": 1717364920018.5564
+  },
+  {
+    "value": "110",
+    "isCorrect": false,
+    "id": 1717364920019.1226
+  },
+  {
+    "value": "121",
+    "isCorrect": true,
+    "id": 1717364920020.1833
+  },
+  {
+    "value": "120",
+    "isCorrect": false,
+    "id": 1717364920021.0388
+  },
+  {
+    "value": "Paris",
+    "isCorrect": false,
+    "id": 1717365232930.9595
+  },
+  {
+    "value": "Marseille",
+    "isCorrect": true,
+    "id": 1717365232932.553
+  },
+  {
+    "value": "Nice",
+    "isCorrect": false,
+    "id": 1717365232932.0989
+  },
+  {
+    "value": "Dijon",
+    "isCorrect": false,
+    "id": 1717365232933.285
+  },
+  {
+    "value": "69",
+    "isCorrect": true,
+    "id": 1718472642993.6704
+  },
+  {
+    "value": "17",
+    "isCorrect": false,
+    "id": 1718472642994.5889
+  },
+  {
+    "value": "75",
+    "isCorrect": false,
+    "id": 1718472642995.161
+  },
+  {
+    "value": "71",
+    "isCorrect": false,
+    "id": 1718472642997.8428
+  },
+  {
+    "value": "Paris",
+    "isCorrect": false,
+    "id": 1718695463410.9038
+  },
+  {
+    "value": "Marseille",
+    "isCorrect": false,
+    "id": 1718695463412.0374
+  },
+  {
+    "value": "Montpellier",
+    "isCorrect": false,
+    "id": 1718695463413.454
+  },
+  {
+    "value": "Nice",
+    "isCorrect": true,
+    "id": 1718695463414.7485
+  }
+]

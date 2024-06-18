@@ -54,6 +54,7 @@ export class EditProfilComponent implements OnInit {
             optionReposerQuestionApres: [this.profilEditing?.optionReposerQuestionApres],
 
             optionTimeReponse: [this.profilEditing?.optionTempsReponse],
+            optionSkip: [this.profilEditing?.optionSkipQuestion],
             optionTailleTexte: [this.profilEditing?.optionTailleTexte],
             
         });
@@ -102,6 +103,7 @@ export class EditProfilComponent implements OnInit {
 
         profilToCreate.optionSupprimerMauvaisesReponses = this.profilForm.getRawValue().optionSupprimerMauvaisesReponses,
         profilToCreate.optionReposerQuestionApres = this.profilForm.getRawValue().optionReposerQuestionApres,
+        profilToCreate.optionSkipQuestion = this.profilForm.getRawValue().optionSkip,
         
         profilToCreate.selfStats = JSON.parse(JSON.stringify(STATS_PATIENT_INIT));
         profilToCreate.id = this.profilEditing?.id;

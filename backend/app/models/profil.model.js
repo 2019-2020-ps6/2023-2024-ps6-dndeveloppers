@@ -21,6 +21,8 @@ module.exports = new BaseModel('Profil', {
 
     optionTempsReponse: Joi.number().required(),
 
+    optionSkipQuestion: Joi.boolean().required(), 
+
     idProfil: Joi.number(),
     selfStats: Joi.number() // selfStats: statsPatient
 })

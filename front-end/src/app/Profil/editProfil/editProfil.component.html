@@ -68,6 +68,10 @@
                 <input class="input-custom" type="number" id="optionTimeReponse" [formControlName]="'optionTimeReponse'">
             </label><br/><br/>
 
+            <label for="optionSkip">Peut passer une question :
+                <input class="input-custom" type="checkbox" id="optionSkip" [formControlName]="'optionSkip'">
+            </label><br/><br/>
+
             <label for="optionTailleTexte"> Taille du texte :
                 <select name="input-custom" id="optionTailleTexte" [formControlName]="'optionTailleTexte'">
                     <option *ngFor="let currentFontSize of FontSizeList" [value]="currentFontSize">{{currentFontSize}}</option>
