@@ -1,20 +1,11 @@
 [
   {
-    "playedTime": 0,
-    "meanScore": 0,
-    "meanHintUsed": 0,
-    "resTab": [],
-    "nbHintUsed": [],
-    "successPercentageByQuestion": [],
-    "id": 1717364595334.2634
-  },
-  {
     "playedTime": 2,
-    "meanScore": 0.8333333333333333,
+    "meanScore": 0.75,
     "meanHintUsed": 0,
     "resTab": [
       1,
-      0.6666666666666666
+      0.5
     ],
     "nbHintUsed": [
       0,
@@ -22,9 +13,17 @@
     ],
     "successPercentageByQuestion": [
       1,
-      1,
       0.5
     ],
+    "id": 1717364595334.2634
+  },
+  {
+    "playedTime": 0,
+    "meanScore": 0,
+    "meanHintUsed": 0,
+    "resTab": [],
+    "nbHintUsed": [],
+    "successPercentageByQuestion": [],
     "id": 1717364840134.3032
   },
   {
