@@ -8,7 +8,7 @@ export class StatsQuizFixture extends E2EComponentFixture {
     getPlayedTime(quizName: string) {
         switch (quizName) {
             case 'Calcul mental':
-                return 2;
+                return 0;
             default:
                 return 0;
         }
@@ -17,7 +17,7 @@ export class StatsQuizFixture extends E2EComponentFixture {
     getMeanScore(quizName: string) {
         switch (quizName) {
             case 'Calcul mental':
-                return 0.83 + "/" + this.getNbQuestions(quizName);
+                return 0 + "/" + this.getNbQuestions(quizName);
             default:
                 return 0 + "/" + 0;
         }
@@ -35,7 +35,7 @@ export class StatsQuizFixture extends E2EComponentFixture {
     getNbQuestions(quizName: string) {
         switch (quizName) {
             case 'Calcul mental':
-                return 3;
+                return 0;
             default:
                 return 0;
         }

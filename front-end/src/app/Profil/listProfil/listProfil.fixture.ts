@@ -2,6 +2,10 @@ import { E2EComponentFixture } from "e2e/e2e-component.fixture";
 
 export class ListProfilFixture extends E2EComponentFixture {
 
+    getReturnButton() {
+        return this.page.getByRole('button', { name: 'Retour page principale' });
+    }
+
     getAddProfilButton() {
         return this.page.getByRole('button', { name: 'Ajouter un profil' });
     }

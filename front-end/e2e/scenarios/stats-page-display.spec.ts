@@ -22,7 +22,6 @@ test.describe('Stats page display', () => {
     const profilRole = await page.getByText('Rôle :');
 
     expect(title).toBeVisible();
-    /* Pour une raison obscure je ne parviens pas à récupérer les éléments du profil*/
     expect(profilLastName).toBeVisible();
     expect(profilFirstName).toBeVisible();
     expect(profilRole).toBeVisible();
@@ -49,7 +48,7 @@ test.describe('Stats page display', () => {
     const pStatsPatientTitle = statsPatient.getByText("Statistiques du patient");
     const pSelector = statsFixture.getSelectPatient();
     const pName = statsPatient.getByText("Nom du patient : ")
-    const pOption = statsPatient.getByText("Options du patient : ");
+    const pOption = statsPatient.getByText("Option du patient : ");
     const pNbQuizDone = statsPatient.getByText("Nombre de quiz réalisés : ");
     const pMeanScore = statsPatient.getByText("Score moyen : ");
     const pChart = page.locator('#patientChart'); 

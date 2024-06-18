@@ -17,7 +17,7 @@ export class StatsPatientFixture extends E2EComponentFixture {
     getNbQuizDone(patientName: string) {
         switch (patientName) {
             case 'Bois, Maurice':
-                return 2;
+                return 0;
             default:
                 return 0;
         }
@@ -26,7 +26,7 @@ export class StatsPatientFixture extends E2EComponentFixture {
     getMeanScore(patientName: string) {
         switch (patientName) {
             case 'Bois, Maurice':
-                return 83.33;
+                return 0;
             default:
                 return 0;
         }
