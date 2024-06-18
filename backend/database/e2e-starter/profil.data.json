@@ -7,7 +7,7 @@
     "optionTailleTexte": "Moyen",
     "tutoriel": false,
     "optionPhoto": false,
-    "optionIndice": true,
+    "optionIndice": false,
     "photo": "./assets/imageProfil/default.png",
     "dateNaissance": [
       0,
