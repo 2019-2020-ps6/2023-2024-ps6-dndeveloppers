@@ -44,5 +44,28 @@ export class QuizGestionFixture extends E2EComponentFixture {
     return this.page.locator(selector).count();
   }
 
+  getEditButton(quizName: string){
+    return this.page.getByRole('button', {name: 'Modifier'});
+  }
+
+  getSuppressButton(quizName: string) {
+    return this.page.getByRole('button', {name: 'Supprimer'});
+  }
+
+  clickEditButton(quizName: string) {
+    return this.getEditButton(quizName).click();
+  }
+
+  clickSuppressButton(quizName: string){
+    return this.getSuppressButton(quizName).click();
+  }
+
+  getReturnButton() {
+    return this.page.getByText('Retour');
+  }
+
+  clickReturnButton() {
+    return this.getReturnButton().click();
+  }
 
 }

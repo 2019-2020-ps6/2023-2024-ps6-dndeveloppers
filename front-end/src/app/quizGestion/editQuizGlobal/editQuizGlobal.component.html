@@ -3,7 +3,7 @@
     <form [formGroup]="quizGlobalForm">
     <section class="indent">
         <label> Nom <br>
-            <input class="input-custom" type="text" id="nom" [formControlName]="'nom'" required>
+            <input class="input-custom" type="text" data-testid="nom" id="nom" [formControlName]="'nom'" required>
         </label><p class="valeurActuel">{{this.editQuiz?.name}}</p>
     </section>
 
