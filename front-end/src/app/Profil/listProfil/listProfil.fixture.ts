@@ -20,28 +20,16 @@ export class ListProfilFixture extends E2EComponentFixture {
         return this.page.getByPlaceholder('Rechercher un soignant');
     }
 
-    supprimerLeProfil( nom: string, prenom: string) {
-        return this.page.getByRole('button', { name: 'Supprimer' }).first();
+    supprimerLeProfil() {
+        return this.page.getByRole('heading', { name: 'Nom : ROQUES Prénom: Maxence Afficher Modifier Supprimer' }).getByRole('button', { name: 'Supprimer' })
     }
 
-    async clickSupprimerLeProfil( nom: string, prenom: string) {
-        return this.supprimerLeProfil(nom, prenom).click();
+    editerLeProfil() {
+        return this.page.getByRole('heading', { name: 'Nom : Heilmann Prénom: Hugo Afficher Modifier Supprimer' }).getByRole('button', { name: 'Modifier' })
     }
 
-    editerLeProfil( nom: string, prenom: string) {
-        return this.page.getByRole('button', { name: 'Modifier' }).first();
-    }
-
-    async clickEditerLeProfil( nom: string, prenom: string) {
-        return this.editerLeProfil(nom, prenom).click();
-    }
-
-    afficherLeProfil( nom: string, prenom: string) {
-        return this.page.getByRole('button', { name: 'Afficher' }).first();
-    }
-
-    async clickAfficherLeProfil( nom: string, prenom: string) {
-        return this.afficherLeProfil(nom, prenom).click();
+    afficherLeProfil() {
+        return this.page.getByRole('heading', { name: 'Nom : Heilmann Prénom: Hugo Afficher Modifier Supprimer' }).getByRole('button', { name: 'Afficher' })
     }
 
     getFermerProfilButton() {
@@ -54,4 +42,9 @@ export class ListProfilFixture extends E2EComponentFixture {
         await button.click({ force: true });
     }
 
+    getJouerButton() {
+        return this.page.getByRole('button', { name: 'Jouer' });
+    }
+
+    
 }

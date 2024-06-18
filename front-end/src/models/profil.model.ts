@@ -16,11 +16,13 @@ export interface Profil {
     optionSupprimerMauvaisesReponses?: boolean;
     optionReposerQuestionApres?: boolean;
 
-    optionTailleTexte?: string; // Petit, Moyen ou Grand
+    optionTailleTexte: string; // Petit, Moyen ou Grand
 
     tutoriel: boolean; // Pour savoir s'il faut afficher le tutoriel
 
     optionTempsReponse: number, // temps d'affichage de la bonne réponse
+
+    optionSkipQuestion: boolean, // avoir le droit de passer une question
 
     selfStats: statsPatient
 }

@@ -4,7 +4,7 @@
     <section class="indent">
         <label> Nom <br>
             <input class="input-custom" type="text" data-testid="nom" id="nom" [formControlName]="'nom'" required>
-        </label><p class="valeurActuel">{{this.editQuiz?.name}}</p>
+        </label><br/>
     </section>
 
     <section class="indent">
@@ -12,7 +12,8 @@
             <select name="input-custom" id="theme" [formControlName]="'theme'" required>
                 <option *ngFor="let currentTheme of themeList" [value]="currentTheme">{{currentTheme}}</option>
             </select> 
-        </label><p class="valeurActuel">{{this.editQuiz?.theme}}</p>
+        </label>
+        <br/>
     </section>
 
     <section class="indent">

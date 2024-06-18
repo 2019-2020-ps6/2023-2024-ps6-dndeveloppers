@@ -12,8 +12,20 @@
 .titreStat{
     font-weight: bold;
     font-size: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.routing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .choixQuiz:hover {
     cursor: pointer;
+}
+
+#patientChart {
+    max-height: 400px;
 }

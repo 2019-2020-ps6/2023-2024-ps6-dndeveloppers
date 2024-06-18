@@ -2,6 +2,8 @@
     <app-header></app-header>
     <app-comeBack class="returnButton" [destination]="'home'"></app-comeBack>
     <app-stats-globales></app-stats-globales>
-    <app-stats-patient [nomPatient]="nomPatient"></app-stats-patient>
-    <app-stats-quiz [nomQuiz]="nomQuiz"></app-stats-quiz>
+    <section class="statsPrecises">
+        <app-stats-patient class="statsPatient" [nomPatient]="nomPatient"></app-stats-patient>
+        <app-stats-quiz class="statsQuiz" [nomQuiz]="nomQuiz"></app-stats-quiz>
+    </section>
 </div>
