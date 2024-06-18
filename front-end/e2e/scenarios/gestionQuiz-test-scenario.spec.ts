@@ -43,7 +43,7 @@ test.describe('Home page display', () => {
         //On ajoute le nouveau quiz
         await quizGestionFixture.clickAddQuizButton();
 
-        await quizGestionFixture.clickReturnButton();
+        //await quizGestionFixture.clickReturnButton();
     });
 
     await test.step("Recherche d'un quiz par nom", async () => {
