@@ -514,13 +514,10 @@ export class QuizService {
     this.quizzes = sortedQuizList;
   }
 
-
   addQuestion(question: Question){
-    console.log("question add : ",this.editedQuiz)
     question.idQuiz = this.editedQuiz.id;
     this.http.post<Question>(serverUrl + '/question', question, this.httpOptions).subscribe(() => {
       this.retrievesQuiz(question.idQuiz);
-      console.log("okokok");
     });
   }
 
