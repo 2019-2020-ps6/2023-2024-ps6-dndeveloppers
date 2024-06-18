@@ -20,6 +20,6 @@
         <img *ngIf="photo !== ''" class="photo" [src]=photo /><br/>
     </section>
     
-    <button class="boutonValeurGlobal" type="submit" [disabled]="!quizGlobalForm.valid" (click)="editGlobalQuiz()">Modifier</button>
+    <button class="boutonValeurGlobal" type="submit" data-testid="editGlobal" [disabled]="!quizGlobalForm.valid" (click)="editGlobalQuiz()">Modifier</button>
     </form>
 </div>

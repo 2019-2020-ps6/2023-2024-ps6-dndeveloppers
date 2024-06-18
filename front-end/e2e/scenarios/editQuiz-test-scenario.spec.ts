@@ -59,8 +59,8 @@ test.describe('Home page display', () => {
         expect(answerValidity4).toBeVisible();
         expect(addQuestionButton).toBeVisible();
 
-        await question.fill('Quel président américain a été assassiné en 1963 ?');
-        expect(question).toHaveValue('Quel président américain a été assassiné en 1963 ?');
+        await question.fill('Quel président américain a été assassiné en 1960 ?');
+        expect(question).toHaveValue('Quel président américain a été assassiné en 1960 ?');
 
         await answer1.fill('Bill Clinton');
         expect(answer1).toHaveValue('Bill Clinton');
@@ -79,12 +79,54 @@ test.describe('Home page display', () => {
         //expect(quizEditionFixture.getNumberListQuestion()).toEqual(0);
         await quizEditionFixture.clickAddQuestionButton();
         //expect(quizEditionFixture.getNumberListQuestion()).toEqual(1);
+    });
 
-        
+    await test.step("Modification d'une question", async () => {
+        var title: string = 'Quel président américain a été assassiné en 1960 ?'
+        const question = await quizEditionFixture.getEditQuestionTitle(title);
+        const answer1 = await quizEditionFixture.getEditAnswer1(title);
+        const answer2 = await quizEditionFixture.getEditAnswer2(title);
+        const answer3 = await quizEditionFixture.getEditAnswer3(title);
+        const answer4 = await quizEditionFixture.getEditAnswer4(title);
+        const answerValidity1 = await quizEditionFixture.getEditAnswerValidity1(title);
+        const answerValidity2 = await quizEditionFixture.getEditAnswerValidity2(title);
+        const answerValidity3 = await quizEditionFixture.getEditAnswerValidity3(title);
+        const answerValidity4 = await quizEditionFixture.getEditAnswerValidity4(title);
+        const hint1 = await quizEditionFixture.getEditHint1(title);
+        const hint2 = await quizEditionFixture.getEditHint2(title);
+        const hint3 = await quizEditionFixture.getEditHint3(title);
+    
+        title = 'Quel président américain a été assassiné en 1963 ?';
+        //expect(question).toHaveValue('Quel président américain a été assassiné en 1960 ?');
+        await question.fill('Quel président américain a été assassiné en 1963 ?');
+        expect(question).toHaveValue('Quel président américain a été assassiné en 1963 ?');
+
+        expect(answer1).toHaveValue('Bill Clinton');
+        expect(answer3).toHaveValue('Harry Truman');
+        expect(answer4).toHaveValue('Henry Kissinger');
+
+        expect(answer2).toHaveValue('John K. Fennedy');
+        await answer2.fill('John F. Kennedy');
+        expect(answer2).toHaveValue('John F. Kennedy');
+
+        await answerValidity2.click();
+
+        await hint1.fill("Lee Harvey Oswald est l'assassin");
+        expect(hint1).toHaveValue("Lee Harvey Oswald est l'assassin");
+
+        await hint2.fill("Il est mort dans sa voiture à Dallas");
+        expect(hint2).toHaveValue("Il est mort dans sa voiture à Dallas");
+
+        await hint3.fill("\"Ich bin ein Berliner\"");
+        expect(hint3).toHaveValue("\"Ich bin ein Berliner\"");
+
+        await quizEditionFixture.clickEditQuestionButton(title)
 
         await quizGestionFixture.clickReturnButton();
 
         await quizGestionFixture.clickSuppressButton('Politiciens durant la Guerre Froide');
     });
+
+    
   });
 });

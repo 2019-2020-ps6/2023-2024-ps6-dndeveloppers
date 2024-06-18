@@ -75,7 +75,7 @@ export class QuizEditionFixture extends E2EComponentFixture {
     }
 
     getEditGlobalButton() {
-        return this.page.getByRole('button', { name: 'Modifier' });
+        return this.page.getByTestId('editGlobal');
     }
 
     clickEditGlobalButton() {
@@ -94,8 +94,72 @@ export class QuizEditionFixture extends E2EComponentFixture {
         return this.getAddThemeButton().click();
     }
 
-    getNumberListQuestion(){
+    getNumberListQuestion() {
         const selector = `app-editQuestion`;
         return this.page.locator(selector).count();
+    }
+
+    getEditQuestionTitle(questionName: string) {
+        return this.page.getByTestId('label');
+    }
+
+    getEditAnswer1(questionName: string) {
+        return this.page.getByTestId('q1');
+    }
+
+    getEditAnswerValidity1(questionName: string) {
+        return this.page.getByTestId('rr1');
+    }
+
+    getEditAnswer2(questionName: string) {
+        return this.page.getByTestId('q2');
+    }
+
+    getEditAnswerValidity2(questionName: string) {
+        return this.page.getByTestId('rr2');
+    }
+
+    getEditAnswer3(questionName: string) {
+        return this.page.getByTestId('q3');
+    }
+
+    getEditAnswerValidity3(questionName: string) {
+        return this.page.getByTestId('rr3');
+    }
+
+    getEditAnswer4(questionName: string) {
+        return this.page.getByTestId('q4');
+    }
+
+    getEditAnswerValidity4(questionName: string) {
+        return this.page.getByTestId('rr4');
+    }
+
+    getEditHint1(questionName: string) {
+        return this.page.getByTestId('i1');
+    }
+
+    getEditHint2(questionName: string) {
+        return this.page.getByTestId('i2');
+    }
+
+    getEditHint3(questionName: string) {
+        return this.page.getByTestId('i3');
+    }
+
+    getEditQuestionButton(questionName: string) {
+        return this.page.getByTestId('editQuestion');
+    }
+
+    getSupprQuestionButton(questionName: string) {
+        return this.page.getByTestId('deleteQuestion');
+    }
+
+    clickEditQuestionButton(questionName: string) {
+        return this.getEditQuestionButton(questionName).click();
+    }
+
+    clickSupprQuestionButton(questionName: string) {
+        return this.getSupprQuestionButton(questionName).click();
     }
 }
