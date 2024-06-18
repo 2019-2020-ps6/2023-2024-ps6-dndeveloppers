@@ -59,18 +59,23 @@ test.describe('Home page display', () => {
         expect(answerValidity4).toBeVisible();
         expect(addQuestionButton).toBeVisible();
 
+        await expect(question).toHaveValue('');
         await question.fill('Quel président américain a été assassiné en 1960 ?');
         expect(question).toHaveValue('Quel président américain a été assassiné en 1960 ?');
 
+        await expect(answer1).toHaveValue('');
         await answer1.fill('Bill Clinton');
         expect(answer1).toHaveValue('Bill Clinton');
 
+        await expect(answer2).toHaveValue('');
         await answer2.fill('John K. Fennedy');
         expect(answer2).toHaveValue('John K. Fennedy');
 
+        await expect(answer3).toHaveValue('');
         await answer3.fill('Harry Truman');
         expect(answer3).toHaveValue('Harry Truman');
 
+        await expect(answer4).toHaveValue('');
         await answer4.fill('Henry Kissinger');
         expect(answer4).toHaveValue('Henry Kissinger');
 
@@ -97,7 +102,7 @@ test.describe('Home page display', () => {
         const hint3 = await quizEditionFixture.getEditHint3(title);
     
         title = 'Quel président américain a été assassiné en 1963 ?';
-        //expect(question).toHaveValue('Quel président américain a été assassiné en 1960 ?');
+        await expect(question).toHaveValue('Quel président américain a été assassiné en 1960 ?');
         await question.fill('Quel président américain a été assassiné en 1963 ?');
         expect(question).toHaveValue('Quel président américain a été assassiné en 1963 ?');
 
@@ -105,7 +110,7 @@ test.describe('Home page display', () => {
         expect(answer3).toHaveValue('Harry Truman');
         expect(answer4).toHaveValue('Henry Kissinger');
 
-        expect(answer2).toHaveValue('John K. Fennedy');
+        await expect(answer2).toHaveValue('John K. Fennedy');
         await answer2.fill('John F. Kennedy');
         expect(answer2).toHaveValue('John F. Kennedy');
 
@@ -121,12 +126,18 @@ test.describe('Home page display', () => {
         expect(hint3).toHaveValue("\"Ich bin ein Berliner\"");
 
         await quizEditionFixture.clickEditQuestionButton(title)
+    });
+
+    await test.step("Suppression d'une question", async () => {
+        const numberQuestion = quizEditionFixture.getNumberListQuestion();
+
+        //expect(numberQuestion).toEqual(1);
+        await quizEditionFixture.clickSupprQuestionButton('Quel président américain a été assassiné en 1963 ?');
+        //expect(numberQuestion).toEqual(1);
 
         await quizGestionFixture.clickReturnButton();
 
         await quizGestionFixture.clickSuppressButton('Politiciens durant la Guerre Froide');
     });
-
-    
   });
 });
