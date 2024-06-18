@@ -29,7 +29,7 @@ export class ListProfilFixture extends E2EComponentFixture {
     }
 
     afficherLeProfil() {
-        return this.page.getByRole('heading', { name: 'Nom : TestAffichage Prénom: TestAffichage Afficher Modifier Supprimer' }).getByRole('button', { name: 'Afficher' })
+        return this.page.getByRole('heading', { name: 'Nom : Heilmann Prénom: Hugo Afficher Modifier Supprimer' }).getByRole('button', { name: 'Afficher' })
     }
 
     getFermerProfilButton() {
