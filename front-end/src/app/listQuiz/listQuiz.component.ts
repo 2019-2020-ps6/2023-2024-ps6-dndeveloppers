@@ -4,6 +4,8 @@ import { Quiz } from '../../models/quiz.model';
 import { Router } from '@angular/router';
 import { ProfilService } from 'src/services/profil.service';
 import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
+import { Profil } from 'src/models/profil.model';
+import { ADMIN } from 'src/mocks/profil.mock';
 
 @Component({
   selector: 'listQuiz',
@@ -12,6 +14,7 @@ import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
 })
 export class ListQuizComponent implements OnInit {
 
+  public actualProfil: Profil = ADMIN;
   public quizList: Quiz[] = [];
   public themeList: String[] = [];
   public themeListShow: String[] = this.themeList;
@@ -35,6 +38,7 @@ export class ListQuizComponent implements OnInit {
     });
 
     this.profilService.actualProfil$.subscribe((profil) => {
+      this.actualProfil = profil;
       this.optionIndice = profil.optionIndice;
     })
   }

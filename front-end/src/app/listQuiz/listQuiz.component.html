@@ -9,6 +9,7 @@
       <option *ngFor="let currentTheme of themeList" [value]="currentTheme">{{currentTheme}}</option>
     </select>
   </div>
+  <app-comeBack *ngIf="actualProfil.role === 'personnel'" [destination]="'home'"></app-comeBack>
 </div>
 
 <br>
