@@ -62,7 +62,6 @@ export class QuizService {
           if(this.quizzes[i].id == this.editedQuiz.id){
             this.editedQuiz = this.quizzes[i];
             this.editedQuiz$.next(this.editedQuiz);
-            console.log("okok");
           }
         }
       }
