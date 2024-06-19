@@ -57,6 +57,7 @@
             <label for="optionPhoto">Quiz contenant des photos :
                 <input class="input-custom" type="checkbox" id="optionPhoto" [formControlName]="'optionPhoto'">
             </label><br/><br/>
+
             <label for="optionIndice">Peut utiliser des indices :
                 <input class="input-custom" type="checkbox" id="optionIndice" [formControlName]="'optionIndice'">
             </label><br/><br/>
@@ -64,16 +65,17 @@
             <label for="optionSupprimerMauvaisesReponses">Faire disparaitre les mauvaises réponses sélectionnées : 
                 <input class="input-custom" class="unparalleled" (click)="unicity($event)" type="checkbox" id="optionSupprimerMauvaisesReponses" [formControlName]="'optionSupprimerMauvaisesReponses'">
             </label><br/><br/>
+
             <label for="optionReposerQuestionApres">Repose les questions ratées plus tard :
                 <input class="input-custom" class="unparalleled" (click)="unicity($event)" type="checkbox" id="optionReposerQuestionApres" [formControlName]="'optionReposerQuestionApres'">
             </label><br/><br/>
 
-            <label for="optionTimeReponse">Temps d'affichage de la bonne réponse :
-                <input class="input-custom" type="number" id="optionTimeReponse" [formControlName]="'optionTimeReponse'">
-            </label><br/><br/>
-
             <label for="optionSkip">Peut passer une question :
                 <input class="input-custom" type="checkbox" id="optionSkip" [formControlName]="'optionSkip'">
+            </label><br/><br/>
+
+            <label for="optionTimeReponse">Temps d'affichage de la bonne réponse :
+                <input class="input-custom" type="number" id="optionTimeReponse" [formControlName]="'optionTimeReponse'">
             </label><br/><br/>
             
             <label for="optionTailleTexte" class="text-size-label"> Taille du texte :

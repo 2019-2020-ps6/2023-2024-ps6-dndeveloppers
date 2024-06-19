@@ -45,6 +45,10 @@ export class CreateProfilFixture extends E2EComponentFixture {
         return this.page.getByLabel('Temps d\'affichage de la bonne réponse :')
     }
 
+    getOptionSkip(){
+        return this.page.getByLabel('Peut passer une question :');
+    }
+
     getOptionTaille(){
         return this.page.getByRole('combobox', { name: 'Taille du texte : Exemple' })
     }
