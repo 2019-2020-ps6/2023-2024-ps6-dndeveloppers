@@ -24,7 +24,10 @@ export interface InfoQuiz {
     scoreForEachQuestion : number[],
 
     replayQuestion : Boolean, // si true cela veut dire qu'on est dans la phase où on repose les questions 
-    questionToReplay : number[] // contient les numéros des questions a reposer
+    questionToReplay : number[], // contient les numéros des questions a reposer,
+
+    lastQuizPlayed: String, // nom du dernier quiz joué
+    askedToRestoreGame: boolean, // si on a demandé de restaurer la partie
 }
 
 

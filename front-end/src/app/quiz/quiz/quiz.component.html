@@ -1,6 +1,6 @@
 <section class="main-section" >
     <app-header class="profil"></app-header>
-    <div class="content" *ngIf="!tutorielView || !actualProfil.tutoriel">
+    <div class="content" *ngIf="infoQuiz.askedToRestoreGame===false; else elseBlock">
         <div class="side-by-side">
             <app-indice *ngIf="optionIndice===true" class="indice"></app-indice>
 
@@ -43,4 +43,14 @@
         <button *ngIf="actualProfil.optionSkipQuestion===true && infoQuiz.replayQuestion===false" (click)="skipQuestion()" id="skipQuestion"><app-texteAdaptatif [texte]=skip></app-texteAdaptatif></button>
         <app-comeBack class="returnButton" [destination]="'quizList'"></app-comeBack>
     </div>
+    <ng-template #elseBlock>
+        <div id="alertRestoreQuiz">
+            <app-texteAdaptatif [texte]=ask></app-texteAdaptatif>
+            <div id="buttons">
+                <button class="buttonAlertLeft" (click)="restoreQuiz()"><app-texteAdaptatif [texte]=oui></app-texteAdaptatif></button>
+                <button class="buttonAlertRight" (click)="restartQuiz()"><app-texteAdaptatif [texte]="non"></app-texteAdaptatif></button>
+            </div>
+        </div>
+        
+    </ng-template>
 </section>
