@@ -73,27 +73,27 @@ router.delete('/:quizId', (req, res) => {
     // on supprime dans les stats profils le quiz s'il a été joué
     const profilsSelfStats = statsPatientModel.get();
     for(let i=0; i<profilsSelfStats.length;i++){
-      console.log("avant : ",profilsSelfStats[i].quizDone);
+      //console.log("avant : ",profilsSelfStats[i].quizDone);
       let indexToDelete = [];
       for(let j=0; j<profilsSelfStats[i].quizDone.length;j++){
         if(profilsSelfStats[i].quizDone[j] == quiz.name){
           indexToDelete.push(j);        
         }
       }
-      console.log("truc à delete : ",indexToDelete)
+      //console.log("truc à delete : ",indexToDelete)
       if(indexToDelete.length >= 1) {
         let quizDone = profilsSelfStats[i].quizDone;
         let newQuizDone = [];
         let quizRes = profilsSelfStats[i].quizRes;
         let newQuizRes = [];
-        console.log("quizDone : ",quizDone);
+        //console.log("quizDone : ",quizDone);
 
         for(let j=0; j>=quizDone;j++){
           if(indexToDelete.findIndex(j) == -1){
             newQuizDone.push(quizDone[j]);
             newQuizRes.push(quizRes[j]);
           }
-          console.log("newQuizDone : ",newQuizDone);  
+          //console.log("newQuizDone : ",newQuizDone);  
         }
 
         let profilsStats = statsPatientModel.getById(profilsSelfStats[i].id);
@@ -104,17 +104,17 @@ router.delete('/:quizId', (req, res) => {
         profilsStats.nbQuizDone = profilsStats.quizDone.length;
         let meanScore = 0;
         for(let j=0;j<profilsStats.quizRes.length;j++){
-          console.log("moyenne (boucle) : ",meanScore);
+          //console.log("moyenne (boucle) : ",meanScore);
           meanScore += profilsStats.quizRes[j];
         }
         if(profilsStats.quizRes.length != 0){
           meanScore = meanScore/profilsStats.quizRes.length;
         }
-        console.log("moyenne : ",meanScore);
+        //console.log("moyenne : ",meanScore);
         profilsStats.meanScore = meanScore;
 
         statsPatientModel.update(profilsStats.id,profilsStats);
-        console.log("après : ",profilsSelfStats[i].quizDone);
+        //console.log("après : ",profilsSelfStats[i].quizDone);
       }
       
     }
