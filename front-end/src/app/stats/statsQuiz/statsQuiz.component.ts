@@ -42,7 +42,7 @@ export class StatsQuizComponent implements OnInit {
         },
         yAxis: {
             title: {
-                text: 'Taux(%)'
+                text: 'Taux de réussite(%)'
             }
         },
         series: [{

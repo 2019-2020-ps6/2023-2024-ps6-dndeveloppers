@@ -50,7 +50,7 @@ export class StatsPatientComponent implements OnInit {
         },
         yAxis: {
             title: {
-                text: 'Taux(%)'
+                text: 'Taux de réussite(%)'
             }
         },
         series: []
