@@ -31,10 +31,9 @@ export class StatsGlobalesComponent implements OnInit {
     nbQuizDone(profilList: Profil[]) {
         let res = 0;
         for (let i=0; i<profilList.length; i++) {
-            if(profilList[i].selfStats != undefined){
-            res += profilList[i].selfStats.nbQuizDone;
-            }
-            
+            if (profilList[i].selfStats != undefined) {
+                res += profilList[i].selfStats.nbQuizDone;
+            }   
         }
         return res;
     }

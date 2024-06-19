@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import * as Highcharts from 'highcharts'
 import { serverUrl } from "src/configs/server.config";
-import { ADMIN } from "src/mocks/profil.mock";
+import { PROFIL_NULL } from "src/mocks/profil.mock";
 import { Profil } from "src/models/profil.model";
 import { Quiz } from "src/models/quiz.model";
 import { statsPatient } from "src/models/stats/statsPatient.model";
@@ -21,9 +21,10 @@ export class StatsPatientComponent implements OnInit {
     private profilURL: string = serverUrl + '/profils';
 
     public listePatient: Profil[] = [];
-    public actualPatient: Profil  = ADMIN;
+    public actualPatient: Profil  = PROFIL_NULL;
     public optionPatient: string = "";
     public actualPatientSelfStats: statsPatient = this.actualPatient.selfStats;
+    public actualPatientMeanScore: number = Math.round(this.actualPatientSelfStats.meanScore*100)/100;
     public quizzes: Quiz[] = [];
     public displayPatientChart = true;
 
@@ -140,7 +141,7 @@ export class StatsPatientComponent implements OnInit {
                 if (listeProfils[i].nom == nomPatient) {
                     this.actualPatient = listeProfils[i];
                     this.actualPatientSelfStats = listeProfils[i].selfStats;
-                    console.log("stats : ",this.actualPatient)
+                    this.actualPatientMeanScore = Math.round(this.actualPatientSelfStats.meanScore*100)/100;
 
                     this.options.xAxis.categories = this.categoriesChart();
                     for (let i=0; i<this.quizzes.length; i++) {
@@ -162,7 +163,7 @@ export class StatsPatientComponent implements OnInit {
         console.log("Patient selectionné : ", nomPatient);
         console.log("nbQuizDone : ", this.actualPatientSelfStats.nbQuizDone);
         if (nomPatient == undefined || nomPatient.length == 0) {
-            this.actualPatient = ADMIN;
+            this.actualPatient = PROFIL_NULL;
         }
     }
 
