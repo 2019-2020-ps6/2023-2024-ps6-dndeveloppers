@@ -26,8 +26,8 @@ export class QuizComponent implements OnInit {
     public pathImage: String = '';
     public skip: String = "Passer la question";
     public ask: String = "Voulez-vous revenir à votre dernière tentative sur ce quiz ?";
-    public oui: String = "Oui";
-    public non: String = "Non";
+    public oui: String = "Revenir";
+    public non: String = "Recommencer";
 
     constructor(public quizService: QuizService, public router: Router, public profilService: ProfilService){
         this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {

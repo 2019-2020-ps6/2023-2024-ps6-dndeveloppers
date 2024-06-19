@@ -23,6 +23,8 @@
                     </ng-template>
                 </ng-template>
             </span>
+            <button *ngIf="actualProfil.optionSkipQuestion===true && infoQuiz.replayQuestion===false && infoQuiz.endOfQuiz===false" (click)="skipQuestion()" id="skipQuestion"><app-texteAdaptatif [texte]=skip></app-texteAdaptatif></button>
+
 
 
             
@@ -40,16 +42,15 @@
         </div>
         
         <app-list-reponses  class="listreponse"></app-list-reponses>
-        <button *ngIf="actualProfil.optionSkipQuestion===true && infoQuiz.replayQuestion===false && infoQuiz.endOfQuiz===false" (click)="skipQuestion()" id="skipQuestion"><app-texteAdaptatif [texte]=skip></app-texteAdaptatif></button>
         <app-comeBack *ngIf="infoQuiz.endOfQuiz===false" class="returnButton" [destination]="'quizList'"></app-comeBack>
     </div>
     <ng-template #elseBlock>
         <div id="alertRestoreQuiz">
             <app-texteAdaptatif [texte]=ask></app-texteAdaptatif>
-            <div id="buttons">
-                <button class="buttonAlertLeft" (click)="restoreQuiz()"><app-texteAdaptatif [texte]=oui></app-texteAdaptatif></button>
-                <button class="buttonAlertRight" (click)="restartQuiz()"><app-texteAdaptatif [texte]="non"></app-texteAdaptatif></button>
-            </div>
+        </div>
+        <div id="buttons">
+            <button class="buttonAlertLeft" (click)="restoreQuiz()">Reprendre</button>
+            <button class="buttonAlertRight" (click)="restartQuiz()">Recommencer</button>
         </div>
         
     </ng-template>
