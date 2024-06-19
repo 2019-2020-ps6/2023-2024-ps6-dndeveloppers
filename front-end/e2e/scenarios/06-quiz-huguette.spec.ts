@@ -22,7 +22,7 @@ test.describe('Jouer quiz en tant que Huguette', () => {
         const listQuizFixture = new ListQuizFixture(page);
 
         await listQuizFixture.getSearchBar().fill("Politiciens en Guerre Froide");
-        await page.getByRole('heading', { name: 'Politiciens en Guerre Froide' }).click();
+        await page.locator('choixquiz').filter({ hasText: 'Politiciens en Guerre Froide' }).locator('#nom').click();
     });
 
     await test.step('Jouer quiz', async() => {

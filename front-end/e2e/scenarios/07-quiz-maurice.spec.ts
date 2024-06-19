@@ -22,7 +22,7 @@ test.describe('Jouer quiz en tant que Maurice', () => {
         const listQuizFixture = new ListQuizFixture(page);
 
         await listQuizFixture.getSearchBar().fill("Calcul mental");
-        await page.getByRole('heading', { name: 'Calcul mental' }).click();
+        await page.locator('choixquiz #nom').click();
     });
 
     await test.step('Jouer quiz', async() => {

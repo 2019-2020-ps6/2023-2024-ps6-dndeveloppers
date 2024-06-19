@@ -13,23 +13,32 @@ test.describe('Home page display', () => {
     await test.step("Ajout du quiz", async () => {
         //On recupère le champ d'ajout de thème et on y écrit le thème Musique
         const inputTheme = await quizGestionFixture.getInputTheme();
+        const addThemeButton = await quizGestionFixture.getAddThemeButton();
+        expect(addThemeButton).toBeDisabled();
         await inputTheme.fill('Musique');
         expect(inputTheme).toHaveValue('Musique');
+        expect(addThemeButton).not.toBeDisabled();
 
-        //On ajout le thème b
-        await quizGestionFixture.clickAddThemeButton();
+        //On ajout le thème musique
+        await addThemeButton.click();
+        expect(addThemeButton).toBeDisabled();
         //On récupère le champ d'ajout de nom de quiz et on y écrit le titre Instruments
         const inputTitle = await quizGestionFixture.getInputTitle();
+        const addQuizButton = await quizGestionFixture.getAddQuizButton();
+        expect(addQuizButton).toBeDisabled();
         await inputTitle.fill('Instruments');
         expect(inputTitle).toHaveValue('Instruments');
+        expect(addQuizButton).toBeDisabled();
 
         //On récupère le champ de selection des thème et on choisi le thème Musique
         const selectTheme = await quizGestionFixture.getSelectTheme();
-        await selectTheme.click
+        await selectTheme.click();
         await selectTheme.selectOption('Musique');
+        expect(addQuizButton).not.toBeDisabled();
 
         //On ajoute le nouveau quiz
         await quizGestionFixture.clickAddQuizButton();
+        expect(addQuizButton).toBeDisabled();
 
         //await quizGestionFixture.clickReturnButton();
 
@@ -59,31 +68,37 @@ test.describe('Home page display', () => {
         expect(answerValidity3).toBeVisible();
         expect(answerValidity4).toBeVisible();
         expect(addQuestionButton).toBeVisible();
+        expect(addQuestionButton).toBeDisabled();
 
         //On ajoute le titre de la question
         await expect(question).toHaveValue('');
         await question.fill('La guitare est :');
         expect(question).toHaveValue('La guitare est :');
+        expect(addQuestionButton).toBeDisabled();
 
         //On ajoute la première réponse
         await expect(answer1).toHaveValue('');
         await answer1.fill('Les bois');
         expect(answer1).toHaveValue('Les bois');
+        expect(addQuestionButton).toBeDisabled();
 
         //On ajoute la deuxième réponse
         await expect(answer2).toHaveValue('');
         await answer2.fill('Un instrument a corde');
         expect(answer2).toHaveValue('Un instrument a corde');
+        expect(addQuestionButton).toBeDisabled();
 
         //On ajoute la troisième réponse
         await expect(answer3).toHaveValue('');
         await answer3.fill('Les cuivres');
         expect(answer3).toHaveValue('Les cuivres');
+        expect(addQuestionButton).toBeDisabled();
 
         //On ajoute la quatrième réponse
         await expect(answer4).toHaveValue('');
         await answer4.fill('Les percussions');
         expect(answer4).toHaveValue('Les percussions');
+        expect(addQuestionButton).not.toBeDisabled();
 
         //On marque la troisième réponse comme juste
         await answerValidity3.click();
@@ -91,6 +106,7 @@ test.describe('Home page display', () => {
         //On ajoute la question terminée
         //expect(quizEditionFixture.getNumberListQuestion()).toEqual(0);
         await quizEditionFixture.clickAddQuestionButton();
+        expect(addQuestionButton).toBeDisabled();
         //expect(quizEditionFixture.getNumberListQuestion()).toEqual(1);
     });
 
@@ -108,6 +124,7 @@ test.describe('Home page display', () => {
         const hint1 = await quizEditionFixture.getEditHint1(title);
         const hint2 = await quizEditionFixture.getEditHint2(title);
         const hint3 = await quizEditionFixture.getEditHint3(title);
+        const editButton = await quizEditionFixture.getEditQuestionButton(title);
 
         //On vérifie que tout les éléments sont visibles
         expect(question).toBeVisible();
@@ -122,12 +139,16 @@ test.describe('Home page display', () => {
         expect(hint1).toBeVisible();
         expect(hint2).toBeVisible();
         expect(hint3).toBeVisible();
+        expect(editButton).not.toBeDisabled();
     
         //On change le titre de la question
         title = "Question À quel famille d'instrument appartient la guitare ?";
         await expect(question).toHaveValue("La guitare est :");
+        await question.fill('');
+        expect(editButton).toBeDisabled();
         await question.fill("À quel famille d'instrument appartient la guitare ?");
         expect(question).toHaveValue("À quel famille d'instrument appartient la guitare ?");
+        expect(editButton).not.toBeDisabled();
 
         //On vérifie que les éléments ont la bonne valeur 
         expect(answer1).toHaveValue('Les bois');
@@ -136,8 +157,11 @@ test.describe('Home page display', () => {
 
         //On corrige la réponse
         await expect(answer2).toHaveValue('Un instrument a corde');
+        await answer2.fill('');
+        expect(editButton).toBeDisabled();
         await answer2.fill('Les cordes');
         expect(answer2).toHaveValue('Les cordes');
+        expect(editButton).not.toBeDisabled();
 
         //On change quelle réponse est la bonne
         await answerValidity2.check();
@@ -151,21 +175,26 @@ test.describe('Home page display', () => {
         expect(hint2).toHaveValue("Ce n'est pas un instrument à vent");
 
         //On valide les changements
-        await quizEditionFixture.clickEditQuestionButton(title)
+        await editButton.click();
     });
 
     await test.step("Modification des valeur globales du quiz", async () => {
-        const quiz = quizEditionFixture.getQuizTitle();
+        const title = quizEditionFixture.getQuizTitle();
         const theme = quizEditionFixture.getThemeSelector();
+        const editButton = quizEditionFixture.getEditGlobalButton();
 
         //On verifie que tous les éléments sont visibles
-        expect(quiz).toBeVisible();
+        expect(title).toBeVisible();
         expect(theme).toBeVisible();
 
-        //ON modifie le titre du quiz
-        await expect(quiz).toHaveValue('Instruments');
-        await quiz.fill('Instruments de musique');
-        expect(quiz).toHaveValue('Instruments de musique');
+        //On modifie le titre du quiz
+        expect(editButton).not.toBeDisabled();
+        await expect(title).toHaveValue('Instruments');
+        await title.fill('');
+        expect(editButton).toBeDisabled();
+        await title.fill('Instruments de musique');
+        expect(title).toHaveValue('Instruments de musique');
+        expect(editButton).not.toBeDisabled();
 
         //On change le thème du quiz
         await theme.click();
