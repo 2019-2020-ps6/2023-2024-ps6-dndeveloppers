@@ -210,19 +210,27 @@
     "options": [
       true
     ],
-    "nbQuizDone": 4,
-    "meanScore": 80,
+    "nbQuizDone": 8,
+    "meanScore": 43.333333333333336,
     "quizRes": [
       100,
       100,
       100,
-      20
+      20,
+      20,
+      0,
+      0,
+      6.666666666666668
     ],
     "quizDone": [
       "Calcul mental",
       "Recettes provenciales ",
       "Les Fleurs",
-      "Poker comparaison"
+      "Poker comparaison",
+      "Politiciens en Guerre Froide",
+      "Politiciens en Guerre Froide",
+      "Politiciens en Guerre Froide",
+      "Politiciens en Guerre Froide"
     ],
     "id": 1718804259910.1372,
     "idStatsPatient": 1718804259912.2832

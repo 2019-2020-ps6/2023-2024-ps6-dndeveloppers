@@ -1,10 +1,10 @@
 <section class="main-section" >
-    <app-header class="profil"></app-header>
+    <app-header class="profil" *ngIf="infoQuiz.endOfQuiz===true"></app-header>
     <div class="content" *ngIf="infoQuiz.askedToRestoreGame===false; else elseBlock">
         <div class="side-by-side">
-            <app-indice *ngIf="optionIndice===true" class="indice"></app-indice>
+            <app-indice *ngIf="optionIndice===true && infoQuiz.endOfQuiz===false" class="indice"></app-indice>
 
-            <span class="question">
+            <span class="question" *ngIf="infoQuiz.endOfQuiz===false">
                 <!-- OptionPhoto activée -->
                 <span *ngIf="actualProfil.optionPhoto===true; else elsePasOptionPhoto">
                     <span *ngIf="choosenQuiz.questions[infoQuiz.actualQuestionNumber]?.optionImageLien!==undefined; else elsePhoto">
@@ -27,21 +27,21 @@
 
             
         </div> 
-        <div class="listIndices">
-            <div class="zoneIndice" *ngIf="infoQuiz.nbHintAskedForActualQuestion>0 && showHint[0]">
+        <div class="listIndices" *ngIf="infoQuiz.endOfQuiz===false">
+            <div class="zoneIndice" *ngIf="infoQuiz.nbHintAskedForActualQuestion>0 && showHint[0] && choosenQuiz.questions[infoQuiz.actualQuestionNumber].indice.length >= 1">
                 <p><app-texteAdaptatif [texte]=choosenQuiz.questions[infoQuiz.actualQuestionNumber].indice[0].value></app-texteAdaptatif></p>
             </div>
-            <div class="zoneIndice" *ngIf="infoQuiz.nbHintAskedForActualQuestion>1 && showHint[1]">
+            <div class="zoneIndice" *ngIf="infoQuiz.nbHintAskedForActualQuestion>1 && showHint[1] && choosenQuiz.questions[infoQuiz.actualQuestionNumber].indice.length >= 2">
                 <p><app-texteAdaptatif [texte]=choosenQuiz.questions[infoQuiz.actualQuestionNumber].indice[1].value></app-texteAdaptatif></p>
             </div>
-            <div class="zoneIndice" *ngIf="infoQuiz.nbHintAskedForActualQuestion>2 && showHint[2]">
+            <div class="zoneIndice" *ngIf="infoQuiz.nbHintAskedForActualQuestion>2 && showHint[2] && choosenQuiz.questions[infoQuiz.actualQuestionNumber].indice.length >= 3">
                 <p><app-texteAdaptatif [texte]=choosenQuiz.questions[infoQuiz.actualQuestionNumber].indice[2].value></app-texteAdaptatif></p>
             </div>
         </div>
         
         <app-list-reponses  class="listreponse"></app-list-reponses>
-        <button *ngIf="actualProfil.optionSkipQuestion===true && infoQuiz.replayQuestion===false" (click)="skipQuestion()" id="skipQuestion"><app-texteAdaptatif [texte]=skip></app-texteAdaptatif></button>
-        <app-comeBack class="returnButton" [destination]="'quizList'"></app-comeBack>
+        <button *ngIf="actualProfil.optionSkipQuestion===true && infoQuiz.replayQuestion===false && infoQuiz.endOfQuiz===false" (click)="skipQuestion()" id="skipQuestion"><app-texteAdaptatif [texte]=skip></app-texteAdaptatif></button>
+        <app-comeBack *ngIf="infoQuiz.endOfQuiz===false" class="returnButton" [destination]="'quizList'"></app-comeBack>
     </div>
     <ng-template #elseBlock>
         <div id="alertRestoreQuiz">
