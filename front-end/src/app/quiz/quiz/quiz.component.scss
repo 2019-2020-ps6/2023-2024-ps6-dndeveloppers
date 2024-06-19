@@ -102,3 +102,29 @@ button:hover {
 #skipQuestion {
     height: auto;
 }
+
+#alertRestoreQuiz {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    
+    transform: translate(-50%, -50%);
+    background-color: lightgray;
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.buttonAlertLeft {
+    height: auto;
+}
+
+.buttonAlertRight {
+    height: auto;
+
+}

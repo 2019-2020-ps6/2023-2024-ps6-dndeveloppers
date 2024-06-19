@@ -29,6 +29,8 @@ export class QuizService {
   private quizURL: string = serverUrl + '/quiz';
   private httpOptions = httpOptionsBase;
 
+  
+
   /**
    * Observable which contains the list of the quiz.
    * Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
@@ -87,6 +89,7 @@ export class QuizService {
   }
 
   selectQuiz(quiz: Quiz) {
+    console.log("info quiz : ",this.infoQuiz);
     for(let i=0;i<this.quizzes.length;i++){
       if(this.quizzes[i]==quiz){
         this.choosenQuiz = this.quizzes[i];
@@ -101,6 +104,16 @@ export class QuizService {
       }
     }
     this.showHint$.next(this.showHint);
+
+    if (this.infoQuiz.lastQuizPlayed == this.choosenQuiz.name) { // on rétablit la partie
+     this.infoQuiz.askedToRestoreGame = true;
+     this.updateInfoQuiz();
+    }
+    else {
+      this.resetInfoQuiz();
+      this.infoQuiz.lastQuizPlayed = this.choosenQuiz.name;
+      this.updateInfoQuiz();
+    }
   }
 
   getQuizzes(quiz: Quiz){
@@ -116,6 +129,11 @@ export class QuizService {
   resetInfoQuiz(){
     this.infoQuiz = JSON.parse(JSON.stringify(infoQuiz_INIT));
     this.infoQuiz$.next(this.infoQuiz);
+  }
+
+  restoreQuiz(){
+    this.infoQuiz.askedToRestoreGame = false;
+    this.updateInfoQuiz();
   }
 
   updateInfoQuiz(){
@@ -471,7 +489,6 @@ export class QuizService {
     }
     this.themeList = newThemeList;
     this.themeList$.next(this.themeList);
-    //console.log("Liste des thèmes actuellement présents : ",this.themeList);
     this.setUpQuiz();
   }
 
@@ -487,8 +504,6 @@ export class QuizService {
       this.themeList.push(theme);
       this.themeList$.next(this.themeList);
       console.log("Le thème : ",theme," a été rajouté (temporairement)");
-    } else {
-      alert("Ce thème existe déjà !");
     }
   }
 
