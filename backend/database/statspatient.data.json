@@ -147,10 +147,14 @@
     "options": [
       true
     ],
-    "nbQuizDone": 0,
-    "meanScore": 0,
-    "quizRes": [],
-    "quizDone": [],
+    "nbQuizDone": 1,
+    "meanScore": 23.33333333333334,
+    "quizRes": [
+      23.33333333333334
+    ],
+    "quizDone": [
+      "Poker comparaison"
+    ],
     "id": 1718719468235.9688
   }
 ]

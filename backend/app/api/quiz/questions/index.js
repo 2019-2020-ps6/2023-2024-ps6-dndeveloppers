@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
         let indices = []
         for(let i=0; i< 3 ; i++){
             let value = req.body.indice[i].value;
-            if(value != ""){
+            if(value != "" && value != " "){
                 let indice = IndiceModel.create({value})
                 indices.push(indice.id)
             }          
@@ -69,7 +69,7 @@ router.put('/', (req, res) => {
         const indices = []
         for(let i=0; i< 3 ; i++){
             const value = req.body.indice[i].value;
-            if(value != ""){
+            if(value != ""  && value != " "){
                 const indice = IndiceModel.create({value})
                 indices.push(indice.id)
             }          

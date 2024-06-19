@@ -45,12 +45,22 @@
     "id": 1718721031864.7373
   },
   {
-    "playedTime": 0,
-    "meanScore": 0,
-    "meanHintUsed": 0,
-    "resTab": [],
-    "nbHintUsed": [],
-    "successPercentageByQuestion": [],
+    "playedTime": 1,
+    "meanScore": 0.2333333333333334,
+    "meanHintUsed": 10,
+    "resTab": [
+      0.2333333333333334
+    ],
+    "nbHintUsed": [
+      10
+    ],
+    "successPercentageByQuestion": [
+      0.33333333333333337,
+      0.33333333333333337,
+      0.08333333333333337,
+      0.08333333333333337,
+      0.33333333333333337
+    ],
     "id": 1718785330212.949
   }
 ]
