@@ -135,7 +135,7 @@ export class QuizService {
   getActualQuestionNumberHint(){
     let indiceQuestion = 0;
       for (let i=0; i<this.getActualQuestion().indice.length; i++) {
-        if (this.getActualQuestion().indice[i].value != "") {
+        if (this.getActualQuestion().indice[i].value.length > 1) {
           indiceQuestion++;
         }
       }

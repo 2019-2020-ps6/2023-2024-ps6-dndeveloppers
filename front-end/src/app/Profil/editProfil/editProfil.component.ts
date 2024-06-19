@@ -34,7 +34,9 @@ export class EditProfilComponent implements OnInit {
             if(this.profilEditing?.dateNaissance?.[1]!= undefined){
                 this.initialMonth = this.MonthList[this.profilEditing?.dateNaissance?.[1]-1];
             }
-             
+            if (this.profilEditing.optionSkipQuestion == null || this.profilEditing.optionSkipQuestion == undefined) {
+                this.profilEditing.optionSkipQuestion = false;
+            }             
         });
 
         this.profilForm = this.formBuilder.group({
