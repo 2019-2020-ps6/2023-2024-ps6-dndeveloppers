@@ -16,8 +16,4 @@ export class StatsFixture extends E2EComponentFixture {
   getSelectQuiz() {
     return this.page.locator('app-stats-quiz').getByRole('combobox');
   }
-
-  getRouteToQuiz() {
-    return this.page.locator('app-stats-quiz').getByRole('button', { name: 'Aller modifier le quiz'});
-  }
 }

@@ -7,7 +7,7 @@
     "optionTailleTexte": "Moyen",
     "tutoriel": false,
     "optionPhoto": false,
-    "optionIndice": true,
+    "optionIndice": false,
     "photo": "./assets/imageProfil/default.png",
     "dateNaissance": [
       0,
@@ -19,7 +19,7 @@
     "id": 1716139229680
   },
   {
-    "nom": "Dupont ",
+    "nom": "Dupont",
     "prenom": "Huguette",
     "role": "patient",
     "selfStats": 1716797400654,
