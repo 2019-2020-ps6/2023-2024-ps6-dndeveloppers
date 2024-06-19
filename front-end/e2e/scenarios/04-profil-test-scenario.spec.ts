@@ -3,8 +3,6 @@ import { ListProfilFixture } from 'src/app/Profil/listProfil/listProfil.fixture'
 import { testUrl } from 'e2e/e2e.config';
 import { CreateProfilFixture } from 'src/app/Profil/createProfil/createProfil.fixture';
 import { EditProfilFixture } from 'src/app/Profil/editProfil/editProfil.fixture';
-import { PhotoFixture } from 'src/app/photo/photo.fixture';
-import { ViewProfilFixture } from 'src/app/Profil/viewProfil/viewProfil.fixture';
 import { HomeFixture } from 'src/app/home/home.fixture';
 
 test.describe('Create personnel profil', () => {
@@ -16,57 +14,76 @@ test.describe('Create personnel profil', () => {
     const listProfilFixture = new ListProfilFixture(page);
     const createProfilFixture = new CreateProfilFixture(page);
     const editProfilFixture = new EditProfilFixture(page);
-    const photoFixture = new PhotoFixture(page);
-    const viewProfilFixture = new ViewProfilFixture(page);
     const homeFixture = new HomeFixture(page);
 
     await test.step('Ajout d\'un profil', async () => {
+      // Cliquer sur le bouton Ajouter un profil
+      await listProfilFixture.clickAddProfilButton();
 
-    // Cliquer sur le bouton Ajouter un profil
-    await listProfilFixture.clickAddProfilButton();
+      const addProfilButton = await createProfilFixture.getAjouterLeProfil();
+      expect(addProfilButton).toBeDisabled();
 
-    // Ecrire dans le champ Nom
-    const nomInput = await createProfilFixture.getNomInput();
-    await nomInput.fill('Heilmann');
+      // Ecrire dans le champ Nom
+      const nomInput = await createProfilFixture.getNomInput();
+      await nomInput.fill('Heilmann');
+      expect(nomInput).toHaveValue('Heilmann');
+      expect(addProfilButton).toBeDisabled();
 
-    // Ecrire dans le champ Prénom
-    const prenomInput = await createProfilFixture.getPrenomInput();
-    await prenomInput.fill('Hugo');
+      // Ecrire dans le champ Prénom
+      const prenomInput = await createProfilFixture.getPrenomInput();
+      await prenomInput.fill('Hugo');
+      expect(prenomInput).toHaveValue('Hugo');
+      expect(addProfilButton).toBeDisabled();
 
-    // Choisir une option dans le champ Role
-    const roleInput = await createProfilFixture.getRoleInput();
-    await roleInput.selectOption({ label: 'patient' });
+      // Choisir une option dans le champ Role
+      const roleInput = await createProfilFixture.getRoleInput();
+      await roleInput.selectOption({ label: 'patient' });
+      expect(addProfilButton).not.toBeDisabled();
 
-    // Choisir une option dans le champ Jour
-    const jourInput = await createProfilFixture.getJourInput();
-    await jourInput.selectOption({ label: '10' });
+      // Choisir une option dans le champ Jour
+      const jourInput = await createProfilFixture.getJourInput();
+      await jourInput.selectOption({ label: '10' });
+      expect(addProfilButton).not.toBeDisabled();
 
-    // Choisir une option dans le champ Mois
-    const moisInput = await createProfilFixture.getMoisInput();
-    await moisInput.selectOption({ label: 'janvier' });
+      // Choisir une option dans le champ Mois
+      const moisInput = await createProfilFixture.getMoisInput();
+      await moisInput.selectOption({ label: 'janvier' });
+      expect(addProfilButton).not.toBeDisabled();
 
-    // Ecire dans le champ Année
-    const anneeInput = await createProfilFixture.getAnneeInput();
-    await anneeInput.fill('2000');
+      // Ecire dans le champ Année
+      const anneeInput = await createProfilFixture.getAnneeInput();
+      await anneeInput.fill('2000');
+      expect(addProfilButton).not.toBeDisabled();
 
-    // Cliquer sur la checkbox de l'option Photo
-    const optionPhoto = await createProfilFixture.getOptionPhoto();
-    await optionPhoto.check();
+      // Cliquer sur la checkbox de l'option Photo
+      const optionPhoto = await createProfilFixture.getOptionPhoto();
+      await optionPhoto.check();
+      expect(optionPhoto).toBeChecked();
+      expect(addProfilButton).not.toBeDisabled();
 
-    // Cliquer sur la checkbox de l'option Indice
-    const optionIndice = await createProfilFixture.getOptionIndice();
-    await optionIndice.check();
+      // Cliquer sur la checkbox de l'option Indice
+      const optionIndice = await createProfilFixture.getOptionIndice();
+      await optionIndice.check();
+      expect(optionIndice).toBeChecked();
+      expect(addProfilButton).not.toBeDisabled();
 
-    // Cliquer sur la checkbox de l'option Disparaitre
-    const optionDisparaitre = await createProfilFixture.getOptionDisparaitre();
-    await optionDisparaitre.check();
+      // Cliquer sur la checkbox de l'option Disparaitre
+      const optionDisparaitre = await createProfilFixture.getOptionDisparaitre();
+      await optionDisparaitre.check();
+      expect(optionDisparaitre).toBeChecked();
+      const optionReposer = await createProfilFixture.getOptionReposer();
+      expect(optionReposer).not.toBeChecked();
+      expect(addProfilButton).not.toBeDisabled();
 
-    // Cliquer sur ajouter le profil
-    await createProfilFixture.clickAjouterLeProfil();
+      const optionSkip = await createProfilFixture.getOptionSkip();
+      expect(optionSkip).toBeChecked();
 
-    // Vérifier que le profil a bien été ajouté
-    const profil = await page.getByRole('heading', { name: 'Nom : Heilmann Prénom: Hugo Afficher Modifier Supprimer' });
+      // Cliquer sur ajouter le profil
+      addProfilButton.click();
 
+      // Vérifier que le profil a bien été ajouté
+      const profil = await page.getByRole('heading', { name: 'Nom : Heilmann Prénom: Hugo Afficher Modifier Supprimer' });
+      expect(profil).toBeVisible();
     });
 
     await test.step('Modification du profil', async () => {
@@ -121,17 +138,24 @@ test.describe('Create personnel profil', () => {
 
     await test.step('Modification des valeurs du profil', async () => {
 
+    const editProfilButton = editProfilFixture.getModifierLeProfil();
+
     // Ecrire dans le champ Nom
     const nomInput = await editProfilFixture.getNomInput();
     await nomInput.fill('ROQUES');
+    expect(nomInput).toHaveValue('ROQUES');
+    expect(editProfilButton).not.toBeDisabled();
 
     // Ecrire dans le champ Prénom
     const prenomInput = await editProfilFixture.getPrenomInput();
     await prenomInput.fill('Maxence');
+    expect(prenomInput).toHaveValue('Maxence');
+    expect(editProfilButton).not.toBeDisabled();
 
     // Choisir une option dans le champ Role
     const roleInput = await editProfilFixture.getRoleInput();
     await roleInput.selectOption({ label: 'personnel' });
+    expect(editProfilButton).not.toBeDisabled();
 
     // Choisir une option dans le champ Jour
     const jourInput = await editProfilFixture.getJourInput();
@@ -157,8 +181,7 @@ test.describe('Create personnel profil', () => {
     await expect(optionDisparaitre).not.toBeChecked();
 
     // Cliquer sur modifier le profil
-    const modifierLeProfil = await editProfilFixture.getModifierLeProfil();
-    await modifierLeProfil.click();
+    await editProfilButton.click();
 
     // Vérifier que le profil a bien été modifié
     const profil = await page.getByRole('heading', { name: 'Nom : ROQUES Prénom: Maxence Afficher Modifier Supprimer' });
@@ -249,17 +272,22 @@ test.describe('Create personnel profil', () => {
 
     await test.step('Ajout d\'un profil', async () => {
 
+      const addProfilButton = createProfilFixture.getAjouterLeProfil();
+
       // Ecrire dans le champ Nom
       const nomInput = await createProfilFixture.getNomInput();
       await nomInput.fill('Heilmann');
+      expect(addProfilButton).toBeDisabled();
   
       // Ecrire dans le champ Prénom
       const prenomInput = await createProfilFixture.getPrenomInput();
       await prenomInput.fill('Hugo');
+      expect(addProfilButton).toBeDisabled();
   
       // Choisir une option dans le champ Role
       const roleInput = await createProfilFixture.getRoleInput();
       await roleInput.selectOption({ label: 'patient' });
+      expect(addProfilButton).not.toBeDisabled();
   
       // Choisir une option dans le champ Jour
       const jourInput = await createProfilFixture.getJourInput();
@@ -286,7 +314,7 @@ test.describe('Create personnel profil', () => {
       await optionDisparaitre.check();
   
       // Cliquer sur ajouter le profil
-      await createProfilFixture.clickAjouterLeProfil();
+      await addProfilButton.click();
       });
 
     await test.step('Verification Search-bar', async () => {
