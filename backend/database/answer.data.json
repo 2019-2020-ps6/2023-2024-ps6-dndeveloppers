@@ -381,7 +381,7 @@
   },
   {
     "value": "Harry Truman",
-    "isCorrect": true,
+    "isCorrect": false,
     "id": 1718722482908.484
   },
   {
@@ -396,7 +396,7 @@
   },
   {
     "value": "Richard Nixon",
-    "isCorrect": false,
+    "isCorrect": true,
     "id": 1718722482912.7021
   },
   {
