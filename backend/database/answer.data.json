@@ -498,5 +498,45 @@
     "value": "18",
     "isCorrect": false,
     "id": 1718723588254.694
+  },
+  {
+    "value": "2♠ 4♣ 10♥ J♦ J♥",
+    "isCorrect": false,
+    "id": 1718785711344.3188
+  },
+  {
+    "value": "K♥ Q♣ 10♠ 10♥ 10♦",
+    "isCorrect": true,
+    "id": 1718785711346.7078
+  },
+  {
+    "value": "5♣ 7♦ 7♣ 9♥ 5♦",
+    "isCorrect": false,
+    "id": 1718785711347.5283
+  },
+  {
+    "value": "A♥ A♠ 9♣ 3♥ 4♣",
+    "isCorrect": false,
+    "id": 1718785711349.0042
+  },
+  {
+    "value": "A♠ K♥ J♣ Q♣ 9♠",
+    "isCorrect": false,
+    "id": 1718785845334.3757
+  },
+  {
+    "value": "A♣ Q♥ J♣ J♦ 10♠",
+    "isCorrect": false,
+    "id": 1718785845336.4365
+  },
+  {
+    "value": "3♥ 3♦ 7♠ 3♣ 3♠",
+    "isCorrect": true,
+    "id": 1718785845338.3745
+  },
+  {
+    "value": "K♥ 5♠ 6♠ 5♣ 6♥",
+    "isCorrect": false,
+    "id": 1718785845339.3325
   }
 ]
