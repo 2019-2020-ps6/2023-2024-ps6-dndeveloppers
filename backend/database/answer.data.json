@@ -421,7 +421,7 @@
   },
   {
     "value": "Nouvel An",
-    "isCorrect": true,
+    "isCorrect": false,
     "id": 1718723333578.912
   },
   {
@@ -431,7 +431,7 @@
   },
   {
     "value": "Carnaval",
-    "isCorrect": false,
+    "isCorrect": true,
     "id": 1718723333579.08
   },
   {
