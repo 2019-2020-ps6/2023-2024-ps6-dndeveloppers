@@ -282,7 +282,7 @@ test.describe('Create personnel profil', () => {
       // Ecrire dans le champ Prénom
       const prenomInput = await createProfilFixture.getPrenomInput();
       await prenomInput.fill('Hugo');
-      expect(addProfilButton).toBeDisabled();
+      await expect(addProfilButton).toBeDisabled();
   
       // Choisir une option dans le champ Role
       const roleInput = await createProfilFixture.getRoleInput();
