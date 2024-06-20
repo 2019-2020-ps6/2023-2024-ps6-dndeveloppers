@@ -180,14 +180,18 @@ export class QuizService {
       if(this.infoQuiz.nbHintAskedForActualQuestion < this.getActualQuestionNumberHint()){
         this.infoQuiz.nbHintAskedForActualQuestion++;
         console.log("Indice demandé");
-        this.updateInfoQuiz();  
+        this.updateInfoQuiz(); 
       }
       // deuxième cas : on enlève une réponse (car on a déjà utilisé tout les indices textuels)
       else if (this.infoQuiz.nbHintAskedForActualQuestion-2 < this.getActualQuestionNumberHint()) {
         this.infoQuiz.nbHintAskedForActualQuestion++;
+        if (this.infoQuiz.nbHintAskedForActualQuestion-2 == this.getActualQuestionNumberHint()) {
+          this.infoQuiz.showHintButton = false;
+        }
         this.updateInfoQuiz(); 
         this.hideResponse();
         console.log("cache une réponse");
+        
       } 
       // troisième cas : rien
       else {
@@ -223,6 +227,10 @@ export class QuizService {
   }
 
   responseSelected(quiz: Quiz, responseNumber: number) {
+
+    this.infoQuiz.showHintButton = true;
+    this.updateInfoQuiz();
+
     if(this.actualProfil.optionReposerQuestionApres){
       if(this.infoQuiz.replayQuestion){ // on est dans la phase où on repose les questions
         this.responsesSelectedPlayAskedAgain(quiz, responseNumber);

@@ -2,7 +2,7 @@
     <app-header class="profil" *ngIf="infoQuiz.endOfQuiz===true"></app-header>
     <div class="content" *ngIf="infoQuiz.askedToRestoreGame===false; else elseBlock">
         <div class="side-by-side">
-            <app-indice *ngIf="optionIndice===true && infoQuiz.endOfQuiz===false" class="indice"></app-indice>
+            <app-indice *ngIf="optionIndice===true && infoQuiz.endOfQuiz===false && infoQuiz.showHintButton === true" class="indice"></app-indice>
 
             <span class="question" *ngIf="infoQuiz.endOfQuiz===false">
                 <!-- OptionPhoto activée -->

@@ -19,5 +19,6 @@ export const infoQuiz_INIT: InfoQuiz = {
     replayQuestion: false,
     questionToReplay: [],
     lastQuizPlayed: "",
-    askedToRestoreGame: false
+    askedToRestoreGame: false,
+    showHintButton: true,
 }

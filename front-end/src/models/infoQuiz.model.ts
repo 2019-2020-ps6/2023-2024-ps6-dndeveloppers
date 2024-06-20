@@ -28,6 +28,8 @@ export interface InfoQuiz {
 
     lastQuizPlayed: String, // nom du dernier quiz joué
     askedToRestoreGame: boolean, // si on a demandé de restaurer la partie
+
+    showHintButton: boolean, // affiche le bouton indice
 }
 
 

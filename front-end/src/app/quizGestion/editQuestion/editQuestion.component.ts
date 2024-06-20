@@ -147,23 +147,23 @@ export class EditQuestionComponent implements OnInit {
         }
 
         question.indice = [];
-        let indice = JSON.parse(JSON.stringify(Indice_Model));
         if(this.questionForm.value.i1 != "" && this.questionForm.value.i1 != " "){
+            const indice = JSON.parse(JSON.stringify(Indice_Model));
             indice.value = this.questionForm.value.i1;
             question.indice.push(indice);
         }
         if(this.questionForm.value.i2 != "" && this.questionForm.value.i2 != " "){
+            const indice = JSON.parse(JSON.stringify(Indice_Model));
             indice.value = this.questionForm.value.i2;
             question.indice.push(indice);
         }
         if(this.questionForm.value.i3 != "" && this.questionForm.value.i3 != " "){
+            const indice = JSON.parse(JSON.stringify(Indice_Model));
             indice.value = this.questionForm.value.i3;
             question.indice.push(indice);
         }
 
         // photo
-        console.log("photo : ",this.photo)
-        console.log("photoTexte : ", this.questionForm.value.photoTexte.length)
         if(this.photo != "" && this.questionForm.value.photoTexte != null && this.questionForm.value.photoTexte != "none" && this.questionForm.value.photoTexte.length != 0){
             question.optionImageLien = this.photo,
             question.optionImageQuestion = this.questionForm.value.photoTexte;
