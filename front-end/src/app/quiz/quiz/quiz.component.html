@@ -23,7 +23,7 @@
                     </ng-template>
                 </ng-template>
             </span>
-            <button *ngIf="actualProfil.optionSkipQuestion===true && infoQuiz.replayQuestion===false && infoQuiz.endOfQuiz===false" (click)="skipQuestion()" id="skipQuestion"><app-texteAdaptatif [texte]=skip></app-texteAdaptatif></button>
+            <button *ngIf="actualProfil.optionSkipQuestion===true && infoQuiz.replayQuestion===false && infoQuiz.endOfQuiz===false" (click)="skipQuestion()" (contextmenu)="catchClicDroit('skip')" id="skipQuestion"><app-texteAdaptatif [texte]=skip></app-texteAdaptatif></button>
 
 
 
@@ -49,8 +49,8 @@
             <app-texteAdaptatif [texte]=ask></app-texteAdaptatif>
         </div>
         <div id="buttons">
-            <button class="buttonAlertLeft" (click)="restoreQuiz()">Reprendre</button>
-            <button class="buttonAlertRight" (click)="restartQuiz()">Recommencer</button>
+            <button class="buttonAlertLeft" (click)="restoreQuiz()" (contextmenu)="catchClicDroit('left')">Reprendre</button>
+            <button class="buttonAlertRight" (click)="restartQuiz()" (contextmenu)="catchClicDroit('right')">Recommencer</button>
         </div>
         
     </ng-template>

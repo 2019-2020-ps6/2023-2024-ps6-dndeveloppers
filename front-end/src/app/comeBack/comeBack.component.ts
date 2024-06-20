@@ -52,4 +52,10 @@ export class ComeBackComponent implements OnInit {
         }
         this.router.navigate([this.path]);
     }
+
+    catchClicDroit(event: any) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.return();
+    }
 }

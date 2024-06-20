@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { QuizService } from "src/services/quiz.service";
-import { StatsService } from "src/services/stats.service";
 
 @Component({
     selector: 'app-indice',
@@ -26,5 +25,9 @@ export class IndiceComponent implements OnInit {
         if (this.notDisabled) {
             this.quizService.hintAsked();
         }
+    }
+
+    catchClicDroit() {
+        this.hintAsked();
     }
 }

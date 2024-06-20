@@ -34,4 +34,10 @@ export class ChoixQuizComponent implements OnInit {
   delete(quiz: Quiz) {
     this.quizService.deleteQuiz(quiz);
   }
+
+  catchClicDroit() {
+    if (this.quiz != undefined) {
+      this.selectQuiz(this.quiz);
+    }
+  }
 }

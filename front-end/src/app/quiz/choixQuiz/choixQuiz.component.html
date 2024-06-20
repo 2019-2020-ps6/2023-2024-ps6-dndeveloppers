@@ -1,4 +1,4 @@
-<div class="card" *ngIf="quiz" (click)="selectQuiz(this.quiz)">
+<div class="card" *ngIf="quiz" (contextmenu)="catchClicDroit()" (click)="selectQuiz(this.quiz)">
     <div id="nom">
         <app-texteAdaptatif texte="{{quiz.name}}"></app-texteAdaptatif>
     </div>
