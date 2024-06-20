@@ -8,48 +8,16 @@ export class QuizEditionFixture extends E2EComponentFixture {
         return this.page.getByPlaceholder('Question');
     }
 
-    getAnswer1() {
-        return this.page.getByPlaceholder('Réponse 1');
+    getAnswer(number: number) {
+        return this.page.getByPlaceholder('Réponse '+number)
     }
 
-    getAnswerValidity1() {
-        return this.page.getByTestId('r1');
+    getAnswerValidity(number: number) {
+        return this.page.getByTestId('r'+number);
     }
 
-    getAnswer2() {
-        return this.page.getByPlaceholder('Réponse 2');
-    }
-
-    getAnswerValidity2() {
-        return this.page.getByTestId('r2');
-    }
-
-    getAnswer3() {
-        return this.page.getByPlaceholder('Réponse 3');
-    }
-
-    getAnswerValidity3() {
-        return this.page.getByTestId('r3');
-    }
-
-    getAnswer4() {
-        return this.page.getByPlaceholder('Réponse 4');
-    }
-
-    getAnswerValidity4() {
-        return this.page.getByTestId('r4');
-    }
-
-    getHint1() {
-        return this.page.getByPlaceholder('Indice 1');
-    }
-
-    getHint2() {
-        return this.page.getByPlaceholder('Indice 2');
-    }
-
-    getHint3() {
-        return this.page.getByPlaceholder('Indice 3');
+    getHint(number: number) {
+        return this.page.getByPlaceholder('Indice '+number);
     }
 
     //getPictureButton() {
@@ -112,59 +80,27 @@ export class QuizEditionFixture extends E2EComponentFixture {
     }
 
     getEditQuestionTitle(questionName: string) {
-        return this.page.locator('app-editquestion div').filter({ hasText: 'Question La guitare est : Ré' }).getByTestId('label');
+        return this.page.locator('app-editquestion div').filter({ hasText: questionName }).getByTestId('label');
     }
 
-    getEditAnswer1(questionName: string) {
-        return this.page.locator('app-editquestion div').filter({ hasText: 'Question La guitare est : Ré' }).getByTestId('q1');
+    getEditAnswer(questionName: string, number: number) {
+        return this.page.locator('app-editquestion div').filter({ hasText: questionName }).getByTestId('q'+number);
     }
 
-    getEditAnswerValidity1(questionName: string) {
-        return this.page.locator('app-editquestion div').filter({ hasText: 'Question La guitare est : Ré' }).getByTestId('rr1');
+    getEditAnswerValidity(questionName: string, number: number) {
+        return this.page.locator('app-editquestion div').filter({ hasText: questionName }).getByTestId('rr'+number);
     }
 
-    getEditAnswer2(questionName: string) {
-        return this.page.locator('app-editquestion div').filter({ hasText: 'Question La guitare est : Ré' }).getByTestId('q2');
-    }
-
-    getEditAnswerValidity2(questionName: string) {
-        return this.page.locator('app-editquestion div').filter({ hasText: 'Question La guitare est : Ré' }).getByTestId('rr2');
-    }
-
-    getEditAnswer3(questionName: string) {
-        return this.page.locator('app-editquestion div').filter({ hasText: 'Question La guitare est : Ré' }).getByTestId('q3');
-    }
-
-    getEditAnswerValidity3(questionName: string) {
-        return this.page.locator('app-editquestion div').filter({ hasText: 'Question La guitare est : Ré' }).getByTestId('rr3');
-    }
-
-    getEditAnswer4(questionName: string) {
-        return this.page.locator('app-editquestion div').filter({ hasText: 'Question La guitare est : Ré' }).getByTestId('q4');
-    }
-
-    getEditAnswerValidity4(questionName: string) {
-        return this.page.locator('app-editquestion div').filter({ hasText: 'Question La guitare est : Ré' }).getByTestId('rr4');
-    }
-
-    getEditHint1(questionName: string) {
-        return this.page.locator('app-editquestion div').filter({ hasText: 'Question La guitare est : Ré' }).getByTestId('i1');
-    }
-
-    getEditHint2(questionName: string) {
-        return this.page.locator('app-editquestion div').filter({ hasText: 'Question La guitare est : Ré' }).getByTestId('i2');
-    }
-
-    getEditHint3(questionName: string) {
-        return this.page.locator('app-editquestion div').filter({ hasText: 'Question La guitare est : Ré' }).getByTestId('i3');
+    getEditHint(questionName: string, number: number) {
+        return this.page.locator('app-editquestion div').filter({ hasText: questionName }).getByTestId('i'+number);
     }
 
     getEditQuestionButton(questionName: string) {
-        return this.page.locator('app-editquestion div').filter({ hasText: 'Question La guitare est : Ré' }).getByTestId('editQuestion');
+        return this.page.locator('app-editquestion div').filter({ hasText: questionName }).getByTestId('editQuestion');
     }
 
     getSupprQuestionButton(questionName: string) {
-        return this.page.locator('app-editquestion div').filter({ hasText: 'Question La guitare est : Ré' }).getByTestId('deleteQuestion');
+        return this.page.locator('app-editquestion div').filter({ hasText: questionName }).getByTestId('deleteQuestion');
     }
 
     clickEditQuestionButton(questionName: string) {

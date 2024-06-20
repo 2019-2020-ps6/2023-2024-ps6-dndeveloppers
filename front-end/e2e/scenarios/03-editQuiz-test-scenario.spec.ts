@@ -47,14 +47,14 @@ test.describe('Home page display', () => {
 
     await test.step("Ajout d'un question", async () => {
         const question = await quizEditionFixture.getQuestion();
-        const answer1 = await quizEditionFixture.getAnswer1();
-        const answer2 = await quizEditionFixture.getAnswer2();
-        const answer3 = await quizEditionFixture.getAnswer3();
-        const answer4 = await quizEditionFixture.getAnswer4();
-        const answerValidity1 = await quizEditionFixture.getAnswerValidity1();
-        const answerValidity2 = await quizEditionFixture.getAnswerValidity2();
-        const answerValidity3 = await quizEditionFixture.getAnswerValidity3();
-        const answerValidity4 = await quizEditionFixture.getAnswerValidity4();
+        const answer1 = await quizEditionFixture.getAnswer(1);
+        const answer2 = await quizEditionFixture.getAnswer(2);
+        const answer3 = await quizEditionFixture.getAnswer(3);
+        const answer4 = await quizEditionFixture.getAnswer(4);
+        const answerValidity1 = await quizEditionFixture.getAnswerValidity(1);
+        const answerValidity2 = await quizEditionFixture.getAnswerValidity(2);
+        const answerValidity3 = await quizEditionFixture.getAnswerValidity(3);
+        const answerValidity4 = await quizEditionFixture.getAnswerValidity(4);
         const addQuestionButton = await quizEditionFixture.getAddQuestionButton();
 
         //On vérifie que tout les éléments sont visibles
@@ -113,17 +113,17 @@ test.describe('Home page display', () => {
     await test.step("Modification d'une question", async () => {
         var title: string = 'Question La guitare est : Ré'
         const question = await quizEditionFixture.getEditQuestionTitle(title);
-        const answer1 = await quizEditionFixture.getEditAnswer1(title);
-        const answer2 = await quizEditionFixture.getEditAnswer2(title);
-        const answer3 = await quizEditionFixture.getEditAnswer3(title);
-        const answer4 = await quizEditionFixture.getEditAnswer4(title);
-        const answerValidity1 = await quizEditionFixture.getEditAnswerValidity1(title);
-        const answerValidity2 = await quizEditionFixture.getEditAnswerValidity2(title);
-        const answerValidity3 = await quizEditionFixture.getEditAnswerValidity3(title);
-        const answerValidity4 = await quizEditionFixture.getEditAnswerValidity4(title);
-        const hint1 = await quizEditionFixture.getEditHint1(title);
-        const hint2 = await quizEditionFixture.getEditHint2(title);
-        const hint3 = await quizEditionFixture.getEditHint3(title);
+        const answer1 = await quizEditionFixture.getEditAnswer(title,1);
+        const answer2 = await quizEditionFixture.getEditAnswer(title,2);
+        const answer3 = await quizEditionFixture.getEditAnswer(title,3);
+        const answer4 = await quizEditionFixture.getEditAnswer(title,4);
+        const answerValidity1 = await quizEditionFixture.getEditAnswerValidity(title,1);
+        const answerValidity2 = await quizEditionFixture.getEditAnswerValidity(title,2);
+        const answerValidity3 = await quizEditionFixture.getEditAnswerValidity(title,3);
+        const answerValidity4 = await quizEditionFixture.getEditAnswerValidity(title,4);
+        const hint1 = await quizEditionFixture.getEditHint(title,1);
+        const hint2 = await quizEditionFixture.getEditHint(title,2);
+        const hint3 = await quizEditionFixture.getEditHint(title,3);
         const editButton = await quizEditionFixture.getEditQuestionButton(title);
 
         //On vérifie que tout les éléments sont visibles
@@ -212,28 +212,29 @@ test.describe('Home page display', () => {
     });
 
     await test.step("Suppression d'une question", async () => {
+        var title: string = 'Question La guitare est : Ré';
         const numberQuestion = quizEditionFixture.getNumberListQuestion();
+        const supprButton = quizEditionFixture.getSupprQuestionButton(title);
 
         //On supprime la question
         //expect(numberQuestion).toEqual(1);
-        await quizEditionFixture.clickSupprQuestionButton("Question À quel famille d'instrument appartient la guitare ?");
+        await supprButton.click();
         //expect(numberQuestion).toEqual(1);
     });
 
     await test.step("Création de quiz pour les prochains tests", async () => {
         const question = await quizEditionFixture.getQuestion();
-        const answer1 = await quizEditionFixture.getAnswer1();
-        const answer2 = await quizEditionFixture.getAnswer2();
-        const answer3 = await quizEditionFixture.getAnswer3();
-        const answer4 = await quizEditionFixture.getAnswer4();
-        const answerValidity1 = await quizEditionFixture.getAnswerValidity1();
-        const answerValidity2 = await quizEditionFixture.getAnswerValidity2();
-        const answerValidity3 = await quizEditionFixture.getAnswerValidity3();
-        const answerValidity4 = await quizEditionFixture.getAnswerValidity4();
-        const hint1 = await quizEditionFixture.getHint1();
-        const hint2 = await quizEditionFixture.getHint2();
-        const hint3 = await quizEditionFixture.getHint3();
-        const addQuestionButton = await quizEditionFixture.getAddQuestionButton();
+        const answer1 = await quizEditionFixture.getAnswer(1);
+        const answer2 = await quizEditionFixture.getAnswer(2);
+        const answer3 = await quizEditionFixture.getAnswer(3);
+        const answer4 = await quizEditionFixture.getAnswer(4);
+        const answerValidity1 = await quizEditionFixture.getAnswerValidity(1);
+        const answerValidity2 = await quizEditionFixture.getAnswerValidity(2);
+        const answerValidity3 = await quizEditionFixture.getAnswerValidity(3);
+        const answerValidity4 = await quizEditionFixture.getAnswerValidity(4);
+        const hint1 = await quizEditionFixture.getHint(1);
+        const hint2 = await quizEditionFixture.getHint(2);
+        const hint3 = await quizEditionFixture.getHint(3);
 
         await question.fill("À quel famille d'instrument appartient la guitare ?");
         await answer1.fill('Les bois');

@@ -21,6 +21,7 @@ test.describe('Jouer quiz en tant que Maurice', () => {
     await test.step('Choisir quiz', async () => {
         const listQuizFixture = new ListQuizFixture(page);
 
+        //On lance un quiz
         await listQuizFixture.getSearchBar().fill("Tempo");
         await page.locator('choixquiz #nom').click();
     });

@@ -50,8 +50,8 @@ test.describe('Jouer quiz en tant que Huguette', () => {
             await page.getByRole('button', { name: 'Clarinette' }).click();
 
             // Vérifier que le message de fin de quiz s'affiche
-            expect(await page.getByText('Félicitation, vous avez terminé le quiz !Vous avez répondu à 2 questions lors de').isVisible());
-            expect(await page.getByText('Félicitation, vous avez terminé le quiz !Vous avez répondu à 2 questions lors de gneugneugneu').isHidden())
+            expect(await page.getByText('Félicitation, vous avez terminé le quiz !Vous avez répondu à 2 questions lors de ce quiz').isVisible());
+            expect(await page.getByText('Félicitation, vous avez terminé le quiz !Vous avez répondu à 2 questions lors de ce quizVouz avez eu 2 bonnes réponses.').isHidden())
 
             await page.locator('#endPopup').getByRole('button', { name: 'Retour page des quiz' }).click();
         });
@@ -61,16 +61,19 @@ test.describe('Jouer quiz en tant que Huguette', () => {
 
             const quizFixture = new QuizFixture(page);
 
+            //On répond à une question pour que le quiz puisse être abandonné et repris
             expect(await page.getByText("À combien de temps correspond une blanche ♪ ?").isVisible());
             await page.getByRole('button', { name: '2' }).click();
             expect(await page.getByText("À combien de temps correspond une noire ♪ ?").isVisible());
 
             await quizFixture.getReturnButton().click();
 
+            //On reprend le quiz la où on l'a laissé
             await page.locator('choixquiz').filter({ hasText: 'Tempo' }).locator('#nom').click();
             await quizFixture.getGetBackButton().click();
-
             expect(await page.getByText("À combien de temps correspond une noire ♪ ?").isVisible());
+
+            //On se trompe pour voir si la mauvaise réponse enlevé le sera toujours si on abandonne le quiz puis qu'on y revient
             await page.getByRole('button', { name: '0.5' }).click();
             expect(await quizFixture.countNbAnswer()).toBe(3);
 
@@ -86,6 +89,7 @@ test.describe('Jouer quiz en tant que Huguette', () => {
 
             await quizFixture.getReturnButton().click();
 
+            //On abandonne le quiz et on choisi de recommencer depuis le début
             await page.locator('choixquiz').filter({ hasText: 'Tempo' }).locator('#nom').click();
             await quizFixture.getStartOverButton().click();
             expect(await page.getByText('À combien de temps correspond une ronde ♪ ?').isHidden());
