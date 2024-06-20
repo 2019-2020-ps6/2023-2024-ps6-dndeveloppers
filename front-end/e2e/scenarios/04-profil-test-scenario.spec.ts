@@ -33,7 +33,7 @@ test.describe('Create personnel profil', () => {
       const prenomInput = await createProfilFixture.getPrenomInput();
       await prenomInput.fill('Hugo');
       expect(prenomInput).toHaveValue('Hugo');
-      expect(addProfilButton).toBeDisabled();
+      await expect(addProfilButton).toBeDisabled();
 
       // Choisir une option dans le champ Role
       const roleInput = await createProfilFixture.getRoleInput();
@@ -83,7 +83,7 @@ test.describe('Create personnel profil', () => {
 
       // Vérifier que le profil a bien été ajouté
       const profil = await page.getByRole('heading', { name: 'Nom : Heilmann Prénom: Hugo Afficher Modifier Supprimer' });
-      expect(profil).toBeVisible();
+      await expect(profil).toBeVisible();
     });
 
     await test.step('Modification du profil', async () => {

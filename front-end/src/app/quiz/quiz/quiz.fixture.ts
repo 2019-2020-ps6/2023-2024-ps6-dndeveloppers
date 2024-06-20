@@ -12,5 +12,16 @@ export class QuizFixture extends E2EComponentFixture {
         return this.page.getByRole('button', { name: 'Passer la question' });
     }
 
+    getReturnButton() {
+        return this.page.getByRole('button', { name: 'Retour page des quiz' });
+    }
+
+    getGetBackButton() {
+        return this.page.getByRole('button', { name: 'Reprendre' });
+    }
+
+    getStartOverButton() {
+        return this.page.getByRole('button', { name: 'Recommencer' });
+    }
 }
 

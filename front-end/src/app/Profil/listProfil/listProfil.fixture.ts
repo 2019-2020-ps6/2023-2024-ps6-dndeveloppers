@@ -7,7 +7,7 @@ export class ListProfilFixture extends E2EComponentFixture {
     }
 
     getAddProfilButton() {
-        return this.page.getByRole('button', { name: 'Ajouter un profil' });
+        return this.page.getByRole('button', { name: 'Créer un profil' });
     }
 
     async clickAddProfilButton() {
