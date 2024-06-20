@@ -1,0 +1,24 @@
+services:
+  front:
+    image: ps6-dndevelopers/front
+    build:  ../front-end
+    ports:
+      - "8080:80"
+    depends_on:
+      - back
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+  
+  back:
+    image: ps6-dndevelopers/back
+    build:  ../backend
+    ports:
+      - "8081:9428"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9428/api/status"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5

@@ -88,7 +88,7 @@ export class QuizService {
   }
 
   selectQuiz(quiz: Quiz) {
-    //console.log("info quiz : ",this.infoQuiz);
+    console.log("info quiz : ",this.infoQuiz);
     for(let i=0;i<this.quizzes.length;i++){
       if(this.quizzes[i]==quiz){
         this.choosenQuiz = this.quizzes[i];
@@ -106,11 +106,11 @@ export class QuizService {
 
     if (this.infoQuiz.lastQuizPlayed == this.choosenQuiz.name) { // on rétablit la partie
      this.infoQuiz.askedToRestoreGame = true;
+     this.infoQuiz.lastQuizPlayed = this.choosenQuiz.name;
      this.updateInfoQuiz();
     }
     else {
       this.resetInfoQuiz();
-      this.infoQuiz.lastQuizPlayed = this.choosenQuiz.name;
       this.updateInfoQuiz();
     }
   }
@@ -127,11 +127,13 @@ export class QuizService {
 
   resetInfoQuiz(){
     this.infoQuiz = JSON.parse(JSON.stringify(infoQuiz_INIT));
+    this.infoQuiz.lastQuizPlayed = this.choosenQuiz.name;
     this.infoQuiz$.next(this.infoQuiz);
   }
 
   restoreQuiz(){
     this.infoQuiz.askedToRestoreGame = false;
+    this.infoQuiz.lastQuizPlayed = this.choosenQuiz.name;
     this.updateInfoQuiz();
   }
 
