@@ -162,14 +162,19 @@ export class EditQuestionComponent implements OnInit {
         }
 
         // photo
-        if(this.photo != "" && this.questionForm.value.photoTexte != null && this.questionForm.value.photoTexte != "none"){
+        console.log("photo : ",this.photo)
+        console.log("photoTexte : ", this.questionForm.value.photoTexte.length)
+        if(this.photo != "" && this.questionForm.value.photoTexte != null && this.questionForm.value.photoTexte != "none" && this.questionForm.value.photoTexte.length != 0){
             question.optionImageLien = this.photo,
             question.optionImageQuestion = this.questionForm.value.photoTexte;
+            console.log("phookto : ")
         }
         else {
             question.optionImageLien = "none"
             question.optionImageQuestion = "none"
+            console.log("pas ok : ")
         }
+        console.log("question : ", question.optionImageQuestion,question.optionImageLien.length)
         question.id = this.question?.id;
         question.idQuiz = this.question?.idQuiz;
         if (oneChecked == 1) {
@@ -218,6 +223,10 @@ export class EditQuestionComponent implements OnInit {
     }
 
     handleEvent(event: string) {
+        if(event == undefined) {
+            this.photo = "";
+            return ;
+        }
         this.photo = event;
         console.log(event.length)
         console.log(this.photo.length)

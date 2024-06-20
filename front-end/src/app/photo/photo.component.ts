@@ -1,6 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { httpOptionsBase, serverUrl } from 'src/configs/server.config';
 
 @Component({
   selector: 'app-submitPicture',
@@ -12,14 +11,16 @@ export class SubMitPhoto implements OnInit{
   images : any;
   multipleImages = [];
 
-  src: string | undefined;
+  //src: string | undefined;
   ok: boolean = false;
 
-  constructor(private http: HttpClient){}
+  constructor(){}
 
   ngOnInit(){
-
   }
+
+  @Input() 
+  src: string | undefined;
 
   @Output('customEvent') photo: EventEmitter<string> = new EventEmitter();
 
@@ -33,6 +34,11 @@ export class SubMitPhoto implements OnInit{
       this.photo.emit(this.src);
     };
     this.ok = true;
-    
+  }
+
+  deletePhoto(){
+    this.src = undefined;
+    this.photo.emit(this.src);
+    this.ok = false;
   }
 }
