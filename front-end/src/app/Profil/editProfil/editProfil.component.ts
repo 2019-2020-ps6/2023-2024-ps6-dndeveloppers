@@ -73,7 +73,7 @@ export class EditProfilComponent implements OnInit {
         return 'janvier'
     }
 
-    updateProfil(){
+    async updateProfil(){
         const profilToCreate: Profil = JSON.parse(JSON.stringify(PROFIL_NULL));
         profilToCreate.nom = this.profilForm.getRawValue().nom;
         profilToCreate.prenom = this.profilForm.getRawValue().prenom;
@@ -112,20 +112,46 @@ export class EditProfilComponent implements OnInit {
 
         if(this.photo != ""){
             profilToCreate.photo = this.photo; 
+            console.log("update profil ", profilToCreate);
+            this.profilService.updateProfil(profilToCreate);
+            this.router.navigate(['home/listProfil/']); 
+        }
+        else {
+            const reader = new FileReader();
+
+            reader.readAsDataURL(await this.createFile());
+            reader.onload = () => {
+                profilToCreate.photo = reader.result as string;
+                console.log("update profil ", profilToCreate);
+                this.profilService.updateProfil(profilToCreate);
+                this.router.navigate(['home/listProfil/']); 
+            };
         }
         
 
-        console.log("add profil ", profilToCreate);
-        this.profilService.updateProfil(profilToCreate);
-        this.router.navigate(['home/listProfil/']); 
+        
     }
 
     handleEvent(event: string) {
-        console.log("ok");
+        if(event == undefined) {
+            this.photo = "";
+            return ;
+        }
         this.photo = event;
         console.log(event.length)
         console.log(this.photo.length)
       }
+
+    
+    async createFile(){
+        let response = await fetch("./assets/imageProfil/default.png");
+        let data = await response.blob();
+        let metadata = {
+            type: 'image/png'
+        };
+        let file = new File([data], "test.jpg", metadata);
+        return file
+    }
 
     unicity(event: any) {
         const options = document.getElementsByClassName("unparalleled");

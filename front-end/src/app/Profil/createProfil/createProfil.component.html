@@ -41,11 +41,11 @@
                     <input class="input-custom" type="number" id="annee" [formControlName]="'annee'">    
                 </label>
 
-                <label for="annee"> Photo de profil :
+                <div id="photo">
+                    <img *ngIf="photo !== '' && photo !=='none'" id="photoBalise" class="photo" [src]=photo />
                     <app-submitPicture (customEvent)="handleEvent($event)"></app-submitPicture>
-                    <!--<input class="input-custom" type="file" id="photo" [formControlName]="'photo'">    -->
-                    <img *ngIf="photo !== ''" class="photo" [src]=photo /><br/>
-                </label>
+                    
+                </div>
         </section>
     </section>
     
