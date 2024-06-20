@@ -114,10 +114,7 @@ export class ListReponsesComponent implements OnInit {
     }
 
     loadQuestion(nbQuestion: number) {
-        console.log(this.infoQuiz.actualQuestionNumber);
-        console.log(this.actualResponses);
         this.actualResponses = this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber].answers;
-        console.log(this.actualResponses);
     }
 
     catchClicDroit(event: any, action: any) {

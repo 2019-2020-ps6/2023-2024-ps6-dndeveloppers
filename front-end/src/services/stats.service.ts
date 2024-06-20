@@ -29,7 +29,7 @@ export class StatsService {
     constructor(private http: HttpClient) {
       this.retrievePatients();
       this.http.get<Quiz[]>(serverUrl + '/quiz').subscribe((quizzes) => {
-        this.fillSeries(quizzes)
+        this.fillSeries(quizzes);
       })
     }
 
@@ -75,7 +75,6 @@ export class StatsService {
     }
 
     updatePatientStats(profil: Profil) {
-      console.log("Les stats du profil : ", profil.id, " ont été mise à jour");
       const urlWithIdStats = serverUrl + '/stats' + '/:' + profil.selfStats.id;
       this.http.put<Profil>(urlWithIdStats, profil.selfStats ,this.httpOptions).subscribe(() => this.retrievePatients());
     }
@@ -89,7 +88,7 @@ export class StatsService {
       chosenQuizStats.playedTime++;
 
       // update nb indice et moyenne d'indices : 
-      chosenQuizStats.nbHintUsed.push(infoQuiz.nbHintUsed)
+      chosenQuizStats.nbHintUsed.push(infoQuiz.nbHintUsed);
       let nbHint = 0;
       for (let i=0; i<chosenQuizStats.nbHintUsed.length; i++) {
         nbHint += chosenQuizStats.nbHintUsed[i];
@@ -97,7 +96,7 @@ export class StatsService {
       chosenQuizStats.meanHintUsed = nbHint / chosenQuizStats.nbHintUsed.length;
 
       // update score moyen 
-      chosenQuizStats.resTab.push(infoQuiz.actualScore / infoQuiz.scoreForEachQuestion.length)
+      chosenQuizStats.resTab.push(infoQuiz.actualScore / infoQuiz.scoreForEachQuestion.length);
       let nbScore = 0;
       for (let i=0; i<chosenQuizStats.resTab.length; i++) {
         nbScore += chosenQuizStats.resTab[i];
@@ -107,35 +106,18 @@ export class StatsService {
       // update moyenne pour chaque question
       for(let i=0; i< infoQuiz.scoreForEachQuestion.length;i++){
         let score = infoQuiz.scoreForEachQuestion[i];
-        //console.log("played Time : ", chosenQuizStats.playedTime);
-        //console.log("score question ", i, " = ", score);
         if (score != undefined) {
-          //console.log("longueur tab : ", chosenQuizStats.successPercentageByQuestion.length);
           if (chosenQuizStats.successPercentageByQuestion[i] == undefined) {
-            chosenQuizStats.successPercentageByQuestion.push(score)
+            chosenQuizStats.successPercentageByQuestion.push(score);
           } else {
             let newRate = chosenQuizStats.successPercentageByQuestion[i];
-            //console.log(newRate);
             newRate *= (chosenQuizStats.playedTime-1);
-            //console.log(newRate);
             newRate += score;
-            //console.log(newRate);
             newRate /= chosenQuizStats.playedTime;
-            //console.log(newRate);
             chosenQuizStats.successPercentageByQuestion[i] = newRate;
           }
-        }
-        /*
-        if(score != undefined){
-          if(chosenQuizStats.successPercentageByQuestion.length <= i){ // cas stats pour question nouvelle
-            chosenQuizStats.successPercentageByQuestion.push(score)
-          }
-          else{ // cas normal
-            chosenQuizStats.successPercentageByQuestion[i] = (score*(chosenQuizStats.playedTime-1) + score)/ chosenQuizStats.playedTime;
-          }
-        }*/
-        
+        }        
       }
-      return chosenQuizStats
+      return chosenQuizStats;
     }
 }

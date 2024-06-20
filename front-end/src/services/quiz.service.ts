@@ -54,7 +54,6 @@ export class QuizService {
     this.http.get<Quiz[]>(this.quizURL).subscribe((quizList) => {
       this.quizzes = quizList;
       this.quizzes$.next(this.quizzes);
-      console.log("quiz : ",this.quizzes);
       this.setUpTheme();
 
       if(idQuiz != -1){
@@ -88,12 +87,10 @@ export class QuizService {
   }
 
   selectQuiz(quiz: Quiz) {
-    //console.log("info quiz : ",this.infoQuiz);
     for(let i=0;i<this.quizzes.length;i++){
       if(this.quizzes[i]==quiz){
         this.choosenQuiz = this.quizzes[i];
         this.choosenQuiz$.next(this.choosenQuiz);
-        console.log("Quiz choisit : ",this.choosenQuiz);
       }
     }
 
@@ -115,14 +112,6 @@ export class QuizService {
       this.infoQuiz.lastQuizPlayed = this.choosenQuiz.name;
       this.updateInfoQuiz();
       console.log("on ne demande pas de rétablir la partie")
-    }
-  }
-
-  getQuizzes(quiz: Quiz){
-    for(let i=0;i<this.quizzes.length;i++){
-      if(this.quizzes[i].name==quiz.name){
-        console.log("Quiz sélectionné : ",this.quizzes[i].name);
-      }
     }
   }
 
@@ -174,7 +163,6 @@ export class QuizService {
   }
 
   disablingHintAndHelp(bool: boolean) {
-    //console.log("disability called");
     this.disableHintHelp = bool;
     this.disableHintHelp$.next(this.disableHintHelp);
   }
@@ -255,7 +243,6 @@ export class QuizService {
     if (this.getActualQuestion().answers[responseNumber].isCorrect) { // on passe à la suivante
       console.log("Bonne réponse félicitation!");
       let score = 1 - (this.infoQuiz.nbHintAskedForActualQuestion/(this.getActualQuestionNumberHint() + 3));
-      console.log("score à cette question : ",score);
 
       this.infoQuiz.actualScore += score;
       this.infoQuiz.scoreForEachQuestion.push(score);
@@ -280,7 +267,7 @@ export class QuizService {
         }
         else { // sinon on repose les questions à reposer
           this.infoQuiz.replayQuestion = true;
-          console.log("on passe aux questions à rejouer",this.infoQuiz.questionToReplay)
+          console.log("on passe aux questions à rejouer ",this.infoQuiz.questionToReplay)
           this.infoQuiz.questionToReplay.reverse();
           let numQuestion = this.infoQuiz.questionToReplay.pop();
           this.infoQuiz.questionToReplay.reverse();
@@ -344,7 +331,6 @@ export class QuizService {
     this.infoQuiz.nbHintUsed += this.infoQuiz.nbHintAskedForActualQuestion;
     if (this.getActualQuestion().answers[responseNumber].isCorrect) {
       let score = 1 - (this.infoQuiz.nbHintAskedForActualQuestion/(this.getActualQuestionNumberHint() + 3));
-      console.log("score à cette question : ",score);
       this.infoQuiz.actualScore += score;
 
       let nbQuestion = this.infoQuiz.actualQuestionNumber
@@ -385,7 +371,6 @@ export class QuizService {
       // on ajoute le score
       console.log("Bonne réponse félicitation!");
       let score = 1 - (this.infoQuiz.nbHintAskedForActualQuestion/(this.getActualQuestionNumberHint() + 3));
-      console.log("score à cette question : ",score-(this.infoQuiz.nbErrors/4));
 
       if(score-(this.infoQuiz.nbErrors/4) > 0){
         this.infoQuiz.actualScore += score-(this.infoQuiz.nbErrors/4); // on ajoute le score s'il est positif
@@ -447,7 +432,6 @@ export class QuizService {
       else {
         if(this.infoQuiz.actualQuestionNumber == quiz.questions.length-1){ // cas fin quiz
           console.log("C'était la dernière question");
-          console.log("score final : ",this.infoQuiz.actualScore);
           this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
           this.infoQuiz.scoreForEachQuestion.push(0)
           this.statsService.patientScoreNewData(this.actualProfil, this.infoQuiz.actualScore/quiz.questions.length);

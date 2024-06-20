@@ -11,21 +11,21 @@
         <section id="infomationGenerales">  
             <div id="infos">
                 <h2> Informations générales </h2>
-                <label for="nom">Nom : *
+                <label class="linom" for="nom">Nom : *
                     <input class="input-custom" type="text" id="nom" [formControlName]="'nom'" required>
                 </label><br/>
                 
-                <label for="prenom">Prenom : *
+                <label class="liprenom" for="prenom">Prenom : *
                     <input class="input-custom" type="text" id="prenom" [formControlName]="'prenom'" required>    
                 </label><br/>
 
-                <label for="role">Rôle : *
+                <label class="lirole" for="role">Status : *
                     <select name="input-custom" id="role" [formControlName]="'role'" required>
                         <option *ngFor="let currentRole of RoleList" [value]="currentRole">{{currentRole}}</option>
                     </select> 
                 </label><br/>
 
-                <p>Date de Naissance :</p>
+                <p class="liage">Date de Naissance :</p>
                 <label for="jour"> Jour :  
                     <select name="input-custom" id="jour" [formControlName]="'jour'">
                         <option *ngFor="let currentDay of DayList" [value]="currentDay">{{currentDay}}</option>
@@ -64,12 +64,12 @@
                 <input class="input-custom" class="unparalleled" (click)="unicity($event)" type="checkbox" id="optionReposerQuestionApres" [formControlName]="'optionReposerQuestionApres'">
             </label><br/><br/>
 
-            <label for="optionTimeReponse">Temps d'affichage de la bonne réponse :
-                <input class="input-custom" type="number" id="optionTimeReponse" [formControlName]="'optionTimeReponse'">
-            </label><br/><br/>
-
             <label for="optionSkip">Peut passer une question :
                 <input class="input-custom" type="checkbox" id="optionSkip" [formControlName]="'optionSkip'">
+            </label><br/><br/>
+
+            <label for="optionTimeReponse">Temps d'affichage de la bonne réponse :
+                <input class="input-custom" type="number" id="optionTimeReponse" [formControlName]="'optionTimeReponse'">
             </label><br/><br/>
 
             <label for="optionTailleTexte"> Taille du texte :
