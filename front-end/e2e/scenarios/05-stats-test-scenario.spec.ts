@@ -26,7 +26,7 @@ test.describe('Stats page feature', () => {
       const statsGlobales = page.locator('app-stats-globales');
 
       const gNbPatients = statsGlobales.getByText('Nombre de patients : 3');
-      const gNbDifQuiz = statsGlobales.getByText('Nombre de quiz différents : 3');
+      const gNbDifQuiz = statsGlobales.getByText('Nombre de quiz différents : 5');
       const gNbQuizDone = statsGlobales.getByText('Nombre de quiz réalisés au total : 2');
 
       expect(gNbPatients).toBeVisible();
@@ -80,9 +80,9 @@ test.describe('Stats page feature', () => {
       expect(qNbQuestions).toBeVisible();
 
       await qSelector.click();
-      await qSelector.selectOption('Politiciens en Guerre Froide');
-      qPlayedTime = statsQuiz.getByText('Nombre de fois joué : 2');
-      qMeanScore = statsQuiz.getByText('Score moyen : 0.75/2');
+      await qSelector.selectOption('Instruments');
+      qPlayedTime = statsQuiz.getByText('Nombre de fois joué : 0');
+      qMeanScore = statsQuiz.getByText('Score moyen : 0/2');
       qNbQuestions = statsQuiz.getByText('Nombre de questions : 2');
 
       expect(qPlayedTime).toBeVisible();

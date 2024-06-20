@@ -21,8 +21,8 @@ test.describe('Jouer quiz en tant que Huguette', () => {
         await test.step('Choisir quiz', async () => {
             const listQuizFixture = new ListQuizFixture(page);
 
-            await listQuizFixture.getSearchBar().fill("Politiciens en Guerre Froide");
-            await page.locator('choixquiz').filter({ hasText: 'Politiciens en Guerre Froide' }).locator('#nom').click();
+            await listQuizFixture.getSearchBar().fill("Instruments");
+            await page.locator('choixquiz').filter({ hasText: 'Instruments' }).locator('#nom').click();
         });
 
         await test.step('Jouer quiz', async() => {
@@ -35,17 +35,19 @@ test.describe('Jouer quiz en tant que Huguette', () => {
             // Verifier qu'il n'y a que 3 reponses affichées
             expect(await quizFixture.countNbAnswer()).toBe(3);
 
-            await page.getByRole('button', { name: 'John F. Kennedy' }).click();  
+            await page.getByRole('button', { name: 'Les cordes' }).click();  
 
-            await page.getByRole('button', { name: 'Valéry Giscard d\'Estaing' }).click();
-            await page.getByRole('button', { name: 'Georges Pompidou' }).click();
+            await page.getByText("Lequel de ces instruments n'est pas un cuivre ?").isVisible();
+
+            await page.getByRole('button', { name: 'Cor' }).click();
+            await page.getByRole('button', { name: 'Tuba' }).click();
             await quizFixture.getIndiceBouton().click();
             await quizFixture.getIndiceBouton().click();
             await quizFixture.getIndiceBouton().click();
             await quizFixture.getIndiceBouton().click();
             expect(await quizFixture.countNbAnswer()).toBe(2);
 
-            await page.getByRole('button', { name: 'François Mitterrand' }).click();
+            await page.getByRole('button', { name: 'Clarinette' }).click();
 
             // Vérifier que le message de fin de quiz s'affiche
             expect(await page.getByText('Félicitation, vous avez terminé le quiz !Vous avez répondu à 2 questions lors de').isVisible());
@@ -55,39 +57,39 @@ test.describe('Jouer quiz en tant que Huguette', () => {
         });
 
         await test.step("Reprise d'un quiz abandonné en cours", async () => {
-            await page.locator('choixquiz').filter({ hasText: 'Calcul Mental' }).locator('#nom').click();
+            await page.locator('choixquiz').filter({ hasText: 'Tempo' }).locator('#nom').click();
 
             const quizFixture = new QuizFixture(page);
 
-            expect(await page.getByText('5 * 7').isVisible());
-            await page.getByRole('button', { name: '35' }).click();
-            expect(await page.getByText('11 * 11').isVisible());
+            expect(await page.getByText("À combien de temps correspond une blanche ♪ ?").isVisible());
+            await page.getByRole('button', { name: '2' }).click();
+            expect(await page.getByText("À combien de temps correspond une noire ♪ ?").isVisible());
 
             await quizFixture.getReturnButton().click();
 
-            await page.locator('choixquiz').filter({ hasText: 'Calcul Mental' }).locator('#nom').click();
+            await page.locator('choixquiz').filter({ hasText: 'Tempo' }).locator('#nom').click();
             await quizFixture.getGetBackButton().click();
 
-            expect(await page.getByText('11 * 11').isVisible());
-            await page.getByRole('button', { name: '120' }).click();
+            expect(await page.getByText("À combien de temps correspond une noire ♪ ?").isVisible());
+            await page.getByRole('button', { name: '0.5' }).click();
             expect(await quizFixture.countNbAnswer()).toBe(3);
 
             await quizFixture.getReturnButton().click();
 
-            await page.locator('choixquiz').filter({ hasText: 'Calcul Mental' }).locator('#nom').click();
+            await page.locator('choixquiz').filter({ hasText: 'Tempo' }).locator('#nom').click();
             await quizFixture.getGetBackButton().click();
-            expect(await page.getByText('11 * 11').isVisible());
+            expect(await page.getByText("À combien de temps correspond une noire ♪ ?").isVisible());
             expect(await quizFixture.countNbAnswer()).toBe(3);
 
-            await page.getByRole('button', { name: '121' }).click();
-            expect(await page.getByText('83 - 14').isVisible());
+            await page.getByRole('button', { name: '1' }).click();
+            expect(await page.getByText('À combien de temps correspond une ronde ♪ ?').isVisible());
 
             await quizFixture.getReturnButton().click();
 
-            await page.locator('choixquiz').filter({ hasText: 'Calcul Mental' }).locator('#nom').click();
+            await page.locator('choixquiz').filter({ hasText: 'Tempo' }).locator('#nom').click();
             await quizFixture.getStartOverButton().click();
-            expect(await page.getByText('83 - 14').isHidden());
-            expect(await page.getByText('5 * 7').isVisible());
+            expect(await page.getByText('À combien de temps correspond une ronde ♪ ?').isHidden());
+            expect(await page.getByText("À combien de temps correspond une blanche ♪ ?").isVisible());
             
             await quizFixture.getReturnButton().click();
             // Ecrire dans le vide admin

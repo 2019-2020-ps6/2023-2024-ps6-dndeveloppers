@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { testUrl } from 'e2e/e2e.config';
 import { HomeFixture } from 'src/app/home/home.fixture';
+import { QuizGestionComponent } from 'src/app/quizGestion/quizGestion/quizGestion.component';
+import { QuizGestionFixture } from 'src/app/quizGestion/quizGestion/quizGestion.fixture';
 
 // https://playwright.dev/docs/locators
 test.describe('Stats page refresh', () => {
@@ -8,6 +10,7 @@ test.describe('Stats page refresh', () => {
     await page.goto(testUrl);
     expect(page.url()).toBe(testUrl + '/home');
     const homeFixture = new HomeFixture(page);
+    const quizGestionFixture = new QuizGestionFixture(page);
     await homeFixture.clickStatsButton();
     expect(page.url()).toBe(testUrl + '/home/stats');
 
@@ -15,7 +18,7 @@ test.describe('Stats page refresh', () => {
       const statsGlobales = page.locator('app-stats-globales');
 
       const gNbPatients = statsGlobales.getByText('Nombre de patients : 3');
-      const gNbDifQuiz = statsGlobales.getByText('Nombre de quiz différents : 3');
+      const gNbDifQuiz = statsGlobales.getByText('Nombre de quiz différents : 5');
       const gNbQuizDone = statsGlobales.getByText('Nombre de quiz réalisés au total : 4');
 
       expect(gNbPatients).toBeVisible();
@@ -98,23 +101,30 @@ test.describe('Stats page refresh', () => {
       expect(qNbQuestions).toBeVisible();
 
       await qSelector.click();
-      await qSelector.selectOption('Politiciens en Guerre Froide');
-      qPlayedTime = statsQuiz.getByText('Nombre de fois joué : 3');
-      qMeanScore = statsQuiz.getByText('Score moyen : 0.56/2');
-      qMeanHintUsed = statsQuiz.getByText("Nombre moyen d'indices utilisés : 2.33");
+      await qSelector.selectOption('Instruments');
+      qPlayedTime = statsQuiz.getByText('Nombre de fois joué : 1');
+      qMeanScore = statsQuiz.getByText('Score moyen : 0.17/2');
+      qMeanHintUsed = statsQuiz.getByText("Nombre moyen d'indices utilisés : 7");
       qNbQuestions = statsQuiz.getByText('Nombre de questions : 2');
 
-      expect(qPlayedTime).toBeVisible();
-      expect(qMeanScore).toBeVisible();
-      expect(qMeanHintUsed).toBeVisible();
-      expect(qNbQuestions).toBeVisible();
+      await expect(qPlayedTime).toBeVisible();
+      await expect(qMeanScore).toBeVisible();
+      await expect(qMeanHintUsed).toBeVisible();
+      await expect(qNbQuestions).toBeVisible();
 
       const qChart = await statsQuiz.locator('.highcharts-point');
       const qFirstPoint = await qChart.nth(0);
       const qSecondPoint = await qChart.nth(1);
     
-      expect(qFirstPoint).toBeVisible();
-      expect(qSecondPoint).toBeVisible();
+      await expect(qFirstPoint).toBeVisible();
+      await expect(qSecondPoint).toBeVisible();
+    });
+    await test.step("Nettoyage base de donnée", async () => {
+      await page.goto(testUrl + '/home/gestionQuiz');
+      const supprInstru = await quizGestionFixture.getSuppressButton('Instruments');
+      const supprTempo = await quizGestionFixture.getSuppressButton('Tempo');
+      await supprInstru.click();
+      await supprTempo.click();
     });
   });
   // TO GO FURTHER :

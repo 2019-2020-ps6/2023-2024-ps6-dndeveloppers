@@ -180,12 +180,13 @@ test.describe('Home page display', () => {
 
     await test.step("Modification des valeur globales du quiz", async () => {
         const title = quizEditionFixture.getQuizTitle();
-        const theme = quizEditionFixture.getThemeSelector();
+        const themeSelector = quizEditionFixture.getThemeSelector();
         const editButton = quizEditionFixture.getEditGlobalButton();
+        const theme = quizEditionFixture.getTheme();
 
         //On verifie que tous les éléments sont visibles
         expect(title).toBeVisible();
-        expect(theme).toBeVisible();
+        expect(themeSelector).toBeVisible();
 
         //On modifie le titre du quiz
         expect(editButton).not.toBeDisabled();
@@ -197,8 +198,17 @@ test.describe('Home page display', () => {
         expect(editButton).not.toBeDisabled();
 
         //On change le thème du quiz
-        await theme.click();
-        await theme.selectOption('Cuisine');
+        await themeSelector.click();
+        await themeSelector.selectOption('Cuisine');
+
+        await quizEditionFixture.clickEditGlobalButton();
+
+        await title.fill('Instruments');
+        await theme.fill('Musique');
+        await quizEditionFixture.clickAddThemeButton();
+        await themeSelector.click();
+        await themeSelector.selectOption('Musique');
+        await quizEditionFixture.clickEditGlobalButton();
     });
 
     await test.step("Suppression d'une question", async () => {
@@ -208,11 +218,76 @@ test.describe('Home page display', () => {
         //expect(numberQuestion).toEqual(1);
         await quizEditionFixture.clickSupprQuestionButton("Question À quel famille d'instrument appartient la guitare ?");
         //expect(numberQuestion).toEqual(1);
+    });
 
-        //On supprime le quiz pour ne pas poluer la base de donnée
+    await test.step("Création de quiz pour les prochains tests", async () => {
+        const question = await quizEditionFixture.getQuestion();
+        const answer1 = await quizEditionFixture.getAnswer1();
+        const answer2 = await quizEditionFixture.getAnswer2();
+        const answer3 = await quizEditionFixture.getAnswer3();
+        const answer4 = await quizEditionFixture.getAnswer4();
+        const answerValidity1 = await quizEditionFixture.getAnswerValidity1();
+        const answerValidity2 = await quizEditionFixture.getAnswerValidity2();
+        const answerValidity3 = await quizEditionFixture.getAnswerValidity3();
+        const answerValidity4 = await quizEditionFixture.getAnswerValidity4();
+        const hint1 = await quizEditionFixture.getHint1();
+        const hint2 = await quizEditionFixture.getHint2();
+        const hint3 = await quizEditionFixture.getHint3();
+        const addQuestionButton = await quizEditionFixture.getAddQuestionButton();
+
+        await question.fill("À quel famille d'instrument appartient la guitare ?");
+        await answer1.fill('Les bois');
+        await answer2.fill('Les cordes');
+        await answer3.fill('Les cuivres');
+        await answer4.fill('Les percussions');
+        await answerValidity2.click();
+        await hint1.fill("Elle n'est pas en métal");
+        await hint2.fill("Ce n'est pas un instrument à vent");
+        await hint3.fill("On frotte les cordes pour créer du son");
+        await quizEditionFixture.clickAddQuestionButton();
+
+        await question.fill("Lequel de ces instruments n'est pas un cuivre ?");
+        await answer1.fill('Tuba');
+        await answer2.fill('Cor');
+        await answer3.fill('Trompette');
+        await answer4.fill('Clarinette');
+        await answerValidity4.click();
+        await hint1.fill("Cet instrument est de couleur noire");
+        await quizEditionFixture.clickAddQuestionButton();
+
         await quizGestionFixture.clickReturnButton();
 
-        await quizGestionFixture.clickSuppressButton('Instruments');
+        const inputTitle = await quizGestionFixture.getInputTitle();
+        const selectTheme = await quizGestionFixture.getSelectTheme();
+
+        await inputTitle.fill('Tempo');
+        await selectTheme.selectOption('Musique');
+        await quizGestionFixture.clickAddQuizButton();
+        await quizGestionFixture.clickEditButton('Tempo');
+
+        await question.fill("À combien de temps correspond une blanche ♪ ?");
+        await answer1.fill('1');
+        await answer2.fill('4');
+        await answer3.fill('2');
+        await answer4.fill('0.5');
+        await answerValidity3.click();
+        await quizEditionFixture.clickAddQuestionButton();
+
+        await question.fill("À combien de temps correspond une noire ♪ ?");
+        await answer1.fill('2');
+        await answer2.fill('0.5');
+        await answer3.fill('4');
+        await answer4.fill('1');
+        await answerValidity4.click();
+        await quizEditionFixture.clickAddQuestionButton();
+
+        await question.fill("À combien de temps correspond une ronde ♪ ?");
+        await answer1.fill('4');
+        await answer2.fill('1');
+        await answer3.fill('0.5');
+        await answer4.fill('2');
+        await answerValidity1.click();
+        await quizEditionFixture.clickAddQuestionButton();
     });
   });
 });

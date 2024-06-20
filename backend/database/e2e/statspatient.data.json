@@ -24,14 +24,10 @@
     "options": [
       true
     ],
-    "nbQuizDone": 1,
-    "meanScore": 16.666666666666668,
-    "quizRes": [
-      16.666666666666668
-    ],
-    "quizDone": [
-      "Politiciens en Guerre Froide"
-    ],
+    "nbQuizDone": 0,
+    "meanScore": 0,
+    "quizRes": [],
+    "quizDone": [],
     "id": 1716797400654,
     "idStatsPatient": 1716797400657
   },
@@ -56,14 +52,10 @@
     "options": [
       true
     ],
-    "nbQuizDone": 1,
-    "meanScore": 66.66666666666666,
-    "quizRes": [
-      66.66666666666666
-    ],
-    "quizDone": [
-      "Calcul mental"
-    ],
+    "nbQuizDone": 0,
+    "meanScore": 0,
+    "quizRes": [],
+    "quizDone": [],
     "id": 1716797670085,
     "idStatsPatient": 1716797670087
   },
