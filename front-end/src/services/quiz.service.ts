@@ -88,7 +88,7 @@ export class QuizService {
   }
 
   selectQuiz(quiz: Quiz) {
-    console.log("info quiz : ",this.infoQuiz);
+    //console.log("info quiz : ",this.infoQuiz);
     for(let i=0;i<this.quizzes.length;i++){
       if(this.quizzes[i]==quiz){
         this.choosenQuiz = this.quizzes[i];
@@ -96,6 +96,7 @@ export class QuizService {
         console.log("Quiz choisit : ",this.choosenQuiz);
       }
     }
+
     this.showHint = [false, false, false];
     for (let i=0; i<this.choosenQuiz.questions[0].indice.length; i++) {
       if (this.choosenQuiz.questions[0].indice[i].value != "") {
@@ -103,15 +104,17 @@ export class QuizService {
       }
     }
     this.showHint$.next(this.showHint);
-
     if (this.infoQuiz.lastQuizPlayed == this.choosenQuiz.name) { // on rétablit la partie
      this.infoQuiz.askedToRestoreGame = true;
      this.infoQuiz.lastQuizPlayed = this.choosenQuiz.name;
      this.updateInfoQuiz();
+     console.log("on demande de rétablir la partie")
     }
     else {
       this.resetInfoQuiz();
+      this.infoQuiz.lastQuizPlayed = this.choosenQuiz.name;
       this.updateInfoQuiz();
+      console.log("on ne demande pas de rétablir la partie")
     }
   }
 
@@ -127,7 +130,6 @@ export class QuizService {
 
   resetInfoQuiz(){
     this.infoQuiz = JSON.parse(JSON.stringify(infoQuiz_INIT));
-    this.infoQuiz.lastQuizPlayed = this.choosenQuiz.name;
     this.infoQuiz$.next(this.infoQuiz);
   }
 
@@ -273,7 +275,7 @@ export class QuizService {
           this.choosenQuiz.selfStats = this.statsService.updateQuizStats(this.infoQuiz,this.choosenQuiz.selfStats);
           this.statsService.patientScoreNewData(this.actualProfil, this.infoQuiz.actualScore/quiz.questions.length);
           this.infoQuiz.endOfQuiz = true;
-          this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => this.retrievesQuiz());
+          this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => {this.retrievesQuiz(); this.resetInfoQuiz()});
         }
         else { // sinon on repose les questions à reposer
           this.infoQuiz.replayQuestion = true;
@@ -358,7 +360,7 @@ export class QuizService {
       this.choosenQuiz.selfStats = this.statsService.updateQuizStats(this.infoQuiz,this.choosenQuiz.selfStats);
       this.statsService.patientScoreNewData(this.actualProfil, this.infoQuiz.actualScore/quiz.questions.length);
       this.infoQuiz.endOfQuiz = true;
-      this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => this.retrievesQuiz());
+      this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => {this.retrievesQuiz();});
     }
     else {
       this.infoQuiz.questionToReplay.reverse();
@@ -410,7 +412,7 @@ export class QuizService {
 
         this.statsService.patientScoreNewData(this.actualProfil, this.infoQuiz.actualScore/quiz.questions.length);
         this.infoQuiz.endOfQuiz = true;
-        this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => this.retrievesQuiz());
+        this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => {this.retrievesQuiz();});
       } 
       else { // sinon on continue le quiz
         this.infoQuiz.actualQuestionNumber++;
@@ -447,7 +449,7 @@ export class QuizService {
           this.choosenQuiz.selfStats = this.statsService.updateQuizStats(this.infoQuiz,this.choosenQuiz.selfStats);
 
           this.infoQuiz.endOfQuiz = true;
-          this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => this.retrievesQuiz());
+          this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => {this.retrievesQuiz();});
         }
         else {
           this.infoQuiz.actualQuestionNumber++;
@@ -478,7 +480,7 @@ export class QuizService {
       this.choosenQuiz.selfStats = this.statsService.updateQuizStats(this.infoQuiz,this.choosenQuiz.selfStats);
       this.statsService.patientScoreNewData(this.actualProfil, this.infoQuiz.actualScore/quiz.questions.length);
       this.infoQuiz.endOfQuiz = true;
-      this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => this.retrievesQuiz());
+      this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => {this.retrievesQuiz(); });
     }
     else {
       this.infoQuiz.actualQuestionNumber++;      
