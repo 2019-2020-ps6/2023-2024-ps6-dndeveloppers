@@ -24,9 +24,13 @@
 #imageQuiz {
     grid-row: 2;
     border-radius: 0 0 8px 8px;
+    border-bottom: solid black 2px;
+    border-left: solid black 2px;
+    border-right: solid black 2px;
 }
 
 img {
+    border-radius: 0 0 4px 4px;
     width: 100%;
     height: 100%;
     object-fit: cover;
