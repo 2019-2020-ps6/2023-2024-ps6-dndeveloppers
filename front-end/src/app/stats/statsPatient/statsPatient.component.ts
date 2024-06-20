@@ -26,7 +26,8 @@ export class StatsPatientComponent implements OnInit {
     public actualPatientSelfStats: statsPatient = this.actualPatient.selfStats;
     public actualPatientMeanScore: number = Math.round(this.actualPatientSelfStats.meanScore*100)/100;
     public quizzes: Quiz[] = [];
-    public displayPatientChart = true;
+    public displayPatientChart: boolean = true;
+    public selectDefault: string = "";
 
     public actualSeries: any[] = [];
 
@@ -85,85 +86,76 @@ export class StatsPatientComponent implements OnInit {
         })
     }
 
-    ngOnInit(): void {
+    ngOnInit() {
         this.fillSeries();
         this.listePatient = this.statsService.retrievePatients();
-        if (this.nomPatient != "") {
-            this.selectedPatientWithName(this.nomPatient);
+        if (this.idPatient != -1) {
+            this.selectedPatientWithName(this.idPatient);
+            for (let i=0; i<this.listePatient.length; i++) {
+                if (this.listePatient[i].id == this.idPatient) {
+                    this.selectDefault = this.listePatient[i].nom + ', ' + this.listePatient[i].prenom;
+                }
+            }
+            console.log('default: ', this.selectDefault);
         }
     }
 
     @Input()
-    nomPatient: string = "";
+    idPatient: number = -1;
 
     selectedPatient(event: any) {
-        let nomPatient: string = event.target.value;
-        if (nomPatient.length == 0) {
-            this.displayPatientChart = false;
-            this.optionPatient = "";
-        } else {
-            this.displayPatientChart = true;
-            for (let i=0; i<this.listePatient.length; i++) {
-                if (this.listePatient[i].nom == nomPatient) {
-                    let patient = this.listePatient[i];
-                    this.optionPatient = "";
-                    if (patient.optionIndice) {
-                        this.optionPatient += "Indice"
-                    }
-                    if (patient.optionPhoto) {
-                        if (this.optionPatient.length != 0) {
-                            this.optionPatient += ", ";
-                        }
-                        this.optionPatient += "Photo";
-                    }
-                    if (patient.optionReposerQuestionApres) {
-                        if (this.optionPatient.length != 0) {
-                            this.optionPatient += ", ";
-                        }
-                        this.optionPatient += "Reposer";
-                    }
-                    if (patient.optionSupprimerMauvaisesReponses) {
-                        if (this.optionPatient.length != 0) {
-                            this.optionPatient += ", ";
-                        }
-                        this.optionPatient += "Supprimer";
-                    }
-                }
-            }
-        }
-        this.selectedPatientWithName(nomPatient);
+        let idPatient: number = event.target.value;
+        this.selectedPatientWithName(idPatient);
     }
 
-    selectedPatientWithName(nomPatient: string) {
-        this.http.get<Profil[]>(this.profilURL).subscribe((profilList) => {
-            const listeProfils = profilList;
-            for (let i=0; i<listeProfils.length; i++) {
-                if (listeProfils[i].nom == nomPatient) {
-                    this.actualPatient = listeProfils[i];
-                    this.actualPatientSelfStats = listeProfils[i].selfStats;
-                    this.actualPatientMeanScore = Math.round(this.actualPatientSelfStats.meanScore*100)/100;
-
-                    this.options.xAxis.categories = this.categoriesChart();
-                    for (let i=0; i<this.quizzes.length; i++) {
-                        this.options.series[i].data = this.dataChart(this.quizzes[i].name);
-                    }
-                    Highcharts.chart('patientChart', this.options);
-                    break;
-                }
-            }
-        })
-        /*
-        for (let i=0; i<LISTE_PROFILS.length; i++) {
-            if (LISTE_PROFILS[i].nom == nomPatient) {
-                this.actualPatient = LISTE_PROFILS[i];
-                this.actualPatientMeanScore = Math.round(this.actualPatient.selfStats.meanScore*100)/100;
-                break;
-            }
-        }*/
-        console.log("Patient selectionné : ", nomPatient);
-        console.log("nbQuizDone : ", this.actualPatientSelfStats.nbQuizDone);
-        if (nomPatient == undefined || nomPatient.length == 0) {
+    selectedPatientWithName(idPatient: number) {
+        if (idPatient == undefined) {
             this.actualPatient = PROFIL_NULL;
+            this.displayPatientChart = false;
+        } else {
+            this.displayPatientChart = true;
+            this.http.get<Profil[]>(this.profilURL).subscribe((profilList) => {
+                const listeProfils = profilList;
+                for (let i=0; i<listeProfils.length; i++) {
+                    if (listeProfils[i].id != undefined) {
+                        if (listeProfils[i].id == idPatient) {
+                            this.actualPatient = listeProfils[i];
+                            this.actualPatientSelfStats = listeProfils[i].selfStats;
+                            this.actualPatientMeanScore = Math.round(this.actualPatientSelfStats.meanScore*100)/100;
+
+                            this.optionPatient = "";
+                            if (this.actualPatient.optionIndice) {
+                                this.optionPatient += "Indice"
+                            }
+                            if (this.actualPatient.optionPhoto) {
+                                if (this.optionPatient.length != 0) {
+                                    this.optionPatient += ", ";
+                                }
+                                this.optionPatient += "Photo";
+                            }
+                            if (this.actualPatient.optionReposerQuestionApres) {
+                                if (this.optionPatient.length != 0) {
+                                    this.optionPatient += ", ";
+                                }
+                                this.optionPatient += "Reposer";
+                            }
+                            if (this.actualPatient.optionSupprimerMauvaisesReponses) {
+                                if (this.optionPatient.length != 0) {
+                                    this.optionPatient += ", ";
+                                }
+                                this.optionPatient += "Supprimer";
+                            }
+
+                            this.options.xAxis.categories = this.categoriesChart();
+                            for (let i=0; i<this.quizzes.length; i++) {
+                                this.options.series[i].data = this.dataChart(this.quizzes[i].name);
+                            }
+                            Highcharts.chart('patientChart', this.options);
+                            break;
+                        }
+                    }
+                }
+            })
         }
     }
 
