@@ -39,7 +39,7 @@ test.describe('Stats page feature', () => {
 
       const pTitle = statsPatient.getByText('Statistiques du patient : ');
       const pSelector = statsPatient.getByRole('combobox');
-      let pName = statsPatient.getByText('Nom du patient : ');
+      let pName = statsPatient.getByText('Nom du patient : ,');
       let pOption = statsPatient.getByText('Option du patient : ');
       let pNbQuizDone = statsPatient.getByText('Nombre de quiz réalisés : 0');
       let pMeanScore = statsPatient.getByText('Score moyen : 0');
@@ -53,7 +53,7 @@ test.describe('Stats page feature', () => {
 
       await pSelector.click();
       await pSelector.selectOption('Bois, Maurice');
-      pName = statsPatient.getByText('Nom du patient : Maurice');
+      pName = statsPatient.getByText('Nom du patient : Bois, Maurice');
       pOption = statsPatient.getByText('Option du patient : Indice');
     
       expect(pName).toBeVisible();

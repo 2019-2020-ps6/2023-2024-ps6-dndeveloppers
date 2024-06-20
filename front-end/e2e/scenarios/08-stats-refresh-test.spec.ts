@@ -28,7 +28,7 @@ test.describe('Stats page refresh', () => {
 
       const pTitle = statsPatient.getByText('Statistiques du patient : ');
       const pSelector = statsPatient.getByRole('combobox');
-      let pName = statsPatient.getByText('Nom du patient : ');
+      let pName = statsPatient.getByText('Nom du patient : ,');
       let pOption = statsPatient.getByText('Option du patient : ');
       let pNbQuizDone = statsPatient.getByText('Nombre de quiz réalisés : 0');
       let pMeanScore = statsPatient.getByText('Score moyen : 0');
@@ -42,7 +42,7 @@ test.describe('Stats page refresh', () => {
 
       await pSelector.click();
       await pSelector.selectOption('Bois, Maurice');
-      pName = statsPatient.getByText('Nom du patient : Maurice');
+      pName = statsPatient.getByText('Nom du patient : Bois, Maurice');
       pOption = statsPatient.getByText('Option du patient : Indice, Reposer');
       pNbQuizDone = statsPatient.getByText('Nombre de quiz réalisés : 1');
       pMeanScore = statsPatient.getByText('Score moyen : 66.67');
@@ -64,7 +64,7 @@ test.describe('Stats page refresh', () => {
 
         await pSelector.click();
         await pSelector.selectOption('Dupont, Huguette');
-        const pName = statsPatient.getByText('Nom du patient : Huguette');
+        const pName = statsPatient.getByText('Nom du patient : Dupont, Huguette');
         const pOption = statsPatient.getByText('Option du patient : Indice, Photo, Supprimer');
         const pNbQuizDone = statsPatient.getByText('Nombre de quiz réalisés : 1');
         const pMeanScore = statsPatient.getByText('Score moyen : 16.67');
