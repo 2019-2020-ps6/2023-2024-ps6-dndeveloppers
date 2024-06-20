@@ -7,6 +7,7 @@ COPY package.json ./package-lock.json ./
 RUN npm install 
 
 COPY ./ /app
+COPY ./database database/
 
 EXPOSE 9428
 

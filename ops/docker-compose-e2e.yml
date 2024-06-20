@@ -24,3 +24,19 @@ services:
       interval: 1m30s
       timeout: 30s
       retries: 5
+  
+  playwright:
+    build:
+      dockerfile: "Dockerfile.test"
+      context: ../front-end
+    environment:
+      - TEST_URL=http://front
+    volumes:
+      - test-results:/front-end/test-results
+    depends_on:
+      front:
+        condition: service_healthy
+
+volumes:
+  test-results:
+  back:
