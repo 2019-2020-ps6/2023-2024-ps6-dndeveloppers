@@ -69,7 +69,7 @@ export class ViewProfilComponent implements OnInit {
     seeStats(profil: Profil, worstQuiz: string) {
         this.router.navigate(['/home/stats'], {
             queryParams: { 
-                nom: profil.nom,
+                id: profil.id,
                 quiz: worstQuiz
             }
         });

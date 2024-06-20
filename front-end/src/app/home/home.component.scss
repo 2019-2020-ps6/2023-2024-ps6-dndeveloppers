@@ -57,8 +57,9 @@
 
 .search-bar {
     width: 100%;
-    padding: 10px 10px 10px 10px;
-    margin-bottom: 20px;
+    height: 40px;
+    padding: 10px;
+    margin: 10px;
     border: 2px solid #6958cf;
     border-radius: 0.5rem;
     font-size: 1.2em;
@@ -79,4 +80,22 @@
 #profil:hover {
     transform: scale(1.05);
     cursor: pointer;
+}
+
+.recherche {
+    display: flex;
+    align-items: center;
+}
+
+#info {
+    width: auto;
+    height: 40px;
+    padding: 10px;
+    margin: 10px;
+    background-color: lightgray;
+    border: solid black 2px;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #FF0000;
 }

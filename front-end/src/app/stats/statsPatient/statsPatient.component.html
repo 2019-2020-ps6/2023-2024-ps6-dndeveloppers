@@ -1,8 +1,8 @@
 <div class="statsPatient">
     <p class="titreStat">Statistiques du patient : </p>
-    <select (input)="selectedPatient($event)" class="choixQuiz" name="choixQuiz">
+    <select [(ngModel)]="selectDefault" (input)="selectedPatient($event)" class="choixQuiz" name="choixQuiz">
         <option value="">Choix du patient</option>
-        <option *ngFor="let patient of listePatient" [value]="patient.nom" >{{patient.nom}}, {{patient.prenom}}</option>
+        <option *ngFor="let patient of listePatient" [value]="patient.id" >{{patient.nom}}, {{patient.prenom}}</option>
     </select>
 
     <ul>

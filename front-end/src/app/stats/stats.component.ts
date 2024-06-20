@@ -12,14 +12,14 @@ export class StatsComponent implements OnInit {
     constructor(private route: ActivatedRoute){}
 
     ngOnInit(): void {
-        this.nomPatient = this.route.snapshot.queryParams['nom'];
+        this.idPatient = this.route.snapshot.queryParams['id'];
         this.nomQuiz = this.route.snapshot.queryParams['quiz'];
-        console.log(this.nomPatient);
+        console.log(this.idPatient);
         console.log(this.nomQuiz);
     }
 
     @Input()
-    nomPatient: string = "";
+    idPatient: number = -1;
 
     @Input()
     nomQuiz: string = "";
