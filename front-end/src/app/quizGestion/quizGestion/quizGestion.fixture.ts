@@ -2,25 +2,25 @@ import { E2EComponentFixture } from "e2e/e2e-component.fixture";
 
 export class QuizGestionFixture extends E2EComponentFixture {
   // Create Quiz + Add Theme
-   getAddQuizButton() {
+  getAddQuizButton() {
     return this.page.getByRole('button', { name: 'Ajouter le Quiz' });
-   }
+  }
 
-   getAddThemeButton() {
+  getAddThemeButton() {
     return this.page.getByRole('button', { name: 'Ajouter le thème' });
-   }
+  }
 
-   getInputTitle() {
+  getInputTitle() {
     return this.page.getByTestId('name');//Récupération de l'élément via le test id
-   }
+  }
 
-   getSelectTheme(){
+  getSelectTheme(){
     return this.page.getByTestId('themeSelector');
-   }
+  }
 
-   getInputTheme() {
+  getInputTheme() {
     return this.page.getByTestId('theme'); 
-   }
+  }
 
   clickAddQuizButton() {
     return this.getAddQuizButton().click();
@@ -40,7 +40,6 @@ export class QuizGestionFixture extends E2EComponentFixture {
   }
 
   getNumberListQuiz(){
-    const selector = `app-viewQuiz`;
     return this.page.getByTestId('quiz').count();
   }
 
@@ -61,11 +60,10 @@ export class QuizGestionFixture extends E2EComponentFixture {
   }
 
   getReturnButton() {
-    return this.page.getByText('Retour');
+    return this.page.getByRole('button', { name: 'Retour page principale' });
   }
 
   clickReturnButton() {
     return this.getReturnButton().click();
   }
-
 }

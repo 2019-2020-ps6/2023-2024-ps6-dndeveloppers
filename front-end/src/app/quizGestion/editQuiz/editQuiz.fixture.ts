@@ -9,7 +9,7 @@ export class QuizEditionFixture extends E2EComponentFixture {
     }
 
     getAnswer(number: number) {
-        return this.page.getByPlaceholder('Réponse '+number)
+        return this.page.getByPlaceholder('Réponse '+number);
     }
 
     getAnswerValidity(number: number) {
@@ -19,14 +19,6 @@ export class QuizEditionFixture extends E2EComponentFixture {
     getHint(number: number) {
         return this.page.getByPlaceholder('Indice '+number);
     }
-
-    //getPictureButton() {
-    //    return this.page.getByLabel('Photo :');
-    //}
-    //
-    //clickPictureButton() {
-    //    return this.getPictureButton().click();
-    //}
 
     getQuestionIfPictureUnauthorised() {
         return this.page.getByTestId('photoTexte');
@@ -61,7 +53,7 @@ export class QuizEditionFixture extends E2EComponentFixture {
     //Ajouteur de thème
 
     getTheme() {
-        return this.page.getByTestId('theme')
+        return this.page.getByTestId('theme');
     }
 
     getAddThemeButton() {

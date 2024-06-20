@@ -41,10 +41,10 @@ export class StatsGlobalesComponent implements OnInit {
     numberPatient(profilList: Profil[]) {
         let res = 0;
         for (let i=0; i<profilList.length; i++) {
-          if (profilList[i].role == "patient") {
-            res++;
-          }
+            if (profilList[i].role == "patient") {
+                res++;
+            }
         }
         return res;
-      }
+    }
 }

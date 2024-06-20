@@ -23,11 +23,10 @@ export class ListQuizComponent implements OnInit {
   public helpWanted: boolean = false;
   public optionIndice: boolean | undefined;
 
-
   public messageEcrit: String = '';
   public motDePasse: String = 'admin';
 
-  constructor(public profilService: ProfilService, public quizService: QuizService, private router: Router) {
+  constructor(private router: Router, public profilService: ProfilService, public quizService: QuizService) {
     this.quizService.quizzes$.subscribe((quizList) => {
       this.quizList = quizList;
     });

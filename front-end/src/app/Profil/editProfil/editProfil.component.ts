@@ -25,9 +25,9 @@ export class EditProfilComponent implements OnInit {
 
     public initialMonth: String = 'janvier';
 
-    photo : string = "";
+    public photo : string = "";
 
-    constructor(public formBuilder: FormBuilder,public profilService: ProfilService, public router: Router){
+    constructor(public router: Router, public formBuilder: FormBuilder, public profilService: ProfilService){
         this.profilService.actualEditingProfil$.subscribe((profilEditing) => {
             this.profilEditing = profilEditing;
             this.profilInital = profilEditing;
@@ -70,7 +70,7 @@ export class EditProfilComponent implements OnInit {
         if(this.profilEditing?.dateNaissance?.[1] != undefined){
             return this.MonthList[this.profilEditing?.dateNaissance?.[1]-1];
         }
-        return 'janvier'
+        return 'janvier';
     }
 
     async updateProfil(){
@@ -87,7 +87,7 @@ export class EditProfilComponent implements OnInit {
             ];
         }
         else {
-            profilToCreate.dateNaissance = [0,0,0]
+            profilToCreate.dateNaissance = [0,0,0];
         }
 
         if(this.profilForm.value.photo != undefined){
@@ -138,9 +138,9 @@ export class EditProfilComponent implements OnInit {
             return ;
         }
         this.photo = event;
-        console.log(event.length)
-        console.log(this.photo.length)
-      }
+        console.log(event.length);
+        console.log(this.photo.length);
+    }
 
     
     async createFile(){
@@ -150,7 +150,7 @@ export class EditProfilComponent implements OnInit {
             type: 'image/png'
         };
         let file = new File([data], "test.jpg", metadata);
-        return file
+        return file;
     }
 
     unicity(event: any) {

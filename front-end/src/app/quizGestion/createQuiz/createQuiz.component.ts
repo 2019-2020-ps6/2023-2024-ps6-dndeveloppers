@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
 import { QuizService } from '../../../services/quiz.service';
 import { Quiz } from '../../../models/quiz.model';
 import { STATS_INIT } from 'src/mocks/statsMocks/stats-quiz.mock';
@@ -11,10 +10,11 @@ import { STATS_INIT } from 'src/mocks/statsMocks/stats-quiz.mock';
   styleUrls: ['./createQuiz.component.scss']
 })
 export class CreateQuizComponent implements OnInit {
-  public quizForm: FormGroup;
-  public themeList: String[] = []
 
-  constructor(private router: Router, public formBuilder: FormBuilder, public quizService: QuizService) {
+  public quizForm: FormGroup;
+  public themeList: String[] = [];
+
+  constructor(public formBuilder: FormBuilder, public quizService: QuizService) {
     this.quizForm = this.formBuilder.group({
       name: [''],
       theme: [''],
@@ -23,11 +23,9 @@ export class CreateQuizComponent implements OnInit {
     this.quizService.themeList$.subscribe((themeList) => {
       this.themeList = themeList;
     });
-
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   addQuiz() {
     const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
@@ -38,7 +36,5 @@ export class CreateQuizComponent implements OnInit {
     console.log('Editing new quiz');
     this.quizService.addQuiz(quizToCreate);
     this.quizForm.reset();
-    //this.quizService.editingQuiz(quizToCreate);
-    //this.router.navigate(['home/gestionQuiz/editQuiz/' + quizToCreate.name]);
   }
 }

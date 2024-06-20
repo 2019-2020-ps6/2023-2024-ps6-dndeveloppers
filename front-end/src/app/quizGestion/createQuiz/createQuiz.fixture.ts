@@ -1,25 +1,26 @@
 import { E2EComponentFixture } from "e2e/e2e-component.fixture";
 
 export class CreateQuizFixture extends E2EComponentFixture {
-   getAjoutQuizButton() {
+
+  getAjoutQuizButton() {
     return this.page.getByRole('button', { name: 'Ajouter le Quiz' });
-   }
+  }
 
-   getAjoutThemeButton() {
+  getAjoutThemeButton() {
     return this.page.getByRole('button', { name: 'Ajouter le thème' });
-   }
+  }
 
-   getInputTitle() {
+  getInputTitle() {
     return this.page.getByTestId('name');//Récupération de l'élément via le test id
-   }
+  }
 
-   getSelectTheme(){
+  getSelectTheme(){
     return this.page.getByTestId('themeSelector');
-   }
+  }
 
-   getInputTheme() {
+  getInputTheme() {
     return this.page.getByTestId('theme'); 
-   }
+  }
 
   clickAjoutQuizButton() {
     return this.getAjoutQuizButton().click();

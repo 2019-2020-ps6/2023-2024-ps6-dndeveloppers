@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { ADMIN } from "src/mocks/profil.mock";
 import { Profil } from "src/models/profil.model";
 import { ProfilService } from "src/services/profil.service";
@@ -12,19 +12,17 @@ import { ProfilService } from "src/services/profil.service";
 
 export class ViewProfilComponent implements OnInit {
 
+    public worstQuiz = "";
+
+    constructor(private router: Router, public profilService: ProfilService) {}//, public statsPatient: StatsPatientComponent, public statsQuiz: StatsQuizComponent){}
+
+    ngOnInit(): void {}
+
     @Input()
     typeView: String = "list"; // full = afficher entièrement le profil | list = afficher comme dans la listProfil (nom/prénom/photo) | play = pour choisir un joueur dans home
 
     @Input()
     profil: Profil = ADMIN;
-
-    public worstQuiz = "";
-
-    constructor(private route: ActivatedRoute, private router: Router, public profilService: ProfilService) {}//, public statsPatient: StatsPatientComponent, public statsQuiz: StatsQuizComponent){}
-
-    ngOnInit(): void {}
-
-   
 
     selectProfil(profil:Profil){
         this.profilService.selectProfil(profil);
@@ -53,7 +51,7 @@ export class ViewProfilComponent implements OnInit {
                 return true;
             }
         }
-        return false
+        return false;
     }
 
     getWorstQuiz(profil: Profil) {
@@ -74,5 +72,4 @@ export class ViewProfilComponent implements OnInit {
             }
         });
     }
-    
 }

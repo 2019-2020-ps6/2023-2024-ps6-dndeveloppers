@@ -1,9 +1,9 @@
 <div class="card">
-    <h2>Ajouter un thème</h2>
-    <form [formGroup]="themeForm">
-      <label for="title"> Nouveau thème : <br>
-        <input class="input-custom" type="text" data-testid="theme" id="theme" [formControlName]="'theme'" required>
-      </label><br/>
-      <button class="BoutonAddTheme" type="submit" [disabled]="!themeForm.valid" (click)="addTheme()">Ajouter le thème</button>
-    </form>
-  </div>
+  <h2>Ajouter un thème</h2>
+  <form [formGroup]="themeForm">
+    <label for="title"> Nouveau thème : <br>
+      <input class="input-custom" type="text" data-testid="theme" id="theme" [formControlName]="'theme'" required>
+    </label><br/>
+    <button class="BoutonAddTheme" type="submit" [disabled]="!themeForm.valid" (click)="addTheme()">Ajouter le thème</button>
+  </form>
+</div>

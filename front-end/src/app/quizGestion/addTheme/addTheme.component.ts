@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { QuizService } from "src/services/quiz.service";
 
@@ -10,12 +10,13 @@ import { QuizService } from "src/services/quiz.service";
 })
 
 export class AddThemeComponent implements OnInit {
+
     public themeForm: FormGroup;
   
     constructor(public formBuilder: FormBuilder, public quizService: QuizService){
         this.themeForm = this.formBuilder.group({
             theme: ['']
-          });  
+        });  
     }
 
     ngOnInit(): void {}
@@ -23,5 +24,5 @@ export class AddThemeComponent implements OnInit {
     addTheme(){
         this.quizService.addTheme(this.themeForm.value.theme);
         this.themeForm.reset();
-      }
+    }
 }

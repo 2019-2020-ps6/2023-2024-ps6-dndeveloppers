@@ -8,11 +8,11 @@ import { Answer } from "src/models/question.models";
 })
 
 export class ReponseComponent implements OnInit {
-    constructor(){
-    }
+
+    constructor(){}
+
+    ngOnInit(): void {}
 
     @Input()
     reponse: Answer | undefined;
-
-    ngOnInit(): void {}
 }

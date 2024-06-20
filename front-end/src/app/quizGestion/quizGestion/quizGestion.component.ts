@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Quiz } from "src/models/quiz.model";
 import { QuizService } from "src/services/quiz.service";
 

@@ -57,7 +57,7 @@ export class StatsQuizComponent implements OnInit {
         })
 
         this.quizService.quizzes$.subscribe( (quizzes) => {
-            this.listeQuiz = quizzes
+            this.listeQuiz = quizzes;
         })
     }
 
@@ -122,7 +122,7 @@ export class StatsQuizComponent implements OnInit {
             data.push(Math.round(this.actualQuiz.selfStats.successPercentageByQuestion[i]*100));
         }
         console.log(data);
-        return data
+        return data;
     }
 
     goToEdit() {
@@ -133,6 +133,6 @@ export class StatsQuizComponent implements OnInit {
             }
         }
         this.quizService.editingQuiz(quiz);
-        this.router.navigate(['home/gestionQuiz/editQuiz/' + this.actualQuizName])
+        this.router.navigate(['home/gestionQuiz/editQuiz/' + this.actualQuizName]);
     }
 }

@@ -25,15 +25,15 @@ export class ListProfilFixture extends E2EComponentFixture {
     }
 
     supprimerLeProfil() {
-        return this.page.getByRole('heading', { name: 'Nom : ROQUES Prénom: Maxence Afficher Modifier Supprimer' }).getByRole('button', { name: 'Supprimer' })
+        return this.page.getByRole('heading', { name: 'Nom : ROQUES Prénom: Maxence Afficher Modifier Supprimer' }).getByRole('button', { name: 'Supprimer' });
     }
 
     editerLeProfil() {
-        return this.page.getByRole('heading', { name: 'Nom : Heilmann Prénom: Hugo Afficher Modifier Supprimer' }).getByRole('button', { name: 'Modifier' })
+        return this.page.getByRole('heading', { name: 'Nom : Heilmann Prénom: Hugo Afficher Modifier Supprimer' }).getByRole('button', { name: 'Modifier' });
     }
 
     afficherLeProfil() {
-        return this.page.getByRole('heading', { name: 'Nom : Heilmann Prénom: Hugo Afficher Modifier Supprimer' }).getByRole('button', { name: 'Afficher' })
+        return this.page.getByRole('heading', { name: 'Nom : Heilmann Prénom: Hugo Afficher Modifier Supprimer' }).getByRole('button', { name: 'Afficher' });
     }
 
     getFermerProfilButton() {
@@ -49,6 +49,4 @@ export class ListProfilFixture extends E2EComponentFixture {
     getJouerButton() {
         return this.page.getByRole('button', { name: 'Jouer' });
     }
-
-    
 }

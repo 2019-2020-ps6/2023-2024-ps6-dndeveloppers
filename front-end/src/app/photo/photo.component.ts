@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-submitPicture',
@@ -7,17 +6,16 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./photo.component.scss']
 })
 export class SubMitPhoto implements OnInit{
-  title = 'fileUpload';
-  images : any;
-  multipleImages = [];
+  
+  public title: string = 'fileUpload';
+  public images: any;
+  public multipleImages: any[] = [];
 
-  //src: string | undefined;
-  ok: boolean = false;
+  public ok: boolean = false;
 
   constructor(){}
 
-  ngOnInit(){
-  }
+  ngOnInit(){}
 
   @Input() 
   src: string | undefined;

@@ -21,9 +21,8 @@ export class ProfilService {
     public actualProfil$: BehaviorSubject<Profil> = new BehaviorSubject(this.actualProfil);
     public actualEditingProfil$: BehaviorSubject<Profil> = new BehaviorSubject(this.actualEditingProfil);
 
-    constructor(public quizService: QuizService, private http: HttpClient) {
+    constructor(private http: HttpClient, public quizService: QuizService) {
         this.retrievesProfils();
-        
     }
 
     retrievesProfils(): void {
@@ -36,7 +35,6 @@ export class ProfilService {
                         minIndex = j;
                     }
                 }
-    
                 if (minIndex != i) {
                     const tmp = this.profilList[i];
                     this.profilList[i] = this.profilList[minIndex];
@@ -44,7 +42,6 @@ export class ProfilService {
                 }
             }
             this.profilList$.next(this.profilList);
-            console.log(this.profilList);
         })
     }
 
@@ -56,7 +53,7 @@ export class ProfilService {
         console.log("Le profil : " ,profil.id, " a été supprimé");
         const urlWithId = this.profilUrl + '/:' + profil.id;
         this.http.delete<Profil>(urlWithId, this.httpOptions).subscribe(() => this.retrievesProfils());
-      }
+    }
 
     selectProfil(profil: Profil) {
         this.quizService.selectProfil(profil);

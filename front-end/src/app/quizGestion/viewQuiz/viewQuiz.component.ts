@@ -12,18 +12,16 @@ import { QuizService } from "src/services/quiz.service";
 
 export class ViewQuizComponent implements OnInit {
 
-    constructor(public quizService:QuizService, private router: Router){
-    }
+    constructor(private router: Router, public quizService:QuizService) {}
+
+    ngOnInit(): void {}
 
     @Input()
     quiz : Quiz = QUIZ_LIST[0];
 
-    ngOnInit(): void {}
-
     editQuiz(quiz: Quiz){
         this.quizService.editingQuiz(quiz);
         this.router.navigate(['home/gestionQuiz/editQuiz/' + quiz.name]);
-        
     }
 
     deleteQuiz(quiz: Quiz){

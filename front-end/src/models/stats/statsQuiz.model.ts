@@ -1,5 +1,3 @@
-import { Profil } from "../profil.model";
-
 export interface statsQuiz {
     playedTime: number,
     meanScore: number,

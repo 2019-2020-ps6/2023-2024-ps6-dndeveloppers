@@ -41,12 +41,12 @@ export class QuizService {
 
   public themeList$: BehaviorSubject<String[]> = new BehaviorSubject(this.themeList);
   public editedQuiz$ : BehaviorSubject<Quiz> = new BehaviorSubject(this.editedQuiz);
+
+  public infoQuiz$: BehaviorSubject<InfoQuiz> = new BehaviorSubject(this.infoQuiz);
   public disableHintHelp$: BehaviorSubject<boolean> = new BehaviorSubject(this.disableHintHelp);
   public showHint$: BehaviorSubject<boolean[]> = new BehaviorSubject(this.showHint);
 
-  public infoQuiz$: BehaviorSubject<InfoQuiz> = new BehaviorSubject(this.infoQuiz);
-
-  constructor(public statsService: StatsService, private http: HttpClient) {
+  constructor(private http: HttpClient, public statsService: StatsService) {
     this.retrievesQuiz();
   }
 
@@ -76,8 +76,8 @@ export class QuizService {
   // ---------- Méthodes Appel Back ----------
 
   addQuiz(quiz: Quiz){
-    this.http.post<Quiz>(this.quizURL, quiz, this.httpOptions).subscribe(() => {this.retrievesQuiz(); //this.editingQuiz(quiz)
-
+    this.http.post<Quiz>(this.quizURL, quiz, this.httpOptions).subscribe(() => {
+      this.retrievesQuiz(); //this.editingQuiz(quiz)
     });
   }
 
@@ -118,14 +118,6 @@ export class QuizService {
     }
   }
 
-  getQuizzes(quiz: Quiz){
-    for(let i=0;i<this.quizzes.length;i++){
-      if(this.quizzes[i].name==quiz.name){
-        console.log("Quiz sélectionné : ",this.quizzes[i].name);
-      }
-    }
-  }
-
   // --------------- Méthodes pour jouer un quiz ---------------
 
   resetInfoQuiz(){
@@ -144,10 +136,6 @@ export class QuizService {
     this.infoQuiz$.next(this.infoQuiz);
   }
 
-  dontShowTutoriel() {
-    this.actualProfil.tutoriel = false;
-  }
-
   getActualQuestion(){
     return this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber];
   }
@@ -155,12 +143,12 @@ export class QuizService {
   // return the number of hint in the current Question 
   getActualQuestionNumberHint(){
     let indiceQuestion = 0;
-      for (let i=0; i<this.getActualQuestion().indice.length; i++) {
-        if (this.getActualQuestion().indice[i].value.length > 1) {
-          indiceQuestion++;
-        }
+    for (let i=0; i<this.getActualQuestion().indice.length; i++) {
+      if (this.getActualQuestion().indice[i].value.length > 1) {
+        indiceQuestion++;
       }
-      return indiceQuestion;
+    }
+    return indiceQuestion;
   }
 
   // return boolean if we need to show the good answer, if yes reset the value to false
@@ -170,11 +158,10 @@ export class QuizService {
       this.infoQuiz.showGoodAnswer = false;
       this.updateInfoQuiz();
     }
-    return choice
+    return choice;
   }
 
   disablingHintAndHelp(bool: boolean) {
-    //console.log("disability called");
     this.disableHintHelp = bool;
     this.disableHintHelp$.next(this.disableHintHelp);
   }
@@ -196,7 +183,6 @@ export class QuizService {
         this.updateInfoQuiz(); 
         this.hideResponse();
         console.log("cache une réponse");
-        
       } 
       // troisième cas : rien
       else {
@@ -526,7 +512,7 @@ export class QuizService {
 
   editingQuiz(quiz: Quiz){
     this.editedQuiz = quiz;
-    this.editedQuiz.id = quiz.id
+    this.editedQuiz.id = quiz.id;
     this.editedQuiz$.next(this.editedQuiz);
     console.log("edition : ",quiz);
   }
@@ -573,4 +559,3 @@ export class QuizService {
     this.addQuiz(quiz);
   }
 }
-

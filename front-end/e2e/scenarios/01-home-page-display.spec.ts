@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { HomeFixture } from 'src/app/home/home.fixture';
 import { testUrl } from 'e2e/e2e.config';
-import { AppFixture } from 'src/app/app.fixture';
 
 // https://playwright.dev/docs/locators
 test.describe('Home page display', () => {
@@ -16,20 +15,23 @@ test.describe('Home page display', () => {
     const buttonQuiz = await homeFixture.getQuizButton();
     const buttonProfil = await homeFixture.getProfilButton();
     const buttonStats = await homeFixture.getStatsButton();
+    const adminInfo = await page.getByText('Ecrire \'admin\' pour revenir ici lorsqu\'un patient joue à un quiz !!!');
+    const inputQuiz = await homeFixture.getSearchBar();
 
     expect(buttonPlay).toBeVisible();
     expect(buttonQuiz).toBeVisible();
     expect(buttonProfil).toBeVisible();
     expect(buttonStats).toBeVisible();
+    expect(adminInfo).not.toBeVisible();
+    expect(inputQuiz).not.toBeVisible();
 
     await homeFixture.clickPlayButton();
+    expect(adminInfo).toBeVisible();
+    expect(inputQuiz).toBeVisible();
     
-
-    const inputQuiz = await homeFixture.getSearchBar();
-    await expect(inputQuiz).toBeEmpty();
-    //inputQuiz.focus();
+    expect(inputQuiz).toBeEmpty();
     await inputQuiz.fill('a');
-    await expect(inputQuiz).toHaveValue('a');
+    expect(inputQuiz).toHaveValue('a');
   });
 
   // TO GO FURTHER :

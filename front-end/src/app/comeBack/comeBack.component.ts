@@ -13,13 +13,10 @@ import { QuizService } from "src/services/quiz.service";
 
 export class ComeBackComponent implements OnInit {
 
-    @Input()
-    destination: String | undefined;
-
     public message: String = "";
     public path: String = "";
     
-    constructor(public router: Router, public quizService: QuizService, public profilService: ProfilService){}
+    constructor(private router: Router, public quizService: QuizService, public profilService: ProfilService){}
 
     ngOnInit(): void {
         switch(this.destination){
@@ -39,13 +36,14 @@ export class ComeBackComponent implements OnInit {
         }
     }
 
+    @Input()
+    destination: String | undefined;
+
     return(){
         if (this.path == "home/") {
              let admin: Profil = this.profilService.profilList$.value.at(0) || ADMIN;
             this.profilService.selectProfil(admin);
-        }
-        
-        else if(this.path == "home/listQuiz/"){
+        } else if(this.path == "home/listQuiz/"){
             if(this.quizService.infoQuiz$.value.endOfQuiz){
                 this.quizService.resetInfoQuiz();
             }

@@ -5,7 +5,6 @@ import { Answer_Model } from "src/mocks/quiz-list.mock";
 import { Answer, Question } from "src/models/question.models";
 import { QuizService } from "src/services/quiz.service";
 
-
 @Component({
     selector: 'app-addQuestion',
     templateUrl: './addQuestion.component.html',
@@ -17,8 +16,7 @@ export class AddQuestionComponent implements OnInit {
     public questionForm : FormGroup;
 
     public indicesNum: boolean[] = [true, true, true];
-    photo : string = "";
-
+    public photo : string = "";
 
     constructor(public formBuilder: FormBuilder, public quizService: QuizService){
         this.questionForm = this.formBuilder.group({
@@ -35,19 +33,16 @@ export class AddQuestionComponent implements OnInit {
         });
     }
 
-    @Input()
-    nbIndice: boolean[] = this.indicesNum;
-
     ngOnInit(): void {
-        //console.log("good answer : ",this.questionForm.value.goodAnswer)
-
         const firstCheckbox = document.getElementById("r1") as HTMLInputElement;
         firstCheckbox.checked = true;
         this.questionForm.patchValue({
             goodAnswer: 0
         })
-        //console.log("good answer : ",this.questionForm.value.goodAnswer)
     }
+
+    @Input()
+    nbIndice: boolean[] = this.indicesNum;
 
     addQuestion(){
         let question : Question = JSON.parse(JSON.stringify(Question_Model));       
@@ -140,7 +135,7 @@ export class AddQuestionComponent implements OnInit {
             return ;
         }
         this.photo = event;
-        console.log(event.length)
-        console.log(this.photo.length)
+        console.log(event.length);
+        console.log(this.photo.length);
     }
 }

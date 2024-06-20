@@ -1,10 +1,8 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { QuizService } from "src/services/quiz.service";
 import { Quiz } from "src/models/quiz.model";
 import { QUIZ_LIST } from "src/mocks/quiz-list.mock";
-import { Router } from "@angular/router";
 import { ProfilService } from "src/services/profil.service";
-
 import { ADMIN } from "src/mocks/profil.mock";
 import { Profil } from "src/models/profil.model";
 import { InfoQuiz } from "src/models/infoQuiz.model";
@@ -17,6 +15,7 @@ import { infoQuiz_INIT } from "src/mocks/infoQuiz.mock";
 })
 
 export class QuizComponent implements OnInit {
+
     public infoQuiz: InfoQuiz = infoQuiz_INIT;
     public showHint: boolean[] = [false, false, false];
     public choosenQuiz: Quiz = QUIZ_LIST[0];
@@ -29,10 +28,9 @@ export class QuizComponent implements OnInit {
     public oui: String = "Revenir";
     public non: String = "Recommencer";
 
-    constructor(public quizService: QuizService, public router: Router, public profilService: ProfilService){
+    constructor(public quizService: QuizService, public profilService: ProfilService){
         this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
             this.choosenQuiz = choosenQuiz;
-            
         })
 
         this.quizService.infoQuiz$.subscribe((infoQuiz)=>{

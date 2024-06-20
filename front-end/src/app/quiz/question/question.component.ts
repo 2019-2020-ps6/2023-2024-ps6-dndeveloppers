@@ -7,13 +7,7 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 
 export class QuestionComponent implements OnInit {
-    @Input()
-    question: string | undefined;
 
-    @Input()
-    photo: string | undefined;
-
-    
     public texte : string = '';
 
     constructor(){
@@ -22,6 +16,11 @@ export class QuestionComponent implements OnInit {
         }
     }
     
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
+
+    @Input()
+    question: string | undefined;
+
+    @Input()
+    photo: string | undefined;
 }

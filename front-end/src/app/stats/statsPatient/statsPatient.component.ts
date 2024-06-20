@@ -170,7 +170,6 @@ export class StatsPatientComponent implements OnInit {
                 name: name,
                 data: data
             }
-            
             this.options.series.push(tab);
         }
         console.log(this.options.series);

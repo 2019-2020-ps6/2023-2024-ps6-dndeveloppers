@@ -40,8 +40,7 @@ test.describe('Home page display', () => {
         await quizGestionFixture.clickAddQuizButton();
         expect(addQuizButton).toBeDisabled();
 
-        //await quizGestionFixture.clickReturnButton();
-
+        // On va pour modifier le nouveau quiz
         await quizGestionFixture.clickEditButton('Instruments');
     });
 

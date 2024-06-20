@@ -1,16 +1,17 @@
 import { E2EComponentFixture } from "e2e/e2e-component.fixture";
 
 export class CreateProfilFixture extends E2EComponentFixture {
+
     getNomInput() {
-        return this.page.locator('#infomationGenerales #nom')
+        return this.page.locator('#infomationGenerales #nom');
     }
 
     getPrenomInput() {
-        return this.page.locator('#infomationGenerales #prenom')
+        return this.page.locator('#infomationGenerales #prenom');
     }
 
     getRoleInput() {
-        return this.page.locator('#infomationGenerales #role')
+        return this.page.locator('#infomationGenerales #role');
     }
 
     getJourInput() {
@@ -42,7 +43,7 @@ export class CreateProfilFixture extends E2EComponentFixture {
     }
 
     getOptionTemps(){
-        return this.page.getByLabel('Temps d\'affichage de la bonne réponse :')
+        return this.page.getByLabel('Temps d\'affichage de la bonne réponse :');
     }
 
     getOptionSkip(){
@@ -50,7 +51,7 @@ export class CreateProfilFixture extends E2EComponentFixture {
     }
 
     getOptionTaille(){
-        return this.page.getByRole('combobox', { name: 'Taille du texte : Exemple' })
+        return this.page.getByRole('combobox', { name: 'Taille du texte : Exemple' });
     }
 
     getAjouterLeProfil() {
@@ -64,7 +65,7 @@ export class CreateProfilFixture extends E2EComponentFixture {
     }
     
     getAjouterImage() {
-        return this.page.locator('input[type="file"]')
+        return this.page.locator('input[type="file"]');
     }
 
     getRetourButton() {
@@ -76,5 +77,4 @@ export class CreateProfilFixture extends E2EComponentFixture {
         await button.scrollIntoViewIfNeeded();
         await button.click({ force: true });
     }
-
 }

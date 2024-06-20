@@ -16,9 +16,7 @@ export class IndiceComponent implements OnInit {
             this.notDisabled = disability;
         })
     }
-
-    @Input()
-
+    
     ngOnInit(): void {}
 
     hintAsked() {

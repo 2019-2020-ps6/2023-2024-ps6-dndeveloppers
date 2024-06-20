@@ -6,7 +6,6 @@ import { QuestionComponent } from './quiz/question/question.component';
 import { ReponseComponent } from './quiz/reponse/reponse.component';
 import { ListReponsesComponent } from './quiz/list-reponses/list-reponses.component';
 import { QuizComponent } from './quiz/quiz/quiz.component';
-import { CreateQuizComponent } from './quizGestion/createQuiz/createQuiz.component';
 import { ListQuizComponent } from './listQuiz/listQuiz.component';
 import { ChoixQuizComponent } from './quiz/choixQuiz/choixQuiz.component';
 import { HomeComponent } from './home/home.component';
@@ -50,10 +49,8 @@ const routes: Routes = [
   {path: '**', redirectTo: 'home', pathMatch: 'full'}
 ];
 
-
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

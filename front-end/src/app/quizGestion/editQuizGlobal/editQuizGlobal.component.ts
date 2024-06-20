@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Quiz } from "src/models/quiz.model";
 import { QuizService } from "src/services/quiz.service";
@@ -14,7 +14,7 @@ export class EditQuizGlobalComponent implements OnInit {
     public quizGlobalForm : FormGroup;
     public editQuiz: Quiz | undefined;
     public themeList : String[] = [];
-    photo : string = "";
+    public photo : string = "";
 
     constructor(public quizService: QuizService, public formBuilder: FormBuilder,){
         this.quizService.editedQuiz$.subscribe( (editQuiz) => {
@@ -44,7 +44,7 @@ export class EditQuizGlobalComponent implements OnInit {
         else {
             valeurs.push("none");
         }
-        console.log("valeurs : ",valeurs)
+        console.log("valeurs : ",valeurs);
         this.quizService.editGlobalQuiz(valeurs);
     }
 
@@ -54,7 +54,7 @@ export class EditQuizGlobalComponent implements OnInit {
             return ;
         }
         this.photo = event;
-        console.log(event.length)
-        console.log(this.photo.length)
+        console.log(event.length);
+        console.log(this.photo.length);
     }
 }

@@ -8,8 +8,6 @@ import { ProfilService } from "src/services/profil.service";
 })
 
 export class TexteAdaptatifComponent implements OnInit {
-    @Input()
-    texte : String = '';
 
     public taille : number | undefined;
     public  fontSize : string | undefined;
@@ -30,4 +28,7 @@ export class TexteAdaptatifComponent implements OnInit {
     }
 
     ngOnInit(): void {}
+
+    @Input()
+    texte : String = '';
 }

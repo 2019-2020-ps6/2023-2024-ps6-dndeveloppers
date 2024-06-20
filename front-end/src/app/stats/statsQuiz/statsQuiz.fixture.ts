@@ -1,5 +1,4 @@
 import { E2EComponentFixture } from "e2e/e2e-component.fixture";
-import { Quiz } from "src/models/quiz.model";
 
 export class StatsQuizFixture extends E2EComponentFixture {
 

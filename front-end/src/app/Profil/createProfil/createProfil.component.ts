@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from "@angular/router";
 import { PROFIL_NULL } from "src/mocks/profil.mock";
 import { STATS_PATIENT_INIT } from "src/mocks/statsMocks/stats-patient.mock";
-
 import { Profil } from "src/models/profil.model";
 import { ProfilService } from "src/services/profil.service";
 
@@ -20,10 +19,9 @@ export class CreateProfilComponent implements OnInit {
     public DayList: Number[] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
     public MonthList: String[] = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
     public FontSizeList: String[] = ['Petit', 'Moyen', 'Grand'];
-    
-    photo : string = "";
+    public photo : string = "";
 
-    constructor(public formBuilder: FormBuilder, public profilService: ProfilService, private router: Router){
+    constructor(private router: Router, public formBuilder: FormBuilder, public profilService: ProfilService){
         this.profilForm = this.formBuilder.group({
             nom: [''],
             prenom: [''],
@@ -62,7 +60,7 @@ export class CreateProfilComponent implements OnInit {
             ];
         }
         else {
-            profilToCreate.dateNaissance = [0,0,0]
+            profilToCreate.dateNaissance = [0,0,0];
         }
 
         profilToCreate.selfStats = JSON.parse(JSON.stringify(STATS_PATIENT_INIT));
@@ -117,8 +115,8 @@ export class CreateProfilComponent implements OnInit {
             return ;
         }
         this.photo = event;
-        console.log(event.length)
-        console.log(this.photo.length)
+        console.log(event.length);
+        console.log(this.photo.length);
     }
 
     async createFile(){
@@ -128,7 +126,7 @@ export class CreateProfilComponent implements OnInit {
           type: 'image/png'
         };
         let file = new File([data], "test.jpg", metadata);
-        return file
+        return file;
     }
 
     unicity(event: any) {

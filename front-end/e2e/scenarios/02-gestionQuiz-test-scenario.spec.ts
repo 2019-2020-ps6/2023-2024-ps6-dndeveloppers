@@ -7,14 +7,23 @@ test.describe('Home page display', () => {
   test('Basic test', async ({ page }) => {
     await page.goto(testUrl + "/home/gestionQuiz");
     const quizGestionFixture = new QuizGestionFixture(page);
+
+    await test.step("Test de la navigation", async () => {
+      expect(page.url()).toBe(testUrl + '/home/gestionQuiz');
+      await quizGestionFixture.clickReturnButton();
+      expect(page.url()).toBe(testUrl + '/home');
+      await page.goto(testUrl + '/home/gestionQuiz');
+    });
     
     await test.step("Récupération des boutons", async () =>{
         const buttonAddQuiz = await quizGestionFixture.getAddQuizButton();
         const buttonAddTheme = await quizGestionFixture.getAddThemeButton();
+        const returnButton = await quizGestionFixture.getReturnButton();
 
         //On vérifie que les éléments sont visibles
         expect(buttonAddQuiz).toBeVisible();
         expect(buttonAddTheme).toBeVisible();
+        expect(returnButton).toBeVisible();
     });
 
     await test.step("Ajout d'un thème", async () =>{

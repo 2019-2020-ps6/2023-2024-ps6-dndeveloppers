@@ -9,10 +9,10 @@ import { ProfilService } from "src/services/profil.service";
 })
 
 export class ListProfilComponent implements OnInit {
-    profilList: Profil[] = [];
+
+    public profilList: Profil[] = [];
     public searchTermPatient: string = '';
     public searchTermPersonnel: string = '';
-
 
     constructor(public profilService: ProfilService){
         this.profilService.profilList$.subscribe((profilList) => {

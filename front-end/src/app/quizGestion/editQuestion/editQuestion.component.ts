@@ -23,7 +23,7 @@ export class EditQuestionComponent implements OnInit {
     public targetIndex: number = 0;
     public url: string = window.location.href;
     public quizName: string = "";
-    photo : string = "";
+    public photo : string = "";
 
     constructor(public formBuilder: FormBuilder, public quizService: QuizService){
         this.questionForm = this.formBuilder.group({
@@ -42,9 +42,7 @@ export class EditQuestionComponent implements OnInit {
         });
 
         let URL = this.url.split('/');
-        //console.log("url : ", URL);
         this.quizName = URL[URL.length-1];
-        //console.log("url courante : ", this.quizName);
     }
 
     ngOnInit(): void {
@@ -66,7 +64,6 @@ export class EditQuestionComponent implements OnInit {
             }
            
         }
-        
 
         this.questionForm = this.formBuilder.group({
             label: [this.question?.label],
@@ -102,8 +99,6 @@ export class EditQuestionComponent implements OnInit {
 
     @Input()
     question : Question | undefined;
-    nbIndice: boolean[] = this.indicesNum;
-
 
     findGoodAnswer(){
         for(let i=0;i<4;i++){
@@ -228,7 +223,7 @@ export class EditQuestionComponent implements OnInit {
             return ;
         }
         this.photo = event;
-        console.log(event.length)
-        console.log(this.photo.length)
+        console.log(event.length);
+        console.log(this.photo.length);
     }
 }
