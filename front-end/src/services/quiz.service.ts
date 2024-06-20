@@ -130,6 +130,7 @@ export class QuizService {
 
   resetInfoQuiz(){
     this.infoQuiz = JSON.parse(JSON.stringify(infoQuiz_INIT));
+    this.infoQuiz.questionToReplayBadAnswer = new Map<string, number>();
     this.infoQuiz$.next(this.infoQuiz);
   }
 
@@ -306,7 +307,11 @@ export class QuizService {
     else { // on enregistre la question a reposer et on passe à la suivante
       console.log("faux");
       this.infoQuiz.scoreForEachQuestion.push(0);
-      this.infoQuiz.questionToReplay.push(this.infoQuiz.actualQuestionNumber)
+      this.infoQuiz.questionToReplay.push(this.infoQuiz.actualQuestionNumber);
+      this.infoQuiz.questionToReplayBadAnswer.set(this.infoQuiz.actualQuestionNumber+"",responseNumber);
+
+      let a = {}
+
       this.infoQuiz.displayResponses = [true, true, true, true];
       this.infoQuiz.showGoodAnswer = true;
       this.infoQuiz.nbHintAskedForActualQuestion = 0; // on ne compte pas les indices sur les questions à reposer
