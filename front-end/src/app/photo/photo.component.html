@@ -1,5 +1,5 @@
 <div class="display-input">
-  <label for="image">Photo :</label>
+  <br/><label for="image">Photo :</label><br/>
   <input #inputField type="file" accept="image/*" (change)="valueChanged($any($event.target).files)"/>
   <div (click)="inputField.click()">
       <ng-content />

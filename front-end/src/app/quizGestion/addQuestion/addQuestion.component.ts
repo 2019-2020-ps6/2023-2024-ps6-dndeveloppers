@@ -89,14 +89,14 @@ export class AddQuestionComponent implements OnInit {
             question.indice.push(indice);
         }    
         
-        question.optionImageQuestion = "none";
-        if(this.questionForm.value.photoTexte != undefined){
+        // photo
+        if(this.photo != "" && this.questionForm.value.photoTexte != null && this.questionForm.value.photoTexte != "none" && this.questionForm.value.photoTexte != ""){
+            question.optionImageLien = this.photo,
             question.optionImageQuestion = this.questionForm.value.photoTexte;
         }
-
-        question.optionImageLien = "none";
-        if(this.photo != ""){
-            question.optionImageLien = this.photo;
+        else {
+            question.optionImageLien = "none"
+            question.optionImageQuestion = "none"
         }
 
         console.log("question : ",question)
@@ -135,6 +135,10 @@ export class AddQuestionComponent implements OnInit {
     }
 
     handleEvent(event: string) {
+        if(event == undefined) {
+            this.photo = "";
+            return ;
+        }
         this.photo = event;
         console.log(event.length)
         console.log(this.photo.length)
