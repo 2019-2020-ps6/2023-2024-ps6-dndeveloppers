@@ -9,7 +9,6 @@ import { ProfilService } from "src/services/profil.service";
 import { InfoQuiz } from "src/models/infoQuiz.model";
 import { infoQuiz_INIT } from "src/mocks/infoQuiz.mock";
 
-
 @Component({
     selector: 'app-list-reponses',
     templateUrl: './list-reponses.component.html',
@@ -44,6 +43,12 @@ export class ListReponsesComponent implements OnInit {
         this.quizService.infoQuiz$.subscribe((infoQuiz) => {
             this.infoQuiz = infoQuiz;
             this.actualResponses = this.choosenQuiz.questions[infoQuiz.actualQuestionNumber].answers;
+            const badAnswer = this.infoQuiz.questionToReplayBadAnswer.get(this.infoQuiz.actualQuestionNumber+"");
+            if(badAnswer != undefined){
+                this.infoQuiz.displayResponses[badAnswer] = false;
+                
+            }
+            
         })
 
         this.profilService.actualProfil$.subscribe((actualProfil)=>{

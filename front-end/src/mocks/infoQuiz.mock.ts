@@ -21,4 +21,5 @@ export const infoQuiz_INIT: InfoQuiz = {
     lastQuizPlayed: "",
     askedToRestoreGame: false,
     showHintButton: true,
+    questionToReplayBadAnswer: new Map<string, number>()
 }

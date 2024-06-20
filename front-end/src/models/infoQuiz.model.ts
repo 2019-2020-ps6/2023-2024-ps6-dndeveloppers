@@ -25,11 +25,10 @@ export interface InfoQuiz {
 
     replayQuestion : Boolean, // si true cela veut dire qu'on est dans la phase où on repose les questions 
     questionToReplay : number[], // contient les numéros des questions a reposer,
+    questionToReplayBadAnswer : Map<string,number>, // numéro de la réponse à enlever dans la question à reposer
 
     lastQuizPlayed: String, // nom du dernier quiz joué
     askedToRestoreGame: boolean, // si on a demandé de restaurer la partie
 
     showHintButton: boolean, // affiche le bouton indice
 }
-
-
