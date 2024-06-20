@@ -45,6 +45,7 @@ export class ListQuizComponent implements OnInit {
 
   ngOnInit() {
     this.quizService.setUpTheme();
+    this.desactiverClicDroit();
   }
 
   quizSelected(quiz: Quiz) {
@@ -73,17 +74,6 @@ export class ListQuizComponent implements OnInit {
       }
     }
   }
-  
-  /* filterQuizs() {
-    return this.quizList.filter(quiz => {
-      const matchesSearchTerm = this.searchTerm ? 
-        quiz.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        quiz.theme.toLowerCase().includes(this.searchTerm.toLowerCase()) : true;
-      const matchesTheme = this.selectedTheme ? 
-        quiz.theme === this.selectedTheme : true;
-      return matchesSearchTerm && matchesTheme;
-    });
-  } */
 
   filterQuizsByTheme(theme: String) {
     let res = [];
@@ -125,5 +115,37 @@ export class ListQuizComponent implements OnInit {
 
   stopShowTutoriel(){
     this.helpWanted = false;
+  }
+
+  desactiverClicDroit() {
+    document.oncontextmenu = () => false;
+    console.log("desactivation clic droit");
+  }
+
+  catchClicDroit(event: MouseEvent, action: any) {
+    if (typeof action === 'string') {
+      if (action == 'tuto') {
+        console.log("action tuto");
+        event.preventDefault();
+        event.stopPropagation();
+        this.tutorielWanted();
+      } else if (action == 'notuto') {
+        console.log("action notuto");
+        event.preventDefault();
+        event.stopPropagation();
+        this.stopShowTutoriel();
+      } else if (action == 'selectTheme') {
+        console.log("action select");
+      }
+    } else {
+      console.log("action quiz");
+      console.log("quiz name: ", action.name);
+      for (let i=0; i<this.quizList.length; i++) {
+        if (this.quizList[i].name == action.name) {
+          this.quizSelected(this.quizList[i]);
+          break;
+        }
+      }
+    }
   }
 }

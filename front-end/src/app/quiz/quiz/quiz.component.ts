@@ -65,4 +65,14 @@ export class QuizComponent implements OnInit {
     restartQuiz(){
         this.quizService.resetInfoQuiz();
     }
+
+    catchClicDroit(action: string) {
+        if (action == 'left') {
+            this.restoreQuiz();
+        } else if (action == 'right') {
+            this.restartQuiz();
+        } else {
+            this.skipQuestion();
+        }
+    }
 }

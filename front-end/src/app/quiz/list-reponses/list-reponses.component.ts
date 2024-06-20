@@ -114,4 +114,10 @@ export class ListReponsesComponent implements OnInit {
         this.actualResponses = this.choosenQuiz.questions[this.infoQuiz.actualQuestionNumber].answers;
         console.log(this.actualResponses);
     }
+
+    catchClicDroit(event: any, action: any) {
+        if (typeof action === 'number') {
+            this.responseSelected(action);
+        }
+    }
 }
