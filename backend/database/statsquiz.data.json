@@ -1,75 +1,163 @@
 [
   {
-    "playedTime": 2,
-    "meanScore": 0.75,
-    "meanHintUsed": 0,
+    "playedTime": 8,
+    "meanScore": 0.44583333333333336,
+    "meanHintUsed": 0.25,
     "resTab": [
       1,
-      0.5
+      0.5,
+      1,
+      0.8,
+      0.2,
+      0,
+      0,
+      0.06666666666666668
     ],
     "nbHintUsed": [
       0,
-      0
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2
     ],
     "successPercentageByQuestion": [
-      1,
+      0.625,
+      0.25,
+      0.5,
+      0.5416666666666666,
       0.5
     ],
     "id": 1717364595334.2634
   },
   {
-    "playedTime": 0,
-    "meanScore": 0,
+    "playedTime": 4,
+    "meanScore": 0.8875,
     "meanHintUsed": 0,
-    "resTab": [],
-    "nbHintUsed": [],
-    "successPercentageByQuestion": [],
+    "resTab": [
+      0.75,
+      0.8,
+      1,
+      1
+    ],
+    "nbHintUsed": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "successPercentageByQuestion": [
+      1,
+      0.875,
+      0.75,
+      0.8125,
+      1
+    ],
     "id": 1717364840134.3032
   },
   {
-    "playedTime": 0,
-    "meanScore": 0,
-    "meanHintUsed": 0,
-    "resTab": [],
-    "nbHintUsed": [],
-    "successPercentageByQuestion": [],
+    "playedTime": 5,
+    "meanScore": 0.9833333333333334,
+    "meanHintUsed": 0.2,
+    "resTab": [
+      1,
+      0.9166666666666667,
+      1,
+      1,
+      1
+    ],
+    "nbHintUsed": [
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    "successPercentageByQuestion": [
+      1,
+      1,
+      1,
+      0.9333333333333333
+    ],
     "id": 1717365043113.405
   },
   {
-    "playedTime": 0,
-    "meanScore": 0,
-    "meanHintUsed": 0,
-    "resTab": [],
-    "nbHintUsed": [],
-    "successPercentageByQuestion": [],
+    "playedTime": 5,
+    "meanScore": 0.8133333333333332,
+    "meanHintUsed": 0.4,
+    "resTab": [
+      0.95,
+      0.11666666666666667,
+      1,
+      1,
+      1
+    ],
+    "nbHintUsed": [
+      0,
+      2,
+      0,
+      0,
+      0
+    ],
+    "successPercentageByQuestion": [
+      0.7666666666666667,
+      0.8,
+      0.8,
+      0.8,
+      0.9
+    ],
     "id": 1718721031864.7373
   },
   {
-    "playedTime": 1,
-    "meanScore": 0.2333333333333334,
-    "meanHintUsed": 10,
+    "playedTime": 5,
+    "meanScore": 0.4333333333333333,
+    "meanHintUsed": 2.2,
     "resTab": [
-      0.2333333333333334
+      0.2333333333333334,
+      0.9,
+      0.4333333333333334,
+      0.2,
+      0.4
     ],
     "nbHintUsed": [
-      10
+      10,
+      0,
+      1,
+      0,
+      0
     ],
     "successPercentageByQuestion": [
-      0.33333333333333337,
-      0.33333333333333337,
-      0.08333333333333337,
-      0.08333333333333337,
-      0.33333333333333337
+      0.8166666666666668,
+      0.4666666666666667,
+      0.2166666666666667,
+      0.2666666666666667,
+      0.4
     ],
     "id": 1718785330212.949
   },
   {
-    "playedTime": 0,
-    "meanScore": 0,
-    "meanHintUsed": 0,
-    "resTab": [],
-    "nbHintUsed": [],
-    "successPercentageByQuestion": [],
+    "playedTime": 3,
+    "meanScore": 0.7666666666666666,
+    "meanHintUsed": 0.3333333333333333,
+    "resTab": [
+      0.5,
+      0.8,
+      1
+    ],
+    "nbHintUsed": [
+      1,
+      0,
+      0
+    ],
+    "successPercentageByQuestion": [
+      0.6666666666666666,
+      0.6666666666666666,
+      0.8333333333333334,
+      1,
+      0.6666666666666666
+    ],
     "id": 1718788561779.3179
   }
 ]

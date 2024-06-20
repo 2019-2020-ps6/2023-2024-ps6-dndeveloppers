@@ -103,10 +103,16 @@
     "options": [
       true
     ],
-    "nbQuizDone": 0,
-    "meanScore": 0,
-    "quizRes": [],
-    "quizDone": [],
+    "nbQuizDone": 2,
+    "meanScore": 80,
+    "quizRes": [
+      80,
+      80
+    ],
+    "quizDone": [
+      "Politiciens en Guerre Froide",
+      "Calcul mental"
+    ],
     "id": 1718719098055.0874,
     "idStatsPatient": 1718719098058.0789
   },
@@ -114,10 +120,22 @@
     "options": [
       true
     ],
-    "nbQuizDone": 0,
-    "meanScore": 0,
-    "quizRes": [],
-    "quizDone": [],
+    "nbQuizDone": 5,
+    "meanScore": 83.66666666666667,
+    "quizRes": [
+      100,
+      75,
+      100,
+      43.33333333333334,
+      100
+    ],
+    "quizDone": [
+      "Recettes provenciales ",
+      "Calcul mental",
+      "Les Fleurs",
+      "Poker comparaison",
+      "Politiciens en Guerre Froide"
+    ],
     "id": 1718719301328.3071,
     "idStatsPatient": 1718719301328.8904
   },
@@ -125,10 +143,14 @@
     "options": [
       true
     ],
-    "nbQuizDone": 0,
-    "meanScore": 0,
-    "quizRes": [],
-    "quizDone": [],
+    "nbQuizDone": 1,
+    "meanScore": 90,
+    "quizRes": [
+      90
+    ],
+    "quizDone": [
+      "Poker comparaison"
+    ],
     "id": 1718719364630.8745,
     "idStatsPatient": 1718719364632.8586
   },
@@ -136,10 +158,18 @@
     "options": [
       true
     ],
-    "nbQuizDone": 0,
-    "meanScore": 0,
-    "quizRes": [],
-    "quizDone": [],
+    "nbQuizDone": 3,
+    "meanScore": 61.111111111111114,
+    "quizRes": [
+      80,
+      91.66666666666667,
+      11.666666666666666
+    ],
+    "quizDone": [
+      "JO",
+      "Recettes provenciales ",
+      "Les Fleurs"
+    ],
     "id": 1718719418726.9856,
     "idStatsPatient": 1718719418727.3093
   },
@@ -156,5 +186,76 @@
       "Poker comparaison"
     ],
     "id": 1718719468235.9688
+  },
+  {
+    "options": [
+      true
+    ],
+    "nbQuizDone": 3,
+    "meanScore": 81.66666666666667,
+    "quizRes": [
+      95,
+      100,
+      50
+    ],
+    "quizDone": [
+      "Les Fleurs",
+      "Recettes provenciales ",
+      "JO"
+    ],
+    "id": 1718799969705.619,
+    "idStatsPatient": 1718799969707.6238
+  },
+  {
+    "options": [
+      true
+    ],
+    "nbQuizDone": 8,
+    "meanScore": 43.333333333333336,
+    "quizRes": [
+      100,
+      100,
+      100,
+      20,
+      20,
+      0,
+      0,
+      6.666666666666668
+    ],
+    "quizDone": [
+      "Calcul mental",
+      "Recettes provenciales ",
+      "Les Fleurs",
+      "Poker comparaison",
+      "Politiciens en Guerre Froide",
+      "Politiciens en Guerre Froide",
+      "Politiciens en Guerre Froide",
+      "Politiciens en Guerre Froide"
+    ],
+    "id": 1718804259910.1372,
+    "idStatsPatient": 1718804259912.2832
+  },
+  {
+    "options": [
+      true
+    ],
+    "nbQuizDone": 5,
+    "meanScore": 88,
+    "quizRes": [
+      100,
+      100,
+      100,
+      40,
+      100
+    ],
+    "quizDone": [
+      "Calcul mental",
+      "Les Fleurs",
+      "Recettes provenciales ",
+      "Poker comparaison",
+      "JO"
+    ],
+    "id": 1718805833672.2212,
+    "idStatsPatient": 1718805833675.016
   }
 ]

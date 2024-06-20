@@ -88,7 +88,7 @@ export class QuizService {
   }
 
   selectQuiz(quiz: Quiz) {
-    console.log("info quiz : ",this.infoQuiz);
+    //console.log("info quiz : ",this.infoQuiz);
     for(let i=0;i<this.quizzes.length;i++){
       if(this.quizzes[i]==quiz){
         this.choosenQuiz = this.quizzes[i];
@@ -137,7 +137,6 @@ export class QuizService {
 
   updateInfoQuiz(){
     this.infoQuiz$.next(this.infoQuiz);
-    console.log("stats : ",this.infoQuiz.scoreForEachQuestion)
   }
 
   dontShowTutoriel() {
