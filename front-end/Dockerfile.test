@@ -1,0 +1,23 @@
+FROM mcr.microsoft.com/playwright:v1.34.3-jammy
+
+WORKDIR /app
+
+# Copiez les fichiers package.json et package-lock.json
+COPY package.json package-lock.json ./
+
+# Installer les dépendances
+RUN npm install
+
+# Copiez le reste du code source
+COPY . .
+
+# Compiler le code TypeScript
+# C'est inutile pour les tests ;)
+RUN npm run build 
+
+# Vérifier que les fichiers sont copiés correctement
+RUN ls -la /app/src/app/home
+RUN ls -la /app/e2e
+
+# Exécuter les tests Playwright
+CMD ["npx", "playwright", "test"]
