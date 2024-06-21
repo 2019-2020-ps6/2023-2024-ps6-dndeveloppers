@@ -14,7 +14,7 @@ const config: PlaywrightTestConfig = {
       slowMo: 1000,
     }
   },
-  timeout: 4500,
+  timeout: 120000,
 };
 
 export default config;

@@ -46,6 +46,17 @@ test.describe('Home page display', () => {
       await page.keyboard.type('admin');
     });
 
+    await test.step("Test de la visibilité du bouton retour quand on joue avec un profil personnel", async () => {
+      await homeFixture.clickPlayButton();
+      await homeFixture.getPlayableProfil('Nom : Roques').click();//On prend un profil de personnel
+
+      //On vérifie que le bouton retour est visible
+      await expect(page.getByRole('button', { name: 'Retour page principale' })).toBeVisible();
+
+      //On revient au menu home
+      await homeFixture.clickReturnButton();
+    });
+
     await test.step("Test bouton de gestion des quiz", async () => {
       //On test le routage vers la page de gestion des quiz
       await homeFixture.clickQuizButton();
