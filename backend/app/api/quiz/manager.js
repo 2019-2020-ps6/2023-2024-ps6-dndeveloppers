@@ -1,11 +1,10 @@
-const array = require('joi/lib/types/array')
 const { QuizModel, QuestionModel, AnswerModel, IndiceModel, statsQuizModel } = require('../../models')
-const buildQuestion = require('./questions/manager')
 
 const buildQuiz = (quizId) => {
   try {
     const quiz = QuizModel.getById(quizId)
     const allQuestions = QuestionModel.get()
+
     let GoodQuestions = []
     for(let i=0;i<allQuestions.length;i++){
         if(allQuestions[i].idQuiz==quizId){
@@ -35,11 +34,18 @@ const buildQuiz = (quizId) => {
             }
             //console.log("question : ",question)
             GoodQuestions.push(question)
-            
         }
     }
     const selfStats = statsQuizModel.getById(quiz.selfStats)
     //console.log("quiz construit : ",{ ...quiz, questions : GoodQuestions , selfStats })
+    //console.log("quiz : ",quiz.questions)
+    quiz.questions = []
+    for(let i=0;i<GoodQuestions.length;i++){
+      quiz.questions.push(GoodQuestions[i].id)
+    }
+    QuizModel.update(quiz.id,quiz)
+    //console.log("quiz après : ",quiz.questions)
+
     return { ...quiz, questions : GoodQuestions , selfStats }
   } catch (err) {
     console.log(err)
