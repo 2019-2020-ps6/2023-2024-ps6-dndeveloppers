@@ -21,17 +21,18 @@ test.describe('Jouer quiz en tant que Maurice', () => {
     await test.step('Choisir quiz', async () => {
         const listQuizFixture = new ListQuizFixture(page);
 
-        await listQuizFixture.getSearchBar().fill("Calcul mental");
-        await page.getByRole('heading', { name: 'Calcul mental' }).click();
+        //On lance un quiz
+        await listQuizFixture.getSearchBar().fill("Tempo");
+        await page.locator('choixquiz #nom').click();
     });
 
     await test.step('Jouer quiz', async() => {
         const quizFixture = new QuizFixture(page);
         await quizFixture.getSkipButton().click();
 
-        await page.getByRole('button', { name: '111' }).click(); 
-        await page.getByRole('button', { name: '69' }).click();
-        await page.getByRole('button', { name: '121' }).click(); 
+        await page.getByRole('button', { name: '0.5' }).click(); 
+        await page.getByRole('button', { name: '4' }).click();
+        await page.getByRole('button', { name: '1' }).click(); 
 
         // Vérifier que le message de fin de quiz s'affiche
         expect(await page.getByText('Félicitation, vous avez terminé le quiz !Vous avez répondu à 3Félicitation, vous avez terminé le quiz !Vous avez répondu à 3 questions lors de ce quizVouz avez eu 2 bonnes réponses.Incroyable : vous n\'avez eu besoin d\'aucun indice questions lors de').isVisible());

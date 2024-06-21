@@ -9,15 +9,7 @@ export const Answer_Model: Answer = {
 }
 
 
-export const Indice_Model1: Indice = {
-    value:'',
-}
-
-export const Indice_Model2: Indice = {
-    value:'',
-}
-
-export const Indice_Model3: Indice = {
+export const Indice_Model: Indice = {
     value:'',
 }
 

@@ -17,6 +17,8 @@ services:
     build:  ../backend
     ports:
       - "8081:9428"
+    volumes:
+      - ../backend/database:/app/database
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9428/api/status"]
       interval: 30s

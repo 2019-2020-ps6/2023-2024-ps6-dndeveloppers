@@ -112,7 +112,10 @@ export class CreateProfilComponent implements OnInit {
     }
 
     handleEvent(event: string) {
-        console.log("ok");
+        if(event == undefined) {
+            this.photo = "";
+            return ;
+        }
         this.photo = event;
         console.log(event.length)
         console.log(this.photo.length)

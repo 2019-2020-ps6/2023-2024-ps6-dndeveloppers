@@ -14,9 +14,9 @@ test.describe('Stats page feature', () => {
     
     await test.step('Bouton de retour fonctionnel', async () => {
       const statsFixture = new StatsFixture(page);
-      await homeFixture.clickStatsButton();
+      await homeFixture.clickStatsButton();//On se rend sur la page des stats
       expect(page.url()).toBe(testUrl + '/home/stats');
-      await statsFixture.clickReturnButton();
+      await statsFixture.clickReturnButton();//On reviens sur le menu principal pour vérifier que le bouton fonctionne bien
       expect(page.url()).toBe(testUrl + '/home');
       await homeFixture.clickStatsButton();
       expect(page.url()).toBe(testUrl + '/home/stats');
@@ -26,9 +26,10 @@ test.describe('Stats page feature', () => {
       const statsGlobales = page.locator('app-stats-globales');
 
       const gNbPatients = statsGlobales.getByText('Nombre de patients : 3');
-      const gNbDifQuiz = statsGlobales.getByText('Nombre de quiz différents : 3');
+      const gNbDifQuiz = statsGlobales.getByText('Nombre de quiz différents : 5');
       const gNbQuizDone = statsGlobales.getByText('Nombre de quiz réalisés au total : 2');
 
+      //On vérifie que les stats globales correspondent bien à ce qu'elles sont senssées être
       expect(gNbPatients).toBeVisible();
       expect(gNbDifQuiz).toBeVisible();
       expect(gNbQuizDone).toBeVisible();
@@ -44,6 +45,7 @@ test.describe('Stats page feature', () => {
       let pNbQuizDone = statsPatient.getByText('Nombre de quiz réalisés : 0');
       let pMeanScore = statsPatient.getByText('Score moyen : 0');
 
+      //On vérifie que les stats sont bien nulles si aucun patient n'est sélectionné
       expect(pTitle).toBeVisible();
       expect(pSelector).toBeVisible();
       expect(pName).toBeVisible();
@@ -51,12 +53,14 @@ test.describe('Stats page feature', () => {
       expect(pNbQuizDone).toBeVisible();
       expect(pMeanScore).toBeVisible();
 
+      //On sélectionne un des patients
       await pSelector.click();
       await pSelector.selectOption('Bois, Maurice');
-      pName = statsPatient.getByText('Nom du patient : Maurice');
+      pName = statsPatient.getByText('Nom du patient : Bois, Maurice');
       pOption = statsPatient.getByText('Option du patient : Indice');
-    
-      expect(pName).toBeVisible();
+      
+      //On vérifie que les stats correspondent bien
+      await expect(pName).toBeVisible();
       expect(pOption).toBeVisible();
       expect(pNbQuizDone).toBeVisible();
       expect(pMeanScore).toBeVisible();
@@ -72,17 +76,19 @@ test.describe('Stats page feature', () => {
       let qMeanHintUsed = statsQuiz.getByText("Nombre moyen d'indices utilisés : 0");
       let qNbQuestions = statsQuiz.getByText('Nombre de questions : 0');
 
+      //On vérifie que les stats correspondent bien
       expect(qTitle).toBeVisible();
       expect(qSelector).toBeVisible();
       expect(qPlayedTime).toBeVisible();
       expect(qMeanScore).toBeVisible();
       expect(qMeanHintUsed).toBeVisible();
       expect(qNbQuestions).toBeVisible();
-
+      
+      //On vérifie que les valeurs obtenues correspondent bien au quiz choisi
       await qSelector.click();
-      await qSelector.selectOption('Politiciens en Guerre Froide');
-      qPlayedTime = statsQuiz.getByText('Nombre de fois joué : 2');
-      qMeanScore = statsQuiz.getByText('Score moyen : 0.75/2');
+      await qSelector.selectOption('Instruments');
+      qPlayedTime = statsQuiz.getByText('Nombre de fois joué : 0');
+      qMeanScore = statsQuiz.getByText('Score moyen : 0/2');
       qNbQuestions = statsQuiz.getByText('Nombre de questions : 2');
 
       expect(qPlayedTime).toBeVisible();
@@ -94,6 +100,7 @@ test.describe('Stats page feature', () => {
       const statsPatientFixture = new StatsPatientFixture(page);
       const buttonToListProfils = statsPatientFixture.getRouteToProfil();
 
+      //On vérifie le bouton pour passer d'es stats d'un patient à son profil
       expect(page.url()).toBe(testUrl + '/home/stats');
       await buttonToListProfils.click();
       expect(page.url()).toBe(testUrl + '/home/listProfil');
@@ -105,6 +112,7 @@ test.describe('Stats page feature', () => {
       const statsQuizFixture = new StatsQuizFixture(page);
       const buttonToEditQuiz = statsQuizFixture.getRouteToQuiz();
 
+      //On vérifie le bouton pour passer d'un quiz à son menu d'édition
       const qSelector = statsQuiz.getByRole('combobox');
       await qSelector.click();
       await qSelector.selectOption('Politiciens en Guerre Froide');

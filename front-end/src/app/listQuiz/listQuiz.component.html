@@ -1,14 +1,15 @@
 <app-header></app-header>
 
 <div class="searchHelp">
-  <button class="boutonAide" (click)="tutorielWanted()"><app-texteAdaptatif texte="Tutoriel"></app-texteAdaptatif></button>
+  <button class="boutonAide" (contextmenu)="catchClicDroit($event, 'tuto')" (click)="tutorielWanted()"><app-texteAdaptatif texte="Tutoriel"></app-texteAdaptatif></button>
   <div class="recherche">
     <input class="search-bar" type="text" placeholder="Rechercher un quiz" (input)="quizShow($event)" [(ngModel)]="searchTerm" />
-    <select class="selectTheme" name="theme-field" id="theme" (change)="themeShow($event)" [(ngModel)]="selectedTheme" required>
+    <select class="selectTheme" name="theme-field" id="theme" (change)="themeShow($event)" (contextmenu)="catchClicDroit($event, 'selectTheme')" [(ngModel)]="selectedTheme" required>
       <option value="">Sélectionner un thème</option>
       <option *ngFor="let currentTheme of themeList" [value]="currentTheme">{{currentTheme}}</option>
     </select>
   </div>
+  <app-comeBack *ngIf="actualProfil.role === 'personnel'" [destination]="'home'"></app-comeBack>
 </div>
 
 <br>
@@ -20,7 +21,7 @@
       <p><app-texteAdaptatif texte="{{theme}}"></app-texteAdaptatif></p>
     </div>
     <div class="quizzes" *ngFor="let quiz of filterQuizsByTheme(theme)">
-      <choixQuiz *ngIf="theme===this.selectedTheme || this.selectedTheme===''" [quiz]="quiz" (quizSelected)="quizSelected(quiz)"></choixQuiz>
+      <choixQuiz (contextmenu)="catchClicDroit($event, quiz)" *ngIf="theme===this.selectedTheme || this.selectedTheme===''" [quiz]="quiz" (quizSelected)="quizSelected(quiz)"></choixQuiz>
     </div>
   </div>
 </div>
@@ -43,6 +44,5 @@
     <p><app-texteAdaptatif texte="Une question peut avoir plusieurs indice."></app-texteAdaptatif></p>
     <p><app-texteAdaptatif texte="Quand il n'y en a plus, une mauvaise réponse disparait."></app-texteAdaptatif></p>
   </div>
-  <button class="button-classique" (click)="stopShowTutoriel()"><app-texteAdaptatif texte="Fermer le tutoriel"></app-texteAdaptatif></button>
-
-  </div>
+  <button class="button-classique" (contextmenu)="catchClicDroit($event, 'notuto')" (click)="stopShowTutoriel()"><app-texteAdaptatif texte="Fermer le tutoriel"></app-texteAdaptatif></button>
+</div>

@@ -17,5 +17,9 @@ export const infoQuiz_INIT: InfoQuiz = {
     actualResponses: [],
     scoreForEachQuestion: [],
     replayQuestion: false,
-    questionToReplay: []
+    questionToReplay: [],
+    lastQuizPlayed: "",
+    askedToRestoreGame: false,
+    showHintButton: true,
+    questionToReplayBadAnswer: new Map<string, number>()
 }

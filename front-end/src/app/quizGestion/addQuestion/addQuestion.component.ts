@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder } from "@angular/forms";
-import { Question_Model, Indice_Model1, Indice_Model2, Indice_Model3} from "src/mocks/quiz-list.mock";
-import { Indice } from "src/models/question.models";
+import { Question_Model, Indice_Model} from "src/mocks/quiz-list.mock";
 import { Answer_Model } from "src/mocks/quiz-list.mock";
 import { Answer, Question } from "src/models/question.models";
 import { QuizService } from "src/services/quiz.service";
@@ -69,62 +68,48 @@ export class AddQuestionComponent implements OnInit {
         answer4.isCorrect = false;
 
         question.answers = [answer1 , answer2 , answer3, answer4];       
-        console.log("numéro : ",this.questionForm.value.goodAnswer); 
         question.answers[this.questionForm.value.goodAnswer].isCorrect = true;
 
-        let indice1 : Indice = Indice_Model1;
-        if (this.questionForm.value.i1 == "") {
-            indice1.value = "";
-        } else {
-            indice1.value = this.questionForm.value.i1;
+        question.indice = [];
+        let indice = JSON.parse(JSON.stringify(Indice_Model));
+        if(this.questionForm.value.i1 != "" && this.questionForm.value.i1 != " "){
+            indice.value = this.questionForm.value.i1;
+            question.indice.push(indice);
         }
-
-        let indice2 : Indice = Indice_Model2;
-        if (this.questionForm.value.i2 == "") {
-            indice2.value = "";
-        } else {
-            indice2.value = this.questionForm.value.i2;
+        if(this.questionForm.value.i2 != "" && this.questionForm.value.i2 != " "){
+            indice.value = this.questionForm.value.i2;
+            question.indice.push(indice);
         }
-
-        let indice3 : Indice = Indice_Model3;
-        if (this.questionForm.value.i3 == "") {
-            indice3.value = "";
-        } else {
-            indice3.value = this.questionForm.value.i3;
-        }
-
-        question.indice = [indice1, indice2, indice3];
-
-        if (indice1.value == "" && indice2.value != "" && indice3.value == "") {
-            indice1.value = indice2.value;
-            indice2.value = "";
-        } else if (indice1.value == "" && indice2.value == "" && indice3.value != "") {
-            indice1.value = indice3.value;
-            indice3.value = "";
-        } else if (indice1.value != "" && indice2.value == "" && indice3.value != "") {
-            indice2.value = indice3.value;
-            indice3.value = "";
-        } else if (indice1.value == "" && indice2.value != "" && indice3.value != "") {
-            indice1.value = indice2.value;
-            indice2.value = indice3.value;
-            indice3.value = "";
-        }
+        if(this.questionForm.value.i3 != "" && this.questionForm.value.i3 != " "){
+            indice.value = this.questionForm.value.i3;
+            question.indice.push(indice);
+        }    
         
-        
-        
-        question.optionImageQuestion = "none";
-        if(this.questionForm.value.photoTexte != undefined){
+        // photo
+        if(this.photo != "" && this.questionForm.value.photoTexte != null && this.questionForm.value.photoTexte != "none" && this.questionForm.value.photoTexte != ""){
+            question.optionImageLien = this.photo,
             question.optionImageQuestion = this.questionForm.value.photoTexte;
         }
-
-        question.optionImageLien = "none";
-        if(this.photo != ""){
-            question.optionImageLien = this.photo;
+        else {
+            question.optionImageLien = "none"
+            question.optionImageQuestion = "none"
         }
 
         console.log("question : ",question)
         this.quizService.addQuestion(question);
         this.questionForm.reset();
+        this.questionForm.patchValue({
+            label: '',
+            q1: '',
+            q2: '',
+            q3: '',
+            q4: '',
+            i1: '',
+            i2: '',
+            i3: '',
+            photoTexte: null,
+            goodAnswer: 0
+        });
     }
 
     selectResponseNumber(event: Event, responseNumber: number) {
@@ -146,6 +131,10 @@ export class AddQuestionComponent implements OnInit {
     }
 
     handleEvent(event: string) {
+        if(event == undefined) {
+            this.photo = "";
+            return ;
+        }
         this.photo = event;
         console.log(event.length)
         console.log(this.photo.length)

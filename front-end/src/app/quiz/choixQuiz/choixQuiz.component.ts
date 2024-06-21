@@ -26,12 +26,18 @@ export class ChoixQuizComponent implements OnInit {
   ngOnInit() {
   }
 
-  selectQuiz(quiz: Quiz): void {
+  selectQuiz(quiz: Quiz) {
     this.quizService.selectQuiz(quiz);
     this.router.navigate(['home/listQuiz/app-quiz/' + quiz.name]); 
   }
 
   delete(quiz: Quiz) {
     this.quizService.deleteQuiz(quiz);
+  }
+
+  catchClicDroit() {
+    if (this.quiz != undefined) {
+      this.selectQuiz(this.quiz);
+    }
   }
 }

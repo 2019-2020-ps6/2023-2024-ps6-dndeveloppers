@@ -26,10 +26,10 @@ test.describe('Home page display', () => {
     
 
     const inputQuiz = await homeFixture.getSearchBar();
-    expect(inputQuiz).toBeEmpty();
+    await expect(inputQuiz).toBeEmpty();
     //inputQuiz.focus();
     await inputQuiz.fill('a');
-    expect(inputQuiz).toHaveValue('a');
+    await expect(inputQuiz).toHaveValue('a');
   });
 
   // TO GO FURTHER :

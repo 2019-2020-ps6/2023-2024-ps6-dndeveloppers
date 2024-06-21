@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Question_Model, Indice_Model1, Indice_Model2, Indice_Model3, QUIZ_LIST } from "src/mocks/quiz-list.mock";
-import { Indice } from "src/models/question.models";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { Question_Model, Indice_Model} from "src/mocks/quiz-list.mock";
 import { Answer_Model } from "src/mocks/quiz-list.mock";
 import { Answer, Question } from "src/models/question.models";
 import { QuizService } from "src/services/quiz.service";
@@ -43,9 +42,7 @@ export class EditQuestionComponent implements OnInit {
         });
 
         let URL = this.url.split('/');
-        //console.log("url : ", URL);
         this.quizName = URL[URL.length-1];
-        //console.log("url courante : ", this.quizName);
     }
 
     ngOnInit(): void {
@@ -116,23 +113,23 @@ export class EditQuestionComponent implements OnInit {
     }
 
     editQuestion(){
-        let question : Question = JSON.parse(JSON.stringify(Question_Model));;        
+        let question : Question = JSON.parse(JSON.stringify(Question_Model));        
         question.label = this.questionForm.value.label;
 
         // réponses
-        let answer1 : Answer = JSON.parse(JSON.stringify(Answer_Model));;
+        let answer1 : Answer = JSON.parse(JSON.stringify(Answer_Model));
         answer1.value = this.questionForm.value.q1;
         answer1.isCorrect = false;
 
-        let answer2 : Answer = JSON.parse(JSON.stringify(Answer_Model));;
+        let answer2 : Answer = JSON.parse(JSON.stringify(Answer_Model));
         answer2.value = this.questionForm.value.q2;
         answer2.isCorrect = false;
 
-        let answer3 : Answer = JSON.parse(JSON.stringify(Answer_Model));;
+        let answer3 : Answer = JSON.parse(JSON.stringify(Answer_Model));
         answer3.value = this.questionForm.value.q3;
         answer3.isCorrect = false;
 
-        let answer4 : Answer = JSON.parse(JSON.stringify(Answer_Model));;
+        let answer4 : Answer = JSON.parse(JSON.stringify(Answer_Model));
         answer4.value = this.questionForm.value.q4;
         answer4.isCorrect = false;
 
@@ -147,48 +144,25 @@ export class EditQuestionComponent implements OnInit {
             }
         }
 
-        let indice1 : Indice = Indice_Model1;
-        if (this.questionForm.value.i1 == "indice 1") {
-            indice1.value = "";
-        } else {
-            indice1.value = this.questionForm.value.i1;
+        question.indice = [];
+        if(this.questionForm.value.i1 != "" && this.questionForm.value.i1 != " "){
+            const indice = JSON.parse(JSON.stringify(Indice_Model));
+            indice.value = this.questionForm.value.i1;
+            question.indice.push(indice);
         }
-
-        let indice2 : Indice = Indice_Model2;
-        if (this.questionForm.value.i2 == "indice 2") {
-            indice2.value = "";
-        } else {
-            indice2.value = this.questionForm.value.i2;
+        if(this.questionForm.value.i2 != "" && this.questionForm.value.i2 != " "){
+            const indice = JSON.parse(JSON.stringify(Indice_Model));
+            indice.value = this.questionForm.value.i2;
+            question.indice.push(indice);
         }
-
-        let indice3 : Indice = Indice_Model3;
-        if (this.questionForm.value.i3 == "indice 3") {
-            indice3.value = "";
-        } else {
-            indice3.value = this.questionForm.value.i3;
+        if(this.questionForm.value.i3 != "" && this.questionForm.value.i3 != " "){
+            const indice = JSON.parse(JSON.stringify(Indice_Model));
+            indice.value = this.questionForm.value.i3;
+            question.indice.push(indice);
         }
-
-        question.indice = [indice1, indice2, indice3];
-
-        if (indice1.value == "" && indice2.value != "" && indice3.value == "") {
-            indice1.value = indice2.value;
-            indice2.value = "";
-        } else if (indice1.value == "" && indice2.value == "" && indice3.value != "") {
-            indice1.value = indice3.value;
-            indice3.value = "";
-        } else if (indice1.value != "" && indice2.value == "" && indice3.value != "") {
-            indice2.value = indice3.value;
-            indice3.value = "";
-        } else if (indice1.value == "" && indice2.value != "" && indice3.value != "") {
-            indice1.value = indice2.value;
-            indice2.value = indice3.value;
-            indice3.value = "";
-        }
-
-        question.indice = [indice1, indice2, indice3];
 
         // photo
-        if(this.photo != "" && this.questionForm.value.photoTexte != null && this.questionForm.value.photoTexte != "none"){
+        if(this.photo != "" && this.questionForm.value.photoTexte != null && this.questionForm.value.photoTexte != "none" && this.questionForm.value.photoTexte.length != 0){
             question.optionImageLien = this.photo,
             question.optionImageQuestion = this.questionForm.value.photoTexte;
         }
@@ -196,6 +170,7 @@ export class EditQuestionComponent implements OnInit {
             question.optionImageLien = "none"
             question.optionImageQuestion = "none"
         }
+        console.log("question : ", question.optionImageQuestion,question.optionImageLien.length)
         question.id = this.question?.id;
         question.idQuiz = this.question?.idQuiz;
         if (oneChecked == 1) {
@@ -219,10 +194,8 @@ export class EditQuestionComponent implements OnInit {
                 }
                 let range = [];
                 for (let i=Math.floor(indiceTarget/4)*4; i<Math.floor(indiceTarget/4)*4 +4; i++) {
-                    console.log("range : ", i);
                     range.push(checkboxes[i]);
                 }
-                console.log("There is ", range.length, " checkboxes");
                 range.forEach((checkbox: Element) => {
                     if (checkbox != event.target) {
                         (checkbox as HTMLInputElement).checked = false;
@@ -244,6 +217,10 @@ export class EditQuestionComponent implements OnInit {
     }
 
     handleEvent(event: string) {
+        if(event == undefined) {
+            this.photo = "";
+            return ;
+        }
         this.photo = event;
         console.log(event.length)
         console.log(this.photo.length)

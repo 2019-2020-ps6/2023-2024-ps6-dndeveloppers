@@ -38,7 +38,6 @@ export class ViewProfilComponent implements OnInit {
 
     profilShow(str: String) {
         this.typeView=str;
-        console.log(this.profil);
         this.getWorstQuiz(this.profil);
     }
 
@@ -69,7 +68,7 @@ export class ViewProfilComponent implements OnInit {
     seeStats(profil: Profil, worstQuiz: string) {
         this.router.navigate(['/home/stats'], {
             queryParams: { 
-                nom: profil.nom,
+                id: profil.id,
                 quiz: worstQuiz
             }
         });

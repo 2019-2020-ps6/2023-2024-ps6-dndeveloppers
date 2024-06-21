@@ -100,5 +100,47 @@ button:hover {
 }
 
 #skipQuestion {
+    justify-self: stretch;
+    align-self: center;
     height: auto;
+    width: auto;
+    grid-column: 6;
+}
+
+#alertRestoreQuiz {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    font-size: 35px;
+    transform: translate(-50%, -50%);
+    background-color: lightgray;
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 10px;
+
+    justify-self: stretch;
+    align-self: center;
+    text-align: center;
+    height: auto;
+    width: 600px;
+}
+
+#buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    position: fixed;
+    top: 70%;
+
+    
+}
+.buttonAlertLeft {
+    height: auto;
+    font-size: 35px;
+    margin-right: 100px;
+}
+
+.buttonAlertRight {
+    height: auto;
+    font-size: 35px;
 }

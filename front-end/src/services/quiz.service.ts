@@ -29,6 +29,8 @@ export class QuizService {
   private quizURL: string = serverUrl + '/quiz';
   private httpOptions = httpOptionsBase;
 
+  
+
   /**
    * Observable which contains the list of the quiz.
    * Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
@@ -52,7 +54,6 @@ export class QuizService {
     this.http.get<Quiz[]>(this.quizURL).subscribe((quizList) => {
       this.quizzes = quizList;
       this.quizzes$.next(this.quizzes);
-      console.log("quiz : ",this.quizzes);
       this.setUpTheme();
 
       if(idQuiz != -1){
@@ -60,7 +61,6 @@ export class QuizService {
           if(this.quizzes[i].id == this.editedQuiz.id){
             this.editedQuiz = this.quizzes[i];
             this.editedQuiz$.next(this.editedQuiz);
-            console.log("okok");
           }
         }
       }
@@ -91,9 +91,9 @@ export class QuizService {
       if(this.quizzes[i]==quiz){
         this.choosenQuiz = this.quizzes[i];
         this.choosenQuiz$.next(this.choosenQuiz);
-        console.log("Quiz choisit : ",this.choosenQuiz);
       }
     }
+
     this.showHint = [false, false, false];
     for (let i=0; i<this.choosenQuiz.questions[0].indice.length; i++) {
       if (this.choosenQuiz.questions[0].indice[i].value != "") {
@@ -101,13 +101,17 @@ export class QuizService {
       }
     }
     this.showHint$.next(this.showHint);
-  }
-
-  getQuizzes(quiz: Quiz){
-    for(let i=0;i<this.quizzes.length;i++){
-      if(this.quizzes[i].name==quiz.name){
-        console.log("Quiz sélectionné : ",this.quizzes[i].name);
-      }
+    if (this.infoQuiz.lastQuizPlayed == this.choosenQuiz.name) { // on rétablit la partie
+     this.infoQuiz.askedToRestoreGame = true;
+     this.infoQuiz.lastQuizPlayed = this.choosenQuiz.name;
+     this.updateInfoQuiz();
+     console.log("on demande de rétablir la partie")
+    }
+    else {
+      this.resetInfoQuiz();
+      this.infoQuiz.lastQuizPlayed = this.choosenQuiz.name;
+      this.updateInfoQuiz();
+      console.log("on ne demande pas de rétablir la partie")
     }
   }
 
@@ -115,12 +119,18 @@ export class QuizService {
 
   resetInfoQuiz(){
     this.infoQuiz = JSON.parse(JSON.stringify(infoQuiz_INIT));
+    this.infoQuiz.questionToReplayBadAnswer = new Map<string, number>();
     this.infoQuiz$.next(this.infoQuiz);
+  }
+
+  restoreQuiz(){
+    this.infoQuiz.askedToRestoreGame = false;
+    this.infoQuiz.lastQuizPlayed = this.choosenQuiz.name;
+    this.updateInfoQuiz();
   }
 
   updateInfoQuiz(){
     this.infoQuiz$.next(this.infoQuiz);
-    console.log("stats : ",this.infoQuiz.scoreForEachQuestion)
   }
 
   dontShowTutoriel() {
@@ -135,7 +145,7 @@ export class QuizService {
   getActualQuestionNumberHint(){
     let indiceQuestion = 0;
       for (let i=0; i<this.getActualQuestion().indice.length; i++) {
-        if (this.getActualQuestion().indice[i].value != "") {
+        if (this.getActualQuestion().indice[i].value.length > 1) {
           indiceQuestion++;
         }
       }
@@ -153,7 +163,6 @@ export class QuizService {
   }
 
   disablingHintAndHelp(bool: boolean) {
-    //console.log("disability called");
     this.disableHintHelp = bool;
     this.disableHintHelp$.next(this.disableHintHelp);
   }
@@ -164,14 +173,18 @@ export class QuizService {
       if(this.infoQuiz.nbHintAskedForActualQuestion < this.getActualQuestionNumberHint()){
         this.infoQuiz.nbHintAskedForActualQuestion++;
         console.log("Indice demandé");
-        this.updateInfoQuiz();  
+        this.updateInfoQuiz(); 
       }
       // deuxième cas : on enlève une réponse (car on a déjà utilisé tout les indices textuels)
       else if (this.infoQuiz.nbHintAskedForActualQuestion-2 < this.getActualQuestionNumberHint()) {
         this.infoQuiz.nbHintAskedForActualQuestion++;
+        if (this.infoQuiz.nbHintAskedForActualQuestion-2 == this.getActualQuestionNumberHint()) {
+          this.infoQuiz.showHintButton = false;
+        }
         this.updateInfoQuiz(); 
         this.hideResponse();
         console.log("cache une réponse");
+        
       } 
       // troisième cas : rien
       else {
@@ -207,6 +220,10 @@ export class QuizService {
   }
 
   responseSelected(quiz: Quiz, responseNumber: number) {
+
+    this.infoQuiz.showHintButton = true;
+    this.updateInfoQuiz();
+
     if(this.actualProfil.optionReposerQuestionApres){
       if(this.infoQuiz.replayQuestion){ // on est dans la phase où on repose les questions
         this.responsesSelectedPlayAskedAgain(quiz, responseNumber);
@@ -226,7 +243,6 @@ export class QuizService {
     if (this.getActualQuestion().answers[responseNumber].isCorrect) { // on passe à la suivante
       console.log("Bonne réponse félicitation!");
       let score = 1 - (this.infoQuiz.nbHintAskedForActualQuestion/(this.getActualQuestionNumberHint() + 3));
-      console.log("score à cette question : ",score);
 
       this.infoQuiz.actualScore += score;
       this.infoQuiz.scoreForEachQuestion.push(score);
@@ -247,11 +263,11 @@ export class QuizService {
           this.choosenQuiz.selfStats = this.statsService.updateQuizStats(this.infoQuiz,this.choosenQuiz.selfStats);
           this.statsService.patientScoreNewData(this.actualProfil, this.infoQuiz.actualScore/quiz.questions.length);
           this.infoQuiz.endOfQuiz = true;
-          this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => this.retrievesQuiz());
+          this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => {this.retrievesQuiz(); this.resetInfoQuiz()});
         }
         else { // sinon on repose les questions à reposer
           this.infoQuiz.replayQuestion = true;
-          console.log("on passe aux questions à rejouer",this.infoQuiz.questionToReplay)
+          console.log("on passe aux questions à rejouer ",this.infoQuiz.questionToReplay)
           this.infoQuiz.questionToReplay.reverse();
           let numQuestion = this.infoQuiz.questionToReplay.pop();
           this.infoQuiz.questionToReplay.reverse();
@@ -278,7 +294,11 @@ export class QuizService {
     else { // on enregistre la question a reposer et on passe à la suivante
       console.log("faux");
       this.infoQuiz.scoreForEachQuestion.push(0);
-      this.infoQuiz.questionToReplay.push(this.infoQuiz.actualQuestionNumber)
+      this.infoQuiz.questionToReplay.push(this.infoQuiz.actualQuestionNumber);
+      this.infoQuiz.questionToReplayBadAnswer.set(this.infoQuiz.actualQuestionNumber+"",responseNumber);
+
+      let a = {}
+
       this.infoQuiz.displayResponses = [true, true, true, true];
       this.infoQuiz.showGoodAnswer = true;
       this.infoQuiz.nbHintAskedForActualQuestion = 0; // on ne compte pas les indices sur les questions à reposer
@@ -311,7 +331,6 @@ export class QuizService {
     this.infoQuiz.nbHintUsed += this.infoQuiz.nbHintAskedForActualQuestion;
     if (this.getActualQuestion().answers[responseNumber].isCorrect) {
       let score = 1 - (this.infoQuiz.nbHintAskedForActualQuestion/(this.getActualQuestionNumberHint() + 3));
-      console.log("score à cette question : ",score);
       this.infoQuiz.actualScore += score;
 
       let nbQuestion = this.infoQuiz.actualQuestionNumber
@@ -332,7 +351,7 @@ export class QuizService {
       this.choosenQuiz.selfStats = this.statsService.updateQuizStats(this.infoQuiz,this.choosenQuiz.selfStats);
       this.statsService.patientScoreNewData(this.actualProfil, this.infoQuiz.actualScore/quiz.questions.length);
       this.infoQuiz.endOfQuiz = true;
-      this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => this.retrievesQuiz());
+      this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => {this.retrievesQuiz();});
     }
     else {
       this.infoQuiz.questionToReplay.reverse();
@@ -352,7 +371,6 @@ export class QuizService {
       // on ajoute le score
       console.log("Bonne réponse félicitation!");
       let score = 1 - (this.infoQuiz.nbHintAskedForActualQuestion/(this.getActualQuestionNumberHint() + 3));
-      console.log("score à cette question : ",score-(this.infoQuiz.nbErrors/4));
 
       if(score-(this.infoQuiz.nbErrors/4) > 0){
         this.infoQuiz.actualScore += score-(this.infoQuiz.nbErrors/4); // on ajoute le score s'il est positif
@@ -384,7 +402,7 @@ export class QuizService {
 
         this.statsService.patientScoreNewData(this.actualProfil, this.infoQuiz.actualScore/quiz.questions.length);
         this.infoQuiz.endOfQuiz = true;
-        this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => this.retrievesQuiz());
+        this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => {this.retrievesQuiz();});
       } 
       else { // sinon on continue le quiz
         this.infoQuiz.actualQuestionNumber++;
@@ -414,14 +432,13 @@ export class QuizService {
       else {
         if(this.infoQuiz.actualQuestionNumber == quiz.questions.length-1){ // cas fin quiz
           console.log("C'était la dernière question");
-          console.log("score final : ",this.infoQuiz.actualScore);
           this.actualProfil.selfStats.quizDone.push(this.choosenQuiz.name);
           this.infoQuiz.scoreForEachQuestion.push(0)
           this.statsService.patientScoreNewData(this.actualProfil, this.infoQuiz.actualScore/quiz.questions.length);
           this.choosenQuiz.selfStats = this.statsService.updateQuizStats(this.infoQuiz,this.choosenQuiz.selfStats);
 
           this.infoQuiz.endOfQuiz = true;
-          this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => this.retrievesQuiz());
+          this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => {this.retrievesQuiz();});
         }
         else {
           this.infoQuiz.actualQuestionNumber++;
@@ -452,7 +469,7 @@ export class QuizService {
       this.choosenQuiz.selfStats = this.statsService.updateQuizStats(this.infoQuiz,this.choosenQuiz.selfStats);
       this.statsService.patientScoreNewData(this.actualProfil, this.infoQuiz.actualScore/quiz.questions.length);
       this.infoQuiz.endOfQuiz = true;
-      this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => this.retrievesQuiz());
+      this.http.put<Quiz>(serverUrl + '/quiz/:' + this.choosenQuiz.id , this.choosenQuiz ,this.httpOptions).subscribe(() => {this.retrievesQuiz(); });
     }
     else {
       this.infoQuiz.actualQuestionNumber++;      
@@ -471,7 +488,6 @@ export class QuizService {
     }
     this.themeList = newThemeList;
     this.themeList$.next(this.themeList);
-    //console.log("Liste des thèmes actuellement présents : ",this.themeList);
     this.setUpQuiz();
   }
 
@@ -487,8 +503,6 @@ export class QuizService {
       this.themeList.push(theme);
       this.themeList$.next(this.themeList);
       console.log("Le thème : ",theme," a été rajouté (temporairement)");
-    } else {
-      alert("Ce thème existe déjà !");
     }
   }
 

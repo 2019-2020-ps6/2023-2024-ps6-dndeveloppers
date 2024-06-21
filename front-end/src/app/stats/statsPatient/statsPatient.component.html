@@ -1,12 +1,12 @@
 <div class="statsPatient">
     <p class="titreStat">Statistiques du patient : </p>
-    <select (input)="selectedPatient($event)" class="choixQuiz" name="choixQuiz">
+    <select [(ngModel)]="selectDefault" (input)="selectedPatient($event)" class="choixQuiz" name="choixQuiz">
         <option value="">Choix du patient</option>
-        <option *ngFor="let patient of listePatient" [value]="patient.nom" >{{patient.nom}}, {{patient.prenom}}</option>
+        <option *ngFor="let patient of listePatient" [value]="patient.id" >{{patient.nom}}, {{patient.prenom}}</option>
     </select>
 
     <ul>
-        <li>Nom du patient : {{actualPatient.prenom}}</li>
+        <li>Nom du patient : {{actualPatient.nom}}, {{actualPatient.prenom}}</li>
         <li>Option du patient : {{optionPatient}}</li>
         <li>Nombre de quiz réalisés : {{actualPatientSelfStats.nbQuizDone}}</li>
         <li>Score moyen : {{actualPatientMeanScore}}</li>

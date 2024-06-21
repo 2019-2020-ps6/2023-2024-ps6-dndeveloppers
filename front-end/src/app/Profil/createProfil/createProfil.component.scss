@@ -1,21 +1,8 @@
-
-.linom{
-    margin-top: 1%;
-    font-weight: bold;
+label {
+    font-size: large;
 }
 
-.liprenom{
-    margin-top: 1%;
-    font-weight: bold;
-
-}
-
-.liage{
-    margin-top: 1%;
-    font-weight: bold;
-}
-
-.lirole{
+.linom, .liprenom, .liage, .lirole{
     margin-top: 1%;
     font-weight: bold;
 }
@@ -113,8 +100,24 @@
 margin-left: 10px;
 }
 
-.photo {
+#photo {
     width: 200px;
+    margin-top: -175px;
+    margin-right: 200px;
+    float: right;
+}  
+
+#photoBalise {
+    max-height: 150px;
+    margin-top: 1rem;
+    margin: 10px;
+    margin-left: 50px;
+    border: solid black 3px;
+}
+
+.photo {
+    max-width: 200px;
+    max-height: 200px;
     margin-top: -175px;
     margin-right: 200px;
     float: right;

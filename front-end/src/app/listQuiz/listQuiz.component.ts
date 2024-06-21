@@ -4,6 +4,8 @@ import { Quiz } from '../../models/quiz.model';
 import { Router } from '@angular/router';
 import { ProfilService } from 'src/services/profil.service';
 import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
+import { Profil } from 'src/models/profil.model';
+import { ADMIN } from 'src/mocks/profil.mock';
 
 @Component({
   selector: 'listQuiz',
@@ -12,6 +14,7 @@ import { LISTE_PROFILS } from 'src/mocks/profil-list.mock';
 })
 export class ListQuizComponent implements OnInit {
 
+  public actualProfil: Profil = ADMIN;
   public quizList: Quiz[] = [];
   public themeList: String[] = [];
   public themeListShow: String[] = this.themeList;
@@ -35,21 +38,21 @@ export class ListQuizComponent implements OnInit {
     });
 
     this.profilService.actualProfil$.subscribe((profil) => {
+      this.actualProfil = profil;
       this.optionIndice = profil.optionIndice;
     })
   }
 
   ngOnInit() {
     this.quizService.setUpTheme();
+    this.desactiverClicDroit();
   }
 
   quizSelected(quiz: Quiz) {
-    console.log("listQuiz",quiz);
     this.quizService.selectQuiz(quiz);
   }
 
   deleteQuiz(quiz: Quiz) {
-    console.log(quiz);
     this.quizService.deleteQuiz(quiz);
   }
 
@@ -69,17 +72,6 @@ export class ListQuizComponent implements OnInit {
       }
     }
   }
-  
-  /* filterQuizs() {
-    return this.quizList.filter(quiz => {
-      const matchesSearchTerm = this.searchTerm ? 
-        quiz.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        quiz.theme.toLowerCase().includes(this.searchTerm.toLowerCase()) : true;
-      const matchesTheme = this.selectedTheme ? 
-        quiz.theme === this.selectedTheme : true;
-      return matchesSearchTerm && matchesTheme;
-    });
-  } */
 
   filterQuizsByTheme(theme: String) {
     let res = [];
@@ -121,5 +113,37 @@ export class ListQuizComponent implements OnInit {
 
   stopShowTutoriel(){
     this.helpWanted = false;
+  }
+
+  desactiverClicDroit() {
+    document.oncontextmenu = () => false;
+    console.log("desactivation clic droit");
+  }
+
+  catchClicDroit(event: MouseEvent, action: any) {
+    if (typeof action === 'string') {
+      if (action == 'tuto') {
+        console.log("action tuto");
+        event.preventDefault();
+        event.stopPropagation();
+        this.tutorielWanted();
+      } else if (action == 'notuto') {
+        console.log("action notuto");
+        event.preventDefault();
+        event.stopPropagation();
+        this.stopShowTutoriel();
+      } else if (action == 'selectTheme') {
+        console.log("action select");
+      }
+    } else {
+      console.log("action quiz");
+      console.log("quiz name: ", action.name);
+      for (let i=0; i<this.quizList.length; i++) {
+        if (this.quizList[i].name == action.name) {
+          this.quizSelected(this.quizList[i]);
+          break;
+        }
+      }
+    }
   }
 }

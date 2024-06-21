@@ -19,31 +19,40 @@ test.describe('Home page display', () => {
 
     await test.step("Ajout d'un thème", async () =>{
         const inputTheme = await quizGestionFixture.getInputTheme();
+        const addButton = await quizGestionFixture.getAddThemeButton();
 
         //On recupère le champ d'ajout de thème et on y écrit le thème Jeux de cartes
+        expect(inputTheme).toHaveValue('');
+        expect(addButton).toBeDisabled();
+
         await inputTheme.fill('Jeux de cartes');
         expect(inputTheme).toHaveValue('Jeux de cartes');
+        expect(addButton).not.toBeDisabled();
 
         //On ajoute le thème
-        await quizGestionFixture.clickAddThemeButton();
+        await addButton.click();
+        expect(addButton).toBeDisabled();
     });
 
     await test.step("Ajout du quiz", async () => {
         const inputTitle = await quizGestionFixture.getInputTitle();
+        const addButton = await quizGestionFixture.getAddQuizButton();
 
         //On récupère le champ d'ajout de nom de quiz et on y écrit le titre Rami
+        expect(addButton).toBeDisabled();
         await inputTitle.fill('Rami');
         expect(inputTitle).toHaveValue('Rami');
+        expect(addButton).toBeDisabled();
 
         //On récupère le champ de selection des thème et on choisi le thème
         const selectTheme = await quizGestionFixture.getSelectTheme();
         await selectTheme.click();
         await selectTheme.selectOption('Jeux de cartes');
+        expect(addButton).not.toBeDisabled();
 
         //On ajoute le nouveau quiz
-        await quizGestionFixture.clickAddQuizButton();
-
-        //await quizGestionFixture.clickReturnButton();
+        await addButton.click();
+        expect(addButton).toBeDisabled();
     });
 
     await test.step("Recherche d'un quiz par nom", async () => {
@@ -61,10 +70,14 @@ test.describe('Home page display', () => {
 
     await test.step("Recherche d'un quiz par thème", async () => {
       const inputTheme = await quizGestionFixture.getInputTheme();
+      const addThemeButton = await quizGestionFixture.getAddThemeButton();
 
       // on ajoute un thème random
+      expect(addThemeButton).toBeDisabled();
       await inputTheme.fill('Random');
-      await quizGestionFixture.clickAddThemeButton();
+      expect(addThemeButton).not.toBeDisabled();
+      await addThemeButton.click();
+      expect(addThemeButton).toBeDisabled();
 
       const searchSelectTheme = await quizGestionFixture.getSearchButton();
       await searchSelectTheme.click()

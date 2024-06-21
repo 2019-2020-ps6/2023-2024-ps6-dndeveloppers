@@ -3,7 +3,6 @@ import { QuizService } from "src/services/quiz.service";
 import { Quiz } from "src/models/quiz.model";
 import { QUIZ_LIST } from "src/mocks/quiz-list.mock";
 import { Router } from "@angular/router";
-import { Indice } from "src/models/question.models";
 import { ProfilService } from "src/services/profil.service";
 
 import { ADMIN } from "src/mocks/profil.mock";
@@ -26,6 +25,9 @@ export class QuizComponent implements OnInit {
     public actualProfil: Profil = ADMIN;
     public pathImage: String = '';
     public skip: String = "Passer la question";
+    public ask: String = "Voulez-vous revenir à votre dernière tentative sur ce quiz ?";
+    public oui: String = "Revenir";
+    public non: String = "Recommencer";
 
     constructor(public quizService: QuizService, public router: Router, public profilService: ProfilService){
         this.quizService.choosenQuiz$.subscribe((choosenQuiz) => {
@@ -52,19 +54,25 @@ export class QuizComponent implements OnInit {
         })
     }
 
-    @Input()
-    tutorielView: boolean = true;
-
-    tutoriel(){
-        this.tutorielView = true;
-    }
-
-    dontShowTutoriel() {
-        this.tutorielView = false;
-        this.quizService.dontShowTutoriel();
-    }
-
     skipQuestion(){
         this.quizService.skipQuestion(this.choosenQuiz);
+    }
+
+    restoreQuiz(){
+        this.quizService.restoreQuiz();
+    }
+
+    restartQuiz(){
+        this.quizService.resetInfoQuiz();
+    }
+
+    catchClicDroit(action: string) {
+        if (action == 'left') {
+            this.restoreQuiz();
+        } else if (action == 'right') {
+            this.restartQuiz();
+        } else {
+            this.skipQuestion();
+        }
     }
 }

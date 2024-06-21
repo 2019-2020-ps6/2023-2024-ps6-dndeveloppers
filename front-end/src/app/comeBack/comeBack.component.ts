@@ -44,9 +44,18 @@ export class ComeBackComponent implements OnInit {
              let admin: Profil = this.profilService.profilList$.value.at(0) || ADMIN;
             this.profilService.selectProfil(admin);
         }
+        
         else if(this.path == "home/listQuiz/"){
-            this.quizService.resetInfoQuiz();
+            if(this.quizService.infoQuiz$.value.endOfQuiz){
+                this.quizService.resetInfoQuiz();
+            }
         }
         this.router.navigate([this.path]);
+    }
+
+    catchClicDroit(event: any) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.return();
     }
 }

@@ -28,9 +28,10 @@ router.post('/', (req, res) => {
         
         // on ajoute les indice
         let indices = []
-        for(let i=0; i< 3 ; i++){
+        for(let i=0; i< req.body.indice.length ; i++){
+            console.log(" i = ",i);
             let value = req.body.indice[i].value;
-            if(value != ""){
+            if(value != "" && value != " "){
                 let indice = IndiceModel.create({value})
                 indices.push(indice.id)
             }          
@@ -67,9 +68,10 @@ router.put('/', (req, res) => {
 
         // update indices
         const indices = []
-        for(let i=0; i< 3 ; i++){
+        for(let i=0; i< req.body.indice.length ; i++){
+            console.log(" i = ",i);
             const value = req.body.indice[i].value;
-            if(value != ""){
+            if(value != ""  && value != " "){
                 const indice = IndiceModel.create({value})
                 indices.push(indice.id)
             }          
@@ -78,12 +80,10 @@ router.put('/', (req, res) => {
             IndiceModel.delete(question.indice[i])
         }
 
-        if(req.body.optionImageLien != "none"){
-            question.optionImageLien = req.body.optionImageLien
-        }
-        if(req.body.optionImageQuestion != "none"){
-            question.optionImageQuestion = req.body.optionImageQuestion
-        }
+        
+        question.optionImageLien = req.body.optionImageLien
+        question.optionImageQuestion = req.body.optionImageQuestion
+        
         question.indice = indices;
         res.status(200).json(QuestionModel.update(question.id, question))
     } catch (err) {
@@ -116,18 +116,20 @@ router.delete('/:id', (req, res) => {
         }
 
         // on supprime les indices
+
         for(let i=0; i<question.indice.length;i++){
             IndiceModel.delete(question.indice[i])
         }
         
         // on supprime les réponses
         const answerToDelete = question.answers
-        console.log(answerToDelete)
+        //console.log(answerToDelete)
         for(let i=0;i<4;i++){
             AnswerModel.delete(answerToDelete[i])
-            console.log(answerToDelete)
+            //console.log(answerToDelete)
         }
         console.log("taille : ",AnswerModel.get().length)
+        console.log("taille indice : ",IndiceModel.get().length)
         //       -- dans le manager --
         QuestionModel.delete(idQuestion)
         res.status(204).end()
