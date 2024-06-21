@@ -44,7 +44,7 @@ export class ProfilService {
                 }
             }
             this.profilList$.next(this.profilList);
-            console.log(this.profilList);
+            console.log("Profils récupérés");
         })
     }
 
@@ -74,7 +74,6 @@ export class ProfilService {
             if (this.profilList[i] == profil) {
                 this.actualProfil = this.profilList[i];
                 this.actualProfil$.next(this.actualProfil);
-                console.log("profil choisit : ", this.actualProfil);
                 return;
             }
         }

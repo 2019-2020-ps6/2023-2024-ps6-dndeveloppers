@@ -42,9 +42,7 @@ export class EditQuestionComponent implements OnInit {
         });
 
         let URL = this.url.split('/');
-        //console.log("url : ", URL);
         this.quizName = URL[URL.length-1];
-        //console.log("url courante : ", this.quizName);
     }
 
     ngOnInit(): void {
@@ -167,12 +165,10 @@ export class EditQuestionComponent implements OnInit {
         if(this.photo != "" && this.questionForm.value.photoTexte != null && this.questionForm.value.photoTexte != "none" && this.questionForm.value.photoTexte.length != 0){
             question.optionImageLien = this.photo,
             question.optionImageQuestion = this.questionForm.value.photoTexte;
-            console.log("phookto : ")
         }
         else {
             question.optionImageLien = "none"
             question.optionImageQuestion = "none"
-            console.log("pas ok : ")
         }
         console.log("question : ", question.optionImageQuestion,question.optionImageLien.length)
         question.id = this.question?.id;
@@ -198,10 +194,8 @@ export class EditQuestionComponent implements OnInit {
                 }
                 let range = [];
                 for (let i=Math.floor(indiceTarget/4)*4; i<Math.floor(indiceTarget/4)*4 +4; i++) {
-                    console.log("range : ", i);
                     range.push(checkboxes[i]);
                 }
-                console.log("There is ", range.length, " checkboxes");
                 range.forEach((checkbox: Element) => {
                     if (checkbox != event.target) {
                         (checkbox as HTMLInputElement).checked = false;
