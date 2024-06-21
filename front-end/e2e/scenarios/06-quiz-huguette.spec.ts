@@ -44,7 +44,7 @@ test.describe('Jouer quiz en tant que Huguette', () => {
             await quizFixture.getIndiceBouton().click();
             await quizFixture.getIndiceBouton().click();
             await quizFixture.getIndiceBouton().click();
-            await quizFixture.getIndiceBouton().click();
+            await expect(quizFixture.getIndiceBouton()).not.toBeVisible();
             expect(await quizFixture.countNbAnswer()).toBe(2);
 
             await page.getByRole('button', { name: 'Clarinette' }).click();

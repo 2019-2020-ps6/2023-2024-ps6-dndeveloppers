@@ -38,7 +38,6 @@ export class ViewProfilComponent implements OnInit {
 
     profilShow(str: String) {
         this.typeView=str;
-        console.log(this.profil);
         this.getWorstQuiz(this.profil);
     }
 

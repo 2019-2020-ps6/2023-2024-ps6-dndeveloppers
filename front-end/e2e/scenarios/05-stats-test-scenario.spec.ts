@@ -56,11 +56,11 @@ test.describe('Stats page feature', () => {
       //On sélectionne un des patients
       await pSelector.click();
       await pSelector.selectOption('Bois, Maurice');
-      pName = statsPatient.getByText('Nom du patient : Maurice');
+      pName = statsPatient.getByText('Nom du patient : Bois, Maurice');
       pOption = statsPatient.getByText('Option du patient : Indice');
       
       //On vérifie que les stats correspondent bien
-      expect(pName).toBeVisible();
+      await expect(pName).toBeVisible();
       expect(pOption).toBeVisible();
       expect(pNbQuizDone).toBeVisible();
       expect(pMeanScore).toBeVisible();

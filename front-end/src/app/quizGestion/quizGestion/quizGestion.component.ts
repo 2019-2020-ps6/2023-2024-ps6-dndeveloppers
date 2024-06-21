@@ -62,8 +62,4 @@ export class QuizGestionComponent implements OnInit {
             this.themeListShow.push(event.target.value);
         }
     }
-
-    quizShow(event: any) {
-        console.log("okok");
-    }
 }

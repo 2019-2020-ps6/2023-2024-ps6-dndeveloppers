@@ -39,14 +39,11 @@ export class AddQuestionComponent implements OnInit {
     nbIndice: boolean[] = this.indicesNum;
 
     ngOnInit(): void {
-        //console.log("good answer : ",this.questionForm.value.goodAnswer)
-
         const firstCheckbox = document.getElementById("r1") as HTMLInputElement;
         firstCheckbox.checked = true;
         this.questionForm.patchValue({
             goodAnswer: 0
         })
-        //console.log("good answer : ",this.questionForm.value.goodAnswer)
     }
 
     addQuestion(){
@@ -71,7 +68,6 @@ export class AddQuestionComponent implements OnInit {
         answer4.isCorrect = false;
 
         question.answers = [answer1 , answer2 , answer3, answer4];       
-        //console.log("numéro : ",this.questionForm.value.goodAnswer); 
         question.answers[this.questionForm.value.goodAnswer].isCorrect = true;
 
         question.indice = [];

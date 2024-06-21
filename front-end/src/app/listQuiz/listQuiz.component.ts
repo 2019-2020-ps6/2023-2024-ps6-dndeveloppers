@@ -49,12 +49,10 @@ export class ListQuizComponent implements OnInit {
   }
 
   quizSelected(quiz: Quiz) {
-    console.log("listQuiz",quiz);
     this.quizService.selectQuiz(quiz);
   }
 
   deleteQuiz(quiz: Quiz) {
-    console.log(quiz);
     this.quizService.deleteQuiz(quiz);
   }
 
