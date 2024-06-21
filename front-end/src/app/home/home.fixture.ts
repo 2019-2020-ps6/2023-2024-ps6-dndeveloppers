@@ -9,19 +9,29 @@ export class HomeFixture extends E2EComponentFixture {
     return this.page.getByRole('button', { name: 'GESTION DES QUIZ' });
    }
 
-   getProfilButton() {
+  getProfilButton() {
     return this.page.getByRole('button', { name: 'GESTION DES PROFILS' });
-   }
+  }
 
-   getStatsButton() {
+  getStatsButton() {
     return this.page.getByRole('button', { name: 'STATISTIQUES' });
-   }
+  }
 
-   getSearchBar() {
-    //return this.page.getByRole('text-Input', { placeholder: 'Rechercher un profil'});
-    const selector = `input[class="searchBar"]`;
+  getSearchBar() {
     return this.page.getByPlaceholder('Rechercher un profil'); 
-   }
+  }
+
+  getPlayableProfil(profilName: string) {
+    return this.page.getByRole('heading', { name: profilName });
+  }
+
+  getReturnButton() {
+    return this.page.getByRole('button', { name: 'Retour page principale'});
+  }
+
+  getNumberProfilShown() {
+    return this.page.locator('app-viewprofil').count();
+  }
 
   clickPlayButton() {
     return this.getPlayButton().click();
@@ -37,5 +47,9 @@ export class HomeFixture extends E2EComponentFixture {
 
   clickStatsButton() {
     return this.getStatsButton().click();
+  }
+
+  clickReturnButton() {
+    return this.getReturnButton().click();
   }
 }
