@@ -30,11 +30,15 @@ const buildQuestions = (idQuiz) => {
 
 const QuestionDELETE = (questionsId) => {
     try {
+        const question = QuestionModel.getById(questionsId);
+        console.log("question id : ",question.id)
         for(let i=0; i<4; i++){
-            AnswerModel.delete(QuestionModel.getById(questionsId).answers[i].id);
+            console.log("question.answers[i].id : ",question.answers[i])
+            AnswerModel.delete(question.answers[i]);
         }
-        for(let i=0; i< QuestionModel.getById(questionsId).indice.lenght; i++ ){
-            IndiceModel.delete(QuestionModel.getById(questionsId).indice[i].id)
+        for(let i=0; i< question.indice.length; i++ ){
+            console.log("question.indice[i].id : ",question.indice[i])
+            IndiceModel.delete(question.indice[i])
         }
         QuestionModel.delete(questionsId);
     } catch (err) {
@@ -44,8 +48,13 @@ const QuestionDELETE = (questionsId) => {
 }
 
 const QuestionsDELETE = (quizId) => {
-    for(let i=0; i < QuizModel.getById(quizId).questions.lenght;i++){
-        QuestionDELETE(QuizModel.getById(quizId).questions[i])
+    const questions = QuizModel.getById(quizId).questions;
+    //console.log("questions : ",questions)
+    for(let i=0; i < questions.length;i++){
+        console.log("questions[i] : ",questions[i])
+        console.log("question : ", QuestionModel.getById(questions[i]).label);
+        
+        QuestionDELETE(questions[i])
     }
 }
 
