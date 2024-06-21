@@ -1,6 +1,4 @@
-const array = require('joi/lib/types/array')
 const { QuizModel, QuestionModel, AnswerModel, IndiceModel, statsQuizModel } = require('../../models')
-const buildQuestion = require('./questions/manager')
 
 const buildQuiz = (quizId) => {
   try {
