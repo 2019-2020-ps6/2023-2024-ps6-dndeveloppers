@@ -148,14 +148,17 @@
 }
 
 .actualTheme {
-  background-color: lightgray;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "OpenDyslexic", sans-serif;
-  font-weight: bold;
-  border: solid black 2px;
+  width: 100%;
+  height: 40px;
   border-radius: 10px;
+  border: solid black 2px;
+  background-color: lightgray;
+  font-weight: bold;
+  font-family: "OpenDyslexic", sans-serif;
+  font-size: x-large;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .quizzes {

@@ -1,6 +1,6 @@
 .statsPatient {
     margin-top: 10px;
-    background-color: rgb(161, 161, 161);
+    background-color: rgb(224, 202, 202);
     border: solid black 2px;
     border-radius: 10px;
     height: auto;
@@ -28,4 +28,15 @@
 
 #patientChart {
     max-height: 400px;
+}
+
+button {
+    width: 98%;
+    height: 30px;
+    transition: transform 0.5s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
 }
