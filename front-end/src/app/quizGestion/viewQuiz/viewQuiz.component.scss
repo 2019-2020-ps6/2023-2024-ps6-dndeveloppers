@@ -3,14 +3,14 @@
     margin-top: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
-    background-color: lightgray;
+    background-color: rgb(238, 207, 171);
     border-radius: 10px;
     border:2px black solid;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
     text-align: center;
-    font-size: medium;
+    font-size: medium; 
 }
 
 #imageQuiz {
@@ -20,9 +20,12 @@
 }
 
 button {
-    display: inline-block;
+    height: 50px;
+    width: 200px;
     margin-top: 20px;
+    display: inline-block;
     transition: transform 0.5s ease;
+    margin-bottom: -29px;
 }
 
 button:hover {
@@ -31,6 +34,7 @@ button:hover {
 }
 
 .bt {
-    display: flex;
-    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: max-content;
 }
