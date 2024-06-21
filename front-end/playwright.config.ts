@@ -1,8 +1,8 @@
 import { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
-  outputDir: '/app/test-results',
-  reporter: [['html', { open: 'always' }]],
+  outputDir: './test-results',
+  reporter: [['json', { outputFile: './test-results/report.json' }]],
   workers: 1,
   use: {
     headless: true,

@@ -22,7 +22,7 @@ test.describe('Jouer quiz en tant que Maurice', () => {
         const listQuizFixture = new ListQuizFixture(page);
 
         //On lance un quiz
-        await listQuizFixture.getSearchBar().fill("Tempo");
+        await listQuizFixture.getSearchBar().type("Tempo");
         await page.locator('choixquiz #nom').click();
     });
 

@@ -1,7 +1,10 @@
 services:
   front:
     image: ps6-dndevelopers/front
-    build:  ../front-end
+    build:
+      context: ../front-end
+      args:
+        - BUILD_CONFIG=docker
     ports:
       - "8080:80"
     depends_on:

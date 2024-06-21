@@ -1,4 +1,5 @@
 import { HttpHeaders } from '@angular/common/http';
+import { env } from 'src/environments/environment';
 
 console.log("téléchargement config");
 
@@ -8,4 +9,4 @@ export const httpOptionsBase = {
   })
 };
 
-export const serverUrl = 'http://localhost:9428/api';
+export const serverUrl = env.serverUrl;

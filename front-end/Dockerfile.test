@@ -1,15 +1,13 @@
 FROM mcr.microsoft.com/playwright:v1.34.3-jammy
 
+ARG BUILD_CONFIG=e2e
+
 WORKDIR /app
 
-# Copiez les fichiers package.json et package-lock.json
 COPY package.json package-lock.json ./
 
-# Installer les dépendances
 RUN npm install
 
-# Copiez le reste du code source
 COPY . .
 
-# Exécuter les tests Playwright
 CMD ["npx", "playwright", "test"]
