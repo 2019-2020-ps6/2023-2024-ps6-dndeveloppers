@@ -1,7 +1,9 @@
+version: '3.8'
+
 services:
   front:
     image: ps6-dndevelopers/front
-    build:  ../front-end
+    build: ../front-end
     ports:
       - "8080:80"
     depends_on:
@@ -14,11 +16,29 @@ services:
   
   back:
     image: ps6-dndevelopers/back
-    build:  ../backend
+    build: ../backend
     ports:
       - "8081:9428"
+    volumes:
+      - ../backend/database:/app/database
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9428/api/status"]
       interval: 30s
       timeout: 10s
       retries: 3
+  
+  playwright:
+    build:
+      dockerfile: Dockerfile.test
+      context: ../front-end
+    environment:
+      - TEST_URL=http://front
+    volumes:
+      - ./test-results:/app/test-results
+    depends_on:
+      front:
+        condition: service_healthy
+
+volumes:
+  test-results:
+  back:
