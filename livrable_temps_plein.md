@@ -170,10 +170,68 @@ Suite à tous ces tests, il y a malheuresement certains éléments qui n'ont pas
 
 ### Critères de priorisation des tests
 
->Le bon fonctionnement des quiz avec les différentes options des patients car c'est l'objectif premier de notre site.
+>Quiz avec les différentes options des patients car c'est l'objectif premier de notre site.
+
+>Vérifier le bon fonctionnement des statistiques.
+
+>Cycle complet du site : création d'un profil, création d'un quiz, jouer à ce quiz avec le profil créé, voir que les stats sont bien modifiées.
 
 
 ### Scénarios de tests
+
+>Nos scénarios s'exécutent dans un ordre précis afin de pouvoir tester le cycle complet de notre site.
+
+1er scénario : Page d'accueil (DONE)
+```
+Ce scénario consiste à tester les différents bouton du menu principal et à vérifier que la barre de recherche de profil est disponible quand on clique sur le bouton 'Jouer à un quiz'.
+Ce scénario permet de vérifier le bon fonctionnement des différentes redirections, permettant ainsi de réaliser n'importe quelle action sur notre site.
+```
+
+2ème scénario : Gestion des quiz (DONE)
+```
+Ce scénario sert à la création d'un quiz, en ajoutant un nouveau thème. Il permet également de vérifier la recherche d'un quiz par nom ou par thème. Et enfin, il permet de vérifier le bon fonctionnement de la suppression d'un quiz.
+Ce scénario nous permet donc de tester l'initialisation des quiz, ainsi que leur recherche permettant de les sélectionner pour les modifier ou les supprimer.
+```
+
+3ème scénario : Edition des quiz (DONE)
+```
+Ce scénario permet de vérifier, après la création d'un quiz, l'édition de celui-ci, en lui ajoutant et/ou modifiant des questions. Il permet de vérifier que ces questions contiennent bien un label, 4 réponses et 3 indices facultatifs. La modification des questions permet de modifier chacune de ces valeurs tout en vérifiant la présence de celles obligatoires.
+Ce scénario permet également de modifier les informations du quiz, à savoir, son thème et son nom en vérifiant une fois de plus la présence de ces deux éléments. Enfin, on teste la suppression d'une question.
+Ce scénario complète donc le précédent en permettant une vérification de la création jusqu'à la finalisation d'un quiz.
+```
+
+4ème scénario : Gestion et édition des profils (DONE)
+```
+Ce scénario englobe toutes les fonctionnalités liées à la gestion et l'édition des profils, à savoir :
+• La création, en vérifiant la présence des informations minimales.
+• La modification, en vérifiant la présence de ces mêmes informations, et en constatant la présence des anciennes valeurs. De plus, on teste l'édition du profil.
+• La suppression d'un profil
+Ce scénario nous permet de vérifier le bon fonctionnement de la gestion des profils qui est un élément important pour pouvoir suivre les statistiques des patients possédant un profil sur le site, et également pour le choix des différentes options disponibles pour chaque patient, pour une meilleure personnification de chaque profil.
+```
+
+5ème scénario : Statistiques de base (DONE)
+```
+Ce scénario permet de vérifier les statistiques actuelles avant de jouer à un quiz. On y regarde les statistiques globales qui répertorient le nombre de patient, le nombre de quiz et le nombre de quiz réalisés. On regarde également les statistiques d'un patient et d'un quiz, ce qui permettra plus tard de constater l'actualisation des statistiques.
+Ce scénario fonctionne donc de pair avec le 8ème qui permettra de constater qu'il y a bien une actualisation des statistiques. Il est donc très important pour le suivi des patients.
+```
+
+6ème scénario : Jouer un quiz avec les options 'photo', 'indice' et 'enlever la mauvaise réponse'(DONE)
+```
+Ce scénario nous permet de jouer avec le profil 'Huguette'. Il va donc permettre de tester le bon fonctionnement d'un quiz, en demandant occasionnellement des indices, de répondre faux à certaines questions pour vérifier que la question reste identique mais que la mauvaise réponse sélectionnée disparaisse. On teste également le fait de quitter et de revenir sur un quiz, pour constater que la progression a bien été enregistrée. Enfin, on teste que le message des résultats soit bien conforme au modèle prévu suivant les réponses données lors du quiz.
+Ce scénario est donc capital pour vérifier le bon fonctionnement du quiz et des différentes options de 'Huguette'.
+```
+
+7ème scénario : Jouer un quiz avec les options 'indice', 'passer une question' et 'reposer les questions ratées plus tard' (DONE)
+```
+Ce scénario permet de tester un quiz en vérifiant que l'on puisse passer une question sans y répondre, et que si l'on se trompe à une question, celle-ci sera reposée à la fin du quiz.
+Ce scénario permet de vérifier les options qui n'ont pas été vérifées lors du scénario précédent, ce qui permet nous permet donc de constater que les différentes options du patient sont fonctionnelles.
+```
+
+8ème scénario : Actualisation des statistiques (DONE)
+```
+Ce scénario permet, suite à la réalisation des quiz, de constater l'évolution des statistiques concernant les patients et les quiz qui ont été joué.
+Ce scénario permet donc de vérifier un élément clé de notre site, qui sont les statistiques car elles permettent le suivi des patients dans leur évolution contre la maladie d'Alzheimer.
+```
 
 ## Ops
 
