@@ -1,5 +1,12 @@
 # Projet2-PS6
 
+## Sommaire
+• [Persona et scénarios](#persona-et-scénarios)<br/>
+• [Évaluation coopérative](#évaluation-coopérative)<br/>
+• [TESTS](#tests)<br/>
+• [Ops](#ops)<br/>
+• [Conclusion](#conclusion-finale)
+
 ## Persona et scénarios
 
 ### Types de persona et types de scénarios
@@ -71,6 +78,106 @@ Et les réponses sont :
 Julia Roberts/Johnny Depp/Florence Foresti/Omar Sy avec  la deuxième réponse sélectionnée comme la bonne. Cependant en regardant les indices proposés, elle se rend compte que le deuxième est “Ce personnage est une femme”, ce qui est faux. Cela a sûrement induit les patients en erreur. Elle modifie donc cet indice pour “Ce personnage est un homme” et confirme ses modifications.
 Elle va ensuite effectuer le quiz avec son profil afin de vérifier que les modifications ont bien été effectuées, ce qu'elle constate sans surprise.
 ```
+
+## Évaluation coopérative
+
+>Le principe de l’évaluation coopérative consiste à faire tester notre site par des utilisateurs afin d'avoir des avis extérieurs sur la qualité du produit pour déterminer les principales difficultés rencontrées lors de l’utilisation. Ce test se fait en interprétant les persona et leurs scénarios décris ci-dessus pour répliquer les situations prévues. 
+Nos craintes principales concernaient surtout l’interface du site et sa simplicité d'utilisation.
+
+<u>**Accueil de jour**</u>
+
+```
+Elles ont décidé de tester le site par elles-mêmes sans suivre les scénarios. Cela leur a permit d'aller voir par elle-même les points qu'elles jugeaient les plus importants pour notre site, ainsi que de faire un test plus sincère car elles ont découvert le site par elles-mêmes sans une aide extérieure qui les dirige.
+```
+[Vidéo Accueil de jour](https://youtu.be/uUL3Yy8Rzn0)
+
+<u>**L'équipe Compagnon-mémoire**</u>
+
+```
+Cette équipe a pu tester tous les scénarios, puis les tests, et nous ont proposé des modifications mineures en ce qui concerne le graphique, ainsi qu'une modification majeure qui est la possibilité de pouvoir passer les questions sans y répondre.
+L'équipe de testeur a apprécié le site et trouve l'interface ainsi que la plupart des fonctionnalités bien pensées et adaptées.
+```
+[Vidéo équipe Compagnon-mémoire](https://youtu.be/LGGd35MSQNw)
+
+<u>**L'équipe Klamar**</u>
+
+```
+Une personne de cette équipe a testé notre site en suivant la plupart des scénarios de façon autonome et a relevé des éléments similaires à l'équipe Compagnon-mémoire tout en relevant quelques bugs que nous n'avions pas repérés.
+```
+[Vidéo équipe Klamar](https://youtu.be/-nEbD85Fn2Q)
+
+### Résultats et Analyse
+
+Suite aux tests des utilisateurs, nous avons collectés leurs retours et nous sommes mis à l'implémentation des nouvelles fonctionnalités, ainsi qu'à la résolution des différents bugs qui ont pu être trouvés.
+
+Grâce aux tests et aux remarques faites par les utilisateurs, nous avons pu effectuer différentes modification pour notre site, à savoir :
+
+>Déplacer le bouton de tutoriel dans la liste des quiz au lieu de le mettre pendant les quiz.
+
+>Augmenter la taille du texte à différents endroit comme : dans les indices, dans le message de félicitations, dans les pages de création et de modification d'un profil, dans les statistiques.
+
+>Pouvoir retourner à un quiz abandonné en cours de route.
+
+>Ajouter une option pour les patients permettant de passer une question sans y répondre.
+
+>Mettre le bouton de passage de la liste des quiz à la page principale visible si le profil choisit est un membre du personnel.
+
+>Mettre les photos dans le serveur pour ne pas avoir un simple lien dans le front vers des photos déjà enregistrées.
+
+>Refaire l'interface graphique de la liste des quiz afin que ceux-ci soient rangés par thème.
+
+>Harmoniser l'interface en faisant des cartes de quiz de même hauteur.
+
+>Mettre en valeur le tutoriel et les félicitations en mettant moins de texte.
+
+>Mettre les boutons de retour à la page précédente en haut de la page et non en bas.
+
+>Enlever les boutons d'ajout et de suppression d'indices dans la gestion des quiz.
+
+>La résolution de différents bugs : <br/>
+• Le bouton d'indice qui ne supprime pas une mauvaise réponse pour les questions sans indices textuels.<br/>
+• Ne pas pouvoir ajouter un thème déjà existant.<br/>
+• Le fait que les checkbox du composant pour ajouter une nouvelle question aient un impact sur les checkbox pour modifier une question (si une checkbox est cochée, les autres doivent automatiquement se décocher).
+
+>Ainsi que différentes modifications mineures pour l'interface qui permettent à l'utilisateur de mieux comprendre le fonctionnement du site comme le nom d'un bouton ou la reformulation du nom d'une option.
+
+### Conclusion
+
+```
+Cette évaluation coopérative nous aura permit de tester le site d’un point de vue extérieur. Hormis quelques bugs, la grande majorité des remarques concernent le graphisme et non les fonctionnalités. Tous les bugs sont aujourd’hui corrigés et la totalité des modifications graphiques proposées par les testeurs ont été mises en place. De plus, de nouvelles fonctionnalités ont vu le jour comme l’enregistrement de photo, l'option permettant de passer une question ainsi que le fait de pouvoir revenir sur un quiz abandonné en cours de route.
+
+En conclusion cet exercice aura été très bénéfique pour notre équipe car il aura permit une amélioration de notre site et la possibilité d’avoir un autre point de vue sur celui-ci. Il nous aura également permit de repérer différents problèmes d'interface que nous n'observions pas de notre point de vue de développeurs.
+```
+
+```
+Nous avons également pu faire tester notre site à des utilisateurs concrets, qui représente bien plus nos persona car étant réellement atteint de la maladie d'Alzheimer. Ces tests nous ont permis de comprendre que la principale difficulté de notre site vient du fait que les utilisateurs ne savent pas très bien se servir d'une souris. Pour pallier à ce problème, nous avons redéfinit le clic droit de la souris dans les pages de jeu accessibles par les patients. Ainsi, le clic droit dans ces pages n'ouvre pas la fenêtre de fonctionnalités (Copier, coller, imprimer, ...) qui pourrait les perturber, et s'ils cliquent sur un élément avec le clic droit au lieu du clic gauche, cela fonctionne de la même manière. De plus, le message de félicitation a été modifié afin que le fond, qui était la dernière question à laquelle ils ont répondu, n'apparait plus, ce qui enlève toute ambiguïté et distraction.
+De plus, avec l'option qui repose les questions mal répondues plus tard, nous avons ajouté le fait que la bonne réponse est mise en évidence au moment de l'erreur, et la mauvaise réponse que l'utilisateur a sélectionné ne sera plus disponible lorsque la question sera reposée.
+```
+
+### Ce qu'il reste à faire
+
+Suite à tous ces tests, il y a malheuresement certains éléments qui n'ont pas pu être mis en place pour cause de manque de temps :
+>La modification de l'interface de choix du quiz, afin que l'utilisateur n'ait pas besoin de scroller. Nous n'avons pas trouvé de moyen efficace de résoudre ce problème tout en gardant la page fonctionnelle.
+
+>Faciliter le cliquage des boutons quand on joue à un quiz car les utilisateurs cliquent souvent à côté. Pour cela, nous avons pensé à deux façon de résoudre ce problème :<br/>
+• Faire qu'un clique dans le vide sélectionne l'élément cliquable le plus proche. Cependant, si l'utilisateur ne sait pas où il clique, le problème reste entier car l'élément finalement sélectionné ne sera pas forcément celui voulu.<br/> 
+• Redéfinir les emplacements possibles de la souris sur la page afin qu'elle soit toujours sur un élément cliquable.<br/>
+• Utiliser le clavier pour naviguer dans la page avec un moyen graphique de connaitre la case actuellement sélectionnée.
+
+>Permettre aux soignants utilisant notre site de consulter et modifier le mot de passe permettant de passer de l'espace patient à l'espace personnel ('/home/listeQuiz' -> '/home'). Actuellemnt ce mot de passe est prédéfinit et n'est pas modifiable.
+
+## TESTS
+
+### Critères de priorisation des tests
+
+>Le bon fonctionnement des quiz avec les différentes options des patients car c'est l'objectif premier de notre site.
+
+
+### Scénarios de tests
+
+## Ops
+
+## Conclusion finale
 
 
 
