@@ -21,9 +21,6 @@ services:
     image: ps6-dndevelopers/back
     build:
       context: ../backend
-      dockerfile: Dockerfile.test
-      args:
-        - BUILD_CONFIG=e2e
 
     ports:
       - "8081:9428"

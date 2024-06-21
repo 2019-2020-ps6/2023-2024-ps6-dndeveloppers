@@ -1,0 +1,738 @@
+{
+  "config": {
+    "configFile": "/app/playwright.config.ts",
+    "rootDir": "/app",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "json",
+        {
+          "outputFile": "./test-results/report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 15000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "id": "",
+        "name": "",
+        "testDir": "/app",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "version": "1.34.3",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "e2e/scenarios/01-home-page-display.spec.ts",
+      "file": "e2e/scenarios/01-home-page-display.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Home page display",
+          "file": "e2e/scenarios/01-home-page-display.spec.ts",
+          "line": 7,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Basic test",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 15384,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Visibilité des éléments",
+                          "duration": 12
+                        },
+                        {
+                          "title": "Test jouer Quiz, barre de recherche et selection de profil",
+                          "duration": 4228
+                        },
+                        {
+                          "title": "Test de la visibilité du bouton retour quand on joue avec un profil personnel",
+                          "duration": 3163
+                        },
+                        {
+                          "title": "Test bouton de gestion des quiz",
+                          "duration": 2118
+                        },
+                        {
+                          "title": "Test bouton de gestion des profils",
+                          "duration": 2098
+                        },
+                        {
+                          "title": "Test bouton des statistiques",
+                          "duration": 2115
+                        }
+                      ],
+                      "startTime": "2024-06-21T16:28:08.365Z",
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-scenarios-01-home-page-display-Home-page-display-Basic-test/video.webm"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-scenarios-01-home-page-display-Home-page-display-Basic-test/test-finished-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b13bd767b2f2ed50eea1-dfeae4a44c5ad301c426",
+              "file": "e2e/scenarios/01-home-page-display.spec.ts",
+              "line": 8,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e/scenarios/02-gestionQuiz-test-scenario.spec.ts",
+      "file": "e2e/scenarios/02-gestionQuiz-test-scenario.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Home page display",
+          "file": "e2e/scenarios/02-gestionQuiz-test-scenario.spec.ts",
+          "line": 6,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Basic test",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 18208,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Récupération des boutons",
+                          "duration": 7
+                        },
+                        {
+                          "title": "Ajout d'un thème",
+                          "duration": 2121
+                        },
+                        {
+                          "title": "Ajout du quiz",
+                          "duration": 4146
+                        },
+                        {
+                          "title": "Recherche d'un quiz par nom",
+                          "duration": 3077
+                        },
+                        {
+                          "title": "Recherche d'un quiz par thème",
+                          "duration": 5191
+                        },
+                        {
+                          "title": "Suppression d'un quiz",
+                          "duration": 2074
+                        }
+                      ],
+                      "startTime": "2024-06-21T16:28:24.014Z",
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-scenarios-02-gestionQuiz-test-scenario-Home-page-display-Basic-test/video.webm"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-scenarios-02-gestionQuiz-test-scenario-Home-page-display-Basic-test/test-finished-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "6fa07bfe4c43aa3e520d-ff92fef623ec3d121695",
+              "file": "e2e/scenarios/02-gestionQuiz-test-scenario.spec.ts",
+              "line": 7,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e/scenarios/03-editQuiz-test-scenario.spec.ts",
+      "file": "e2e/scenarios/03-editQuiz-test-scenario.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Home page display",
+          "file": "e2e/scenarios/03-editQuiz-test-scenario.spec.ts",
+          "line": 7,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Basic test",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 82093,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Ajout du quiz",
+                          "duration": 7318
+                        },
+                        {
+                          "title": "Ajout d'un question",
+                          "duration": 7247
+                        },
+                        {
+                          "title": "Modification d'une question",
+                          "duration": 8286
+                        },
+                        {
+                          "title": "Modification des valeur globales du quiz",
+                          "duration": 11361
+                        },
+                        {
+                          "title": "Suppression d'une question",
+                          "duration": 1048
+                        },
+                        {
+                          "title": "Création de quiz pour les prochains tests",
+                          "duration": 45300
+                        }
+                      ],
+                      "startTime": "2024-06-21T16:28:42.238Z",
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-scenarios-03-editQuiz-test-scenario-Home-page-display-Basic-test/video.webm"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-scenarios-03-editQuiz-test-scenario-Home-page-display-Basic-test/test-finished-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "51712b1821fcdc0b9772-a5049871c9786eebc9ca",
+              "file": "e2e/scenarios/03-editQuiz-test-scenario.spec.ts",
+              "line": 8,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e/scenarios/04-profil-test-scenario.spec.ts",
+      "file": "e2e/scenarios/04-profil-test-scenario.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Create personnel profil",
+          "file": "e2e/scenarios/04-profil-test-scenario.spec.ts",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Basic test",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 44175,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Ajout d'un profil",
+                          "duration": 11453
+                        },
+                        {
+                          "title": "Modification du profil",
+                          "duration": 9341,
+                          "steps": [
+                            {
+                              "title": "Verification des valeurs du profil",
+                              "duration": 44
+                            },
+                            {
+                              "title": "Modification des valeurs du profil",
+                              "duration": 8229
+                            }
+                          ]
+                        },
+                        {
+                          "title": "Suppression du profil",
+                          "duration": 2157
+                        },
+                        {
+                          "title": "Verification du layout de la page listProfil",
+                          "duration": 7
+                        },
+                        {
+                          "title": "Verification du layout de la page createProfil",
+                          "duration": 54
+                        },
+                        {
+                          "title": "Ajout d'un profil",
+                          "duration": 10218
+                        },
+                        {
+                          "title": "Verification Search-bar",
+                          "duration": 3064
+                        },
+                        {
+                          "title": "Afficher profil",
+                          "duration": 2155
+                        },
+                        {
+                          "title": "Supprimer profil",
+                          "duration": 2094
+                        }
+                      ],
+                      "startTime": "2024-06-21T16:30:04.346Z",
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-scenarios-04-profil-test-scenario-Create-personnel-profil-Basic-test/video.webm"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-scenarios-04-profil-test-scenario-Create-personnel-profil-Basic-test/test-finished-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "8fad60df56d4e5255433-cd7bb3141d1321e20e64",
+              "file": "e2e/scenarios/04-profil-test-scenario.spec.ts",
+              "line": 9,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e/scenarios/05-stats-test-scenario.spec.ts",
+      "file": "e2e/scenarios/05-stats-test-scenario.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Stats page feature",
+          "file": "e2e/scenarios/05-stats-test-scenario.spec.ts",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Basic test",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 14369,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Bouton de retour fonctionnel",
+                          "duration": 3183
+                        },
+                        {
+                          "title": "Première vérification des statistiques globales",
+                          "duration": 7
+                        },
+                        {
+                          "title": "Première vérification des statistiques par patient",
+                          "duration": 2148
+                        },
+                        {
+                          "title": "Première vérification des statistiques par quiz",
+                          "duration": 2123
+                        },
+                        {
+                          "title": "Routing des stats patient vers la liste des profils",
+                          "duration": 2178
+                        },
+                        {
+                          "title": "Routing des stats quiz vers la modification de ce quiz",
+                          "duration": 3208
+                        }
+                      ],
+                      "startTime": "2024-06-21T16:30:48.527Z",
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-scenarios-05-stats-test-scenario-Stats-page-feature-Basic-test/video.webm"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-scenarios-05-stats-test-scenario-Stats-page-feature-Basic-test/test-finished-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3ef76878e5ca13ee2525-000b0db6e55ce3973568",
+              "file": "e2e/scenarios/05-stats-test-scenario.spec.ts",
+              "line": 10,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e/scenarios/06-quiz-huguette.spec.ts",
+      "file": "e2e/scenarios/06-quiz-huguette.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Jouer quiz en tant que Huguette",
+          "file": "e2e/scenarios/06-quiz-huguette.spec.ts",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Jouer un quiz avec indice/photo/disparaitre les reponses",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 39440,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Choisir profil",
+                          "duration": 4424
+                        },
+                        {
+                          "title": "Choisir quiz",
+                          "duration": 2110
+                        },
+                        {
+                          "title": "Jouer quiz",
+                          "duration": 16781
+                        },
+                        {
+                          "title": "Reprise d'un quiz abandonné en cours",
+                          "duration": 15732
+                        }
+                      ],
+                      "startTime": "2024-06-21T16:31:02.906Z",
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-scenarios-06-quiz-huguette-Jouer-quiz-en-t-aab98-quiz-avec-indice-photo-disparaitre-les-reponses/video.webm"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-scenarios-06-quiz-huguette-Jouer-quiz-en-t-aab98-quiz-avec-indice-photo-disparaitre-les-reponses/test-finished-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "dcc028557fdf6802af72-ca7615ff251c0447c4c9",
+              "file": "e2e/scenarios/06-quiz-huguette.spec.ts",
+              "line": 11,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e/scenarios/07-quiz-maurice.spec.ts",
+      "file": "e2e/scenarios/07-quiz-maurice.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Jouer quiz en tant que Maurice",
+          "file": "e2e/scenarios/07-quiz-maurice.spec.ts",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Jouer un quiz avec indice/skip bouton/reposer question",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 13059,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Choisir profil",
+                          "duration": 4358
+                        },
+                        {
+                          "title": "Choisir quiz",
+                          "duration": 2095
+                        },
+                        {
+                          "title": "Jouer quiz",
+                          "duration": 6230
+                        }
+                      ],
+                      "startTime": "2024-06-21T16:31:42.350Z",
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-scenarios-07-quiz-maurice-Jouer-quiz-en-ta-07498-n-quiz-avec-indice-skip-bouton-reposer-question/video.webm"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-scenarios-07-quiz-maurice-Jouer-quiz-en-ta-07498-n-quiz-avec-indice-skip-bouton-reposer-question/test-finished-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "bb6131d29bf5c8184ac5-30b9f7b0eb1acb8c34f2",
+              "file": "e2e/scenarios/07-quiz-maurice.spec.ts",
+              "line": 11,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e/scenarios/08-stats-refresh-test.spec.ts",
+      "file": "e2e/scenarios/08-stats-refresh-test.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Stats page refresh",
+          "file": "e2e/scenarios/08-stats-refresh-test.spec.ts",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Basic test",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 12274,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Actualisation des statistiques globales",
+                          "duration": 7
+                        },
+                        {
+                          "title": "Actualisation des statistiques du patient Maurice",
+                          "duration": 2128
+                        },
+                        {
+                          "title": "Actualisation des statistiques de la patiente Huguette",
+                          "duration": 2129
+                        },
+                        {
+                          "title": "Actualisation des statistiques par quiz",
+                          "duration": 2140
+                        },
+                        {
+                          "title": "Nettoyage base de donnée",
+                          "duration": 3264
+                        }
+                      ],
+                      "startTime": "2024-06-21T16:31:55.423Z",
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-scenarios-08-stats-refresh-test-Stats-page-refresh-Basic-test/video.webm"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-scenarios-08-stats-refresh-test-Stats-page-refresh-Basic-test/test-finished-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e4bfe549e36f2ac3d988-5ca26790862af704277e",
+              "file": "e2e/scenarios/08-stats-refresh-test.spec.ts",
+              "line": 9,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": []
+}
