@@ -12,24 +12,77 @@ test.describe('Home page display', () => {
     // Using page element role: see the function declaration
     
     // Search by text content. Partial and exact text.
-    const buttonPlay = await homeFixture.getPlayButton();
-    const buttonQuiz = await homeFixture.getQuizButton();
-    const buttonProfil = await homeFixture.getProfilButton();
-    const buttonStats = await homeFixture.getStatsButton();
+    await test.step("Visibilité des éléments", async () => {
+      const buttonPlay = await homeFixture.getPlayButton();
+      const buttonQuiz = await homeFixture.getQuizButton();
+      const buttonProfil = await homeFixture.getProfilButton();
+      const buttonStats = await homeFixture.getStatsButton();
 
-    expect(buttonPlay).toBeVisible();
-    expect(buttonQuiz).toBeVisible();
-    expect(buttonProfil).toBeVisible();
-    expect(buttonStats).toBeVisible();
+      //On vérifie que tous les éléments sont bien affichés
+      expect(buttonPlay).toBeVisible();
+      expect(buttonQuiz).toBeVisible();
+      expect(buttonProfil).toBeVisible();
+      expect(buttonStats).toBeVisible();
+    });
 
-    await homeFixture.clickPlayButton();
-    
+    await test.step("Test jouer Quiz, barre de recherche et selection de profil", async () => {
+      await homeFixture.clickPlayButton();
+      let numberOfProfil = await homeFixture.getNumberProfilShown();
+      //On vérifie que les profils sont bien affichés
+      expect(numberOfProfil).toBe(4);
 
-    const inputQuiz = await homeFixture.getSearchBar();
-    await expect(inputQuiz).toBeEmpty();
-    //inputQuiz.focus();
-    await inputQuiz.fill('a');
-    await expect(inputQuiz).toHaveValue('a');
+      const inputQuiz = await homeFixture.getSearchBar();
+      await expect(inputQuiz).toBeEmpty();
+      await inputQuiz.fill('Delmas');//On test la saisie dans la barre de recherche
+      await expect(inputQuiz).toHaveValue('Delmas');
+      numberOfProfil = await homeFixture.getNumberProfilShown();
+      expect(numberOfProfil).toBe(1);//On vérifie que seul le profil recherché est affiché
+
+      //On test le routage vers la page des quiz
+      await homeFixture.getPlayableProfil('Nom : Delmas').click();
+      expect(page.url()).toBe(testUrl + '/home/listQuiz');
+
+      //On revient au menu home
+      await page.keyboard.type('admin');
+    });
+
+    await test.step("Test de la visibilité du bouton retour quand on joue avec un profil personnel", async () => {
+      await homeFixture.clickPlayButton();
+      await homeFixture.getPlayableProfil('Nom : Roques').click();//On prend un profil de personnel
+
+      //On vérifie que le bouton retour est visible
+      await expect(page.getByRole('button', { name: 'Retour page principale' })).toBeVisible();
+
+      //On revient au menu home
+      await homeFixture.clickReturnButton();
+    });
+
+    await test.step("Test bouton de gestion des quiz", async () => {
+      //On test le routage vers la page de gestion des quiz
+      await homeFixture.clickQuizButton();
+      expect(page.url()).toBe(testUrl + '/home/gestionQuiz');
+
+      //On revient au menu home
+      await homeFixture.clickReturnButton();
+    });
+
+    await test.step("Test bouton de gestion des profils", async () => {
+      //On vérifie le routage vers la page de gestion des profils
+      await homeFixture.clickProfilButton();
+      expect(page.url()).toBe(testUrl + '/home/listProfil');
+
+      //On revient au menu home
+      await homeFixture.clickReturnButton();
+    });
+
+    await test.step("Test bouton des statistiques", async () => {
+      //On vérifie le routage vers la page des statistiques
+      await homeFixture.clickStatsButton();
+      expect(page.url()).toBe(testUrl + '/home/stats');
+
+      //On revient au menu home
+      await homeFixture.clickReturnButton();
+    })
   });
 
   // TO GO FURTHER :
