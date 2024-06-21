@@ -235,6 +235,8 @@ Ce scénario permet donc de vérifier un élément clé de notre site, qui sont 
 
 ## Ops
 
+Le status du livrable est fini, en effet bien que l'on peut toujours améliorer le site en lui meme, l'ensemble des issues que nous avions prévu ont été fini et la partie ops est terminée. Nous avons créé nos différents dockerfile dans le front et le back que nous avons relié via des docker-compose, un pour lancer le site de facon normal et une pour le lancer pour passer nos tests. Pour récupérer le bon back-end en fonction de la version lancé, nous avons créé plusieurs environement que nous gérons dans le package.json et l'angular.json. Enfin dans nos docker-compose nous utilisons des healthchecks qui permettent de vérifier l'état de santé des conteneurs pour vérifier s'ils fonctionnent bien. Nous vérifions grace a curl l'état de santé du conteneur : curl envoie une requete HTML vers localhost:80 et renvoie une erreur si localhost renvoie 400 ou plus. Nous faisons un test de santé toutes les 1m30s et si au lancement de curl apres 30s il n'y a pas de renvoie on concidère le conteneur comme unhealthy et s'il passe le test 5 fois, il sera considéré comme healthy
+
 ## Conclusion finale
 
 
