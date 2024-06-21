@@ -140,106 +140,6 @@
     "id": 1718695463414.7485
   },
   {
-    "value": "K♥ D♦ D♥ 10♠ 7♠",
-    "isCorrect": false,
-    "id": 1718720217337.5952
-  },
-  {
-    "value": "9♠ 8♣ 8♦ 8♠ 3♥ ",
-    "isCorrect": true,
-    "id": 1718720217338.2756
-  },
-  {
-    "value": "6♠ K♦ K♥ 2♠ 7♦",
-    "isCorrect": false,
-    "id": 1718720217339.8777
-  },
-  {
-    "value": "5♣ 9♥ V♣ D♠ A♥",
-    "isCorrect": false,
-    "id": 1718720217340.173
-  },
-  {
-    "value": "2♣ 5♣ V♣ 7♣ 10♣",
-    "isCorrect": false,
-    "id": 1718720337132.4546
-  },
-  {
-    "value": "V♠ V♣ V♥ 10♥ 10♠",
-    "isCorrect": false,
-    "id": 1718720337133.304
-  },
-  {
-    "value": "A♥ K♥ D♥ V♥ 10♥",
-    "isCorrect": true,
-    "id": 1718720337134.2827
-  },
-  {
-    "value": "7♣ 2♥ 3♦ 8♠ 2♠",
-    "isCorrect": false,
-    "id": 1718720337134.5432
-  },
-  {
-    "value": "2♣ 5♣ V♣ 7♣ 10♣",
-    "isCorrect": false,
-    "id": 1718720550824.478
-  },
-  {
-    "value": "V♣ V♠ V♥ 10♥ 10♦",
-    "isCorrect": false,
-    "id": 1718720550826.3777
-  },
-  {
-    "value": "A♥ K♥ D♥ V♥ 10♥",
-    "isCorrect": true,
-    "id": 1718720550827.493
-  },
-  {
-    "value": "7♦ 2♥ 3♣ 2♣ 10♠",
-    "isCorrect": false,
-    "id": 1718720550828.6482
-  },
-  {
-    "value": "2♠ 7♣ J♦ 7♥ 10♠",
-    "isCorrect": true,
-    "id": 1718720579716.9543
-  },
-  {
-    "value": "J♥ J♦ J♣ 10♠ 10♣",
-    "isCorrect": false,
-    "id": 1718720579717.5208
-  },
-  {
-    "value": "A♥ K♥ Q♥ J♥ 10♥",
-    "isCorrect": false,
-    "id": 1718720579718.988
-  },
-  {
-    "value": "7♦ 6♠ 9♣ J♣ 2♦",
-    "isCorrect": false,
-    "id": 1718720579719.6553
-  },
-  {
-    "value": "a",
-    "isCorrect": true,
-    "id": 1718720981201.9434
-  },
-  {
-    "value": "a",
-    "isCorrect": false,
-    "id": 1718720981202.2188
-  },
-  {
-    "value": "a",
-    "isCorrect": false,
-    "id": 1718720981203.829
-  },
-  {
-    "value": "a",
-    "isCorrect": false,
-    "id": 1718720981204.0198
-  },
-  {
     "value": "Orchidée",
     "isCorrect": false,
     "id": 1718721285150.9832
@@ -458,26 +358,6 @@
     "value": "100",
     "isCorrect": true,
     "id": 1718723419900.0947
-  },
-  {
-    "value": "18",
-    "isCorrect": false,
-    "id": 1718723511722.1187
-  },
-  {
-    "value": "14",
-    "isCorrect": true,
-    "id": 1718723511723.3386
-  },
-  {
-    "value": "17",
-    "isCorrect": false,
-    "id": 1718723511724.961
-  },
-  {
-    "value": "19",
-    "isCorrect": false,
-    "id": 1718723511725.43
   },
   {
     "value": "19",

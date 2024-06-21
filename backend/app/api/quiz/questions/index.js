@@ -116,18 +116,20 @@ router.delete('/:id', (req, res) => {
         }
 
         // on supprime les indices
+
         for(let i=0; i<question.indice.length;i++){
             IndiceModel.delete(question.indice[i])
         }
         
         // on supprime les réponses
         const answerToDelete = question.answers
-        console.log(answerToDelete)
+        //console.log(answerToDelete)
         for(let i=0;i<4;i++){
             AnswerModel.delete(answerToDelete[i])
-            console.log(answerToDelete)
+            //console.log(answerToDelete)
         }
         console.log("taille : ",AnswerModel.get().length)
+        console.log("taille indice : ",IndiceModel.get().length)
         //       -- dans le manager --
         QuestionModel.delete(idQuestion)
         res.status(204).end()
