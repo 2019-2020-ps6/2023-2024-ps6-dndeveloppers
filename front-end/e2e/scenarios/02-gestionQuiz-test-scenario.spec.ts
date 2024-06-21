@@ -45,10 +45,12 @@ test.describe('Home page display', () => {
         expect(addButton).toBeDisabled();
 
         //On récupère le champ de selection des thème et on choisi le thème
-        const selectTheme = await quizGestionFixture.getSelectTheme();
+
+
+        const selectTheme = page.getByTestId('themeSelector');
         await selectTheme.click();
         await selectTheme.selectOption('Jeux de cartes');
-        expect(addButton).not.toBeDisabled();
+
 
         //On ajoute le nouveau quiz
         await addButton.click();

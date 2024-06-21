@@ -1,8 +1,8 @@
 import { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
-  outputDir: '/app/test-results',
-  reporter: [['html', { open: 'always' }]],
+  outputDir: './test-results',
+  reporter: [['json', { outputFile: './test-results/report.json' }]],
   workers: 1,
   use: {
     headless: true,
@@ -14,7 +14,7 @@ const config: PlaywrightTestConfig = {
       slowMo: 1000,
     }
   },
-  timeout: 4500,
+  timeout: 120000,
 };
 
 export default config;

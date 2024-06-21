@@ -1,4 +1,6 @@
 import { E2EComponentFixture } from "e2e/e2e-component.fixture";
+import { Page, Locator } from '@playwright/test';
+
 
 export class QuizGestionFixture extends E2EComponentFixture {
   // Create Quiz + Add Theme

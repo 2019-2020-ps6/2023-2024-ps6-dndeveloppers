@@ -3,7 +3,10 @@ version: '3.8'
 services:
   front:
     image: ps6-dndevelopers/front
-    build: ../front-end
+    build:
+      context: ../front-end
+      args:
+        - BUILD_CONFIG=e2e
     ports:
       - "8080:80"
     depends_on:
@@ -16,7 +19,12 @@ services:
 
   back:
     image: ps6-dndevelopers/back
-    build:  ../backend
+    build:
+      context: ../backend
+      dockerfile: Dockerfile.test
+      args:
+        - BUILD_CONFIG=e2e
+
     ports:
       - "8081:9428"
     volumes:
@@ -26,7 +34,8 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-  
+    entrypoint: npm run start:e2e
+
   
   playwright:
     build:

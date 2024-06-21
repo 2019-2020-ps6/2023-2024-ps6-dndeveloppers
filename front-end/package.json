@@ -5,9 +5,12 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:docker": "ng build --configuration=docker",
+    "build:e2e": "ng build --configuration=e2e",
+
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "test:e2e": "npx playwright test"
+    "test:e2e": "npx playwright test --config=playwright.config.ts"
   },
   "private": true,
   "dependencies": {

@@ -21,7 +21,7 @@ test.describe('Jouer quiz en tant que Huguette', () => {
         await test.step('Choisir quiz', async () => {
             const listQuizFixture = new ListQuizFixture(page);
 
-            await listQuizFixture.getSearchBar().fill("Instruments");
+            await listQuizFixture.getSearchBar().type("Instruments");
             await page.locator('choixquiz').filter({ hasText: 'Instruments' }).locator('#nom').click();
         });
 
