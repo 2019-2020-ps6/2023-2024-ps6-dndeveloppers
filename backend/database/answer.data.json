@@ -578,5 +578,65 @@
     "value": "Football",
     "isCorrect": false,
     "id": 1718789423599.947
+  },
+  {
+    "value": "0,25",
+    "isCorrect": true,
+    "id": 1718981044390.0728
+  },
+  {
+    "value": "0,5",
+    "isCorrect": false,
+    "id": 1718981044391.3677
+  },
+  {
+    "value": "0,75",
+    "isCorrect": false,
+    "id": 1718981044391.358
+  },
+  {
+    "value": "1",
+    "isCorrect": false,
+    "id": 1718981044392.921
+  },
+  {
+    "value": "0,25",
+    "isCorrect": false,
+    "id": 1718981077765.6765
+  },
+  {
+    "value": "0,75",
+    "isCorrect": true,
+    "id": 1718981077767.7842
+  },
+  {
+    "value": "0,5",
+    "isCorrect": false,
+    "id": 1718981077767.757
+  },
+  {
+    "value": "1",
+    "isCorrect": false,
+    "id": 1718981077768.0935
+  },
+  {
+    "value": "0,25",
+    "isCorrect": false,
+    "id": 1718981100640.3958
+  },
+  {
+    "value": "0,2",
+    "isCorrect": false,
+    "id": 1718981100641.787
+  },
+  {
+    "value": "0,8",
+    "isCorrect": false,
+    "id": 1718981100641.3506
+  },
+  {
+    "value": "0,125",
+    "isCorrect": true,
+    "id": 1718981100643.8445
   }
 ]

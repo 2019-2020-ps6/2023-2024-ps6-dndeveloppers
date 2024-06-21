@@ -159,5 +159,14 @@
       0.6666666666666666
     ],
     "id": 1718788561779.3179
+  },
+  {
+    "playedTime": 0,
+    "meanScore": 0,
+    "meanHintUsed": 0,
+    "resTab": [],
+    "nbHintUsed": [],
+    "successPercentageByQuestion": [],
+    "id": 1718981012875.2605
   }
 ]
